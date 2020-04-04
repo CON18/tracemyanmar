@@ -588,30 +588,67 @@ class _SqliteState extends State<Sqlite> {
                         // Icon(Icons.location_on),
                       ),
                       // ),
-                      title: Text(
-                        // employees[i].rid,
-                        employees[i].rid.toString() == "null"
-                            ? "Checked In"
-                            : employees[i].rid.toString(),
-                        // '\n' +
-                        // employee.time.toString(),
-                        style: TextStyle(
-                          fontFamily: "Pyidaungsu",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15.0,
-                        ),
-                      ),
+                      // title: Text(
+                      //   // employees[i].rid,
+                      //   employees[i].rid.toString() == "null"
+                      //       // ? "Checked In"
+                      //       ? employees[i].location.toString()
+                      //       : employees[i].rid.toString(),
+                      //   // '\n' +
+                      //   // employee.time.toString(),
+                      //   style: TextStyle(
+                      //     fontFamily: "Pyidaungsu",
+                      //     fontWeight: FontWeight.bold,
+                      //     fontSize: 15.0,
+                      //   ),
+                      // ),
+                      title: employees[i].rid.toString() == "null"
+                          ? Container()
+                          : employees[i].rid.toString() == "Checked In"
+                              ? Text(
+                                  employees[i].location.toString(),
+                                  style: TextStyle(
+                                    fontFamily: "Pyidaungsu",
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15.0,
+                                  ),
+                                )
+                              : Text(
+                                  employees[i].rid.toString(),
+                                  style: TextStyle(
+                                    fontFamily: "Pyidaungsu",
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15.0,
+                                  ),
+                                ),
                       subtitle: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          employees[i].rid.toString() == "null"
-                              ? Container()
-                              : Text(
-                                  // employees[i].time,
-                                  employees[i].time.toString(),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
+                          employees[i].rid.toString() == "Checked In" ? Container():Row(
+                            children: <Widget>[
+                              Text(
+                                employees[i].location.toString(),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 5.0,),
+                          Row(
+                            children: <Widget>[
+                              Text(
+                                employees[i].time.toString(),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
+                          )
+                          // employees[i].rid.toString() == "null"
+                          //     ? Container()
+                          //     : Text(
+                          //         // employees[i].time,
+                          //         employees[i].time.toString(),
+                          //         overflow: TextOverflow.ellipsis,
+                          //       ),
                           // SizedBox(width: 5,),
                         ],
                       ),

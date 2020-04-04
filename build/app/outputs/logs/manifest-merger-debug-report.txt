@@ -1,0 +1,529 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:1:1-42:12
+INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:1:1-42:12
+INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:1:1-42:12
+INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:1:1-42:12
+MERGED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:1:1-42:12
+MERGED from [:fluttertoast] /home/chitoonaung/FP/tracemyanmar/build/fluttertoast/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:geolocator] /home/chitoonaung/FP/tracemyanmar/build/geolocator/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:google_api_availability] /home/chitoonaung/FP/tracemyanmar/build/google_api_availability/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:sqflite] /home/chitoonaung/FP/tracemyanmar/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:path_provider] /home/chitoonaung/FP/tracemyanmar/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:path_provider_macos] /home/chitoonaung/FP/tracemyanmar/build/path_provider_macos/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:google_maps_flutter] /home/chitoonaung/FP/tracemyanmar/build/google_maps_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:flutter_plugin_android_lifecycle] /home/chitoonaung/FP/tracemyanmar/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:device_id] /home/chitoonaung/FP/tracemyanmar/build/device_id/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-20:12
+MERGED from [:shared_preferences] /home/chitoonaung/FP/tracemyanmar/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:shared_preferences_web] /home/chitoonaung/FP/tracemyanmar/build/shared_preferences_web/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:shared_preferences_macos] /home/chitoonaung/FP/tracemyanmar/build/shared_preferences_macos/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:location_permissions] /home/chitoonaung/FP/tracemyanmar/build/location_permissions/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-30:12
+MERGED from [com.google.android.material:material:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2788a1d630ffd2b98c19975ba1e486c5/material-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a1aba1c311705e1ee5f37443a76c8363/recyclerview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/721fa37d06c1b915ba822c6388888932/legacy-support-core-ui-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.firebase:firebase-messaging:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/33c3166ff4e83cd47d2369fd0ffc94a5/jetified-firebase-messaging-20.0.0/AndroidManifest.xml:17:1-37:12
+MERGED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:17:1-47:12
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/fd195ee9e5660d787eadb1e68ba16e85/play-services-stats-17.0.0/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/8505e2fce9c84abe2946919dc76c9fbd/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/755a339f388d9a051244f93ce0eb7379/play-services-maps-17.0.0/AndroidManifest.xml:17:1-38:12
+MERGED from [pub.devrel:easypermissions:0.2.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6c7aaf983adeab603da682a0097adf01/jetified-easypermissions-0.2.0/AndroidManifest.xml:2:1-14:12
+MERGED from [com.github.leyan95:android-zxingLibrary:0.1.2-PRE] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/AndroidManifest.xml:2:1-22:12
+MERGED from [androidx.appcompat:appcompat:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-location:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2156c531167d84f2aff3060da4ec538d/play-services-location-17.0.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/8e6b2381f1195b05b1d2c2e374f85428/firebase-iid-interop-17.0.0/AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.android.gms:play-services-base:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a63fdc3bf3db1bfe3cdac538e83846cd/play-services-base-17.0.0/AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/44b5a21a562aae0333252ddb8bb81b0c/play-services-places-placereport-17.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.firebase:firebase-common:19.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/65eb9f84b501ef8be0f79cbaf445aeca/firebase-common-19.0.0/AndroidManifest.xml:2:1-19:12
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/9209599e1dde113c676cdec96d802553/play-services-tasks-17.0.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6f6a93cb4d5d22710dc653460b5e8f04/firebase-measurement-connector-18.0.0/AndroidManifest.xml:17:1-25:12
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c90e1cd0f6f3439f537fdc3e95d51357/jetified-play-services-basement-17.0.0/AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.fragment:fragment:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a7f8f0f2ed267542f2e89dd9f600831b/fragment-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.loader:loader:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/10b430aeb7daa4da64bd4bb3c9911008/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/31012a3fa87adc00ad4fe0d307aff4e8/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/23f0a263e974c6c4ae4cf7ea50ea3627/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/ff34484cb94a0a2152a44b832176079d/appcompat-resources-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/3470d3477d7faf88c9782e78d076b9bb/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.transition:transition:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/9c2c5886ca504f5c97d40ae4883bbe4f/transition-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/af353fbe816ef1debbea02407fb1ee22/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/b4455006c1bd4d5f5229145d4b941382/coordinatorlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/ba7b9e01d310839f1acaaa09e97ff71a/slidingpanelayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/3fe01ce79e37629767ea1489abdc75c1/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/d0058cbe1eb0ac82afe8221ff4e44af9/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/5e29781223b11b0806c43ab1ff24fe7c/asynclayoutinflater-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/d385e4024e2a250282417bc9415ec6ea/activity-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/0be8dd919c4cde67e53b7b3e37528de2/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/badb85aa5ff98356ac857c36deabdd79/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/1ba350198ea174eeece4da9ff55b6f1b/core-1.1.0/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/f7da580ab7c78b9a48a4d0829b9f2854/lifecycle-runtime-2.1.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/09fb82b579ae0aa9532d86639ac3b170/savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/30730f146c98376ab15891a1d1c6285c/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.squareup.picasso:picasso:2.71828] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c647eb234d629dfd0a0fb9d4116cde55/jetified-picasso-2.71828/AndroidManifest.xml:2:1-14:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6b30281c295269aeb7c394afda5ea1e0/versionedparcelable-1.1.0/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/57705cb2b8003f7fa421706f86db5b4e/exifinterface-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/35148f3719eea110daa0192d63674775/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cardview:cardview:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/bb6f5de68f32f9b3088f46ab59d6ef45/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6462fbdfed28ec8ba409293c5ab2e9ca/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/d386508b571f7c8107bc47f15e784362/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/086d95982b7e0042c6bf69c964c108d7/print-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/3d1aa9bbd450c9127336f5169a663450/core-runtime-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/17ec61e065ffdc9c5b5a276bd9b675c3/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.multidex:multidex:2.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/fae48db160fb42b25f0ecaadd1521779/multidex-2.0.0/AndroidManifest.xml:17:1-22:12
+INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/debug/AndroidManifest.xml:1:1-10:12
+INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/debug/AndroidManifest.xml:1:1-10:12
+INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/debug/AndroidManifest.xml:1:1-10:12
+	package
+		ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:2:5-39
+		INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/debug/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml
+		ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:1:1-42:12
+		INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/debug/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml
+		ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:1:1-42:12
+		INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/debug/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:1:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:3:5-67
+MERGED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:3:5-67
+MERGED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:3:5-67
+MERGED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:17:5-67
+MERGED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:17:5-67
+MERGED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/755a339f388d9a051244f93ce0eb7379/play-services-maps-17.0.0/AndroidManifest.xml:24:5-67
+MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/755a339f388d9a051244f93ce0eb7379/play-services-maps-17.0.0/AndroidManifest.xml:24:5-67
+	android:name
+		ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:3:22-64
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:4:5-79
+MERGED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:4:5-79
+MERGED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:4:5-79
+MERGED from [:geolocator] /home/chitoonaung/FP/tracemyanmar/build/geolocator/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-79
+MERGED from [:geolocator] /home/chitoonaung/FP/tracemyanmar/build/geolocator/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-79
+	android:name
+		ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:4:22-76
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:5:5-81
+MERGED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:5:5-81
+MERGED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:5:5-81
+	android:name
+		ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:5:22-78
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:6:5-74
+MERGED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:6:5-74
+MERGED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:6:5-74
+MERGED from [:device_id] /home/chitoonaung/FP/tracemyanmar/build/device_id/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-75
+MERGED from [:device_id] /home/chitoonaung/FP/tracemyanmar/build/device_id/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-75
+	android:name
+		ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:6:22-72
+application
+ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:13:5-41:19
+MERGED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-18:19
+MERGED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-18:19
+MERGED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:19:5-28:19
+MERGED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:19:5-28:19
+MERGED from [com.google.android.material:material:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2788a1d630ffd2b98c19975ba1e486c5/material-1.0.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2788a1d630ffd2b98c19975ba1e486c5/material-1.0.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-messaging:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/33c3166ff4e83cd47d2369fd0ffc94a5/jetified-firebase-messaging-20.0.0/AndroidManifest.xml:22:5-35:19
+MERGED from [com.google.firebase:firebase-messaging:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/33c3166ff4e83cd47d2369fd0ffc94a5/jetified-firebase-messaging-20.0.0/AndroidManifest.xml:22:5-35:19
+MERGED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:28:5-45:19
+MERGED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:28:5-45:19
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/fd195ee9e5660d787eadb1e68ba16e85/play-services-stats-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/fd195ee9e5660d787eadb1e68ba16e85/play-services-stats-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/755a339f388d9a051244f93ce0eb7379/play-services-maps-17.0.0/AndroidManifest.xml:30:5-36:19
+MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/755a339f388d9a051244f93ce0eb7379/play-services-maps-17.0.0/AndroidManifest.xml:30:5-36:19
+MERGED from [pub.devrel:easypermissions:0.2.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6c7aaf983adeab603da682a0097adf01/jetified-easypermissions-0.2.0/AndroidManifest.xml:12:5-20
+MERGED from [pub.devrel:easypermissions:0.2.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6c7aaf983adeab603da682a0097adf01/jetified-easypermissions-0.2.0/AndroidManifest.xml:12:5-20
+MERGED from [com.github.leyan95:android-zxingLibrary:0.1.2-PRE] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/AndroidManifest.xml:13:5-20:19
+MERGED from [com.github.leyan95:android-zxingLibrary:0.1.2-PRE] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/AndroidManifest.xml:13:5-20:19
+MERGED from [com.google.android.gms:play-services-location:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2156c531167d84f2aff3060da4ec538d/play-services-location-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-location:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2156c531167d84f2aff3060da4ec538d/play-services-location-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/8e6b2381f1195b05b1d2c2e374f85428/firebase-iid-interop-17.0.0/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/8e6b2381f1195b05b1d2c2e374f85428/firebase-iid-interop-17.0.0/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.android.gms:play-services-base:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a63fdc3bf3db1bfe3cdac538e83846cd/play-services-base-17.0.0/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a63fdc3bf3db1bfe3cdac538e83846cd/play-services-base-17.0.0/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/44b5a21a562aae0333252ddb8bb81b0c/play-services-places-placereport-17.0.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/44b5a21a562aae0333252ddb8bb81b0c/play-services-places-placereport-17.0.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-common:19.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/65eb9f84b501ef8be0f79cbaf445aeca/firebase-common-19.0.0/AndroidManifest.xml:11:5-17:19
+MERGED from [com.google.firebase:firebase-common:19.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/65eb9f84b501ef8be0f79cbaf445aeca/firebase-common-19.0.0/AndroidManifest.xml:11:5-17:19
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/9209599e1dde113c676cdec96d802553/play-services-tasks-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/9209599e1dde113c676cdec96d802553/play-services-tasks-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6f6a93cb4d5d22710dc653460b5e8f04/firebase-measurement-connector-18.0.0/AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6f6a93cb4d5d22710dc653460b5e8f04/firebase-measurement-connector-18.0.0/AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c90e1cd0f6f3439f537fdc3e95d51357/jetified-play-services-basement-17.0.0/AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c90e1cd0f6f3439f537fdc3e95d51357/jetified-play-services-basement-17.0.0/AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.core:core:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/1ba350198ea174eeece4da9ff55b6f1b/core-1.1.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/1ba350198ea174eeece4da9ff55b6f1b/core-1.1.0/AndroidManifest.xml:24:5-89
+MERGED from [com.squareup.picasso:picasso:2.71828] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c647eb234d629dfd0a0fb9d4116cde55/jetified-picasso-2.71828/AndroidManifest.xml:7:5-12:19
+MERGED from [com.squareup.picasso:picasso:2.71828] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c647eb234d629dfd0a0fb9d4116cde55/jetified-picasso-2.71828/AndroidManifest.xml:7:5-12:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6b30281c295269aeb7c394afda5ea1e0/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6b30281c295269aeb7c394afda5ea1e0/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
+	android:screenOrientation
+		ADDED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:23:9-45
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/1ba350198ea174eeece4da9ff55b6f1b/core-1.1.0/AndroidManifest.xml:24:18-86
+	android:supportsRtl
+		ADDED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:24:9-35
+	android:label
+		ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:15:9-37
+	android:windowSoftInputMode
+		ADDED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:26:9-56
+	android:configChanges
+		ADDED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:21:9-59
+	android:allowBackup
+		ADDED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:20:9-35
+	android:icon
+		ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:16:9-43
+	android:theme
+		ADDED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:25:9-59
+	android:name
+		ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:14:9-57
+meta-data#com.google.android.geo.API_KEY
+ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:17:9-19:70
+	android:value
+		ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:19:13-68
+	android:name
+		ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:18:13-58
+activity#com.mit.TraceMyanmar2020.MainActivity
+ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:20:9-35:20
+	android:launchMode
+		ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:22:13-43
+	android:hardwareAccelerated
+		ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:25:13-47
+	android:windowSoftInputMode
+		ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:26:13-55
+	android:configChanges
+		ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:24:13-163
+	android:theme
+		ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:23:13-47
+	android:name
+		ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:21:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:27:13-30:29
+action#android.intent.action.MAIN
+ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:28:17-68
+	android:name
+		ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:28:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:29:17-76
+	android:name
+		ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:29:27-74
+intent-filter#action:name:FLUTER_NOTIFICATION_CLICK+category:name:android.intent.category.DEFAULT
+ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:31:13-34:29
+action#FLUTER_NOTIFICATION_CLICK
+ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:32:15-65
+	android:name
+		ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:32:23-63
+category#android.intent.category.DEFAULT
+ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:33:15-73
+	android:name
+		ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:33:25-71
+meta-data#flutterEmbedding
+ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:38:9-40:33
+	android:value
+		ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:40:13-30
+	android:name
+		ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:39:13-44
+uses-sdk
+INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml
+INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml
+MERGED from [:fluttertoast] /home/chitoonaung/FP/tracemyanmar/build/fluttertoast/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:fluttertoast] /home/chitoonaung/FP/tracemyanmar/build/fluttertoast/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:geolocator] /home/chitoonaung/FP/tracemyanmar/build/geolocator/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:geolocator] /home/chitoonaung/FP/tracemyanmar/build/geolocator/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:google_api_availability] /home/chitoonaung/FP/tracemyanmar/build/google_api_availability/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:google_api_availability] /home/chitoonaung/FP/tracemyanmar/build/google_api_availability/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] /home/chitoonaung/FP/tracemyanmar/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] /home/chitoonaung/FP/tracemyanmar/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:path_provider] /home/chitoonaung/FP/tracemyanmar/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:path_provider] /home/chitoonaung/FP/tracemyanmar/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:path_provider_macos] /home/chitoonaung/FP/tracemyanmar/build/path_provider_macos/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:path_provider_macos] /home/chitoonaung/FP/tracemyanmar/build/path_provider_macos/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:google_maps_flutter] /home/chitoonaung/FP/tracemyanmar/build/google_maps_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:google_maps_flutter] /home/chitoonaung/FP/tracemyanmar/build/google_maps_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] /home/chitoonaung/FP/tracemyanmar/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] /home/chitoonaung/FP/tracemyanmar/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:device_id] /home/chitoonaung/FP/tracemyanmar/build/device_id/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:device_id] /home/chitoonaung/FP/tracemyanmar/build/device_id/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences] /home/chitoonaung/FP/tracemyanmar/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences] /home/chitoonaung/FP/tracemyanmar/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences_web] /home/chitoonaung/FP/tracemyanmar/build/shared_preferences_web/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences_web] /home/chitoonaung/FP/tracemyanmar/build/shared_preferences_web/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences_macos] /home/chitoonaung/FP/tracemyanmar/build/shared_preferences_macos/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences_macos] /home/chitoonaung/FP/tracemyanmar/build/shared_preferences_macos/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:location_permissions] /home/chitoonaung/FP/tracemyanmar/build/location_permissions/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:location_permissions] /home/chitoonaung/FP/tracemyanmar/build/location_permissions/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.material:material:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2788a1d630ffd2b98c19975ba1e486c5/material-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2788a1d630ffd2b98c19975ba1e486c5/material-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a1aba1c311705e1ee5f37443a76c8363/recyclerview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a1aba1c311705e1ee5f37443a76c8363/recyclerview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/721fa37d06c1b915ba822c6388888932/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/721fa37d06c1b915ba822c6388888932/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-messaging:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/33c3166ff4e83cd47d2369fd0ffc94a5/jetified-firebase-messaging-20.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-messaging:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/33c3166ff4e83cd47d2369fd0ffc94a5/jetified-firebase-messaging-20.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/fd195ee9e5660d787eadb1e68ba16e85/play-services-stats-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/fd195ee9e5660d787eadb1e68ba16e85/play-services-stats-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/8505e2fce9c84abe2946919dc76c9fbd/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/8505e2fce9c84abe2946919dc76c9fbd/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/755a339f388d9a051244f93ce0eb7379/play-services-maps-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/755a339f388d9a051244f93ce0eb7379/play-services-maps-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [pub.devrel:easypermissions:0.2.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6c7aaf983adeab603da682a0097adf01/jetified-easypermissions-0.2.0/AndroidManifest.xml:8:5-10:41
+MERGED from [pub.devrel:easypermissions:0.2.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6c7aaf983adeab603da682a0097adf01/jetified-easypermissions-0.2.0/AndroidManifest.xml:8:5-10:41
+MERGED from [com.github.leyan95:android-zxingLibrary:0.1.2-PRE] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.leyan95:android-zxingLibrary:0.1.2-PRE] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.appcompat:appcompat:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.gms:play-services-location:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2156c531167d84f2aff3060da4ec538d/play-services-location-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-location:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2156c531167d84f2aff3060da4ec538d/play-services-location-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/8e6b2381f1195b05b1d2c2e374f85428/firebase-iid-interop-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/8e6b2381f1195b05b1d2c2e374f85428/firebase-iid-interop-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a63fdc3bf3db1bfe3cdac538e83846cd/play-services-base-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a63fdc3bf3db1bfe3cdac538e83846cd/play-services-base-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/44b5a21a562aae0333252ddb8bb81b0c/play-services-places-placereport-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/44b5a21a562aae0333252ddb8bb81b0c/play-services-places-placereport-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-common:19.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/65eb9f84b501ef8be0f79cbaf445aeca/firebase-common-19.0.0/AndroidManifest.xml:6:5-8:41
+MERGED from [com.google.firebase:firebase-common:19.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/65eb9f84b501ef8be0f79cbaf445aeca/firebase-common-19.0.0/AndroidManifest.xml:6:5-8:41
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/9209599e1dde113c676cdec96d802553/play-services-tasks-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/9209599e1dde113c676cdec96d802553/play-services-tasks-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6f6a93cb4d5d22710dc653460b5e8f04/firebase-measurement-connector-18.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6f6a93cb4d5d22710dc653460b5e8f04/firebase-measurement-connector-18.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c90e1cd0f6f3439f537fdc3e95d51357/jetified-play-services-basement-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c90e1cd0f6f3439f537fdc3e95d51357/jetified-play-services-basement-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a7f8f0f2ed267542f2e89dd9f600831b/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a7f8f0f2ed267542f2e89dd9f600831b/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.loader:loader:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/10b430aeb7daa4da64bd4bb3c9911008/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/10b430aeb7daa4da64bd4bb3c9911008/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/31012a3fa87adc00ad4fe0d307aff4e8/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/31012a3fa87adc00ad4fe0d307aff4e8/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/23f0a263e974c6c4ae4cf7ea50ea3627/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/23f0a263e974c6c4ae4cf7ea50ea3627/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/ff34484cb94a0a2152a44b832176079d/appcompat-resources-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/ff34484cb94a0a2152a44b832176079d/appcompat-resources-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/3470d3477d7faf88c9782e78d076b9bb/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/3470d3477d7faf88c9782e78d076b9bb/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/9c2c5886ca504f5c97d40ae4883bbe4f/transition-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/9c2c5886ca504f5c97d40ae4883bbe4f/transition-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/af353fbe816ef1debbea02407fb1ee22/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/af353fbe816ef1debbea02407fb1ee22/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/b4455006c1bd4d5f5229145d4b941382/coordinatorlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/b4455006c1bd4d5f5229145d4b941382/coordinatorlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/ba7b9e01d310839f1acaaa09e97ff71a/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/ba7b9e01d310839f1acaaa09e97ff71a/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/3fe01ce79e37629767ea1489abdc75c1/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/3fe01ce79e37629767ea1489abdc75c1/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/d0058cbe1eb0ac82afe8221ff4e44af9/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/d0058cbe1eb0ac82afe8221ff4e44af9/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/5e29781223b11b0806c43ab1ff24fe7c/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/5e29781223b11b0806c43ab1ff24fe7c/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/d385e4024e2a250282417bc9415ec6ea/activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/d385e4024e2a250282417bc9415ec6ea/activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/0be8dd919c4cde67e53b7b3e37528de2/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/0be8dd919c4cde67e53b7b3e37528de2/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/badb85aa5ff98356ac857c36deabdd79/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/badb85aa5ff98356ac857c36deabdd79/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/1ba350198ea174eeece4da9ff55b6f1b/core-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/1ba350198ea174eeece4da9ff55b6f1b/core-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/f7da580ab7c78b9a48a4d0829b9f2854/lifecycle-runtime-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/f7da580ab7c78b9a48a4d0829b9f2854/lifecycle-runtime-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/09fb82b579ae0aa9532d86639ac3b170/savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/09fb82b579ae0aa9532d86639ac3b170/savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/30730f146c98376ab15891a1d1c6285c/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/30730f146c98376ab15891a1d1c6285c/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.squareup.picasso:picasso:2.71828] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c647eb234d629dfd0a0fb9d4116cde55/jetified-picasso-2.71828/AndroidManifest.xml:5:5-44
+MERGED from [com.squareup.picasso:picasso:2.71828] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c647eb234d629dfd0a0fb9d4116cde55/jetified-picasso-2.71828/AndroidManifest.xml:5:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6b30281c295269aeb7c394afda5ea1e0/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6b30281c295269aeb7c394afda5ea1e0/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/57705cb2b8003f7fa421706f86db5b4e/exifinterface-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/57705cb2b8003f7fa421706f86db5b4e/exifinterface-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/35148f3719eea110daa0192d63674775/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/35148f3719eea110daa0192d63674775/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/bb6f5de68f32f9b3088f46ab59d6ef45/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/bb6f5de68f32f9b3088f46ab59d6ef45/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6462fbdfed28ec8ba409293c5ab2e9ca/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6462fbdfed28ec8ba409293c5ab2e9ca/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/d386508b571f7c8107bc47f15e784362/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/d386508b571f7c8107bc47f15e784362/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/086d95982b7e0042c6bf69c964c108d7/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/086d95982b7e0042c6bf69c964c108d7/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/3d1aa9bbd450c9127336f5169a663450/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/3d1aa9bbd450c9127336f5169a663450/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/17ec61e065ffdc9c5b5a276bd9b675c3/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/17ec61e065ffdc9c5b5a276bd9b675c3/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.multidex:multidex:2.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/fae48db160fb42b25f0ecaadd1521779/multidex-2.0.0/AndroidManifest.xml:20:5-43
+MERGED from [androidx.multidex:multidex:2.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/fae48db160fb42b25f0ecaadd1521779/multidex-2.0.0/AndroidManifest.xml:20:5-43
+INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/debug/AndroidManifest.xml
+INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/debug/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/debug/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/debug/AndroidManifest.xml
+service#io.flutter.plugins.firebasemessaging.FlutterFirebaseMessagingService
+ADDED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-12:19
+	android:name
+		ADDED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:8:18-101
+intent-filter#action:name:com.google.firebase.MESSAGING_EVENT
+ADDED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:29
+action#com.google.firebase.MESSAGING_EVENT
+ADDED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-78
+	android:name
+		ADDED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:10:25-75
+service#com.google.firebase.components.ComponentDiscoveryService
+ADDED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:13:9-17:19
+MERGED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:29:9-35:19
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:31:13-37
+	android:name
+		ADDED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:13:18-89
+meta-data#com.google.firebase.components:io.flutter.plugins.firebasemessaging.FlutterFirebaseAppRegistrar
+ADDED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-16:85
+	android:value
+		ADDED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:16:17-82
+	android:name
+		ADDED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:15:17-127
+uses-permission#android.permission.CAMERA
+ADDED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-65
+	android:name
+		ADDED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:7:22-62
+uses-permission#android.permission.VIBRATE
+ADDED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-66
+MERGED from [com.github.leyan95:android-zxingLibrary:0.1.2-PRE] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/AndroidManifest.xml:11:5-66
+MERGED from [com.github.leyan95:android-zxingLibrary:0.1.2-PRE] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/AndroidManifest.xml:11:5-66
+	android:name
+		ADDED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:8:22-63
+uses-permission#android.permission.FLASHLIGHT
+ADDED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-69
+	android:name
+		ADDED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:9:22-66
+uses-feature#android.hardware.camera
+ADDED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-60
+	android:name
+		ADDED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:11:19-57
+uses-feature#android.hardware.camera.autofocus
+ADDED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-70
+	android:name
+		ADDED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:12:19-67
+uses-permission#android.permission.WAKE_LOCK
+ADDED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:14:5-68
+MERGED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:24:5-68
+MERGED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:24:5-68
+	android:name
+		ADDED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:14:22-65
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:15:5-80
+	android:name
+		ADDED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:15:22-77
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:16:5-81
+	android:name
+		ADDED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:16:22-78
+activity#com.shinow.qrscan.SecondActivity
+ADDED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:27:9-69
+	android:name
+		ADDED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:27:19-66
+service#com.google.firebase.messaging.FirebaseMessagingService
+ADDED from [com.google.firebase:firebase-messaging:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/33c3166ff4e83cd47d2369fd0ffc94a5/jetified-firebase-messaging-20.0.0/AndroidManifest.xml:28:9-34:19
+	android:exported
+		ADDED from [com.google.firebase:firebase-messaging:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/33c3166ff4e83cd47d2369fd0ffc94a5/jetified-firebase-messaging-20.0.0/AndroidManifest.xml:30:13-37
+	android:name
+		ADDED from [com.google.firebase:firebase-messaging:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/33c3166ff4e83cd47d2369fd0ffc94a5/jetified-firebase-messaging-20.0.0/AndroidManifest.xml:29:13-82
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:22:5-79
+MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/755a339f388d9a051244f93ce0eb7379/play-services-maps-17.0.0/AndroidManifest.xml:23:5-79
+MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/755a339f388d9a051244f93ce0eb7379/play-services-maps-17.0.0/AndroidManifest.xml:23:5-79
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:22:22-76
+uses-permission#com.google.android.c2dm.permission.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:26:5-82
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:26:22-79
+meta-data#com.google.firebase.components:com.google.firebase.iid.Registrar
+ADDED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:32:13-34:85
+	android:value
+		ADDED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:34:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:33:17-96
+receiver#com.google.firebase.iid.FirebaseInstanceIdReceiver
+ADDED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:37:9-44:20
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:39:13-36
+	android:permission
+		ADDED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:40:13-73
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:38:13-78
+intent-filter#action:name:com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:41:13-43:29
+action#com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:42:17-81
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:42:25-78
+uses-feature#0x00020000
+ADDED from [com.google.android.gms:play-services-maps:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/755a339f388d9a051244f93ce0eb7379/play-services-maps-17.0.0/AndroidManifest.xml:26:5-28:35
+	android:glEsVersion
+		ADDED from [com.google.android.gms:play-services-maps:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/755a339f388d9a051244f93ce0eb7379/play-services-maps-17.0.0/AndroidManifest.xml:27:9-41
+	android:required
+		ADDED from [com.google.android.gms:play-services-maps:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/755a339f388d9a051244f93ce0eb7379/play-services-maps-17.0.0/AndroidManifest.xml:28:9-32
+uses-library#org.apache.http.legacy
+ADDED from [com.google.android.gms:play-services-maps:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/755a339f388d9a051244f93ce0eb7379/play-services-maps-17.0.0/AndroidManifest.xml:33:9-35:40
+	android:required
+		ADDED from [com.google.android.gms:play-services-maps:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/755a339f388d9a051244f93ce0eb7379/play-services-maps-17.0.0/AndroidManifest.xml:35:13-37
+	android:name
+		ADDED from [com.google.android.gms:play-services-maps:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/755a339f388d9a051244f93ce0eb7379/play-services-maps-17.0.0/AndroidManifest.xml:34:13-50
+activity#com.uuzuche.lib_zxing.activity.CaptureActivity
+ADDED from [com.github.leyan95:android-zxingLibrary:0.1.2-PRE] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/AndroidManifest.xml:14:9-19:63
+	android:screenOrientation
+		ADDED from [com.github.leyan95:android-zxingLibrary:0.1.2-PRE] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/AndroidManifest.xml:17:13-49
+	android:windowSoftInputMode
+		ADDED from [com.github.leyan95:android-zxingLibrary:0.1.2-PRE] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/AndroidManifest.xml:19:13-60
+	android:configChanges
+		ADDED from [com.github.leyan95:android-zxingLibrary:0.1.2-PRE] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/AndroidManifest.xml:16:13-63
+	android:theme
+		ADDED from [com.github.leyan95:android-zxingLibrary:0.1.2-PRE] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/AndroidManifest.xml:18:13-63
+	android:name
+		ADDED from [com.github.leyan95:android-zxingLibrary:0.1.2-PRE] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/AndroidManifest.xml:15:13-74
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a63fdc3bf3db1bfe3cdac538e83846cd/play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a63fdc3bf3db1bfe3cdac538e83846cd/play-services-base-17.0.0/AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a63fdc3bf3db1bfe3cdac538e83846cd/play-services-base-17.0.0/AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a63fdc3bf3db1bfe3cdac538e83846cd/play-services-base-17.0.0/AndroidManifest.xml:24:13-79
+provider#com.google.firebase.provider.FirebaseInitProvider
+ADDED from [com.google.firebase:firebase-common:19.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/65eb9f84b501ef8be0f79cbaf445aeca/firebase-common-19.0.0/AndroidManifest.xml:12:9-16:39
+	android:authorities
+		ADDED from [com.google.firebase:firebase-common:19.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/65eb9f84b501ef8be0f79cbaf445aeca/firebase-common-19.0.0/AndroidManifest.xml:14:13-72
+	android:exported
+		ADDED from [com.google.firebase:firebase-common:19.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/65eb9f84b501ef8be0f79cbaf445aeca/firebase-common-19.0.0/AndroidManifest.xml:15:13-37
+	android:initOrder
+		ADDED from [com.google.firebase:firebase-common:19.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/65eb9f84b501ef8be0f79cbaf445aeca/firebase-common-19.0.0/AndroidManifest.xml:16:13-36
+	android:name
+		ADDED from [com.google.firebase:firebase-common:19.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/65eb9f84b501ef8be0f79cbaf445aeca/firebase-common-19.0.0/AndroidManifest.xml:13:13-77
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c90e1cd0f6f3439f537fdc3e95d51357/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c90e1cd0f6f3439f537fdc3e95d51357/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c90e1cd0f6f3439f537fdc3e95d51357/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
+provider#com.squareup.picasso.PicassoProvider
+ADDED from [com.squareup.picasso:picasso:2.71828] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c647eb234d629dfd0a0fb9d4116cde55/jetified-picasso-2.71828/AndroidManifest.xml:8:9-11:40
+	android:authorities
+		ADDED from [com.squareup.picasso:picasso:2.71828] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c647eb234d629dfd0a0fb9d4116cde55/jetified-picasso-2.71828/AndroidManifest.xml:10:13-72
+	android:exported
+		ADDED from [com.squareup.picasso:picasso:2.71828] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c647eb234d629dfd0a0fb9d4116cde55/jetified-picasso-2.71828/AndroidManifest.xml:11:13-37
+	android:name
+		ADDED from [com.squareup.picasso:picasso:2.71828] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c647eb234d629dfd0a0fb9d4116cde55/jetified-picasso-2.71828/AndroidManifest.xml:9:13-64

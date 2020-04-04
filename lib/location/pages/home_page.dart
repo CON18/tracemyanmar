@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+<<<<<<< HEAD
   //---->
   GoogleMapController myMapController;
   final Set<Marker> _markers1 = new Set();
@@ -19,6 +20,9 @@ class _HomePageState extends State<HomePage> {
   //---->
 
   var dbHelper;
+=======
+  var dbHelper;   
+>>>>>>> f996309ad1cf097a1f9de3b0ff2405b2edb708ba
   var data = [];
   var test;
   final Completer<GoogleMapController> _mapController = Completer();
@@ -53,6 +57,7 @@ class _HomePageState extends State<HomePage> {
 
   /// Color of the cluster text
   final Color _clusterTextColor = Colors.white;
+<<<<<<< HEAD
   testing() async {
     var setList = [];
     setList = await dbHelper.getEmployees();
@@ -65,6 +70,20 @@ class _HomePageState extends State<HomePage> {
       data.add({
         "latitude": setList[i].location.toString().substring(0, index),
         "longitude": setList[i].location.toString().substring(index + 1),
+=======
+  testing() async{
+    var setList = [];
+    setList = await dbHelper.getEmployees();
+  // List<Marker> markers = data.map((n) {
+  //   LatLng point = LatLng(n.latitude, n.longitude);
+  // }).toList();
+  // print(markers);
+    for (var i = 0; i < setList.length; i++) {
+      var index = setList[i].location.toString().indexOf(',');
+      data.add({
+        "latitude":setList[i].location.toString().substring(0, index),
+        "longitude":setList[i].location.toString().substring(index + 1),
+>>>>>>> f996309ad1cf097a1f9de3b0ff2405b2edb708ba
       });
     }
     print(data);
@@ -76,7 +95,10 @@ class _HomePageState extends State<HomePage> {
     dbHelper = DBHelper();
     testing();
   }
+<<<<<<< HEAD
 
+=======
+>>>>>>> f996309ad1cf097a1f9de3b0ff2405b2edb708ba
   // / Example marker coordinates
   final List<LatLng> _markerLocations = [
     LatLng(16.8822700, 96.121611),
@@ -85,7 +107,11 @@ class _HomePageState extends State<HomePage> {
     LatLng(16.8822720, 96.121870),
     LatLng(16.8822400, 96.121370),
   ];
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> f996309ad1cf097a1f9de3b0ff2405b2edb708ba
   /// Called when the Google Map widget is created. Updates the map loading state
   /// and inits the markers.
   void _onMapCreated(GoogleMapController controller) {
@@ -95,7 +121,7 @@ class _HomePageState extends State<HomePage> {
       _isMapLoading = false;
     });
 
-    _initMarkers();
+    _initMarkers();   
   }
 
   /// Inits [Fluster] and all the markers with network images and updates the loading state.
@@ -159,6 +185,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+<<<<<<< HEAD
         title: Text('Trace Location',
             style: TextStyle(fontWeight: FontWeight.w300)),
         centerTitle: true,
@@ -247,4 +274,56 @@ class _HomePageState extends State<HomePage> {
 
     return _markers1;
   }
+=======
+        title: Text('Trace Location',style: TextStyle(fontWeight: FontWeight.w300)),
+        centerTitle: true,
+      ),
+      
+      body: Stack(
+        children: <Widget>[
+          // Google Map widget
+          Opacity(
+            opacity: _isMapLoading ? 0 : 1,
+            child: GoogleMap(
+              mapToolbarEnabled: false,
+              initialCameraPosition: CameraPosition(
+                target: LatLng(16.8822782, 96.121694),
+                zoom: _currentZoom,
+              ),
+              markers: _markers,
+              onMapCreated: (controller) => _onMapCreated(controller),
+              onCameraMove: (position) => _updateMarkers(position.zoom),
+            ),
+          ),
+
+          // Map loading indicator
+          Opacity(
+            opacity: _isMapLoading ? 1 : 0,
+            child: Center(child: CircularProgressIndicator()),
+          ),
+
+          // Map markers loading indicator
+          if (_areMarkersLoading)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Card(
+                  elevation: 2,
+                  color: Colors.grey.withOpacity(0.9),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4),
+                    child: Text(
+                      'Loading',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+>>>>>>> f996309ad1cf097a1f9de3b0ff2405b2edb708ba
 }

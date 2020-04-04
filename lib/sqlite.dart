@@ -1,11 +1,17 @@
 import 'dart:convert';
 import 'package:TraceMyanmar/Drawer/drawer.dart';
 import 'package:TraceMyanmar/db_helper.dart';
+<<<<<<< HEAD
 import 'package:TraceMyanmar/location/helpers/google_map.dart';
 import 'package:TraceMyanmar/location/pages/home_page.dart';
 import 'package:device_id/device_id.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+=======
+import 'package:TraceMyanmar/location/pages/home_page.dart';
+import 'package:device_id/device_id.dart';
+import 'package:flutter/material.dart';
+>>>>>>> f996309ad1cf097a1f9de3b0ff2405b2edb708ba
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
@@ -23,8 +29,11 @@ class Sqlite extends StatefulWidget {
 }
 
 class _SqliteState extends State<Sqlite> {
+<<<<<<< HEAD
   SlidableController slidableController = SlidableController();
 
+=======
+>>>>>>> f996309ad1cf097a1f9de3b0ff2405b2edb708ba
   Future<List<Employee>> employees;
   TextEditingController controller = TextEditingController();
   String name, id, location, righttime, rid;
@@ -151,7 +160,11 @@ class _SqliteState extends State<Sqlite> {
     //   ..forceAndroidLocationManager = true;
     // var position = await geolocator.getLastKnownPosition(
     //     desiredAccuracy: LocationAccuracy.best);
+<<<<<<< HEAD
     print("location >>> $location");
+=======
+    print("location $location");
+>>>>>>> f996309ad1cf097a1f9de3b0ff2405b2edb708ba
     location = "${position.latitude}, ${position.longitude}";
     latt = "${position.latitude}";
     longg = "${position.longitude}";
@@ -261,6 +274,7 @@ class _SqliteState extends State<Sqlite> {
     }
   }
 
+<<<<<<< HEAD
   //-->> Old
   // form() {
   //   return Form(
@@ -334,15 +348,22 @@ class _SqliteState extends State<Sqlite> {
   //   );
   // }
 
+=======
+>>>>>>> f996309ad1cf097a1f9de3b0ff2405b2edb708ba
   form() {
     return Form(
       key: formKey,
       child: Padding(
+<<<<<<< HEAD
         padding: EdgeInsets.all(0.0),
+=======
+        padding: EdgeInsets.all(15.0),
+>>>>>>> f996309ad1cf097a1f9de3b0ff2405b2edb708ba
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
+<<<<<<< HEAD
             Row(
               // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
@@ -400,6 +421,50 @@ class _SqliteState extends State<Sqlite> {
                   ),
                 ),
 
+=======
+            // TextFormField(
+            //   controller: controller,
+            //   keyboardType: TextInputType.text,
+            //   decoration: InputDecoration(labelText: 'Name'),
+            //   validator: (val) => val.length == 0 ? 'Enter Name' : null,
+            //   onSaved: (val) => name = val,
+            // ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                RaisedButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  color: Colors.blue,
+                  onPressed: () async {
+                    _getCurrentLocation();
+                    validate();
+                    setState(() {});
+                  },
+                  child: Text(
+                    isUpdating ? 'UPDATE' : 'Check In',
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w300),
+                  ),
+                ),
+                FlatButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  color: Colors.blue,
+                  onPressed: () {
+                    setState(() {
+                      scanBarcodeNormal();
+                    });
+                  },
+                  child: Text(
+                    'Scan QR',
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w300),
+                  ),
+                ),
+>>>>>>> f996309ad1cf097a1f9de3b0ff2405b2edb708ba
                 // GestureDetector(
                 //   onTap: () {
                 //     setState(() {
@@ -421,6 +486,7 @@ class _SqliteState extends State<Sqlite> {
     );
   }
 
+<<<<<<< HEAD
   //--->> Old
   // SingleChildScrollView dataTable(List<Employee> employees) {
   //   return SingleChildScrollView(
@@ -633,6 +699,110 @@ class _SqliteState extends State<Sqlite> {
           //   child: Text(employees[i].rid.toString()),
           // );
         });
+=======
+  SingleChildScrollView dataTable(List<Employee> employees) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: DataTable(
+        columnSpacing: 65,
+        dataRowHeight: 90,
+        headingRowHeight: 0,
+        sortAscending: true,
+        columns: [
+          DataColumn(
+              label: Text(
+            '',
+            style: TextStyle(color: Colors.black87, fontSize: 14),
+          )),
+          // DataColumn(
+          //   label: Text('Device ID')
+          // ),
+
+          // DataColumn(
+          //   label: Text(
+          //     'Location',
+          //     style: TextStyle(color: Colors.black87, fontSize: 14),
+          //   ),
+          // ),
+          // DataColumn(
+          //   label: Text(
+          //     'Time',
+          //     style: TextStyle(color: Colors.black87, fontSize: 14),
+          //   ),
+          // ),
+          DataColumn(
+            label: Text(
+              '',
+              style: TextStyle(color: Colors.black87, fontSize: 14),
+            ),
+          ),
+          DataColumn(
+            label: Text(
+              '',
+              style: TextStyle(color: Colors.black87, fontSize: 14),
+            ),
+          ),
+        ],
+        rows: employees
+            .map(
+              (employee) => DataRow(cells: [
+                DataCell(
+                    Icon(Icons.location_on,
+                        size: 30, color: Colors.green.shade400), onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => HomePage()));
+                }
+                    // Text(employee.location.toString(),
+                    //     style: TextStyle(fontWeight: FontWeight.w300,fontSize: 15)
+                    //     // ,style: employee.color=="1"? TextStyle(fontWeight: FontWeight.w400,color: Colors.red) :TextStyle(fontWeight: FontWeight.w400,color: Colors.amber)
+                    //     ),
+                    ),
+                // DataCell(
+                //   Text(deviceId),
+                // ),
+                // DataCell(
+                //   Text(employee.location.toString(),
+                //       style: TextStyle(fontWeight: FontWeight.w400)
+                //       // ,style: employee.color=="1"? TextStyle(fontWeight: FontWeight.w400,color: Colors.red) :TextStyle(fontWeight: FontWeight.w400,color: Colors.amber)
+                //       ),
+                // ),
+                // DataCell(
+                //   Text(employee.name), onTap: (){
+                //     setState(() {
+                //       isUpdating = true;
+                //       curUserId = employee.id;
+                //     });
+                //     controller.text = employee.name;
+                //   }
+                // ),
+                // DataCell(Text(employee.time.toString(),
+                //     style: TextStyle(fontWeight: FontWeight.w400))),
+                DataCell(Container(
+                    width: 150,
+                    child: Text(
+                  employee.rid.toString() == "null"
+                      ? "Checked In"
+                      : employee.rid.toString() +
+                          '\n' +
+                          employee.time.toString(),
+                  style: TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
+                ))),
+                // overflow: TextOverflow.ellipsis
+                DataCell(IconButton(
+                    icon: Icon(
+                      Icons.delete,
+                      color: Colors.red.shade300,
+                    ),
+                    onPressed: () {
+                      dbHelper.delete(employee.id);
+                      refreshList();
+                    })),
+              ]),
+            )
+            .toList(),
+      ),
+    );
+>>>>>>> f996309ad1cf097a1f9de3b0ff2405b2edb708ba
   }
 
   list() {
@@ -644,7 +814,11 @@ class _SqliteState extends State<Sqlite> {
             return dataTable(snapshot.data);
           }
           if (null == snapshot.data || snapshot.data.leght == 0) {
+<<<<<<< HEAD
             return Center(child: Text("No Data Found"));
+=======
+            return Text("No Data Found");
+>>>>>>> f996309ad1cf097a1f9de3b0ff2405b2edb708ba
           }
           return CircularProgressIndicator();
         },
@@ -709,12 +883,19 @@ class _SqliteState extends State<Sqlite> {
               mainAxisSize: MainAxisSize.min,
               verticalDirection: VerticalDirection.down,
               children: <Widget>[
+<<<<<<< HEAD
                 // form(),
+=======
+                form(),
+>>>>>>> f996309ad1cf097a1f9de3b0ff2405b2edb708ba
                 list(),
               ],
             ),
           ),
+<<<<<<< HEAD
           persistentFooterButtons: <Widget>[form()],
+=======
+>>>>>>> f996309ad1cf097a1f9de3b0ff2405b2edb708ba
         ));
   }
 }

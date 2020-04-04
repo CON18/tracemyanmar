@@ -125,6 +125,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.6"
+<<<<<<< HEAD
   flutter_slidable:
     dependency: "direct main"
     description:
@@ -132,6 +133,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.5.4"
+=======
+>>>>>>> f996309ad1cf097a1f9de3b0ff2405b2edb708ba
   flutter_test:
     dependency: "direct dev"
     description: flutter

@@ -12,19 +12,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  //---->
-  GoogleMapController myMapController;
-  final Set<Marker> _markers1 = new Set();
-  static const LatLng _mainLocation = const LatLng(22.9087267, 96.4237433);
-  //---->
+  // //---->
+  // GoogleMapController myMapController;
+  // final Set<Marker> _markers1 = new Set();
+  // static const LatLng _mainLocation = const LatLng(22.9087267, 96.4237433);
+  // //---->
 
   var dbHelper;
   var data = [];
   var test;
   final Completer<GoogleMapController> _mapController = Completer();
+  final Map<String, Marker> _new_markers = {};
 
   /// Set of displayed markers and cluster markers on the map
-  final Set<Marker> _markers = Set();
+  // final Set<Marker> _markers = Set();
 
   /// Minimum zoom at which the markers will cluster
   final int _minClusterZoom = 0;
@@ -51,23 +52,42 @@ class _HomePageState extends State<HomePage> {
   /// Color of the cluster circle
   final Color _clusterColor = Colors.blue;
 
+  // Example marker coordinates
+  // final List<LatLng> _markerLocations = [];
+  // final List<LatLng> _markerLocations = [
+  //   LatLng(16.8822700, 96.121611),
+  //   LatLng(16.8822782, 96.121694),
+  //   LatLng(16.8822600, 96.121530),
+  //   LatLng(16.8822720, 96.121870),
+  //   LatLng(16.8822400, 96.121370),
+  // ];
+
   /// Color of the cluster text
   final Color _clusterTextColor = Colors.white;
   testing() async {
-    var setList = [];
-    setList = await dbHelper.getEmployees();
-    // List<Marker> markers = data.map((n) {
-    //   LatLng point = LatLng(n.latitude, n.longitude);
-    // }).toList();
-    // print(markers);
-    for (var i = 0; i < setList.length; i++) {
-      var index = setList[i].location.toString().indexOf(',');
-      data.add({
-        "latitude": setList[i].location.toString().substring(0, index),
-        "longitude": setList[i].location.toString().substring(index + 1),
-      });
-    }
-    print(data);
+    setState(() async {
+      var setList = [];
+      setList = await dbHelper.getEmployees();
+      // List<Marker> markers = data.map((n) {
+      //   LatLng point = LatLng(n.latitude, n.longitude);
+      // }).toList();
+      // print(markers);
+      for (var i = 0; i < setList.length; i++) {
+        var index = setList[i].location.toString().indexOf(',');
+
+        data.add({
+          "latitude": setList[i].location.toString().substring(0, index),
+          "longitude": setList[i].location.toString().substring(index + 1),
+        });
+        // double lat =
+        //     double.parse(setList[i].location.toString().substring(0, index));
+        // double long =
+        //     double.parse(setList[i].location.toString().substring(index + 1));
+        // LatLng loc = LatLng(lat, long);
+        // _markerLocations.add(loc);
+      }
+      // print("LAT/LONG >> $_markerLocations");
+    });
   }
 
   @override
@@ -76,15 +96,6 @@ class _HomePageState extends State<HomePage> {
     dbHelper = DBHelper();
     testing();
   }
-
-  // / Example marker coordinates
-  final List<LatLng> _markerLocations = [
-    LatLng(16.8822700, 96.121611),
-    LatLng(16.8822782, 96.121694),
-    LatLng(16.8822600, 96.121530),
-    LatLng(16.8822720, 96.121870),
-    LatLng(16.8822400, 96.121370),
-  ];
 
   /// Called when the Google Map widget is created. Updates the map loading state
   /// and inits the markers.
@@ -100,27 +111,50 @@ class _HomePageState extends State<HomePage> {
 
   /// Inits [Fluster] and all the markers with network images and updates the loading state.
   void _initMarkers() async {
-    final List<MapMarker> markers = [];
+    // final List<MapMarker> markers = [];
 
-    for (LatLng markerLocation in _markerLocations) {
-      final BitmapDescriptor markerImage =
-          await MapHelper.getMarkerImageFromUrl(_markerImageUrl);
+    var dbHelper = DBHelper();
+    final setList = await dbHelper.getEmployees();
+    setState(() {
+      _new_markers.clear();
+      for (final list in setList) {
+        var index = list.location.toString().indexOf(',');
+        var lat = list.location.toString().substring(0, index);
+        var long = list.location.toString().substring(index + 1);
+        // print("Lth >> "+list.length.toString())
+        print("ML >> " + lat + "|" + long);
+        final marker = Marker(
+          markerId: MarkerId(list.id.toString()),
+          position: LatLng(double.parse(lat), double.parse(long)),
+          infoWindow: InfoWindow(
+            title: list.time,
+            // snippet: office.address,
+          ),
+        );
+        _new_markers[list.id.toString()] = marker;
+      }
+    });
 
-      markers.add(
-        MapMarker(
-          id: _markerLocations.indexOf(markerLocation).toString(),
-          position: markerLocation,
-          icon: markerImage,
-        ),
-      );
-      print("haha $markerLocation");
-    }
+    // for (LatLng markerLocation in _markerLocations) {
+    // final BitmapDescriptor markerImage =
+    //     await MapHelper.getMarkerImageFromUrl(_markerImageUrl);
 
-    _clusterManager = await MapHelper.initClusterManager(
-      markers,
-      _minClusterZoom,
-      _maxClusterZoom,
-    );
+    // markers.add(
+    //   MapMarker(
+    //     id: _markerLocations.indexOf(markerLocation).toString(),
+    //     position: markerLocation,
+    //     // icon: markerImage,
+    //     icon: BitmapDescriptor.defaultMarker,
+    //   ),
+    // );
+    //   print("haha $markerLocation");
+    // }
+
+    // _clusterManager = await MapHelper.initClusterManager(
+    //   markers,
+    //   _minClusterZoom,
+    //   _maxClusterZoom,
+    // );
 
     await _updateMarkers();
   }
@@ -146,9 +180,9 @@ class _HomePageState extends State<HomePage> {
       80,
     );
 
-    _markers
-      ..clear()
-      ..addAll(updatedMarkers);
+    // _markers
+    //   ..clear()
+    //   ..addAll(updatedMarkers);
 
     setState(() {
       _areMarkersLoading = false;
@@ -159,26 +193,41 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Trace Location',
-            style: TextStyle(fontWeight: FontWeight.w300)),
+        title: Text('Trace Map', style: TextStyle(fontWeight: FontWeight.w300)),
         centerTitle: true,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Expanded(
+            //   child: GoogleMap(
+            //     initialCameraPosition: CameraPosition(
+            //       target: _mainLocation,
+            //       zoom: 12.0,
+            //     ),
+            //     // markers: this.myMarker(),
+            //     markers: {
+
+            //       newyork1Marker,
+            //       newyork2Marker
+            //     },
+            //     mapType: MapType.normal,
+            //     onMapCreated: (controller) {
+            //       setState(() {
+            //         myMapController = controller;
+            //       });
+            //     },
+            //   ),
+
             child: GoogleMap(
+              mapToolbarEnabled: false,
               initialCameraPosition: CameraPosition(
-                target: _mainLocation,
-                zoom: 10.0,
+                target: LatLng(22.908325, 96.4234917),
+                zoom: _currentZoom,
               ),
-              markers: this.myMarker(),
-              mapType: MapType.normal,
-              onMapCreated: (controller) {
-                setState(() {
-                  myMapController = controller;
-                });
-              },
+              markers: _new_markers.values.toSet(),
+              onMapCreated: _onMapCreated,
+              onCameraMove: (position) => _updateMarkers(position.zoom),
             ),
           ),
         ],
@@ -231,20 +280,27 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Set<Marker> myMarker() {
-    setState(() {
-      _markers1.add(Marker(
-        // This marker id can be anything that uniquely identifies each marker.
-        markerId: MarkerId(_mainLocation.toString()),
-        position: _mainLocation,
-        infoWindow: InfoWindow(
-          title: 'Historical City',
-          snippet: '5 Star Rating',
-        ),
-        icon: BitmapDescriptor.defaultMarker,
-      ));
-    });
-
-    return _markers1;
-  }
+  // Set<Marker> myMarker() {
+  //   setState(() {
+  //     //   // new Timer(const Duration(milliseconds: 50), () {
+  //     //   // print("marker>>>>" +
+  //     //   //     data[0]["latitude"].toString() +
+  //     //   //     "|" +
+  //     //   //     data[0]["longitude"].toString());
+  //     //   _markers1.add(Marker(
+  //     //     // This marker id can be anything that uniquely identifies each marker.
+  //     //     markerId: MarkerId(_mainLocation.toString()),
+  //     //     // position: LatLng(double.parse(data[0]["latitude"].toString()),
+  //     //     //     double.parse(data[0]["longitude"].toString())),
+  //     //     position: LatLng(22.908325, 96.4234917),
+  //     //     infoWindow: InfoWindow(
+  //     //       title: 'Historical City',
+  //     //       snippet: '5 Star Rating',
+  //     //     ),
+  //     //     icon: BitmapDescriptor.defaultMarker,
+  //     //   ));
+  //     //   return _markers1;
+  //     // });
+  //   });
+  // }
 }

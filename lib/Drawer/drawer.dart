@@ -4,7 +4,9 @@ import 'package:TraceMyanmar/Drawer/Profile/profile.dart';
 import 'package:TraceMyanmar/Drawer/report/page.dart';
 import 'package:TraceMyanmar/Drawer/updatelocation.dart';
 import 'package:TraceMyanmar/LoginandRegister/login.dart';
+import 'package:TraceMyanmar/location/helpers/text_map.dart';
 import 'package:TraceMyanmar/location/pages/home_page.dart';
+
 import 'package:TraceMyanmar/sqlite.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,7 +17,7 @@ class Drawerr extends StatefulWidget {
 }
 
 class _DrawerrState extends State<Drawerr> {
-  String uu = '',ss = '';
+  String uu = '', ss = '';
 
   @override
   void initState() {
@@ -96,12 +98,15 @@ class _DrawerrState extends State<Drawerr> {
                                     children: <Widget>[
                                       GestureDetector(
                                           onTap: () {
-                                            uu==null? _showDialog() :
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        Profile(userid:uu,username:ss)));
+                                            uu == null
+                                                ? _showDialog()
+                                                : Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            Profile(
+                                                                userid: uu,
+                                                                username: ss)));
                                           },
                                           child: CircleAvatar(
                                             radius: 37,
@@ -191,7 +196,7 @@ class _DrawerrState extends State<Drawerr> {
             ),
           ),
         ),
-        // uu!="null" ? 
+        // uu!="null" ?
         // ListTile(
         //   leading: Icon(
         //     Icons.lock,
@@ -231,57 +236,65 @@ class _DrawerrState extends State<Drawerr> {
             color: Colors.blue,
             size: 25,
           ),
-          title: Text("Map"),
+          title: Text("Trace Map"),
           trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue),
           onTap: () {
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => HomePage()),
+            // );
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => TestMap()),
+            // );
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => HomePage()),
             );
           },
         ),
-        Divider(
-          indent: 60,
-          endIndent: 10,
-          color: Colors.grey[500],
-          height: 5,
-        ),
-        ListTile(
-          leading: Icon(
-            Icons.filter_center_focus,
-            color: Colors.blue,
-            size: 25,
-          ),
-          title: Text("Registration"),
-          trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Fleet()),
-            );
-          },
-        ),
-        Divider(
-          indent: 60,
-          endIndent: 10,
-          color: Colors.grey[500],
-          height: 5,
-        ),
-        ListTile(
-          leading: Icon(
-            Icons.bug_report,
-            color: Colors.blue,
-            size: 25,
-          ),
-          title: Text("Report"),
-          trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => PageNew()),
-            );
-          },
-        ),
+        // // Divider(
+        // //   indent: 60,
+        // //   endIndent: 10,
+        // //   color: Colors.grey[500],
+        // //   height: 5,
+        // // ),
+        // // ListTile(
+        // //   leading: Icon(
+        // //     Icons.filter_center_focus,
+        // //     color: Colors.blue,
+        // //     size: 25,
+        // //   ),
+        // //   title: Text("Registration"),
+        // //   trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue),
+        // //   onTap: () {
+        // //     Navigator.push(
+        // //       context,
+        // //       MaterialPageRoute(builder: (context) => Fleet()),
+        // //     );
+        // //   },
+        // // ),
+        // // Divider(
+        // //   indent: 60,
+        // //   endIndent: 10,
+        // //   color: Colors.grey[500],
+        // //   height: 5,
+        // // ),
+        // // ListTile(
+        // //   leading: Icon(
+        // //     Icons.bug_report,
+        // //     color: Colors.blue,
+        // //     size: 25,
+        // //   ),
+        // //   title: Text("Report"),
+        // //   trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue),
+        // //   onTap: () {
+        // //     Navigator.push(
+        // //       context,
+        // //       MaterialPageRoute(builder: (context) => PageNew()),
+        // //     );
+        // //   },
+        // // ),
         Divider(
           indent: 60,
           endIndent: 10,

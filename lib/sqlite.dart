@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:TraceMyanmar/Drawer/drawer.dart';
 import 'package:TraceMyanmar/db_helper.dart';
+import 'package:TraceMyanmar/location/helpers/singleMkr_map.dart';
 import 'package:TraceMyanmar/location/pages/home_page.dart';
 import 'package:device_id/device_id.dart';
 import 'package:flutter/material.dart';
@@ -546,23 +547,47 @@ class _SqliteState extends State<Sqlite> {
                   child: Container(
                     color: Colors.white,
                     child: new ListTile(
-                      leading: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomePage()));
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => GoogleMapPage()));
-                        },
-                        child: new Container(
-                          child: Icon(Icons.location_on,
-                              size: 30, color: Colors.green.shade400),
-                          // Icon(Icons.location_on),
-                        ),
+                      onTap: () {
+                        print("LIST >> " + employees[i].location.toString());
+
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SingleMarker(
+                                      id: employees[i].id.toString(),
+                                      location:
+                                          employees[i].location.toString(),
+                                      time: employees[i].time.toString(),
+                                      ride: employees[i].rid.toString(),
+                                    )));
+                      },
+                      leading:
+                          // GestureDetector(
+                          //   onTap: () {
+                          //     print("LIST >> " + employees[i].location.toString());
+
+                          //     Navigator.push(
+                          //         context,
+                          //         MaterialPageRoute(
+                          //             builder: (context) => SingleMarker(
+                          //                   id: employees[i].id.toString(),
+                          //                   location:
+                          //                       employees[i].location.toString(),
+                          //                   time: employees[i].time.toString(),
+                          //                   ride: employees[i].rid.toString(),
+                          //                 )));
+                          //     // Navigator.push(
+                          //     //     context,
+                          //     //     MaterialPageRoute(
+                          //     //         builder: (context) => GoogleMapPage()));
+                          //   },
+                          // child:
+                          new Container(
+                        child: Icon(Icons.location_on,
+                            size: 30, color: Colors.green.shade400),
+                        // Icon(Icons.location_on),
                       ),
+                      // ),
                       title: Text(
                         // employees[i].rid,
                         employees[i].rid.toString() == "null"

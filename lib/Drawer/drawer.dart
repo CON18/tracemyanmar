@@ -1,12 +1,11 @@
 import 'package:TraceMyanmar/Drawer/Fleet/fleet.dart';
 import 'package:TraceMyanmar/Drawer/Language/language.dart';
+import 'package:TraceMyanmar/Drawer/Profile/new_profile.dart';
 import 'package:TraceMyanmar/Drawer/Profile/profile.dart';
+import 'package:TraceMyanmar/Drawer/report/new_report.dart';
 import 'package:TraceMyanmar/Drawer/report/page.dart';
-import 'package:TraceMyanmar/Drawer/updatelocation.dart';
 import 'package:TraceMyanmar/LoginandRegister/login.dart';
-import 'package:TraceMyanmar/location/helpers/text_map.dart';
 import 'package:TraceMyanmar/location/pages/home_page.dart';
-
 import 'package:TraceMyanmar/sqlite.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,11 +16,26 @@ class Drawerr extends StatefulWidget {
 }
 
 class _DrawerrState extends State<Drawerr> {
-  String uu = '', ss = '';
+  String uu = '',ss = '';
+  String checklang = '';
+  List textMyan = ["Verify","​မြေပုံ","Register","စောင့်​ရှောက်"," ဘာသာစကား"];
+  List textEng = ["Verify","Map","Register","Report","Language"];
+
+  checkLanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    checklang = prefs.getString("Lang");
+    if (checklang == "" || checklang == null || checklang.length == 0) {
+      checklang = "Eng";
+    } else {
+      checklang = checklang;
+    }
+    setState(() {});
+  }
 
   @override
   void initState() {
     super.initState();
+    checkLanguage();
     getStorage();
   }
 
@@ -98,15 +112,17 @@ class _DrawerrState extends State<Drawerr> {
                                     children: <Widget>[
                                       GestureDetector(
                                           onTap: () {
-                                            uu == null
-                                                ? _showDialog()
-                                                : Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            Profile(
-                                                                userid: uu,
-                                                                username: ss)));
+                                            uu==null? _showDialog() :
+                                            // Navigator.push(
+                                            //     context,
+                                            //     MaterialPageRoute(
+                                            //         builder: (context) =>
+                                            //             Profile(userid:uu,username:ss)));
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        NewProfile(userid:uu,username:ss)));
                                           },
                                           child: CircleAvatar(
                                             radius: 37,
@@ -196,7 +212,7 @@ class _DrawerrState extends State<Drawerr> {
             ),
           ),
         ),
-        // uu!="null" ?
+        // uu!="null" ? 
         // ListTile(
         //   leading: Icon(
         //     Icons.lock,
@@ -215,7 +231,7 @@ class _DrawerrState extends State<Drawerr> {
             color: Colors.blue,
             size: 25,
           ),
-          title: Text("Sign in"),
+          title: Text(checklang=="Eng" ? textEng[0] :textMyan[0]),
           trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue),
           onTap: () {
             Navigator.push(
@@ -236,65 +252,61 @@ class _DrawerrState extends State<Drawerr> {
             color: Colors.blue,
             size: 25,
           ),
-          title: Text("Trace Map"),
+          title: Text(checklang=="Eng" ? textEng[1] :textMyan[1]),
           trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue),
           onTap: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => HomePage()),
-            // );
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => TestMap()),
-            // );
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => HomePage()),
             );
           },
         ),
-        // // Divider(
-        // //   indent: 60,
-        // //   endIndent: 10,
-        // //   color: Colors.grey[500],
-        // //   height: 5,
-        // // ),
-        // // ListTile(
-        // //   leading: Icon(
-        // //     Icons.filter_center_focus,
-        // //     color: Colors.blue,
-        // //     size: 25,
-        // //   ),
-        // //   title: Text("Registration"),
-        // //   trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue),
-        // //   onTap: () {
-        // //     Navigator.push(
-        // //       context,
-        // //       MaterialPageRoute(builder: (context) => Fleet()),
-        // //     );
-        // //   },
-        // // ),
-        // // Divider(
-        // //   indent: 60,
-        // //   endIndent: 10,
-        // //   color: Colors.grey[500],
-        // //   height: 5,
-        // // ),
-        // // ListTile(
-        // //   leading: Icon(
-        // //     Icons.bug_report,
-        // //     color: Colors.blue,
-        // //     size: 25,
-        // //   ),
-        // //   title: Text("Report"),
-        // //   trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue),
-        // //   onTap: () {
-        // //     Navigator.push(
-        // //       context,
-        // //       MaterialPageRoute(builder: (context) => PageNew()),
-        // //     );
-        // //   },
-        // // ),
+        Divider(
+          indent: 60,
+          endIndent: 10,
+          color: Colors.grey[500],
+          height: 5,
+        ),
+        ListTile(
+          leading: Icon(
+            Icons.filter_center_focus,
+            color: Colors.blue,
+            size: 25,
+          ),
+          title: Text(checklang=="Eng" ? textEng[2] :textMyan[2]),
+          trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Fleet()),
+            );
+          },
+        ),
+        Divider(
+          indent: 60,
+          endIndent: 10,
+          color: Colors.grey[500],
+          height: 5,
+        ),
+        ListTile(
+          leading: Icon(
+            Icons.bug_report,
+            color: Colors.blue,
+            size: 25,
+          ),
+          title: Text(checklang=="Eng" ? textEng[3] :textMyan[3]),
+          trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue),
+          onTap: () {
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => PageNew()),
+            // );
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => NewReport()),
+            );
+          },
+        ),
         Divider(
           indent: 60,
           endIndent: 10,
@@ -302,27 +314,27 @@ class _DrawerrState extends State<Drawerr> {
           height: 5,
         ),
 
-        // ListTile(
-        //   leading: Icon(
-        //     Icons.language,
-        //     color: Colors.blue,
-        //     size: 25,
-        //   ),
-        //   title: Text("Language"),
-        //   trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue),
-        //   onTap: () {
-        //     Navigator.push(
-        //       context,
-        //       MaterialPageRoute(builder: (context) => LanguagePage()),
-        //     );
-        //   },
-        // ),
-        // Divider(
-        //   indent: 60,
-        //   endIndent: 10,
-        //   color: Colors.grey[500],
-        //   height: 5,
-        // ),
+        ListTile(
+          leading: Icon(
+            Icons.language,
+            color: Colors.blue,
+            size: 25,
+          ),
+          title: Text(checklang=="Eng" ? textEng[4] :textMyan[4]),
+          trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LanguagePage()),
+            );
+          },
+        ),
+        Divider(
+          indent: 60,
+          endIndent: 10,
+          color: Colors.grey[500],
+          height: 5,
+        ),
       ]),
     );
   }

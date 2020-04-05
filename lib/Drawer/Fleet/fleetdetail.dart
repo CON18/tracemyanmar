@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FleetDetail extends StatefulWidget {
   final String phoneno;
@@ -42,11 +43,24 @@ class _FleetDetailState extends State<FleetDetail> {
   var index1;
   var index2;
   var index3;
+  String checklang = '';
+  List textMyan = ["အမျိုးအစား","ထွက်​ခွာသည့် ​နေ့ရက်​/အချိန်​","မှ","​ရောက်​ရှိသည့် ​နေ့ရက်​/အချိန်​","သို့","အ​ကြောင်းအရာ"];
+  List textEng = ["Type:","Departure Date Time","From:","Arrival Date Time","To:","Remark"];
 
-
+  checkLanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    checklang = prefs.getString("Lang");
+    if (checklang == "" || checklang == null || checklang.length == 0) {
+      checklang = "Eng";
+    } else {
+      checklang = checklang;
+    }
+    setState(() {});
+  }
   @override
   void initState() {
     super.initState();
+    checkLanguage();
     _text1.text=widget.fleepno;
     _text2.text=widget.depaturedatetime;
     _text3.text=widget.fromLocation;
@@ -89,14 +103,14 @@ class _FleetDetailState extends State<FleetDetail> {
     final type = new TextField(
       controller: _text8,
       decoration: InputDecoration(
-          labelText: "Type:",
+          labelText: checklang=="Eng" ? textEng[0] : textMyan[0],
           ),
       readOnly: true,
     );
     final depaturedatetime = Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                Text("Departure Date Time:"),
+                Text(checklang=="Eng" ? textEng[1] : textMyan[1]),
                 SizedBox(
                   height: 10,
                 ),
@@ -200,7 +214,7 @@ class _FleetDetailState extends State<FleetDetail> {
     final fromLocation = new TextField(
       controller: _text3,
       decoration: InputDecoration(
-          labelText: "From:",
+          labelText: checklang=="Eng" ? textEng[2] : textMyan[2],
           ),
       readOnly: true,
     );
@@ -208,7 +222,7 @@ class _FleetDetailState extends State<FleetDetail> {
     final arrivaldatetime = Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                Text("Arrival Date Time:"),
+                Text(checklang=="Eng" ? textEng[3] : textMyan[3]),
                 SizedBox(
                   height: 10,
                 ),
@@ -313,14 +327,14 @@ class _FleetDetailState extends State<FleetDetail> {
     final tolocation = new TextField(
       controller: _text5,
       decoration: InputDecoration(
-          labelText: "To:",
+          labelText: checklang=="Eng" ? textEng[4] : textMyan[4],
           ),
       readOnly: true,
     );
     final remark = new TextField(
       controller: _text6,
       decoration: InputDecoration(
-          labelText: "Remark:",
+          labelText: checklang=="Eng" ? textEng[5] : textMyan[5],
           ),
       readOnly: true,
     );

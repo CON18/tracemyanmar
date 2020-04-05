@@ -5,6 +5,7 @@ import 'package:fluster/fluster.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:TraceMyanmar/db_helper.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -51,7 +52,20 @@ class _HomePageState extends State<HomePage> {
 
   /// Color of the cluster circle
   final Color _clusterColor = Colors.blue;
-
+  String checklang = '';
+  List textMyan = ["​မြေပုံ"];
+  List textEng = ["Map"];
+  
+  checkLanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    checklang = prefs.getString("Lang");
+    if (checklang == "" || checklang == null || checklang.length == 0) {
+      checklang = "Eng";
+    } else {
+      checklang = checklang;
+    }
+    setState(() {});
+  }
   // Example marker coordinates
   // final List<LatLng> _markerLocations = [];
   // final List<LatLng> _markerLocations = [
@@ -65,9 +79,10 @@ class _HomePageState extends State<HomePage> {
   /// Color of the cluster text
   final Color _clusterTextColor = Colors.white;
   testing() async {
-    setState(() async {
       var setList = [];
       setList = await dbHelper.getEmployees();
+    setState(() {
+
       // List<Marker> markers = data.map((n) {
       //   LatLng point = LatLng(n.latitude, n.longitude);
       // }).toList();
@@ -93,6 +108,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    checkLanguage();
     dbHelper = DBHelper();
     testing();
   }
@@ -193,7 +209,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Trace Map', style: TextStyle(fontWeight: FontWeight.w300)),
+        title: Text(checklang=="Eng" ? textEng[0]: textMyan[0], style: TextStyle(fontWeight: FontWeight.w300)),
         centerTitle: true,
       ),
       body: Column(

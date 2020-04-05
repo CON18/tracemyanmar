@@ -19,7 +19,9 @@ class _RegisterState extends State<Register> {
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   String alertmsg = "";
   bool isLoading = false;
-
+  String checklang = '';
+  List textMyan = ["ဝင်မည်"];
+  List textEng = ["Login"];
   snackbarmethod() {
     _scaffoldkey.currentState.showSnackBar(new SnackBar(
       content: new Text(this.alertmsg),
@@ -28,6 +30,21 @@ class _RegisterState extends State<Register> {
     ));
   }
 
+  checkLanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    checklang = prefs.getString("Lang");
+    if (checklang == "" || checklang == null || checklang.length == 0) {
+      checklang = "Eng";
+    } else {
+      checklang = checklang;
+    }
+    setState(() {});
+  }
+  @override
+  void initState() {
+    super.initState();
+    checkLanguage();
+  }
   @override
   Widget build(BuildContext context) {
     var registerbody = new Column(
@@ -140,10 +157,10 @@ class _RegisterState extends State<Register> {
                 color: Colors.blue,
                 textColor: Colors.white,
                 child: Container(
-                  width: 100.0,
-                  height: 38.0,
+                  width: checklang=="Eng" ? 120 : 200,
+                  height: 40.0,
                   child: Center(
-                      child: Text("Login",
+                      child: Text(checklang=="Eng" ? textEng[0] :textMyan[0] ,
                           style: TextStyle(
                             fontSize: 17,
                             color: Colors.white,
@@ -177,15 +194,15 @@ class _RegisterState extends State<Register> {
     return Scaffold(
       key: _scaffoldkey,
       appBar: AppBar(
+        centerTitle: true,
         elevation: 0.0,
         backgroundColor: Colors.blue,
-        title: new Center(
+        title: new Container(
           child: new Text(
             'OTP',
             style: TextStyle(
                 fontSize: 20.0,
                 color: Colors.white,
-                height: 1.0,
                 fontWeight: FontWeight.w300),
           ),
         ),

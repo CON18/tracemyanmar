@@ -60,7 +60,7 @@ class DBHelper{
       }
     }
     
-    print("EML >>> " + employees[0].location);
+    print(employees[0].location);
     return employees; 
   }
 

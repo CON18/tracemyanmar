@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Reposting extends StatefulWidget {
 
@@ -14,22 +16,48 @@ class Reposting extends StatefulWidget {
 
 class _RepostingState extends State<Reposting> {
 
-
- final TextEditingController _text1 = new TextEditingController();
- final TextEditingController _text2 = new TextEditingController();
- final TextEditingController _text3 = new TextEditingController();
- bool v1 = false;
-bool v2 = false;
-bool v3 = false;
-bool vv = false;
-String v4="null";
-
-  final _formKey = new GlobalKey<FormState>();
+    final TextEditingController _text1 = new TextEditingController();
+    final TextEditingController _text2 = new TextEditingController();
+    final TextEditingController _text3 = new TextEditingController();
+    bool v1 = false;
+    bool v2 = false;
+    bool v3 = false;
+    bool vv = false;
+    String v4="null";
+    String checklang = '';
+    List textMyan = ["စစ်​​ဆေးခြင်း","စုစုပေါင်းအမှတ်","တည်နေရာ","ဖုန်းနံပါတ်","Have you tested positive for COVID-19","ပယ်ဖျက်မည်","စစ်​​ဆေးမည်"];
+    List textEng = ["Reporting","Total Mark","Location","Phone Number","Have you tested positive for COVID-19","Cancel","Report"];
+    
+    final _formKey = new GlobalKey<FormState>();
     final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
      String alertmsg = "";
+   
+   
+  checkLanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    checklang = prefs.getString("Lang");
+    if (checklang == "" || checklang == null || checklang.length == 0) {
+      checklang = "Eng";
+    } else {
+      checklang = checklang;
+    }
+    setState(() {});
+  }
   @override
   void initState() {
     super.initState();
+    checkLanguage();
+    getdata();
+  }
+  getdata() async{
+    final position = await Geolocator()
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    print(position);
+    final prefs = await SharedPreferences.getInstance();
+    var phno=prefs.getString('UserId');
+    print(phno);
+    _text2.text='$position';
+    _text3.text=phno;
   }
    void _method1() {
     print("Snack Bar");
@@ -70,20 +98,32 @@ String v4="null";
     final totalMark = new TextField(
           controller: _text1,
           decoration: InputDecoration(
-              labelText: "Total Mark",
+              labelText: checklang=="Eng" ? textEng[1] : textMyan[1],
+              hasFloatingPlaceholder: true,
+              labelStyle: (checklang == "Eng")
+            ? TextStyle(fontSize: 17, color: Colors.black,height: 0, fontWeight: FontWeight.w300)
+            : TextStyle(fontSize: 16, color: Colors.black, height: 0),
               enabled: false,
               ),
         );
   final location = new TextField(
           controller: _text2,
           decoration: InputDecoration(
-              labelText: "Location",
+              labelText: checklang=="Eng" ? textEng[2] : textMyan[2],
+              hasFloatingPlaceholder: true,
+              labelStyle: (checklang == "Eng")
+            ? TextStyle(fontSize: 17, color: Colors.black,height: 0, fontWeight: FontWeight.w300)
+            : TextStyle(fontSize: 16, color: Colors.black, height: 0),
               ),
         );
         final phonenumber = new TextField(
           controller: _text3,
           decoration: InputDecoration(
-              labelText: "Phone Number",
+              labelText: checklang=="Eng" ? textEng[3] : textMyan[3],
+              hasFloatingPlaceholder: true,
+              labelStyle: (checklang == "Eng")
+            ? TextStyle(fontSize: 17, color: Colors.black,height: 0, fontWeight: FontWeight.w300)
+            : TextStyle(fontSize: 16, color: Colors.black, height: 0),
               ),
         );
         // final question = new TextField(
@@ -116,7 +156,7 @@ String v4="null";
       ListTile(
         title: Padding(
           padding: const EdgeInsets.only(top:10.0),
-          child: Text("Have you tested positive for COVID-19?"),
+          child: Text(checklang=="Eng" ? textEng[4] : textMyan[4]),
         ),
         subtitle: Padding(
           padding: const EdgeInsets.all(5.0),
@@ -177,7 +217,7 @@ String v4="null";
         height: 38.0,
         child: Center(
             // child: Text(checklang == "Eng" ? textEng[7] : textMyan[7],
-            child: Text("Cancel",
+            child: Text(checklang=="Eng" ? textEng[5] : textMyan[5],
                 style: TextStyle(
                   fontSize: 17,
                   color: Colors.black,
@@ -214,7 +254,7 @@ String v4="null";
         height: 38.0,
         child: Center(
             // child: Text(checklang == "Eng" ? textEng[7] : textMyan[7],
-            child: Text("Report",
+            child: Text(checklang=="Eng" ? textEng[6] : textMyan[6],
                 style: TextStyle(
                   fontSize: 17,
                   color: Colors.white,
@@ -270,7 +310,7 @@ String v4="null";
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Reporting",style: TextStyle(fontWeight: FontWeight.w300),),
+        title: Text(checklang=="Eng" ? textEng[0] : textMyan[0],style: TextStyle(fontWeight: FontWeight.w300),),
       ),
       // body: Container(
       //   padding: EdgeInsets.all(15.0),

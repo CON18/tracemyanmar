@@ -15,13 +15,27 @@ class _FleetListState extends State<FleetList> {
   var d=[];
   var dd=[];
   int index;
-
+  String checklang = '';
+  List textMyan = ["မှတ်​စု စာရင်းများ","ဖုန်းနံပါတ်း "];
+  List textEng = ["Fleet List","Phone No:"];
+  
   @override
   void initState() {
     super.initState();
+    checkLanguage();
     _fetchfleep();
   }
 
+  checkLanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    checklang = prefs.getString("Lang");
+    if (checklang == "" || checklang == null || checklang.length == 0) {
+      checklang = "Eng";
+    } else {
+      checklang = checklang;
+    }
+    setState(() {});
+  }
   _fetchfleep() async{
     final prefs = await SharedPreferences.getInstance();
     uu = prefs.getString('UserId');
@@ -64,7 +78,7 @@ class _FleetListState extends State<FleetList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Fleet List",style: TextStyle(fontWeight: FontWeight.w300),),
+        title: Text(checklang=="Eng" ? textEng[0] : textMyan[0],style: TextStyle(fontWeight: FontWeight.w300),),
         centerTitle: true,
       ),
       body:ListView.builder(
@@ -74,8 +88,8 @@ class _FleetListState extends State<FleetList> {
             child: Column(
               children: <Widget>[
                 ListTile(
-                  title: Text("ID: "+d[i]["fleepno"]),
-                  subtitle: Text("Phone No: "+d[i]["phoneno"]),
+                  title: Text("ID: "+d[i]["fleepno"],style: TextStyle(fontWeight: FontWeight.w400),),
+                  subtitle: Text(checklang=="Eng" ? textEng[1] : textMyan[1]+d[i]["phoneno"],style: TextStyle(fontWeight: FontWeight.w300),),
                   onTap: (){
                     Navigator.push(
                       context,

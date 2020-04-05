@@ -444,10 +444,24 @@ class _ProfileState extends State<Profile> {
     "ZAYARTHIRI",
     "NAYPYITAW",
   ];
+  String checklang = '';
+  List textMyan = ["ကိုယ်ပိုင်အချက်အလက်","ဖုန်းနံပါတ်","အမည်","တိုင်း/ပြည်နယ် ​ရွှေးချယ်​ပါ","ခရိုင် ​ရွှေးချယ်​ပါ","မြိုနယ် ​ရွှေးချယ်​ပါ","ပြင်ဆင်မည်"];
+  List textEng = ["Profile","Phone No","Name","Please Select Division","Please Select District","Please Select Township","Update"];
 
+  checkLanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    checklang = prefs.getString("Lang");
+    if (checklang == "" || checklang == null || checklang.length == 0) {
+      checklang = "Eng";
+    } else {
+      checklang = checklang;
+    }
+    setState(() {});
+  }
   @override
   void initState() {
     super.initState();
+    checkLanguage();
     divisionamount = divisionList[0];
     districtamount = districtList[0];
     townshipamount = townshipList[0];
@@ -524,7 +538,7 @@ class _ProfileState extends State<Profile> {
       key: _scaffoldkey,
       appBar: AppBar(
         title: Text(
-          "Profile",
+          checklang=="Eng" ? textEng[0] :textMyan[0],
           style: TextStyle(fontWeight: FontWeight.w300),
         ),
         centerTitle: true,
@@ -534,7 +548,7 @@ class _ProfileState extends State<Profile> {
       body: SingleChildScrollView(
         key: _formKey,
         child: new Container(
-          height: 750,
+          height: checklang=="Eng" ? 750:790,
           padding: EdgeInsets.all(8.0),
           child: Card(
             elevation: 3,
@@ -562,7 +576,7 @@ class _ProfileState extends State<Profile> {
                     style: TextStyle(
                         color: Colors.grey, fontWeight: FontWeight.w300),
                     decoration: InputDecoration(
-                      labelText: "Phone No",
+                      labelText: checklang=="Eng" ? textEng[1] :textMyan[1],
                       hasFloatingPlaceholder: true,
                       labelStyle: TextStyle(
                           fontSize: 16, color: Colors.black, height: 0),
@@ -579,7 +593,7 @@ class _ProfileState extends State<Profile> {
                     style: TextStyle(
                         color: Colors.grey, fontWeight: FontWeight.w300),
                     decoration: InputDecoration(
-                      labelText: "Name",
+                      labelText: checklang=="Eng" ? textEng[2] :textMyan[2],
                       hasFloatingPlaceholder: true,
                       labelStyle: TextStyle(
                           fontSize: 16, color: Colors.black, height: 0),
@@ -589,7 +603,7 @@ class _ProfileState extends State<Profile> {
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
-                  child: new Text("Please Select Division"),
+                  child: new Text(checklang=="Eng" ? textEng[3] :textMyan[3]),
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30.0, 20.0, 30.0, 0.0),
@@ -629,7 +643,7 @@ class _ProfileState extends State<Profile> {
                 Divider(
                   height: 20,
                 ),
-                new Text("Please Select District"),
+                new Text(checklang=="Eng" ? textEng[4] :textMyan[4]),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30.0, 20.0, 30.0, 0.0),
                   child: SizedBox(
@@ -668,7 +682,7 @@ class _ProfileState extends State<Profile> {
                 Divider(
                   height: 20,
                 ),
-                new Text("Please Select Township"),
+                new Text(checklang=="Eng" ? textEng[5] :textMyan[5]),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30.0, 20.0, 30.0, 0.0),
                   child: SizedBox(
@@ -719,12 +733,12 @@ class _ProfileState extends State<Profile> {
                     height: 38.0,
                     child: Center(
                         // child: Text(checklang == "Eng" ? textEng[7] : textMyan[7],
-                        child: Text("Update",
+                        child: Text(checklang=="Eng" ? textEng[6] :textMyan[6],
                             style: TextStyle(
                               fontSize: 17,
                               color: Colors.white,
                               fontWeight: FontWeight.w300,
-                            ))),
+                      ))),
                   ),
                 )
               ],

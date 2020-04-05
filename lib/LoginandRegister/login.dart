@@ -23,10 +23,25 @@ class _LoginState extends State<Login> {
   String alertmsg = "";
   var data;
   bool isLoading = false;
+  String checklang = '';
+  List textMyan = ["ကုဒ်ရယူပါ"];
+  List textEng = ["Get OTP"];
+  
+  checkLanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    checklang = prefs.getString("Lang");
+    if (checklang == "" || checklang == null || checklang.length == 0) {
+      checklang = "Eng";
+    } else {
+      checklang = checklang;
+    }
+    setState(() {});
+  }
 
   @override
   void initState() {
     super.initState();
+    checkLanguage();
     getlocation();
   }
 
@@ -133,7 +148,9 @@ class _LoginState extends State<Login> {
                 });
                 myController.text = phoneNo;
                 if (myController.text == "" || myController.text == null) {
-                  print("Space");
+                   setState(() {
+                     isLoading=false;
+                   });
                 } else {
                   String url =
                       "http://52.187.13.89:8080/tracemyanmar/module001/serviceRegisterTraceMyanmar/checkRegister";
@@ -159,7 +176,7 @@ class _LoginState extends State<Login> {
                       print('FToken $ftoken');
                       this.alertmsg = data['desc'];
                       this.snackbarmethod();
-                      Future.delayed(const Duration(milliseconds: 1000), () {
+                      Future.delayed(const Duration(milliseconds: 2000), () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -180,7 +197,7 @@ class _LoginState extends State<Login> {
                       prefs.setString(key2, UserId);
                       this.alertmsg = data['desc'];
                       this.snackbarmethod();
-                      Future.delayed(const Duration(milliseconds: 1000), () {
+                      Future.delayed(const Duration(milliseconds: 2000), () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -210,7 +227,7 @@ class _LoginState extends State<Login> {
                 width: 100.0,
                 height: 38.0,
                 child: Center(
-                    child: Text("Get OTP",
+                    child: Text(checklang=="Eng" ? textEng[0] : textMyan[0],
                         style: TextStyle(
                           fontSize: 17,
                           color: Colors.white,
@@ -243,9 +260,10 @@ class _LoginState extends State<Login> {
     return Scaffold(
         key: _scaffoldkey,
         appBar: AppBar(
+          centerTitle: true,
           elevation: 0.0,
           backgroundColor: Colors.blue,
-          title: new Center(
+          title: new Container(
             child: new Text(
               'Trace Myanmar',
               style: TextStyle(

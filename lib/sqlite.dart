@@ -9,10 +9,12 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'employee.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:qrscan/qrscan.dart' as scanner;
+// import 'package:url_launcher/url_launcher.dart';
 
 class Sqlite extends StatefulWidget {
   final String value;
@@ -47,10 +49,35 @@ class _SqliteState extends State<Sqlite> {
   var scanresult;
   String result;
   String color;
-  // String checklang = '';
-  // List textMyan = ["သိမ်းဆည်းပါ။","QR အဖတ်","အချက်အလက်များတင်ပို့ခြင်း",""];
-  // List textEng = ["Check In","Scan QR","Submit","Version 1.0.6"];
+  String checklang = '';
+  List textMyan = [
+    "Check In",
+    "QR ဖတ်ပါ",
+    "အချက်အလက်များ​ပေးပို့ခြင်း",
+    "ဗားရှင်း 1.0.7"
+  ];
+  List textEng = ["Check In", "Scan QR", "Submit", "Version 1.0.7"];
+  final String url =
+      "https://play.google.com/store/apps/details?id=com.mit.TraceMyanmar2020&hl=en";
 
+  checkLanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    checklang = prefs.getString("Lang");
+    if (checklang == "" || checklang == null || checklang.length == 0) {
+      checklang = "Eng";
+    } else {
+      checklang = checklang;
+    }
+    setState(() {});
+  }
+
+  // _openURL() async {
+  // if (await canLaunch(url)) {
+  //   await launch(url);
+  // } else {
+  //   throw 'Could not launch $url';
+  // }
+  // }
   Future scanBarcodeNormal() async {
     String barcodeScanRes = "";
     try {
@@ -125,6 +152,7 @@ class _SqliteState extends State<Sqlite> {
   @override
   void initState() {
     super.initState();
+    checkLanguage();
     dbHelper = DBHelper();
     isUpdating = false;
     refreshList();
@@ -137,6 +165,14 @@ class _SqliteState extends State<Sqlite> {
   snackbarmethod() {
     _scaffoldkey.currentState.showSnackBar(new SnackBar(
       content: new Text(this.alertmsg),
+      backgroundColor: Colors.blue.shade400,
+      duration: Duration(seconds: 1),
+    ));
+  }
+
+  snackbarmethod1() {
+    _scaffoldkey.currentState.showSnackBar(new SnackBar(
+      content: new Text("Please wait, searching your location"),
       backgroundColor: Colors.blue.shade400,
       duration: Duration(seconds: 1),
     ));
@@ -177,7 +213,7 @@ class _SqliteState extends State<Sqlite> {
     } //http://192.168.205.137:8081/IonicDemoService/module001/service005/saveUser
     //
     final url =
-        'http://103.101.18.229:8080/TraceService/module001/service005/saveUser';
+        'http://52.187.13.89:8080/tracemyanmar/module001/service005/saveUser';
     var body = jsonEncode({"data": data});
     print(body);
     http.post(Uri.encodeFull(url), body: body, headers: {
@@ -231,10 +267,12 @@ class _SqliteState extends State<Sqlite> {
 
   validate() {
     setState(() {});
-    if (formKey.currentState.validate()) {
+    if (location == null) {
+      this.snackbarmethod1();
+    } else if (formKey.currentState.validate()) {
       setState(() {
         DateTime now = DateTime.now();
-        formattedDate = new DateFormat.MMMMd("en_US").add_jm().format(now);
+        formattedDate = new DateFormat.yMd().add_jm().format(now);
         righttime = formattedDate;
         //new DateFormat.yMd().add_jm()  DateFormat('hh:mm EEE d MMM') yMMMMd("en_US")
       });
@@ -363,7 +401,9 @@ class _SqliteState extends State<Sqlite> {
                             setState(() {});
                           },
                           child: Text(
-                            isUpdating ? 'UPDATE' : 'Check In',
+                            isUpdating
+                                ? 'UPDATE'
+                                : checklang == "Eng" ? textEng[0] : textMyan[0],
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w300),
@@ -392,7 +432,7 @@ class _SqliteState extends State<Sqlite> {
                         });
                       },
                       child: Text(
-                        'Scan QR',
+                        checklang == "Eng" ? textEng[1] : textMyan[1],
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.w300),
                       ),
@@ -588,20 +628,6 @@ class _SqliteState extends State<Sqlite> {
                         // Icon(Icons.location_on),
                       ),
                       // ),
-                      // title: Text(
-                      //   // employees[i].rid,
-                      //   employees[i].rid.toString() == "null"
-                      //       // ? "Checked In"
-                      //       ? employees[i].location.toString()
-                      //       : employees[i].rid.toString(),
-                      //   // '\n' +
-                      //   // employee.time.toString(),
-                      //   style: TextStyle(
-                      //     fontFamily: "Pyidaungsu",
-                      //     fontWeight: FontWeight.bold,
-                      //     fontSize: 15.0,
-                      //   ),
-                      // ),
                       title: employees[i].rid.toString() == "null"
                           ? Container()
                           : employees[i].rid.toString() == "Checked In"
@@ -625,15 +651,19 @@ class _SqliteState extends State<Sqlite> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          employees[i].rid.toString() == "Checked In" ? Container():Row(
-                            children: <Widget>[
-                              Text(
-                                employees[i].location.toString(),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ],
+                          employees[i].rid.toString() == "Checked In"
+                              ? Container()
+                              : Row(
+                                  children: <Widget>[
+                                    Text(
+                                      employees[i].location.toString(),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ],
+                                ),
+                          SizedBox(
+                            height: 5.0,
                           ),
-                          SizedBox(height: 5.0,),
                           Row(
                             children: <Widget>[
                               Text(
@@ -733,13 +763,13 @@ class _SqliteState extends State<Sqlite> {
                   PopupMenuItem(
                       value: 1,
                       child: Text(
-                        "Submit",
+                        checklang == "Eng" ? textEng[2] : textMyan[2],
                         style: TextStyle(
                             fontWeight: FontWeight.w400, color: Colors.black),
                       )),
                   PopupMenuItem(
                     value: 2,
-                    child: Text("Version 1.0.6",
+                    child: Text(checklang == "Eng" ? textEng[3] : textMyan[3],
                         style: TextStyle(
                             fontWeight: FontWeight.w400, color: Colors.black)),
                   ),
@@ -756,6 +786,11 @@ class _SqliteState extends State<Sqlite> {
                       setState(() {
                         getCardno();
                       });
+                    });
+                  }
+                  if (value == 2) {
+                    setState(() {
+                      //  _openURL();
                     });
                   }
                 },

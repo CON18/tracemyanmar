@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'report.dart';
 
 class PageNew extends StatefulWidget {
@@ -17,7 +18,20 @@ class _PageNewState extends State<PageNew> {
   };
  
   var tmpArray = [];
+  String checklang = '';
+  List textMyan = ["နောက်သို့","Report"];
+  List textEng = ["Next","Report"];
  
+  checkLanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    checklang = prefs.getString("Lang");
+    if (checklang == "" || checklang == null || checklang.length == 0) {
+      checklang = "Eng";
+    } else {
+      checklang = checklang;
+    }
+    setState(() {});
+  }
   getCheckboxItems(){
  
     values.forEach((key, value) {
@@ -110,6 +124,7 @@ List<bool> isChecking = new List<bool>();
   @override
   void initState() {
     super.initState();
+    checkLanguage();
     for (var i = 0; i < l.length; i++) {
         isChecking.add(false);
       }
@@ -123,7 +138,7 @@ List<bool> isChecking = new List<bool>();
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Covid 19 Checklist",
+          checklang=="Eng" ? textEng[1] :textMyan[1],
           style: TextStyle(fontWeight: FontWeight.w300),
         ),
         centerTitle: true,
@@ -166,20 +181,23 @@ List<bool> isChecking = new List<bool>();
                             Text(n[Index]),
                             Text(ll[Index]),
                             Spacer(),
-                            Checkbox(
-                              value: isChecking[Index],
-                              onChanged: (bool value) {
-                                  setState(() {
-                                      isChecking[Index] = value;
-                                      if(isChecking[Index]==true){
-                                        total +=mm[Index];
-                                      }
-                                      else{
-                                        total-=mm[Index];
-                                      }
-                                      print(total);
-                                  });
-                              },
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 10.0),
+                              child: Checkbox(
+                                value: isChecking[Index],
+                                onChanged: (bool value) {
+                                    setState(() {
+                                        isChecking[Index] = value;
+                                        if(isChecking[Index]==true){
+                                          total +=mm[Index];
+                                        }
+                                        else{
+                                          total-=mm[Index];
+                                        }
+                                        print(total);
+                                    });
+                                },
+                              ),
                             ),
                             Text(" "+m[Index]),
                           ],
@@ -202,9 +220,12 @@ List<bool> isChecking = new List<bool>();
           children: <Widget>[
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.30,
-              height: 50.0,
+              height: 40.0,
               child: RaisedButton(
-                child: Text("Next",style: TextStyle(fontWeight: FontWeight.w300,fontSize: 19),),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+                child: Text(checklang=="Eng" ? textEng[0]: textMyan[0],style: TextStyle(fontWeight: FontWeight.w300,fontSize: 15),),
                 onPressed: () {
                   var route = new MaterialPageRoute(builder: (BuildContextcontext) =>new Reposting(value:total));
                   Navigator.of(context).push(route);

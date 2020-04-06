@@ -55,7 +55,9 @@ class _HomePageState extends State<HomePage> {
   String checklang = '';
   List textMyan = ["​မြေပုံ"];
   List textEng = ["Map"];
-  
+
+  LatLng _targetLatLong;
+
   checkLanguage() async {
     final prefs = await SharedPreferences.getInstance();
     checklang = prefs.getString("Lang");
@@ -79,10 +81,9 @@ class _HomePageState extends State<HomePage> {
   /// Color of the cluster text
   final Color _clusterTextColor = Colors.white;
   testing() async {
-      var setList = [];
-      setList = await dbHelper.getEmployees();
+    var setList = [];
+    setList = await dbHelper.getEmployees();
     setState(() {
-
       // List<Marker> markers = data.map((n) {
       //   LatLng point = LatLng(n.latitude, n.longitude);
       // }).toList();
@@ -111,6 +112,21 @@ class _HomePageState extends State<HomePage> {
     checkLanguage();
     dbHelper = DBHelper();
     testing();
+    _getTargetLatLong();
+  }
+
+  _getTargetLatLong() async {
+    final prefs = await SharedPreferences.getInstance();
+    var lLat = prefs.getString("last-lat") ?? 0;
+    var lLong = prefs.getString("last-long") ?? 0;
+    if (lLat == 0 || lLong == 0) {
+      _targetLatLong = LatLng(22.9087267, 96.4237433);
+    } else {
+      _targetLatLong = LatLng(double.parse(lLat), double.parse(lLong));
+    }
+    // print("LL >> " + lLat + lLong);
+
+    // _targetLatLong = LatLng(16.8822700, 96.121611);
   }
 
   /// Called when the Google Map widget is created. Updates the map loading state
@@ -209,7 +225,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(checklang=="Eng" ? textEng[0]: textMyan[0], style: TextStyle(fontWeight: FontWeight.w300)),
+        title: Text(checklang == "Eng" ? textEng[0] : textMyan[0] + " (Map)",
+            style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0)),
         centerTitle: true,
       ),
       body: Column(
@@ -238,7 +255,8 @@ class _HomePageState extends State<HomePage> {
             child: GoogleMap(
               mapToolbarEnabled: false,
               initialCameraPosition: CameraPosition(
-                target: LatLng(22.908325, 96.4234917),
+                // target: LatLng(22.908325, 96.4234917),
+                target: _targetLatLong,
                 zoom: _currentZoom,
               ),
               markers: _new_markers.values.toSet(),

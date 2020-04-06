@@ -50,13 +50,16 @@ class _SqliteState extends State<Sqlite> {
   String result;
   String color;
   String checklang = '';
+
+  // bool _isLoading = true;
+
   List textMyan = [
-    "Check In",
-    "QR ဖတ်ပါ",
+    "GPS Check In",
+    "GPS Check In",
     "အချက်အလက်များ​ပေးပို့ခြင်း",
     "ဗားရှင်း 1.0.7"
   ];
-  List textEng = ["Check In", "Scan QR", "Submit", "Version 1.0.7"];
+  List textEng = ["GPS Check In", "QR Check In", "Submit", "Version 1.0.7"];
   final String url =
       "https://play.google.com/store/apps/details?id=com.mit.TraceMyanmar2020&hl=en";
 
@@ -158,6 +161,7 @@ class _SqliteState extends State<Sqlite> {
     refreshList();
     _getDeviceId();
     gettime();
+    _getLastLatLong();
     _getCurrentLocation();
     setState(() {});
   }
@@ -178,8 +182,30 @@ class _SqliteState extends State<Sqlite> {
     ));
   }
 
+  _getLastLatLong() async {
+    var lLat;
+    var lLong;
+
+    var allLists = await dbHelper.getEmployees();
+    // print("L-leng 11 >> " + allLists.toString());
+    // print("L-leng >> " + allLists.length.toString());
+    if (allLists.length != 0) {
+      for (final list in allLists) {
+        var index = list.location.toString().indexOf(',');
+        lLat = list.location.toString().substring(0, index);
+        lLong = list.location.toString().substring(index + 1);
+      }
+      print("Last lat/long >> " + lLat.toString() + lLong.toString());
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString("last-lat", lLat);
+      prefs.setString("last-long", lLong);
+    }
+  }
+
   _getCurrentLocation() async {
     initState() {}
+    //Get last check in location
+
     setState(() {});
     final position = await Geolocator()
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
@@ -191,6 +217,7 @@ class _SqliteState extends State<Sqlite> {
     location = "${position.latitude}, ${position.longitude}";
     latt = "${position.latitude}";
     longg = "${position.longitude}";
+
     setState(() {});
     print(_locationMessage);
     print(formattedDate);
@@ -257,6 +284,9 @@ class _SqliteState extends State<Sqlite> {
     _getCurrentLocation();
     setState(() {
       employees = dbHelper.getEmployees();
+      // Future.delayed(const Duration(seconds: 2), () {
+      //   _isLoading = false;
+      // });
     });
   }
 
@@ -289,6 +319,7 @@ class _SqliteState extends State<Sqlite> {
         // color = "1";
         this.alertmsg = "Check In Successfully!";
         this.snackbarmethod();
+        _getLastLatLong();
         setState(() {});
       }
       clearName();
@@ -567,163 +598,174 @@ class _SqliteState extends State<Sqlite> {
   //   );
   // }
 
-  ListView dataTable(List<Employee> employees) {
-    return ListView.builder(
-        itemCount: employees.length,
-        itemBuilder: (context, i) {
-          return Column(
-            children: <Widget>[
-              Container(
-                child: Slidable(
-                  key: Key(employees[i].id.toString()),
-                  controller: slidableController,
-                  actionPane: SlidableScrollActionPane(),
-                  // SlidableStrechActionPane
-                  // SlidableDrawerActionPane
-                  // SlidableScrollActionPane
-                  // SlidableBehindActionPane
-                  // actionExtentRatio: 0.25,
-                  actionExtentRatio: 0.17,
-                  child: Container(
-                    color: Colors.white,
-                    child: new ListTile(
-                      onTap: () {
-                        print("LIST >> " + employees[i].location.toString());
+  dataTable(List<Employee> employees) {
+    if (employees.length == 0) {
+      return Center(
+          child: Container(
+              child: Text(
+        "No Data Found",
+        style: TextStyle(
+            color: Colors.black26, fontSize: 18.0, fontWeight: FontWeight.bold),
+      )));
+    } else {
+      return ListView.builder(
+          itemCount: employees.length,
+          itemBuilder: (context, i) {
+            return Column(
+              children: <Widget>[
+                Container(
+                  child: Slidable(
+                    key: Key(employees[i].id.toString()),
+                    controller: slidableController,
+                    actionPane: SlidableScrollActionPane(),
+                    // SlidableStrechActionPane
+                    // SlidableDrawerActionPane
+                    // SlidableScrollActionPane
+                    // SlidableBehindActionPane
+                    // actionExtentRatio: 0.25,
+                    actionExtentRatio: 0.17,
+                    child: Container(
+                      color: Colors.white,
+                      child: new ListTile(
+                        onTap: () {
+                          print("LIST >> " + employees[i].location.toString());
 
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SingleMarker(
-                                      id: employees[i].id.toString(),
-                                      location:
-                                          employees[i].location.toString(),
-                                      time: employees[i].time.toString(),
-                                      ride: employees[i].rid.toString(),
-                                    )));
-                      },
-                      leading:
-                          // GestureDetector(
-                          //   onTap: () {
-                          //     print("LIST >> " + employees[i].location.toString());
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SingleMarker(
+                                        id: employees[i].id.toString(),
+                                        location:
+                                            employees[i].location.toString(),
+                                        time: employees[i].time.toString(),
+                                        ride: employees[i].rid.toString(),
+                                      )));
+                        },
+                        leading:
+                            // GestureDetector(
+                            //   onTap: () {
+                            //     print("LIST >> " + employees[i].location.toString());
 
-                          //     Navigator.push(
-                          //         context,
-                          //         MaterialPageRoute(
-                          //             builder: (context) => SingleMarker(
-                          //                   id: employees[i].id.toString(),
-                          //                   location:
-                          //                       employees[i].location.toString(),
-                          //                   time: employees[i].time.toString(),
-                          //                   ride: employees[i].rid.toString(),
-                          //                 )));
-                          //     // Navigator.push(
-                          //     //     context,
-                          //     //     MaterialPageRoute(
-                          //     //         builder: (context) => GoogleMapPage()));
-                          //   },
-                          // child:
-                          new Container(
-                        child: Icon(Icons.location_on,
-                            size: 30, color: Colors.green.shade400),
-                        // Icon(Icons.location_on),
-                      ),
-                      // ),
-                      title: employees[i].rid.toString() == "null"
-                          ? Container()
-                          : employees[i].rid.toString() == "Checked In"
-                              ? Text(
-                                  employees[i].location.toString(),
-                                  style: TextStyle(
-                                    fontFamily: "Pyidaungsu",
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15.0,
-                                  ),
-                                )
-                              : Text(
-                                  employees[i].rid.toString(),
-                                  style: TextStyle(
-                                    fontFamily: "Pyidaungsu",
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15.0,
-                                  ),
-                                ),
-                      subtitle: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          employees[i].rid.toString() == "Checked In"
-                              ? Container()
-                              : Row(
-                                  children: <Widget>[
-                                    Text(
-                                      employees[i].location.toString(),
-                                      overflow: TextOverflow.ellipsis,
+                            //     Navigator.push(
+                            //         context,
+                            //         MaterialPageRoute(
+                            //             builder: (context) => SingleMarker(
+                            //                   id: employees[i].id.toString(),
+                            //                   location:
+                            //                       employees[i].location.toString(),
+                            //                   time: employees[i].time.toString(),
+                            //                   ride: employees[i].rid.toString(),
+                            //                 )));
+                            //     // Navigator.push(
+                            //     //     context,
+                            //     //     MaterialPageRoute(
+                            //     //         builder: (context) => GoogleMapPage()));
+                            //   },
+                            // child:
+                            new Container(
+                          child: Icon(Icons.location_on,
+                              size: 30, color: Colors.green.shade400),
+                          // Icon(Icons.location_on),
+                        ),
+                        // ),
+                        title: employees[i].rid.toString() == "null"
+                            ? Container()
+                            : employees[i].rid.toString() == "Checked In"
+                                ? Text(
+                                    employees[i].location.toString(),
+                                    style: TextStyle(
+                                      fontFamily: "Pyidaungsu",
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15.0,
                                     ),
-                                  ],
+                                  )
+                                : Text(
+                                    employees[i].rid.toString(),
+                                    style: TextStyle(
+                                      fontFamily: "Pyidaungsu",
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15.0,
+                                    ),
+                                  ),
+                        subtitle: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            employees[i].rid.toString() == "Checked In"
+                                ? Container()
+                                : Row(
+                                    children: <Widget>[
+                                      Text(
+                                        employees[i].location.toString(),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ],
+                                  ),
+                            SizedBox(
+                              height: 5.0,
+                            ),
+                            Row(
+                              children: <Widget>[
+                                Text(
+                                  employees[i].time.toString(),
+                                  overflow: TextOverflow.ellipsis,
                                 ),
-                          SizedBox(
-                            height: 5.0,
-                          ),
-                          Row(
-                            children: <Widget>[
-                              Text(
-                                employees[i].time.toString(),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ],
-                          )
-                          // employees[i].rid.toString() == "null"
-                          //     ? Container()
-                          //     : Text(
-                          //         // employees[i].time,
-                          //         employees[i].time.toString(),
-                          //         overflow: TextOverflow.ellipsis,
-                          //       ),
-                          // SizedBox(width: 5,),
-                        ],
+                              ],
+                            )
+                            // employees[i].rid.toString() == "null"
+                            //     ? Container()
+                            //     : Text(
+                            //         // employees[i].time,
+                            //         employees[i].time.toString(),
+                            //         overflow: TextOverflow.ellipsis,
+                            //       ),
+                            // SizedBox(width: 5,),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  secondaryActions: <Widget>[
-                    IconSlideAction(
-                      // caption: 'Delete',
-                      iconWidget: Container(
-                        // color: Colors.cusRed,
-                        padding: EdgeInsets.all(8.0),
+                    secondaryActions: <Widget>[
+                      IconSlideAction(
+                        // caption: 'Delete',
+                        iconWidget: Container(
+                          // color: Colors.cusRed,
+                          padding: EdgeInsets.all(8.0),
 
-                        decoration: BoxDecoration(
-                          // shape: BoxShape.circle,
-                          border: Border.all(
-                            color: Colors.white,
-                            width: 2,
+                          decoration: BoxDecoration(
+                            // shape: BoxShape.circle,
+                            border: Border.all(
+                              color: Colors.white,
+                              width: 2,
+                            ),
+                            color: Colors.redAccent,
+                            borderRadius:
+                                new BorderRadius.all(Radius.circular(50.0)),
                           ),
-                          color: Colors.redAccent,
-                          borderRadius:
-                              new BorderRadius.all(Radius.circular(50.0)),
+                          child: new Icon(
+                            Icons.delete,
+                            color: Colors.white,
+                            size: 28,
+                          ),
                         ),
-                        child: new Icon(
-                          Icons.delete,
-                          color: Colors.white,
-                          size: 28,
-                        ),
-                      ),
-                      color: Colors.white,
-                      // icon: Icons.delete,
-                      onTap: () {
-                        // print("Delete>>" + employees[i].id.toString());
-                        dbHelper.delete(employees[i].id);
-                        refreshList();
-                      },
-                    )
-                  ],
+                        color: Colors.white,
+                        // icon: Icons.delete,
+                        onTap: () {
+                          // print("Delete>>" + employees[i].id.toString());
+                          dbHelper.delete(employees[i].id);
+                          refreshList();
+                        },
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          );
-          // return Container(
-          //   child: Text(employees[i].rid.toString()),
-          // );
-        });
+              ],
+            );
+          });
+    }
+    // return Container(
+    //   child: Text(employees[i].rid.toString()),
+    // );
+    // });
   }
 
   list() {
@@ -732,10 +774,20 @@ class _SqliteState extends State<Sqlite> {
         future: employees,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            // _isLoading = false;
             return dataTable(snapshot.data);
           }
-          if (null == snapshot.data || snapshot.data.leght == 0) {
-            return Center(child: Text("No Data Found"));
+          // print("EMP >> $employees");
+          // if (employees == null || employees == []) {
+          //   return Center(child: Text("No Data Found"));
+          // } else {
+          //   return Container(
+          //     child: Text("dflkj"),
+          //   );
+          // }
+          if (snapshot.data == null || snapshot.data.length == 0) {
+            // return Center(child: Text("No Data Found"));
+            return Container();
           }
           return CircularProgressIndicator();
         },
@@ -753,8 +805,8 @@ class _SqliteState extends State<Sqlite> {
           appBar: AppBar(
             backgroundColor: Colors.blue,
             title: Text(
-              'TraceMyanmar',
-              style: TextStyle(fontWeight: FontWeight.w300),
+              'စောစောရှာ [Saw Saw Shar]',
+              style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0),
             ),
             centerTitle: true,
             actions: <Widget>[
@@ -798,7 +850,10 @@ class _SqliteState extends State<Sqlite> {
               ),
             ],
           ),
-          body: Container(
+          body:
+              // _isLoading
+              //     ? Container()
+              Container(
             key: _formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -806,6 +861,7 @@ class _SqliteState extends State<Sqlite> {
               verticalDirection: VerticalDirection.down,
               children: <Widget>[
                 // form(),
+                Container(),
                 list(),
               ],
             ),

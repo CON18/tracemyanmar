@@ -25,7 +25,7 @@ class _RepostingState extends State<Reposting> {
     bool vv = false;
     String v4="null";
     String checklang = '';
-    List textMyan = ["စစ်​​ဆေးခြင်း","စုစုပေါင်းအမှတ်","တည်နေရာ","ဖုန်းနံပါတ်","Have you tested positive for COVID-19","ပယ်ဖျက်မည်","စစ်​​ဆေးမည်"];
+    List textMyan = ["စစ်​​ဆေးခြင်း (Reporting)","စုစုပေါင်းအမှတ်","တည်နေရာ","ဖုန်းနံပါတ်","Have you tested positive for COVID-19","ပယ်ဖျက်မည်","စစ်​​ဆေးမည်"];
     List textEng = ["Reporting","Total Mark","Location","Phone Number","Have you tested positive for COVID-19","Cancel","Report"];
     
     final _formKey = new GlobalKey<FormState>();
@@ -213,7 +213,7 @@ class _RepostingState extends State<Reposting> {
       color: Colors.grey[300],
       textColor: Colors.white,
       child: Container(
-        width: 120.0,
+        width: 100.0,
         height: 38.0,
         child: Center(
             // child: Text(checklang == "Eng" ? textEng[7] : textMyan[7],
@@ -250,7 +250,7 @@ class _RepostingState extends State<Reposting> {
       color: Colors.blue,
       textColor: Colors.white,
       child: Container(
-        width: 120.0,
+        width: 100.0,
         height: 38.0,
         child: Center(
             // child: Text(checklang == "Eng" ? textEng[7] : textMyan[7],
@@ -310,7 +310,7 @@ class _RepostingState extends State<Reposting> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(checklang=="Eng" ? textEng[0] : textMyan[0],style: TextStyle(fontWeight: FontWeight.w300),),
+        title: Text(checklang=="Eng" ? textEng[0] : textMyan[0],style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0),),
       ),
       // body: Container(
       //   padding: EdgeInsets.all(15.0),

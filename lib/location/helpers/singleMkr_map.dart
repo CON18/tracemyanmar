@@ -40,7 +40,7 @@ class _SingleMarkerState extends State<SingleMarker> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Map', style: TextStyle(fontWeight: FontWeight.w300)),
+        title: Text('​မြေပုံ (Map)', style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0)),
         centerTitle: true,
       ),
       body: Column(

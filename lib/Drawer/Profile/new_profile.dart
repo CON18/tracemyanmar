@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'package:TraceMyanmar/Drawer/Profile/profile_view.dart';
 import 'package:TraceMyanmar/country_township/townships.dart';
 import 'package:http/http.dart' as http;
 import 'package:TraceMyanmar/sqlite.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class NewProfile extends StatefulWidget {
@@ -18,6 +20,7 @@ class NewProfile extends StatefulWidget {
 class _NewProfileState extends State<NewProfile> {
   final myController = TextEditingController();
   final mynameController = TextEditingController();
+  final nrcController = TextEditingController();
 
   String divisionamount = '';
   String districtamount = '';
@@ -26,12 +29,10 @@ class _NewProfileState extends State<NewProfile> {
   final _formKey = new GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
 
-  
-
   List districtList = ["-"];
-  
+
   List townshipList = ["-"];
- 
+
   String checklang = '';
   List textMyan = [
     "ကိုယ်ပိုင်အချက်အလက်",
@@ -40,7 +41,9 @@ class _NewProfileState extends State<NewProfile> {
     "တိုင်း/ ပြည်နယ် ရွေးချယ်ပါ",
     "ခရိုင် ရွေးချယ်ပါ",
     "မြို့နယ် ရွေးချယ်ပါ",
-    "ပြင်ဆင်မည်"
+    "ပြင်ဆင်မည်",
+    "မှတ်ပုံတင်"
+    // နံပါတ်
   ];
   List textEng = [
     "Profile",
@@ -49,7 +52,8 @@ class _NewProfileState extends State<NewProfile> {
     "Please Select Division",
     "Please Select District",
     "Please Select Township",
-    "Update"
+    "Update",
+    "NRC"
   ];
 
   checkLanguage() async {
@@ -63,9 +67,20 @@ class _NewProfileState extends State<NewProfile> {
     setState(() {});
   }
 
+  String qrText;
   @override
   void initState() {
     super.initState();
+
+    var param = [
+      {
+        "name": widget.username,
+        "phone": widget.userid,
+        "nrc": "9/mkn(naing)123456"
+      }
+    ];
+    qrText = jsonEncode(param);
+
     checkLanguage();
     divisionamount = divisionList[0];
     districtamount = districtList[0];
@@ -146,16 +161,16 @@ class _NewProfileState extends State<NewProfile> {
       appBar: AppBar(
         title: Text(
           checklang == "Eng" ? textEng[0] : textMyan[0],
-          style: TextStyle(fontWeight: FontWeight.w300),
+          style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0),
         ),
         centerTitle: true,
         backgroundColor: Colors.blue,
         // leading: new Container(),
       ),
       body: SingleChildScrollView(
-        key: _formKey,
+        // key: _formKey,
         child: new Container(
-          height: checklang == "Eng" ? 750 : 790,
+          // height: checklang == "Eng" ? 750 : 790,
           padding: EdgeInsets.all(8.0),
           child: Card(
             elevation: 3,
@@ -164,16 +179,22 @@ class _NewProfileState extends State<NewProfile> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
+                    // Column(
+                    //   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(top: 10.0),
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(60.0),
                           child: (Image.asset('assets/user-icon.png',
                               width: 110.0, height: 110.0))),
-                    )
+                    ),
+                    //   ],
+                    // ),
                   ],
                 ),
-                SizedBox(height: 15.0,),
+                SizedBox(
+                  height: 15.0,
+                ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
                   child: Container(
@@ -209,8 +230,26 @@ class _NewProfileState extends State<NewProfile> {
                     ),
                   )),
                 ),
+                Divider(height: 20),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
+                  padding: const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
+                  child: Container(
+                      child: TextFormField(
+                    controller: nrcController,
+                    style: TextStyle(
+                        color: Colors.grey, fontWeight: FontWeight.w300),
+                    decoration: InputDecoration(
+                      labelText: checklang == "Eng" ? textEng[7] : textMyan[7],
+                      hasFloatingPlaceholder: true,
+                      labelStyle: TextStyle(
+                          fontSize: 16, color: Colors.black, height: 0),
+                      fillColor: Colors.grey,
+                    ),
+                  )),
+                ),
+                Divider(height: 20),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0.0, 00.0, 0.0, 0.0),
                   child:
                       new Text(checklang == "Eng" ? textEng[3] : textMyan[3]),
                 ),
@@ -378,6 +417,9 @@ class _NewProfileState extends State<NewProfile> {
                                   fontWeight: FontWeight.w300,
                                 ))),
                   ),
+                ),
+                SizedBox(
+                  height: 15.0,
                 )
               ],
             ),

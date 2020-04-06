@@ -19,7 +19,7 @@ class _PageNewState extends State<PageNew> {
  
   var tmpArray = [];
   String checklang = '';
-  List textMyan = ["နောက်သို့","Report"];
+  List textMyan = ["နောက်သို့","စစ်ဆေးမှု"];
   List textEng = ["Next","Report"];
  
   checkLanguage() async {

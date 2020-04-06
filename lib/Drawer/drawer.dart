@@ -2,6 +2,7 @@ import 'package:TraceMyanmar/Drawer/Fleet/fleet.dart';
 import 'package:TraceMyanmar/Drawer/Language/language.dart';
 import 'package:TraceMyanmar/Drawer/Profile/new_profile.dart';
 import 'package:TraceMyanmar/Drawer/Profile/profile.dart';
+import 'package:TraceMyanmar/Drawer/Profile/profile_view.dart';
 import 'package:TraceMyanmar/Drawer/report/new_report.dart';
 import 'package:TraceMyanmar/Drawer/report/page.dart';
 import 'package:TraceMyanmar/LoginandRegister/login.dart';
@@ -16,10 +17,19 @@ class Drawerr extends StatefulWidget {
 }
 
 class _DrawerrState extends State<Drawerr> {
-  String uu = '',ss = '';
+  String uu = '', ss = '';
   String checklang = '';
-  List textMyan = ["Verify","​မြေပုံ","Register","စောင့်​ရှောက်"," ဘာသာစကား"];
-  List textEng = ["Verify","Map","Register","Report","Language"];
+  List textMyan = [
+    "စီစစ်ခြင်း                        (Verify)",
+    "မြေပုံ                                    (Map)",
+    "လမ်းကြောင်းမှတ်ပုံတင် (Register)",
+    "သတင်းပို့                                      (Report)",
+    "ဘာသာစကား              (Language)"
+  ];
+  // List textMyan = ["စီစစ်ခြင်း", "မြေပုံ", "လမ်းကြောင်းမှတ်ပုံတင်", "သတင်းပို့", "ဘာသာစကား"];
+  // List textMyan = ["Verify", "​မြေပုံ", "Register", "စစ်ဆေးမှု", " ဘာသာစကား"];
+  List textEng = ["Verify", "Map", "Register", "Report", "Language"];
+  // List textEng = ["စီစစ်ခြင်း(Verify)", "မြေပုံ(Map)", "လမ်းကြောင်းမှတ်ပုံတင်(Register)", "သတင်းပို့(Report)", "ဘာသာစကား(Language)"];
 
   checkLanguage() async {
     final prefs = await SharedPreferences.getInstance();
@@ -38,6 +48,35 @@ class _DrawerrState extends State<Drawerr> {
     checkLanguage();
     getStorage();
   }
+
+  // Column(
+  //   children: <Widget>[
+  //     GestureDetector(
+  //       onTap: () {
+  //         print("Go Profile View>>");
+  //         Navigator.push(
+  //             context,
+  //             MaterialPageRoute(
+  //                 builder: (context) => ViewProfile(
+  //                     userid: widget.userid,
+  //                     username: widget.username)));
+  //       },
+  //       child: Container(
+  //         padding:
+  //             EdgeInsets.only(left: 5.0, right: 0.0, top: 70),
+  //         child: QrImage(
+  //           data: qrText.toString(),
+  //           size: 60,
+  //           // gapless: true,
+  //           // foregroundColor: Colors.green,
+  //           foregroundColor: Colors.black,
+  //           backgroundColor: Colors.white38,
+  //           errorCorrectionLevel: QrErrorCorrectLevel.H,
+  //         ),
+  //       ),
+  //     ),
+  //   ],
+  // )
 
   _showDialog() {
     showDialog(
@@ -112,28 +151,41 @@ class _DrawerrState extends State<Drawerr> {
                                     children: <Widget>[
                                       GestureDetector(
                                           onTap: () {
-                                            uu==null? _showDialog() :
-                                            // Navigator.push(
-                                            //     context,
-                                            //     MaterialPageRoute(
-                                            //         builder: (context) =>
-                                            //             Profile(userid:uu,username:ss)));
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        NewProfile(userid:uu,username:ss)));
+                                            uu == null
+                                                ? _showDialog()
+                                                :
+                                                // Navigator.push(
+                                                //     context,
+                                                //     MaterialPageRoute(
+                                                //         builder: (context) =>
+                                                //             Profile(userid:uu,username:ss)));
+                                                // Navigator.push(
+                                                //     context,
+                                                //     MaterialPageRoute(
+                                                //         builder: (context) =>
+                                                //             ViewProfile(
+                                                //                 userid: uu,
+                                                //                 username: ss)));
+
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            NewProfile(
+                                                                userid: uu,
+                                                                username: ss)));
                                           },
                                           child: CircleAvatar(
                                             radius: 37,
-                                            backgroundImage:
-                                                AssetImage('assets/user.png'),
+                                            backgroundImage: AssetImage(
+                                                'assets/user-icon.png'),
                                           )),
                                       SizedBox(height: 20),
                                       Padding(
                                         padding: EdgeInsets.only(left: 10),
                                         child: Text(
                                           uu == null ? "" : '$uu',
+                                          // "+959966680686",
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 15.0),
@@ -141,9 +193,10 @@ class _DrawerrState extends State<Drawerr> {
                                       ),
                                       Padding(
                                         padding:
-                                            EdgeInsets.only(left: 10, top: 5),
+                                            EdgeInsets.only(left: 10, top: 0),
                                         child: Text(
                                           ss == null ? "" : '$ss',
+                                          // "ချစ်ဦးနောင်",
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 15.0),
@@ -212,7 +265,7 @@ class _DrawerrState extends State<Drawerr> {
             ),
           ),
         ),
-        // uu!="null" ? 
+        // uu!="null" ?
         // ListTile(
         //   leading: Icon(
         //     Icons.lock,
@@ -231,7 +284,7 @@ class _DrawerrState extends State<Drawerr> {
             color: Colors.blue,
             size: 25,
           ),
-          title: Text(checklang=="Eng" ? textEng[0] :textMyan[0]),
+          title: Text(checklang == "Eng" ? textEng[0] : textMyan[0]),
           trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue),
           onTap: () {
             Navigator.push(
@@ -252,7 +305,7 @@ class _DrawerrState extends State<Drawerr> {
             color: Colors.blue,
             size: 25,
           ),
-          title: Text(checklang=="Eng" ? textEng[1] :textMyan[1]),
+          title: Text(checklang == "Eng" ? textEng[1] : textMyan[1]),
           trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue),
           onTap: () {
             Navigator.push(
@@ -273,7 +326,7 @@ class _DrawerrState extends State<Drawerr> {
             color: Colors.blue,
             size: 25,
           ),
-          title: Text(checklang=="Eng" ? textEng[2] :textMyan[2]),
+          title: Text(checklang == "Eng" ? textEng[2] : textMyan[2]),
           trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue),
           onTap: () {
             Navigator.push(
@@ -294,7 +347,7 @@ class _DrawerrState extends State<Drawerr> {
             color: Colors.blue,
             size: 25,
           ),
-          title: Text(checklang=="Eng" ? textEng[3] :textMyan[3]),
+          title: Text(checklang == "Eng" ? textEng[3] : textMyan[3]),
           trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue),
           onTap: () {
             // Navigator.push(
@@ -320,7 +373,7 @@ class _DrawerrState extends State<Drawerr> {
             color: Colors.blue,
             size: 25,
           ),
-          title: Text(checklang=="Eng" ? textEng[4] :textMyan[4]),
+          title: Text(checklang == "Eng" ? textEng[4] : textMyan[4]),
           trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue),
           onTap: () {
             Navigator.push(

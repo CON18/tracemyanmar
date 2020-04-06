@@ -57,7 +57,7 @@ class _LanguagePageState extends State<LanguagePage> {
               checklang = "Eng";
               prefs.setString("Lang", checklang);
               setState(() {
-                Navigator.push(
+                Navigator.pushReplacement(
                     context, MaterialPageRoute(builder: (context) => Sqlite()));
               });
               print(prefs.getString("Lang"));

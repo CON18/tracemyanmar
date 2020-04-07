@@ -449,13 +449,14 @@ class _ProfileState extends State<Profile> {
   List textEng = ["Profile","Phone No","Name","Please Select Division","Please Select District","Please Select Township","Update"];
 
   checkLanguage() async {
-    final prefs = await SharedPreferences.getInstance();
-    checklang = prefs.getString("Lang");
-    if (checklang == "" || checklang == null || checklang.length == 0) {
-      checklang = "Eng";
-    } else {
-      checklang = checklang;
-    }
+    // final prefs = await SharedPreferences.getInstance();
+    // checklang = prefs.getString("Lang");
+    // if (checklang == "" || checklang == null || checklang.length == 0) {
+    //   checklang = "Eng";
+    // } else {
+    //   checklang = checklang;
+    // }
+    checklang = "Myanmar";
     setState(() {});
   }
   @override

@@ -175,96 +175,104 @@
 96-->[com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:34:17-82
 97        </service>
 98
-99        <activity android:name="com.shinow.qrscan.SecondActivity" />
-99-->[:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:27:9-69
-99-->[:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:27:19-66
-100        <!--
-101             FirebaseMessagingService performs security checks at runtime,
-102             but set to not exported to explicitly avoid allowing another app to call it.
-103        -->
-104        <service
-104-->[com.google.firebase:firebase-messaging:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/33c3166ff4e83cd47d2369fd0ffc94a5/jetified-firebase-messaging-20.0.0/AndroidManifest.xml:28:9-34:19
-105            android:name="com.google.firebase.messaging.FirebaseMessagingService"
-105-->[com.google.firebase:firebase-messaging:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/33c3166ff4e83cd47d2369fd0ffc94a5/jetified-firebase-messaging-20.0.0/AndroidManifest.xml:29:13-82
-106            android:exported="false" >
-106-->[com.google.firebase:firebase-messaging:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/33c3166ff4e83cd47d2369fd0ffc94a5/jetified-firebase-messaging-20.0.0/AndroidManifest.xml:30:13-37
-107            <intent-filter android:priority="-500" >
-107-->[:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:29
-108                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-108-->[:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-78
-108-->[:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:10:25-75
-109            </intent-filter>
-110        </service>
-111
-112        <receiver
-112-->[com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:37:9-44:20
-113            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
-113-->[com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:38:13-78
-114            android:exported="true"
-114-->[com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:39:13-36
-115            android:permission="com.google.android.c2dm.permission.SEND" >
-115-->[com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:40:13-73
-116            <intent-filter>
-116-->[com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:41:13-43:29
-117                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-117-->[com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:42:17-81
-117-->[com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:42:25-78
-118            </intent-filter>
-119        </receiver> <!-- Needs to be explicitly declared on P+ -->
-120        <uses-library
-120-->[com.google.android.gms:play-services-maps:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/755a339f388d9a051244f93ce0eb7379/play-services-maps-17.0.0/AndroidManifest.xml:33:9-35:40
-121            android:name="org.apache.http.legacy"
-121-->[com.google.android.gms:play-services-maps:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/755a339f388d9a051244f93ce0eb7379/play-services-maps-17.0.0/AndroidManifest.xml:34:13-50
-122            android:required="false" />
-122-->[com.google.android.gms:play-services-maps:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/755a339f388d9a051244f93ce0eb7379/play-services-maps-17.0.0/AndroidManifest.xml:35:13-37
-123
-124        <activity
-124-->[com.github.leyan95:android-zxingLibrary:0.1.2-PRE] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/AndroidManifest.xml:14:9-19:63
-125            android:name="com.uuzuche.lib_zxing.activity.CaptureActivity"
-125-->[com.github.leyan95:android-zxingLibrary:0.1.2-PRE] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/AndroidManifest.xml:15:13-74
-126            android:configChanges="orientation|keyboardHidden"
-126-->[com.github.leyan95:android-zxingLibrary:0.1.2-PRE] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/AndroidManifest.xml:16:13-63
-127            android:screenOrientation="portrait"
-127-->[com.github.leyan95:android-zxingLibrary:0.1.2-PRE] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/AndroidManifest.xml:17:13-49
-128            android:theme="@style/Theme.AppCompat.NoActionBar"
-128-->[com.github.leyan95:android-zxingLibrary:0.1.2-PRE] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/AndroidManifest.xml:18:13-63
-129            android:windowSoftInputMode="stateAlwaysHidden" />
-129-->[com.github.leyan95:android-zxingLibrary:0.1.2-PRE] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/AndroidManifest.xml:19:13-60
-130        <activity
-130-->[com.google.android.gms:play-services-base:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a63fdc3bf3db1bfe3cdac538e83846cd/play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
-131            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-131-->[com.google.android.gms:play-services-base:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a63fdc3bf3db1bfe3cdac538e83846cd/play-services-base-17.0.0/AndroidManifest.xml:24:13-79
-132            android:exported="false"
-132-->[com.google.android.gms:play-services-base:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a63fdc3bf3db1bfe3cdac538e83846cd/play-services-base-17.0.0/AndroidManifest.xml:25:13-37
-133            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-133-->[com.google.android.gms:play-services-base:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a63fdc3bf3db1bfe3cdac538e83846cd/play-services-base-17.0.0/AndroidManifest.xml:26:13-72
-134
-135        <provider
-135-->[com.google.firebase:firebase-common:19.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/65eb9f84b501ef8be0f79cbaf445aeca/firebase-common-19.0.0/AndroidManifest.xml:12:9-16:39
-136            android:name="com.google.firebase.provider.FirebaseInitProvider"
-136-->[com.google.firebase:firebase-common:19.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/65eb9f84b501ef8be0f79cbaf445aeca/firebase-common-19.0.0/AndroidManifest.xml:13:13-77
-137            android:authorities="com.mit.TraceMyanmar2020.firebaseinitprovider"
-137-->[com.google.firebase:firebase-common:19.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/65eb9f84b501ef8be0f79cbaf445aeca/firebase-common-19.0.0/AndroidManifest.xml:14:13-72
-138            android:exported="false"
-138-->[com.google.firebase:firebase-common:19.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/65eb9f84b501ef8be0f79cbaf445aeca/firebase-common-19.0.0/AndroidManifest.xml:15:13-37
-139            android:initOrder="100" />
-139-->[com.google.firebase:firebase-common:19.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/65eb9f84b501ef8be0f79cbaf445aeca/firebase-common-19.0.0/AndroidManifest.xml:16:13-36
-140
-141        <meta-data
-141-->[com.google.android.gms:play-services-basement:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c90e1cd0f6f3439f537fdc3e95d51357/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
-142            android:name="com.google.android.gms.version"
-142-->[com.google.android.gms:play-services-basement:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c90e1cd0f6f3439f537fdc3e95d51357/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
-143            android:value="@integer/google_play_services_version" />
-143-->[com.google.android.gms:play-services-basement:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c90e1cd0f6f3439f537fdc3e95d51357/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+99        <activity
+99-->[:url_launcher] /home/chitoonaung/FP/tracemyanmar/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-11:74
+100            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+100-->[:url_launcher] /home/chitoonaung/FP/tracemyanmar/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-74
+101            android:exported="false"
+101-->[:url_launcher] /home/chitoonaung/FP/tracemyanmar/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:10:13-37
+102            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+102-->[:url_launcher] /home/chitoonaung/FP/tracemyanmar/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-71
+103        <activity android:name="com.shinow.qrscan.SecondActivity" />
+103-->[:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:27:9-69
+103-->[:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:27:19-66
+104        <!--
+105             FirebaseMessagingService performs security checks at runtime,
+106             but set to not exported to explicitly avoid allowing another app to call it.
+107        -->
+108        <service
+108-->[com.google.firebase:firebase-messaging:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/33c3166ff4e83cd47d2369fd0ffc94a5/jetified-firebase-messaging-20.0.0/AndroidManifest.xml:28:9-34:19
+109            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+109-->[com.google.firebase:firebase-messaging:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/33c3166ff4e83cd47d2369fd0ffc94a5/jetified-firebase-messaging-20.0.0/AndroidManifest.xml:29:13-82
+110            android:exported="false" >
+110-->[com.google.firebase:firebase-messaging:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/33c3166ff4e83cd47d2369fd0ffc94a5/jetified-firebase-messaging-20.0.0/AndroidManifest.xml:30:13-37
+111            <intent-filter android:priority="-500" >
+111-->[:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:29
+112                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+112-->[:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-78
+112-->[:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:10:25-75
+113            </intent-filter>
+114        </service>
+115
+116        <receiver
+116-->[com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:37:9-44:20
+117            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+117-->[com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:38:13-78
+118            android:exported="true"
+118-->[com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:39:13-36
+119            android:permission="com.google.android.c2dm.permission.SEND" >
+119-->[com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:40:13-73
+120            <intent-filter>
+120-->[com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:41:13-43:29
+121                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+121-->[com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:42:17-81
+121-->[com.google.firebase:firebase-iid:20.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a980daf7f13f7b8191c75c39cf479ed2/firebase-iid-20.0.0/AndroidManifest.xml:42:25-78
+122            </intent-filter>
+123        </receiver> <!-- Needs to be explicitly declared on P+ -->
+124        <uses-library
+124-->[com.google.android.gms:play-services-maps:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/755a339f388d9a051244f93ce0eb7379/play-services-maps-17.0.0/AndroidManifest.xml:33:9-35:40
+125            android:name="org.apache.http.legacy"
+125-->[com.google.android.gms:play-services-maps:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/755a339f388d9a051244f93ce0eb7379/play-services-maps-17.0.0/AndroidManifest.xml:34:13-50
+126            android:required="false" />
+126-->[com.google.android.gms:play-services-maps:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/755a339f388d9a051244f93ce0eb7379/play-services-maps-17.0.0/AndroidManifest.xml:35:13-37
+127
+128        <activity
+128-->[com.github.leyan95:android-zxingLibrary:0.1.2-PRE] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/AndroidManifest.xml:14:9-19:63
+129            android:name="com.uuzuche.lib_zxing.activity.CaptureActivity"
+129-->[com.github.leyan95:android-zxingLibrary:0.1.2-PRE] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/AndroidManifest.xml:15:13-74
+130            android:configChanges="orientation|keyboardHidden"
+130-->[com.github.leyan95:android-zxingLibrary:0.1.2-PRE] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/AndroidManifest.xml:16:13-63
+131            android:screenOrientation="portrait"
+131-->[com.github.leyan95:android-zxingLibrary:0.1.2-PRE] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/AndroidManifest.xml:17:13-49
+132            android:theme="@style/Theme.AppCompat.NoActionBar"
+132-->[com.github.leyan95:android-zxingLibrary:0.1.2-PRE] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/AndroidManifest.xml:18:13-63
+133            android:windowSoftInputMode="stateAlwaysHidden" />
+133-->[com.github.leyan95:android-zxingLibrary:0.1.2-PRE] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/AndroidManifest.xml:19:13-60
+134        <activity
+134-->[com.google.android.gms:play-services-base:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a63fdc3bf3db1bfe3cdac538e83846cd/play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
+135            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+135-->[com.google.android.gms:play-services-base:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a63fdc3bf3db1bfe3cdac538e83846cd/play-services-base-17.0.0/AndroidManifest.xml:24:13-79
+136            android:exported="false"
+136-->[com.google.android.gms:play-services-base:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a63fdc3bf3db1bfe3cdac538e83846cd/play-services-base-17.0.0/AndroidManifest.xml:25:13-37
+137            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+137-->[com.google.android.gms:play-services-base:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a63fdc3bf3db1bfe3cdac538e83846cd/play-services-base-17.0.0/AndroidManifest.xml:26:13-72
+138
+139        <provider
+139-->[com.google.firebase:firebase-common:19.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/65eb9f84b501ef8be0f79cbaf445aeca/firebase-common-19.0.0/AndroidManifest.xml:12:9-16:39
+140            android:name="com.google.firebase.provider.FirebaseInitProvider"
+140-->[com.google.firebase:firebase-common:19.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/65eb9f84b501ef8be0f79cbaf445aeca/firebase-common-19.0.0/AndroidManifest.xml:13:13-77
+141            android:authorities="com.mit.TraceMyanmar2020.firebaseinitprovider"
+141-->[com.google.firebase:firebase-common:19.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/65eb9f84b501ef8be0f79cbaf445aeca/firebase-common-19.0.0/AndroidManifest.xml:14:13-72
+142            android:exported="false"
+142-->[com.google.firebase:firebase-common:19.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/65eb9f84b501ef8be0f79cbaf445aeca/firebase-common-19.0.0/AndroidManifest.xml:15:13-37
+143            android:initOrder="100" />
+143-->[com.google.firebase:firebase-common:19.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/65eb9f84b501ef8be0f79cbaf445aeca/firebase-common-19.0.0/AndroidManifest.xml:16:13-36
 144
-145        <provider
-145-->[com.squareup.picasso:picasso:2.71828] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c647eb234d629dfd0a0fb9d4116cde55/jetified-picasso-2.71828/AndroidManifest.xml:8:9-11:40
-146            android:name="com.squareup.picasso.PicassoProvider"
-146-->[com.squareup.picasso:picasso:2.71828] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c647eb234d629dfd0a0fb9d4116cde55/jetified-picasso-2.71828/AndroidManifest.xml:9:13-64
-147            android:authorities="com.mit.TraceMyanmar2020.com.squareup.picasso"
-147-->[com.squareup.picasso:picasso:2.71828] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c647eb234d629dfd0a0fb9d4116cde55/jetified-picasso-2.71828/AndroidManifest.xml:10:13-72
-148            android:exported="false" />
-148-->[com.squareup.picasso:picasso:2.71828] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c647eb234d629dfd0a0fb9d4116cde55/jetified-picasso-2.71828/AndroidManifest.xml:11:13-37
-149    </application>
-150
-151</manifest>
+145        <meta-data
+145-->[com.google.android.gms:play-services-basement:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c90e1cd0f6f3439f537fdc3e95d51357/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+146            android:name="com.google.android.gms.version"
+146-->[com.google.android.gms:play-services-basement:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c90e1cd0f6f3439f537fdc3e95d51357/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
+147            android:value="@integer/google_play_services_version" />
+147-->[com.google.android.gms:play-services-basement:17.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c90e1cd0f6f3439f537fdc3e95d51357/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+148
+149        <provider
+149-->[com.squareup.picasso:picasso:2.71828] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c647eb234d629dfd0a0fb9d4116cde55/jetified-picasso-2.71828/AndroidManifest.xml:8:9-11:40
+150            android:name="com.squareup.picasso.PicassoProvider"
+150-->[com.squareup.picasso:picasso:2.71828] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c647eb234d629dfd0a0fb9d4116cde55/jetified-picasso-2.71828/AndroidManifest.xml:9:13-64
+151            android:authorities="com.mit.TraceMyanmar2020.com.squareup.picasso"
+151-->[com.squareup.picasso:picasso:2.71828] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c647eb234d629dfd0a0fb9d4116cde55/jetified-picasso-2.71828/AndroidManifest.xml:10:13-72
+152            android:exported="false" />
+152-->[com.squareup.picasso:picasso:2.71828] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c647eb234d629dfd0a0fb9d4116cde55/jetified-picasso-2.71828/AndroidManifest.xml:11:13-37
+153    </application>
+154
+155</manifest>

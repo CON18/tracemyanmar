@@ -29,29 +29,37 @@ class _ViewProfileState extends State<ViewProfile> {
     super.initState();
     checkLanguage();
     _genQR();
+  //    String text = 'ယေဓမ္မာ ဟေတုပ္ပဘဝါ တေသံ ဟေတုံ တထာဂတော အာဟ တေသဉ္စ ယောနိရောဓေါ ဧဝံ ဝါဒီ မဟာသမဏော။';
+  // String zawgyiText = Rabbit.uni2zg(text);
+  // String unicodeText = Rabbit.zg2uni(zawgyiText);
   }
 
   _genQR() {
-    var param = [
-      {
-        "name": widget.username,
-        "phone": widget.userid,
-        "nrc": "9/mkn(naing)123456"
-      }
-    ];
-    qrText = jsonEncode(param);
+    var param;
+    if (widget.username == "" || widget.username == null) {
+      param = [
+        {"name": "", "phone": widget.userid}
+      ];
+      qrText = jsonEncode(param);
+    } else {
+      param = [
+        {"name": widget.username, "phone": widget.userid}
+      ];
+      qrText = jsonEncode(param);
+    }
 
     // print("QR TEXT >> " + json);
   }
 
   checkLanguage() async {
-    final prefs = await SharedPreferences.getInstance();
-    checklang = prefs.getString("Lang");
-    if (checklang == "" || checklang == null || checklang.length == 0) {
-      checklang = "Eng";
-    } else {
-      checklang = checklang;
-    }
+    // final prefs = await SharedPreferences.getInstance();
+    // checklang = prefs.getString("Lang");
+    // if (checklang == "" || checklang == null || checklang.length == 0) {
+    //   checklang = "Eng";
+    // } else {
+    //   checklang = checklang;
+    // }
+    checklang = "Myanmar";
     setState(() {});
   }
 
@@ -70,11 +78,16 @@ class _ViewProfileState extends State<ViewProfile> {
         // ),
         backgroundColor: Colors.blue.withOpacity(0.8),
         elevation: 0.0,
+        // title: Text(
+        //   checklang == "Eng" ? textEng[0] : textMyan[0],
+        //   style: TextStyle(
+        //       fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.white),
+        // ),
         title: Text(
           checklang == "Eng" ? textEng[0] : textMyan[0],
-          style: TextStyle(
-              fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.white),
+          style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0),
         ),
+        centerTitle: true,
         // actions: <Widget>[
         //   GestureDetector(
         //     onTap: () {
@@ -102,7 +115,7 @@ class _ViewProfileState extends State<ViewProfile> {
                   color: Colors.blue.withOpacity(0.8),
                   // height: 250.0,
                   height: MediaQuery.of(context).size.height * 0.20),
-                  // height: orientation == Orientation.portrait ? 100.0 : 200.0,
+              // height: orientation == Orientation.portrait ? 100.0 : 200.0,
               // clipper: getClipper(),
             ),
             SingleChildScrollView(
@@ -153,12 +166,28 @@ class _ViewProfileState extends State<ViewProfile> {
                                     // CircleAvatar(
                                     //     backgroundImage:
                                     //         AssetImage("images/choose_img1.png")),
-                                    CircleAvatar(
-                                        backgroundImage:
-                                            AssetImage("assets/user-icon.png")
-                                        // backgroundImage:
-                                        //     AssetImage("images/default.jpg")
-                                        ),
+                                    Container(
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    // border: Border.all(
+                                    //   color: Colors.lightBlueAccent,
+                                    //   width: 3,
+                                    // ),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.black.withOpacity(0.5),
+                                          offset: Offset(0, 5),
+                                          blurRadius: 25)
+                                    ],
+                                    color: Colors.white,
+                                  ),
+                                  child: CircleAvatar(
+                                      backgroundImage:
+                                          AssetImage("assets/user-icon.png")
+                                      // backgroundImage:
+                                      //     AssetImage("images/default.jpg")
+                                      ),
+                                ),
                                 // : CircleAvatar(
                                 //     backgroundImage: NetworkImage(
                                 //       // 'http://unitutor.azurewebsites.net/regphoto/image/' +
@@ -184,41 +213,45 @@ class _ViewProfileState extends State<ViewProfile> {
                             top: 20.0, left: 0.0, bottom: 0.0),
                         child: Column(
                           children: <Widget>[
-                            Text(
-                              widget.username,
-                              // "Chit Oo Naung",
-                              // "ချစ်ဦးနောင်",
-                              style: TextStyle(
-                                  fontFamily: "Pyidaungsu",
-                                  fontSize: 21.0,
-                                  fontWeight: FontWeight.bold),
-                            ),
+                            (widget.username == "" || widget.username == null)
+                                ? Container()
+                                : Text(
+                                    widget.username,
+                                    // "Chit Oo Naung",
+                                    // "ချစ်ဦးနောင်",
+                                    style: TextStyle(
+                                        fontFamily: "Pyidaungsu",
+                                        fontSize: 21.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                             SizedBox(
                               height: 5.0,
                             ),
-                            Text(
-                              widget.userid,
-                              // "+959966680686",
-                              // "chitoonaunganalyst661@gmail.com",
-                              style: TextStyle(
-                                fontFamily: "Pyidaungsu",
-                                fontSize: 16.0,
-                                color: Colors.black,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 5.0,
-                            ),
-                            Text(
-                              "9/mkn(naing) 123456",
-                              // "+959966680686",
-                              // "chitoonaunganalyst661@gmail.com",
-                              style: TextStyle(
-                                fontFamily: "Pyidaungsu",
-                                fontSize: 16.0,
-                                color: Colors.black,
-                              ),
-                            ),
+                            (widget.userid == "" || widget.userid == null)
+                                ? Container()
+                                : Text(
+                                    widget.userid,
+                                    // "+959966680686",
+                                    // "chitoonaunganalyst661@gmail.com",
+                                    style: TextStyle(
+                                      fontFamily: "Pyidaungsu",
+                                      fontSize: 16.0,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                            // SizedBox(
+                            //   height: 5.0,
+                            // ),
+                            // Text(
+                            //   "9/mkn(naing) 123456",
+                            //   // "+959966680686",
+                            //   // "chitoonaunganalyst661@gmail.com",
+                            //   style: TextStyle(
+                            //     fontFamily: "Pyidaungsu",
+                            //     fontSize: 16.0,
+                            //     color: Colors.black,
+                            //   ),
+                            // ),
                             SizedBox(
                               height: 20.0,
                             ),

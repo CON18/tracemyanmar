@@ -96,6 +96,10 @@
                 android:value="com.google.firebase.components.ComponentRegistrar" />
         </service>
 
+        <activity
+            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity android:name="com.shinow.qrscan.SecondActivity" />
         <!--
              FirebaseMessagingService performs security checks at runtime,

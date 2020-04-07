@@ -5,21 +5,24 @@ INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidMani
 INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:1:1-42:12
 INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:1:1-42:12
 MERGED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:1:1-42:12
-MERGED from [:fluttertoast] /home/chitoonaung/FP/tracemyanmar/build/fluttertoast/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
-MERGED from [:geolocator] /home/chitoonaung/FP/tracemyanmar/build/geolocator/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
-MERGED from [:google_api_availability] /home/chitoonaung/FP/tracemyanmar/build/google_api_availability/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
-MERGED from [:sqflite] /home/chitoonaung/FP/tracemyanmar/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:device_id] /home/chitoonaung/FP/tracemyanmar/build/device_id/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:path_provider] /home/chitoonaung/FP/tracemyanmar/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:path_provider_macos] /home/chitoonaung/FP/tracemyanmar/build/path_provider_macos/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:google_maps_flutter] /home/chitoonaung/FP/tracemyanmar/build/google_maps_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:flutter_plugin_android_lifecycle] /home/chitoonaung/FP/tracemyanmar/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
-MERGED from [:device_id] /home/chitoonaung/FP/tracemyanmar/build/device_id/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
-MERGED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-20:12
+MERGED from [:geolocator] /home/chitoonaung/FP/tracemyanmar/build/geolocator/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:google_api_availability] /home/chitoonaung/FP/tracemyanmar/build/google_api_availability/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:shared_preferences] /home/chitoonaung/FP/tracemyanmar/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
-MERGED from [:shared_preferences_web] /home/chitoonaung/FP/tracemyanmar/build/shared_preferences_web/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-20:12
+MERGED from [:url_launcher] /home/chitoonaung/FP/tracemyanmar/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-14:12
+MERGED from [:url_launcher_macos] /home/chitoonaung/FP/tracemyanmar/build/url_launcher_macos/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:shared_preferences_macos] /home/chitoonaung/FP/tracemyanmar/build/shared_preferences_macos/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
-MERGED from [:location_permissions] /home/chitoonaung/FP/tracemyanmar/build/location_permissions/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:shared_preferences_web] /home/chitoonaung/FP/tracemyanmar/build/shared_preferences_web/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:url_launcher_web] /home/chitoonaung/FP/tracemyanmar/build/url_launcher_web/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-30:12
+MERGED from [:fluttertoast] /home/chitoonaung/FP/tracemyanmar/build/fluttertoast/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:location_permissions] /home/chitoonaung/FP/tracemyanmar/build/location_permissions/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:sqflite] /home/chitoonaung/FP/tracemyanmar/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2788a1d630ffd2b98c19975ba1e486c5/material-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.recyclerview:recyclerview:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a1aba1c311705e1ee5f37443a76c8363/recyclerview-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/721fa37d06c1b915ba822c6388888932/legacy-support-core-ui-1.0.0/AndroidManifest.xml:17:1-22:12
@@ -60,10 +63,10 @@ MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /home/chitoonaung/.grad
 MERGED from [androidx.savedstate:savedstate:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/09fb82b579ae0aa9532d86639ac3b170/savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/30730f146c98376ab15891a1d1c6285c/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [com.squareup.picasso:picasso:2.71828] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c647eb234d629dfd0a0fb9d4116cde55/jetified-picasso-2.71828/AndroidManifest.xml:2:1-14:12
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6b30281c295269aeb7c394afda5ea1e0/versionedparcelable-1.1.0/AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.exifinterface:exifinterface:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/57705cb2b8003f7fa421706f86db5b4e/exifinterface-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/35148f3719eea110daa0192d63674775/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cardview:cardview:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/bb6f5de68f32f9b3088f46ab59d6ef45/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6b30281c295269aeb7c394afda5ea1e0/versionedparcelable-1.1.0/AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6462fbdfed28ec8ba409293c5ab2e9ca/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/d386508b571f7c8107bc47f15e784362/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/086d95982b7e0042c6bf69c964c108d7/print-1.0.0/AndroidManifest.xml:17:1-22:12
@@ -125,6 +128,8 @@ application
 ADDED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:13:5-41:19
 MERGED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-18:19
 MERGED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-18:19
+MERGED from [:url_launcher] /home/chitoonaung/FP/tracemyanmar/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-12:19
+MERGED from [:url_launcher] /home/chitoonaung/FP/tracemyanmar/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-12:19
 MERGED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:19:5-28:19
 MERGED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:19:5-28:19
 MERGED from [com.google.android.material:material:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2788a1d630ffd2b98c19975ba1e486c5/material-1.0.0/AndroidManifest.xml:22:5-20
@@ -233,14 +238,8 @@ uses-sdk
 INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml
 INJECTED from /home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml
-MERGED from [:fluttertoast] /home/chitoonaung/FP/tracemyanmar/build/fluttertoast/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:fluttertoast] /home/chitoonaung/FP/tracemyanmar/build/fluttertoast/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:geolocator] /home/chitoonaung/FP/tracemyanmar/build/geolocator/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:geolocator] /home/chitoonaung/FP/tracemyanmar/build/geolocator/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:google_api_availability] /home/chitoonaung/FP/tracemyanmar/build/google_api_availability/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:google_api_availability] /home/chitoonaung/FP/tracemyanmar/build/google_api_availability/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:sqflite] /home/chitoonaung/FP/tracemyanmar/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:sqflite] /home/chitoonaung/FP/tracemyanmar/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:device_id] /home/chitoonaung/FP/tracemyanmar/build/device_id/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:device_id] /home/chitoonaung/FP/tracemyanmar/build/device_id/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:path_provider] /home/chitoonaung/FP/tracemyanmar/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:path_provider] /home/chitoonaung/FP/tracemyanmar/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:path_provider_macos] /home/chitoonaung/FP/tracemyanmar/build/path_provider_macos/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
@@ -249,20 +248,32 @@ MERGED from [:google_maps_flutter] /home/chitoonaung/FP/tracemyanmar/build/googl
 MERGED from [:google_maps_flutter] /home/chitoonaung/FP/tracemyanmar/build/google_maps_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:flutter_plugin_android_lifecycle] /home/chitoonaung/FP/tracemyanmar/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:flutter_plugin_android_lifecycle] /home/chitoonaung/FP/tracemyanmar/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:device_id] /home/chitoonaung/FP/tracemyanmar/build/device_id/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:device_id] /home/chitoonaung/FP/tracemyanmar/build/device_id/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:geolocator] /home/chitoonaung/FP/tracemyanmar/build/geolocator/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:geolocator] /home/chitoonaung/FP/tracemyanmar/build/geolocator/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:google_api_availability] /home/chitoonaung/FP/tracemyanmar/build/google_api_availability/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:google_api_availability] /home/chitoonaung/FP/tracemyanmar/build/google_api_availability/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences] /home/chitoonaung/FP/tracemyanmar/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences] /home/chitoonaung/FP/tracemyanmar/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:shared_preferences_web] /home/chitoonaung/FP/tracemyanmar/build/shared_preferences_web/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:shared_preferences_web] /home/chitoonaung/FP/tracemyanmar/build/shared_preferences_web/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher] /home/chitoonaung/FP/tracemyanmar/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher] /home/chitoonaung/FP/tracemyanmar/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher_macos] /home/chitoonaung/FP/tracemyanmar/build/url_launcher_macos/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher_macos] /home/chitoonaung/FP/tracemyanmar/build/url_launcher_macos/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences_macos] /home/chitoonaung/FP/tracemyanmar/build/shared_preferences_macos/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences_macos] /home/chitoonaung/FP/tracemyanmar/build/shared_preferences_macos/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:location_permissions] /home/chitoonaung/FP/tracemyanmar/build/location_permissions/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:location_permissions] /home/chitoonaung/FP/tracemyanmar/build/location_permissions/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences_web] /home/chitoonaung/FP/tracemyanmar/build/shared_preferences_web/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences_web] /home/chitoonaung/FP/tracemyanmar/build/shared_preferences_web/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher_web] /home/chitoonaung/FP/tracemyanmar/build/url_launcher_web/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher_web] /home/chitoonaung/FP/tracemyanmar/build/url_launcher_web/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:fluttertoast] /home/chitoonaung/FP/tracemyanmar/build/fluttertoast/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:fluttertoast] /home/chitoonaung/FP/tracemyanmar/build/fluttertoast/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:location_permissions] /home/chitoonaung/FP/tracemyanmar/build/location_permissions/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:location_permissions] /home/chitoonaung/FP/tracemyanmar/build/location_permissions/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] /home/chitoonaung/FP/tracemyanmar/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] /home/chitoonaung/FP/tracemyanmar/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.material:material:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2788a1d630ffd2b98c19975ba1e486c5/material-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.material:material:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2788a1d630ffd2b98c19975ba1e486c5/material-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.recyclerview:recyclerview:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/a1aba1c311705e1ee5f37443a76c8363/recyclerview-1.0.0/AndroidManifest.xml:20:5-44
@@ -343,14 +354,14 @@ MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/c
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/30730f146c98376ab15891a1d1c6285c/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.squareup.picasso:picasso:2.71828] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c647eb234d629dfd0a0fb9d4116cde55/jetified-picasso-2.71828/AndroidManifest.xml:5:5-44
 MERGED from [com.squareup.picasso:picasso:2.71828] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/c647eb234d629dfd0a0fb9d4116cde55/jetified-picasso-2.71828/AndroidManifest.xml:5:5-44
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6b30281c295269aeb7c394afda5ea1e0/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6b30281c295269aeb7c394afda5ea1e0/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.exifinterface:exifinterface:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/57705cb2b8003f7fa421706f86db5b4e/exifinterface-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.exifinterface:exifinterface:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/57705cb2b8003f7fa421706f86db5b4e/exifinterface-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/35148f3719eea110daa0192d63674775/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/35148f3719eea110daa0192d63674775/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.cardview:cardview:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/bb6f5de68f32f9b3088f46ab59d6ef45/cardview-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.cardview:cardview:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/bb6f5de68f32f9b3088f46ab59d6ef45/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6b30281c295269aeb7c394afda5ea1e0/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6b30281c295269aeb7c394afda5ea1e0/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.interpolator:interpolator:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6462fbdfed28ec8ba409293c5ab2e9ca/interpolator-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.interpolator:interpolator:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/6462fbdfed28ec8ba409293c5ab2e9ca/interpolator-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.documentfile:documentfile:1.0.0] /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/d386508b571f7c8107bc47f15e784362/documentfile-1.0.0/AndroidManifest.xml:20:5-44
@@ -395,6 +406,14 @@ ADDED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebas
 		ADDED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:16:17-82
 	android:name
 		ADDED from [:firebase_messaging] /home/chitoonaung/FP/tracemyanmar/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:15:17-127
+activity#io.flutter.plugins.urllauncher.WebViewActivity
+ADDED from [:url_launcher] /home/chitoonaung/FP/tracemyanmar/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-11:74
+	android:exported
+		ADDED from [:url_launcher] /home/chitoonaung/FP/tracemyanmar/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:10:13-37
+	android:theme
+		ADDED from [:url_launcher] /home/chitoonaung/FP/tracemyanmar/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-71
+	android:name
+		ADDED from [:url_launcher] /home/chitoonaung/FP/tracemyanmar/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-74
 uses-permission#android.permission.CAMERA
 ADDED from [:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-65
 	android:name

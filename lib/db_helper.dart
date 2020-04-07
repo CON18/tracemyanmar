@@ -13,6 +13,7 @@ class DBHelper {
   static const String TIME = 'time';
   static const String RID = 'rid';
   static const String COLOR = 'color';
+  static const String REMARK = 'remark';
   static const String TABLE = 'Employee';
   static const String DB_NAME = 'employee.db';
 
@@ -34,7 +35,7 @@ class DBHelper {
 
   _onCreate(Database db, int version) async {
     await db.execute(
-        "CREATE TABLE $TABLE ($ID INTEGER PRIMARY KEY, $LOCATION TEXT,$TIME TEXT,$RID TEXT,$COLOR TEXT)");
+        "CREATE TABLE $TABLE ($ID INTEGER PRIMARY KEY, $LOCATION TEXT,$TIME TEXT,$RID TEXT,$COLOR TEXT,$REMARK TEXT)");
   }
 
   Future<Employee> save(Employee employee) async {
@@ -51,7 +52,7 @@ class DBHelper {
   Future<List<Employee>> getEmployees() async {
     var dbClient = await db;
     List<Map> maps =
-        await dbClient.query(TABLE, columns: [ID, LOCATION, TIME, RID, COLOR]);
+        await dbClient.query(TABLE, columns: [ID, LOCATION, TIME, RID, COLOR, REMARK]);
     List<Map> mapss = await dbClient.rawQuery("SELECT * FROM $TABLE");
     // print(mapss);
     List<Employee> employees = [];

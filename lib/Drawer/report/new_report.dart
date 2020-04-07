@@ -64,13 +64,14 @@ class _NewReportState extends State<NewReport> {
   }
 
   checkLanguage() async {
-    final prefs = await SharedPreferences.getInstance();
-    checklang = prefs.getString("Lang");
-    if (checklang == "" || checklang == null || checklang.length == 0) {
-      checklang = "Eng";
-    } else {
-      checklang = checklang;
-    }
+    // final prefs = await SharedPreferences.getInstance();
+    // checklang = prefs.getString("Lang");
+    // if (checklang == "" || checklang == null || checklang.length == 0) {
+    //   checklang = "Eng";
+    // } else {
+    //   checklang = checklang;
+    // }
+    checklang = "Myanmar";
     setState(() {});
   }
 
@@ -178,18 +179,24 @@ class _NewReportState extends State<NewReport> {
                       ),
                     );
                   }),
+
               // ),
             ),
+            SizedBox(
+              height: 60.0,
+            )
           ],
         ),
       ),
       // floatingActionButton: Align(
       //   alignment: Alignment.bottomCenter,
-      //   child:
-      //   FloatingActionButton(
+      //   child: FloatingActionButton(
       //     backgroundColor: Colors.blue,
       //     onPressed: () {
       //       // print("CL >> " + srLst.toString());
+      //       var route = new MaterialPageRoute(
+      //           builder: (BuildContextcontext) => new Reposting());
+      //       Navigator.of(context).push(route);
       //     },
       //     tooltip: 'Increment',
       //     // child: Text("Done", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
@@ -202,64 +209,64 @@ class _NewReportState extends State<NewReport> {
       persistentFooterButtons: <Widget>[
         Form(
           // key: formKey,
-          // child: Padding(
-          //   padding: EdgeInsets.all(0.0),
-          //   child: Column(
-          //     mainAxisAlignment: MainAxisAlignment.center,
-          //     mainAxisSize: MainAxisSize.min,
-          //     children: <Widget>[
-          //       Row(
-          //         // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //         children: <Widget>[
-          //           Column(
-          //             children: <Widget>[
-          //               Container(
-          //                 width: MediaQuery.of(context).size.width * 0.95,
-          //                 child: Padding(
-          //                   padding: EdgeInsets.only(left: 0.0, right: 0.0),
-          //                   child: RaisedButton(
-          //                     shape: RoundedRectangleBorder(
-          //                       borderRadius: BorderRadius.circular(5.0),
-          //                     ),
-          //                     color: Colors.blue,
-          //                     onPressed: () async {
-          //                       var route = new MaterialPageRoute(
-          //                           builder: (BuildContextcontext) =>
-          //                               new Reposting());
-          //                       Navigator.of(context).push(route);
-          //                     },
-          //                     child: Text(
-          //                       checklang == "Eng" ? textEng[0] : textMyan[0],
-          //                       style: TextStyle(
-          //                           color: Colors.white,
-          //                           fontWeight: FontWeight.w300),
-          //                     ),
-          //                   ),
-          //                 ),
-          //               ),
-          //             ],
-          //           ),
-          //         ],
-          //       )
-          //     ],
-          //   ),
-          // ),
-          child: FloatingActionButton(
-            backgroundColor: Colors.blue,
-            onPressed: () {
-              var route = new MaterialPageRoute(
+          child: Padding(
+            padding: EdgeInsets.all(0.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Row(
+                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Column(
+                      children: <Widget>[
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.95,
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 0.0, right: 0.0),
+                            child: RaisedButton(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                              color: Colors.blue,
+                              onPressed: () async {
+                                var route = new MaterialPageRoute(
                                     builder: (BuildContextcontext) =>
-                                        new Reposting(value: 3,));
+                                        new Reposting());
                                 Navigator.of(context).push(route);
-              // print("CL >> " + srLst.toString());
-            },
-            tooltip: 'Increment',
-            // child: Text("Done", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
-            child: Icon(Icons.arrow_forward_ios),
-            // shape: RoundedRectangleBorder(
-            //     borderRadius: BorderRadius.all(Radius.circular(20.0))),
-            elevation: 10.0,
+                              },
+                              child: Text(
+                                checklang == "Eng" ? textEng[0] : textMyan[0],
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
+          // child: FloatingActionButton(
+          //   backgroundColor: Colors.blue,
+          //   onPressed: () {
+          //     var route = new MaterialPageRoute(
+          //                           builder: (BuildContextcontext) =>
+          //                               new Reposting(value: 3,));
+          //                       Navigator.of(context).push(route);
+          //     // print("CL >> " + srLst.toString());
+          //   },
+          //   tooltip: 'Increment',
+          //   // child: Text("Done", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+          //   child: Icon(Icons.arrow_forward_ios),
+          //   // shape: RoundedRectangleBorder(
+          //   //     borderRadius: BorderRadius.all(Radius.circular(20.0))),
+          //   elevation: 10.0,
+          // ),
         )
       ],
     );

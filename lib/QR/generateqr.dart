@@ -9,8 +9,15 @@ class Generateqr extends StatefulWidget {
   final userid;
   final String skey;
   final String rid;
+  final String remark;
 
-  Generateqr({Key key, this.userid, this.skey, this.rid}) : super(key: key);
+  Generateqr({
+    Key key,
+    this.userid,
+    this.skey,
+    this.rid,
+    this.remark,
+  }) : super(key: key);
   @override
   _CashInConfirmState createState() => _CashInConfirmState();
 }
@@ -33,7 +40,7 @@ class _CashInConfirmState extends State<Generateqr> {
     user = name;
     setState(() {
       _dataString =
-          '{"skey":"' + "${widget.skey}" + '","rid":"' + "${widget.rid}" + '"}';
+          '{"skey":"' + "${widget.skey}" + '","rid":"' + "${widget.rid}" + '","remark":"' + "${widget.remark}" + '"}';
       _inputErrorText = null;
     });
   }
@@ -43,9 +50,10 @@ class _CashInConfirmState extends State<Generateqr> {
     return Scaffold(
       appBar: new AppBar(
         //Application Bar
+        centerTitle: true,
         elevation: 2.0,
         backgroundColor: Colors.blue,
-        title: new Center(
+        title: new Container(
           child: new Text(
             'QR',
             style: TextStyle(
@@ -85,8 +93,8 @@ class _CashInConfirmState extends State<Generateqr> {
             SizedBox(height: 25.0),
             Center(
               child: Container(
-                width: 300,
-                height: 50,
+                width: 250,
+                height: 40,
                 child: RaisedButton(
                   color: Colors.blue,
                   elevation: 5.0,
@@ -97,7 +105,7 @@ class _CashInConfirmState extends State<Generateqr> {
                   },
                   child: new Text(
                     "CLOSE",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300),
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w300),
                   ),
                   textColor: Colors.white,
                 ),

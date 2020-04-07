@@ -21,72 +21,100 @@ class _RegisterState extends State<Register> {
   bool isLoading = false;
   String checklang = '';
   List textMyan = ["ဝင်မည်"];
-  List textEng = ["Login"];
+  // List textMyan = [""];
+  List textEng = ["Ok"];
   snackbarmethod() {
     _scaffoldkey.currentState.showSnackBar(new SnackBar(
       content: new Text(this.alertmsg),
       backgroundColor: Colors.blue.shade400,
-      duration: Duration(seconds: 1),
+      duration: Duration(seconds: 2),
     ));
   }
 
   checkLanguage() async {
-    final prefs = await SharedPreferences.getInstance();
-    checklang = prefs.getString("Lang");
-    if (checklang == "" || checklang == null || checklang.length == 0) {
-      checklang = "Eng";
-    } else {
-      checklang = checklang;
-    }
+    // final prefs = await SharedPreferences.getInstance();
+    // checklang = prefs.getString("Lang");
+    // if (checklang == "" || checklang == null || checklang.length == 0) {
+    //   checklang = "Eng";
+    // } else {
+    //   checklang = checklang;
+    // }
+    checklang = "Myanmar";
     setState(() {});
   }
+
   @override
   void initState() {
     super.initState();
     checkLanguage();
   }
+
   @override
   Widget build(BuildContext context) {
-    var registerbody = new Column(
+    var registerbody = 
+    SingleChildScrollView(
+      child: new Column(
         key: _formKey,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.fromLTRB(100.0, 80.0, 0.0, 0.0),
-            child: Container(
-                width: 200,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 160.0, 0.0, 0.0),
-                  child: TextField(
-                    controller: myController,
-                    obscureText: false,
-                    // enabled: isLoading==true ? false :true,
-                    style: TextStyle(color: Colors.black),
-                    keyboardType: TextInputType.number,
-                    onChanged: (text) {
-                      // _doSomething(text);
-                    },
-                    decoration: InputDecoration(
-                      contentPadding: new EdgeInsets.symmetric(
-                          vertical: 9.0, horizontal: 25.0),
-                      // errorText:
-                      //     _validate ? checklang == "Eng" ? textEng[6] : textMyan[6] : null,
-                      errorStyle: TextStyle(
-                          fontSize: 14,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w400,
-                          wordSpacing: 1),
-                      fillColor: Colors.black,
-                      border: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                            color: Color.fromRGBO(40, 103, 178, 1), width: 1),
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
+          // Padding(
+          //   // padding: const EdgeInsets.fromLTRB(0.0, 80.0, 0.0, 0.0),
+          //   padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 80.0),
+            // child:
+             Container(
+                child: 
+                Padding(
+              padding: const EdgeInsets.fromLTRB(35.0, 240.0, 35.0, 0.0),
+              child: 
+              TextField(
+                
+                controller: myController,
+                obscureText: false,
+                // enabled: isLoading==true ? false :true,
+                style: TextStyle(color: Colors.black),
+                keyboardType: TextInputType.phone,
+                onChanged: (text) {
+                  // _doSomething(text);
+                },
+                decoration: InputDecoration(                  
+                  contentPadding:
+                      new EdgeInsets.symmetric(vertical: 9.0, horizontal: 25.0),
+                  // errorText:
+                  //     _validate ? checklang == "Eng" ? textEng[6] : textMyan[6] : null,
+                  hintText: "OTP",                  
+                  hintStyle: TextStyle(                    
+                      fontSize: 15,
+                      color: Color.fromARGB(200, 90, 90, 90),
+                      fontWeight: FontWeight.w100),
+                  errorStyle: TextStyle(
+                      fontSize: 14,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                      wordSpacing: 1),
+                  fillColor: Colors.black,
+                  disabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                        borderSide: BorderSide(
+                            color: Colors.lightBlue[100], width: 1.0)),
+                    focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                        borderSide: BorderSide(
+                            color: Colors.lightBlue[100], width: 1.0)),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                        borderSide: BorderSide(
+                            color: Colors.lightBlue[100], width: 1.0)),
+                    border: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                          color: Color.fromRGBO(40, 103, 178, 1), width: 1),
+                      borderRadius: BorderRadius.circular(5.0),
                     ),
-                  ),
-                )),
+                ),
+              ),
+            )
+          //   ),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(90.0, 30.0, 0.0, 0.0),
+            padding: const EdgeInsets.fromLTRB(30.0, 30.0, 0.0, 0.0),
             child: Container(
               width: 90.0,
               child: RaisedButton(
@@ -95,7 +123,7 @@ class _RegisterState extends State<Register> {
                 ),
                 onPressed: () async {
                   setState(() {
-                    isLoading=true;
+                    isLoading = true;
                   });
                   String url =
                       "http://52.187.13.89:8080/tracemyanmar/module001/serviceRegisterTraceMyanmar/register";
@@ -116,7 +144,7 @@ class _RegisterState extends State<Register> {
                     var data = jsonDecode(body);
                     if (data["code"] == "0000") {
                       setState(() {
-                        isLoading=false;
+                        isLoading = false;
                       });
                       if (data['desc'] == "Your Otp is wrong.") {
                         this.alertmsg = data['desc'];
@@ -132,7 +160,7 @@ class _RegisterState extends State<Register> {
                         prefs.setString(key2, UserId);
                         this.alertmsg = data['desc'];
                         this.snackbarmethod();
-                        Future.delayed(const Duration(milliseconds: 1000), () {
+                        Future.delayed(const Duration(milliseconds: 2000), () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -141,7 +169,7 @@ class _RegisterState extends State<Register> {
                       }
                     } else {
                       setState(() {
-                        isLoading=false;
+                        isLoading = false;
                       });
                       this.alertmsg = data['desc'];
                       this.snackbarmethod();
@@ -157,10 +185,10 @@ class _RegisterState extends State<Register> {
                 color: Colors.blue,
                 textColor: Colors.white,
                 child: Container(
-                  width: checklang=="Eng" ? 120 : 200,
+                  width: checklang == "Eng" ? 120 : 200,
                   height: 40.0,
                   child: Center(
-                      child: Text(checklang=="Eng" ? textEng[0] :textMyan[0] ,
+                      child: Text(checklang == "Eng" ? textEng[0] : textMyan[0],
                           style: TextStyle(
                             fontSize: 17,
                             color: Colors.white,
@@ -171,7 +199,8 @@ class _RegisterState extends State<Register> {
             ),
           )
         ],
-      );
+      ),
+    );
 
     var bodyProgress = new Container(
       child: new Stack(
@@ -192,22 +221,21 @@ class _RegisterState extends State<Register> {
       ),
     );
     return Scaffold(
-      key: _scaffoldkey,
-      appBar: AppBar(
-        centerTitle: true,
-        elevation: 0.0,
-        backgroundColor: Colors.blue,
-        title: new Container(
-          child: new Text(
-            'OTP',
-            style: TextStyle(
-                fontSize: 20.0,
-                color: Colors.white,
-                fontWeight: FontWeight.w300),
+        key: _scaffoldkey,
+        appBar: AppBar(
+          centerTitle: true,
+          elevation: 0.0,
+          backgroundColor: Colors.blue,
+          title: new Container(
+            child: new Text(
+              'OTP',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w300),
+            ),
           ),
         ),
-      ),
-      body: isLoading ? bodyProgress : registerbody
-    );
+        body: isLoading ? bodyProgress : registerbody);
   }
 }

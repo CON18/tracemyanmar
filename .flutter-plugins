@@ -14,3 +14,6 @@ shared_preferences=/home/chitoonaung/flutter/.pub-cache/hosted/pub.dartlang.org/
 shared_preferences_macos=/home/chitoonaung/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_macos-0.0.1+6/
 shared_preferences_web=/home/chitoonaung/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_web-0.1.2+4/
 sqflite=/home/chitoonaung/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite-1.2.2+1/
+url_launcher=/home/chitoonaung/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-5.4.2/
+url_launcher_macos=/home/chitoonaung/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_macos-0.0.1+4/
+url_launcher_web=/home/chitoonaung/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_web-0.1.1+1/

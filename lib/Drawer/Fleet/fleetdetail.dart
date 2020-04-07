@@ -48,13 +48,14 @@ class _FleetDetailState extends State<FleetDetail> {
   List textEng = ["Type:","Departure Date Time","From:","Arrival Date Time","To:","Remark"];
 
   checkLanguage() async {
-    final prefs = await SharedPreferences.getInstance();
-    checklang = prefs.getString("Lang");
-    if (checklang == "" || checklang == null || checklang.length == 0) {
-      checklang = "Eng";
-    } else {
-      checklang = checklang;
-    }
+    // final prefs = await SharedPreferences.getInstance();
+    // checklang = prefs.getString("Lang");
+    // if (checklang == "" || checklang == null || checklang.length == 0) {
+    //   checklang = "Eng";
+    // } else {
+    //   checklang = checklang;
+    // }
+    checklang = "Myanmar";
     setState(() {});
   }
   @override
@@ -92,25 +93,28 @@ class _FleetDetailState extends State<FleetDetail> {
 
   @override
   Widget build(BuildContext context) {
-
     final fleetno = new TextField(
       controller: _text7,
+      style: TextStyle(fontWeight: FontWeight.w300),
       decoration: InputDecoration(
           labelText: "ID:",
+          labelStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.w500),
           ),
       readOnly: true,
     );
     final type = new TextField(
       controller: _text8,
+      style: TextStyle(fontWeight: FontWeight.w300),
       decoration: InputDecoration(
           labelText: checklang=="Eng" ? textEng[0] : textMyan[0],
+          labelStyle: TextStyle(height: 0,color: Colors.black,fontWeight: FontWeight.w600)
           ),
       readOnly: true,
     );
     final depaturedatetime = Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                Text(checklang=="Eng" ? textEng[1] : textMyan[1]),
+                Text(checklang=="Eng" ? textEng[1] : textMyan[1],style: TextStyle(fontWeight: FontWeight.w600),),
                 SizedBox(
                   height: 10,
                 ),
@@ -151,8 +155,8 @@ class _FleetDetailState extends State<FleetDetail> {
                                   "$date1",
                                   style: TextStyle(
                                       // color: Colors.blue,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0),
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 15.0),
                                 ),
                               ],
                             ),
@@ -197,8 +201,8 @@ class _FleetDetailState extends State<FleetDetail> {
                                   "$time1",
                                   style: TextStyle(
                                       // color: Colors.blue,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0),
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 15.0),
                                 ),
                               ],
                             ),
@@ -215,6 +219,7 @@ class _FleetDetailState extends State<FleetDetail> {
       controller: _text3,
       decoration: InputDecoration(
           labelText: checklang=="Eng" ? textEng[2] : textMyan[2],
+          labelStyle: TextStyle(height: 0,color: Colors.black,fontWeight: FontWeight.w600)
           ),
       readOnly: true,
     );
@@ -222,7 +227,7 @@ class _FleetDetailState extends State<FleetDetail> {
     final arrivaldatetime = Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                Text(checklang=="Eng" ? textEng[3] : textMyan[3]),
+                Text(checklang=="Eng" ? textEng[3] : textMyan[3],style: TextStyle(fontWeight: FontWeight.w500),),
                 SizedBox(
                   height: 10,
                 ),
@@ -263,8 +268,8 @@ class _FleetDetailState extends State<FleetDetail> {
                                   "$date2",
                                   style: TextStyle(
                                       // color: Colors.blue,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0),
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 15.0),
                                 ),
                               ],
                             ),
@@ -309,8 +314,8 @@ class _FleetDetailState extends State<FleetDetail> {
                                   "$time2",
                                   style: TextStyle(
                                       // color: Colors.blue,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0),
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 15.0),
                                 ),
                               ],
                             ),
@@ -326,15 +331,19 @@ class _FleetDetailState extends State<FleetDetail> {
 
     final tolocation = new TextField(
       controller: _text5,
+      style: TextStyle(fontWeight: FontWeight.w300),
       decoration: InputDecoration(
           labelText: checklang=="Eng" ? textEng[4] : textMyan[4],
+          labelStyle: TextStyle(height: 0,color: Colors.black,fontWeight: FontWeight.w600)
           ),
       readOnly: true,
     );
     final remark = new TextField(
       controller: _text6,
+      style: TextStyle(fontWeight: FontWeight.w300),
       decoration: InputDecoration(
           labelText: checklang=="Eng" ? textEng[5] : textMyan[5],
+          labelStyle: TextStyle(height: 0,color: Colors.black,fontWeight: FontWeight.w600)
           ),
       readOnly: true,
     );

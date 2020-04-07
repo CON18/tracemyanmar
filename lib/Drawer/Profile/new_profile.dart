@@ -35,7 +35,8 @@ class _NewProfileState extends State<NewProfile> {
 
   String checklang = '';
   List textMyan = [
-    "ကိုယ်ပိုင်အချက်အလက်",
+    // "ကိုယ်ပိုင်အချက်အလက် (",
+    "ကိုယ်ရေးအချက်အလက် (Profile)",
     "ဖုန်းနံပါတ်",
     "အမည်",
     "တိုင်း/ ပြည်နယ် ရွေးချယ်ပါ",
@@ -57,13 +58,14 @@ class _NewProfileState extends State<NewProfile> {
   ];
 
   checkLanguage() async {
-    final prefs = await SharedPreferences.getInstance();
-    checklang = prefs.getString("Lang");
-    if (checklang == "" || checklang == null || checklang.length == 0) {
-      checklang = "Eng";
-    } else {
-      checklang = checklang;
-    }
+    // final prefs = await SharedPreferences.getInstance();
+    // checklang = prefs.getString("Lang");
+    // if (checklang == "" || checklang == null || checklang.length == 0) {
+    //   checklang = "Eng";
+    // } else {
+    //   checklang = checklang;
+    // }
+    checklang = "Myanmar";
     setState(() {});
   }
 
@@ -71,15 +73,6 @@ class _NewProfileState extends State<NewProfile> {
   @override
   void initState() {
     super.initState();
-
-    var param = [
-      {
-        "name": widget.username,
-        "phone": widget.userid,
-        "nrc": "9/mkn(naing)123456"
-      }
-    ];
-    qrText = jsonEncode(param);
 
     checkLanguage();
     divisionamount = divisionList[0];
@@ -148,6 +141,8 @@ class _NewProfileState extends State<NewProfile> {
           this.alertmsg = data['desc'];
           this.snackbarmethod();
         }
+
+        // Navigator.pop(context);
       });
     } else {
       print("Connection Fail");
@@ -165,6 +160,24 @@ class _NewProfileState extends State<NewProfile> {
         ),
         centerTitle: true,
         backgroundColor: Colors.blue,
+        // leading: Builder(builder: (BuildContext context) {
+        //   return new GestureDetector(
+        //     onTap: () {
+        //       print("BACK");
+        //       // update();
+        //       // var tt = "Refresh";
+        //       // Navigator.pop(context, tt);
+        //     },
+        //     child: new Container(
+        //       child: IconButton(
+        //         icon: new Icon(
+        //           Icons.arrow_back,
+        //           color: Colors.white,
+        //         ),
+        //       ),
+        //     ),
+        //   );
+        // }),
         // leading: new Container(),
       ),
       body: SingleChildScrollView(
@@ -172,7 +185,10 @@ class _NewProfileState extends State<NewProfile> {
         child: new Container(
           // height: checklang == "Eng" ? 750 : 790,
           padding: EdgeInsets.all(8.0),
-          child: Card(
+          child:
+              // Stack(
+              //   children: [
+              Card(
             elevation: 3,
             child: Column(
               children: <Widget>[
@@ -181,13 +197,38 @@ class _NewProfileState extends State<NewProfile> {
                   children: <Widget>[
                     // Column(
                     //   children: <Widget>[
+                    // Padding(
+                    //   padding: const EdgeInsets.only(top: 10.0),
+                    //   child: ClipRRect(
+                    //       borderRadius: BorderRadius.circular(60.0),
+                    //       child: (Image.asset('assets/user-icon.png',
+                    //           width: 110.0, height: 110.0))),
+                    // ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(60.0),
-                          child: (Image.asset('assets/user-icon.png',
-                              width: 110.0, height: 110.0))),
-                    ),
+                      padding: const EdgeInsets.only(top: 20.0),
+                      child: Container(
+                        width: 110.0,
+                        height: 110.0,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.lightBlueAccent,
+                            width: 3,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                offset: Offset(0, 5),
+                                blurRadius: 25)
+                          ],
+                          color: Colors.white,
+                        ),
+                        child: CircleAvatar(
+                          backgroundImage: AssetImage("assets/user-icon.png"),
+                        ),
+                      ),
+                    )
+
                     //   ],
                     // ),
                   ],
@@ -208,53 +249,86 @@ class _NewProfileState extends State<NewProfile> {
                       labelText: checklang == "Eng" ? textEng[1] : textMyan[1],
                       hasFloatingPlaceholder: true,
                       labelStyle: TextStyle(
-                          fontSize: 16, color: Colors.black, height: 0),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.black,
+                          height: 0),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: new BorderSide(
+                            color: Colors.lightBlueAccent, width: 1.0),
+                      ),
+                      // borderSide: BorderSide(
+                      //     color: Colors.lightBlue[100], width: 1.0)
+                      // ),
                       fillColor: Colors.grey,
                     ),
                   )),
                 ),
-                Divider(height: 20),
+                // Divider(height: 20),
+                // SizedBox(height: 10,),
+                SizedBox(
+                  height: 10,
+                ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
                   child: Container(
                       child: TextFormField(
                     controller: mynameController,
                     style: TextStyle(
-                        color: Colors.grey, fontWeight: FontWeight.w300),
+                        color: Colors.black, fontWeight: FontWeight.w300),
                     decoration: InputDecoration(
                       labelText: checklang == "Eng" ? textEng[2] : textMyan[2],
                       hasFloatingPlaceholder: true,
                       labelStyle: TextStyle(
-                          fontSize: 16, color: Colors.black, height: 0),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.black,
+                          height: 0),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: new BorderSide(
+                            color: Colors.lightBlueAccent, width: 1.0),
+                      ),
                       fillColor: Colors.grey,
                     ),
                   )),
                 ),
-                Divider(height: 20),
+                // Divider(height: 20),
+                // Padding(
+                //   padding: const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
+                //   child: Container(
+                //       child: TextFormField(
+                //     controller: nrcController,
+                //     style: TextStyle(
+                //         color: Colors.grey, fontWeight: FontWeight.w300),
+                //     decoration: InputDecoration(
+                //       labelText: checklang == "Eng" ? textEng[7] : textMyan[7],
+                //       hasFloatingPlaceholder: true,
+                //       labelStyle: TextStyle(
+                //           fontSize: 16, color: Colors.black, height: 0),
+                //       fillColor: Colors.grey,
+                //     ),
+                //   )),
+                // ),
+                // Divider(height: 20),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 30.0),
+                      child: new Text(
+                        checklang == "Eng" ? textEng[3] : textMyan[3],
+                        style: TextStyle(
+                          fontSize: 13.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
-                  child: Container(
-                      child: TextFormField(
-                    controller: nrcController,
-                    style: TextStyle(
-                        color: Colors.grey, fontWeight: FontWeight.w300),
-                    decoration: InputDecoration(
-                      labelText: checklang == "Eng" ? textEng[7] : textMyan[7],
-                      hasFloatingPlaceholder: true,
-                      labelStyle: TextStyle(
-                          fontSize: 16, color: Colors.black, height: 0),
-                      fillColor: Colors.grey,
-                    ),
-                  )),
-                ),
-                Divider(height: 20),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 00.0, 0.0, 0.0),
-                  child:
-                      new Text(checklang == "Eng" ? textEng[3] : textMyan[3]),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(30.0, 20.0, 30.0, 0.0),
                   child: SizedBox(
                     height: 60.0,
                     child: new DropdownButton<String>(
@@ -296,19 +370,35 @@ class _NewProfileState extends State<NewProfile> {
                       underline: Container(
                         decoration: const BoxDecoration(
                           border: Border(
-                            bottom: BorderSide(color: Colors.grey),
+                            bottom: BorderSide(color: Colors.lightBlueAccent),
                           ),
                         ),
                       ),
                     ),
                   ),
                 ),
-                Divider(
-                  height: 20,
+                // Divider(
+                //   height: 20,
+                // ),
+                SizedBox(
+                  height: 15,
                 ),
-                new Text(checklang == "Eng" ? textEng[4] : textMyan[4]),
+                Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 30.0),
+                      child: new Text(
+                        checklang == "Eng" ? textEng[4] : textMyan[4],
+                        style: TextStyle(
+                          fontSize: 13.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(30.0, 20.0, 30.0, 0.0),
+                  padding: const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
                   child: SizedBox(
                     height: 60.0,
                     child: new DropdownButton<String>(
@@ -348,19 +438,37 @@ class _NewProfileState extends State<NewProfile> {
                       underline: Container(
                         decoration: const BoxDecoration(
                           border: Border(
-                            bottom: BorderSide(color: Colors.grey),
+                            bottom: BorderSide(color: Colors.lightBlueAccent),
                           ),
                         ),
                       ),
                     ),
                   ),
                 ),
-                Divider(
-                  height: 20,
+                // Divider(
+                //   height: 20,
+                // ),
+                SizedBox(
+                  height: 15,
                 ),
-                new Text(checklang == "Eng" ? textEng[5] : textMyan[5]),
+                Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 30.0),
+                      child: new Text(
+                        checklang == "Eng" ? textEng[5] : textMyan[5],
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontSize: 13.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(30.0, 20.0, 30.0, 0.0),
+                  padding: const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
                   child: SizedBox(
                     height: 60.0,
                     child: new DropdownButton<String>(
@@ -387,14 +495,17 @@ class _NewProfileState extends State<NewProfile> {
                       underline: Container(
                         decoration: const BoxDecoration(
                           border: Border(
-                            bottom: BorderSide(color: Colors.grey),
+                            bottom: BorderSide(color: Colors.lightBlueAccent),
                           ),
                         ),
                       ),
                     ),
                   ),
                 ),
-                Divider(height: 20),
+                // Divider(height: 20),
+                SizedBox(
+                  height: 20.0,
+                ),
                 new RaisedButton(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5.0),
@@ -412,7 +523,7 @@ class _NewProfileState extends State<NewProfile> {
                         child:
                             Text(checklang == "Eng" ? textEng[6] : textMyan[6],
                                 style: TextStyle(
-                                  fontSize: 17,
+                                  fontSize: 16,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w300,
                                 ))),
@@ -424,6 +535,8 @@ class _NewProfileState extends State<NewProfile> {
               ],
             ),
           ),
+          //   ],
+          // ),
         ),
       ),
     );

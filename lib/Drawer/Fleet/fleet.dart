@@ -30,8 +30,32 @@ class _FleetState extends State<Fleet> {
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   String alertmsg = "";
   String checklang = '';
-  List textMyan = ["Register","ID","အမျိုးအစား","ထွက်​ခွာသည့် ​နေ့ရက်​/အချိန်​","မှ","​ရောက်​ရှိသည့် ​နေ့ရက်​/အချိန်​","သို့","အ​ကြောင်းအရာ","ပယ်ဖျက်မည်","သိမ်းဆည်းမည်​","QR ထုတ်​မည်​"];
-  List textEng = ["Register","ID:","Type:","Departure Date Time","From:","Arrival Date Time","To:","Remark","Cancel","Save","QR Generate"];
+  List textMyan = [
+    "လမ်း‌ကြောင်းမှတ်ပုံတင် (Register)",
+    "ID",
+    "အမျိုးအစား",
+    "ထွက်​ခွာသည့် ​နေ့ရက်​/အချိန်​",
+    "မှ",
+    "​ရောက်​ရှိသည့် ​နေ့ရက်​/အချိန်​",
+    "သို့",
+    "အ​ကြောင်းအရာ",
+    "ပယ်ဖျက်မည်",
+    "သိမ်းဆည်းမည်​",
+    "QR ထုတ်​မည်​"
+  ];
+  List textEng = [
+    "လမ်း‌ကြောင်းမှတ်ပုံတင် (Register)",
+    "ID:",
+    "Type:",
+    "Departure Date Time",
+    "From:",
+    "Arrival Date Time",
+    "To:",
+    "Remark",
+    "Cancel",
+    "Save",
+    "QR Generate"
+  ];
 
   @override
   void initState() {
@@ -41,15 +65,17 @@ class _FleetState extends State<Fleet> {
   }
 
   checkLanguage() async {
-    final prefs = await SharedPreferences.getInstance();
-    checklang = prefs.getString("Lang");
-    if (checklang == "" || checklang == null || checklang.length == 0) {
-      checklang = "Eng";
-    } else {
-      checklang = checklang;
-    }
+    // final prefs = await SharedPreferences.getInstance();
+    // checklang = prefs.getString("Lang");
+    // if (checklang == "" || checklang == null || checklang.length == 0) {
+    // checklang = "Eng";
+    // } else {
+    checklang = "Myanmar";
+    // }
+
     setState(() {});
   }
+
   getstorage() async {
     final prefs = await SharedPreferences.getInstance();
     uu = prefs.getString('UserId');
@@ -157,10 +183,12 @@ class _FleetState extends State<Fleet> {
   @override
   Widget build(BuildContext context) {
     final fleetno = new TextField(
+      style: TextStyle(fontWeight: FontWeight.w300),
       controller: _text1,
       decoration: InputDecoration(
-        labelText: "ID:",
-      ),
+          labelText: "ID:",
+          labelStyle:
+              TextStyle(fontWeight: FontWeight.w700, color: Colors.black)),
       focusNode: _txt1Focus,
       onSubmitted: (value) {
         _txt1Focus.unfocus();
@@ -171,7 +199,10 @@ class _FleetState extends State<Fleet> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(padding: EdgeInsets.all(5.0)),
-        Text(checklang=="Eng" ? textEng[2] : textMyan[2]),
+        Text(
+          checklang == "Eng" ? textEng[2] : textMyan[2],
+          style: TextStyle(fontWeight: FontWeight.w700),
+        ),
         Container(
           height: 50,
           child: DropdownButton(
@@ -187,8 +218,9 @@ class _FleetState extends State<Fleet> {
               setState(() {});
             },
             value: typeValue.toString(),
+            style: TextStyle(fontWeight: FontWeight.w300, color: Colors.black),
             isExpanded: true,
-            hint: Text(''),
+            hint: Text('Please Choose type'),
           ),
         ),
       ],
@@ -196,7 +228,10 @@ class _FleetState extends State<Fleet> {
     final departure = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(checklang=="Eng" ? textEng[3] : textMyan[3]),
+        Text(
+          checklang == "Eng" ? textEng[3] : textMyan[3],
+          style: TextStyle(fontWeight: FontWeight.w700),
+        ),
         SizedBox(
           height: 10,
         ),
@@ -237,8 +272,8 @@ class _FleetState extends State<Fleet> {
                             " $_date1",
                             style: TextStyle(
                                 // color: Colors.blue,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18.0),
+                                fontWeight: FontWeight.w300,
+                                fontSize: 15.0),
                           ),
                         ],
                       ),
@@ -283,8 +318,8 @@ class _FleetState extends State<Fleet> {
                             " $_time1",
                             style: TextStyle(
                                 // color: Colors.blue,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18.0),
+                                fontWeight: FontWeight.w300,
+                                fontSize: 15.0),
                           ),
                         ],
                       ),
@@ -301,7 +336,10 @@ class _FleetState extends State<Fleet> {
     final arrival = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(checklang=="Eng" ? textEng[5] : textMyan[5]),
+        Text(
+          checklang == "Eng" ? textEng[5] : textMyan[5],
+          style: TextStyle(fontWeight: FontWeight.w700),
+        ),
         SizedBox(
           height: 10,
         ),
@@ -342,8 +380,8 @@ class _FleetState extends State<Fleet> {
                             " $_date2",
                             style: TextStyle(
                                 // color: Colors.blue,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18.0),
+                                fontWeight: FontWeight.w300,
+                                fontSize: 15.0),
                           ),
                         ],
                       ),
@@ -388,8 +426,8 @@ class _FleetState extends State<Fleet> {
                             " $_time2",
                             style: TextStyle(
                                 // color: Colors.blue,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18.0),
+                                fontWeight: FontWeight.w300,
+                                fontSize: 15.0),
                           ),
                         ],
                       ),
@@ -405,8 +443,21 @@ class _FleetState extends State<Fleet> {
     );
     final fromdepart = new TextField(
       controller: _text3,
+      style: TextStyle(fontWeight: FontWeight.w300),
       decoration: InputDecoration(
-        labelText: checklang=="Eng" ? textEng[4] : textMyan[4],
+        labelText: checklang == "Eng" ? textEng[4] : textMyan[4],
+        labelStyle: (checklang == "Eng")
+            ? TextStyle(
+                fontSize: 17,
+                color: Colors.black,
+                height: 0,
+                fontWeight: FontWeight.w700,
+              )
+            : TextStyle(
+                fontSize: 16,
+                color: Colors.black,
+                height: 0,
+                fontWeight: FontWeight.w700),
       ),
       focusNode: _txt2Focus,
       onSubmitted: (value) {
@@ -416,8 +467,20 @@ class _FleetState extends State<Fleet> {
     );
     final toarrive = new TextField(
       controller: _text4,
+      style: TextStyle(fontWeight: FontWeight.w300),
       decoration: InputDecoration(
-        labelText: checklang=="Eng" ? textEng[6] : textMyan[6],
+        labelText: checklang == "Eng" ? textEng[6] : textMyan[6],
+        labelStyle: (checklang == "Eng")
+            ? TextStyle(
+                fontSize: 17,
+                color: Colors.black,
+                height: 0,
+                fontWeight: FontWeight.w700)
+            : TextStyle(
+                fontSize: 16,
+                color: Colors.black,
+                height: 0,
+                fontWeight: FontWeight.w700),
       ),
       focusNode: _txt3Focus,
       onSubmitted: (value) {
@@ -427,8 +490,20 @@ class _FleetState extends State<Fleet> {
     );
     final remark = new TextField(
       controller: _text5,
+      style: TextStyle(fontWeight: FontWeight.w300),
       decoration: InputDecoration(
-        labelText: checklang=="Eng" ? textEng[7] : textMyan[7],
+        labelText: checklang == "Eng" ? textEng[7] : textMyan[7],
+        labelStyle: (checklang == "Eng")
+            ? TextStyle(
+                fontSize: 17,
+                color: Colors.black,
+                height: 0,
+                fontWeight: FontWeight.w700)
+            : TextStyle(
+                fontSize: 16,
+                color: Colors.black,
+                height: 0,
+                fontWeight: FontWeight.w700),
       ),
       focusNode: _txt4Focus,
       onSubmitted: (value) {
@@ -449,7 +524,7 @@ class _FleetState extends State<Fleet> {
         width: 120.0,
         height: 38.0,
         child: Center(
-            child: Text(checklang=="Eng" ? textEng[8] : textMyan[8],
+            child: Text(checklang == "Eng" ? textEng[8] : textMyan[8],
                 style: TextStyle(
                   fontSize: 17,
                   color: Colors.black,
@@ -469,12 +544,16 @@ class _FleetState extends State<Fleet> {
               context,
               MaterialPageRoute(
                   builder: (context) => Generateqr(
-                      userid: uu, skey: data['skey'], rid: data['fleetNo'])));
+                        userid: uu,
+                        skey: data['skey'],
+                        rid: data['fleetNo'],
+                        remark: _text5.text,
+                      )));
         },
         color: success ? Colors.blue : Colors.grey,
         textColor: Colors.white,
         child: Center(
-            child: Text(checklang=="Eng" ? textEng[10] : textMyan[10],
+            child: Text(checklang == "Eng" ? textEng[10] : textMyan[10],
                 style: TextStyle(
                   fontSize: 17,
                   color: Colors.white,
@@ -495,7 +574,7 @@ class _FleetState extends State<Fleet> {
         width: 120.0,
         height: 38.0,
         child: Center(
-            child: Text(checklang=="Eng" ? textEng[9] : textMyan[9],
+            child: Text(checklang == "Eng" ? textEng[9] : textMyan[9],
                 style: TextStyle(
                   fontSize: 17,
                   color: Colors.white,
@@ -507,7 +586,10 @@ class _FleetState extends State<Fleet> {
     return Scaffold(
       key: _scaffoldkey,
       appBar: AppBar(
-        title: Text(checklang=="Eng" ? textEng[0]: textMyan[0],style: TextStyle(fontWeight: FontWeight.w300),),
+        title: Text(
+          checklang == "Eng" ? textEng[0] : textMyan[0],
+          style: TextStyle(fontWeight: FontWeight.w300, fontSize: 16.5),
+        ),
         centerTitle: true,
         actions: <Widget>[
           PopupMenuButton<int>(
@@ -532,7 +614,7 @@ class _FleetState extends State<Fleet> {
                   context,
                   MaterialPageRoute(builder: (context) => FleetList()),
                 );
-              } 
+              }
               // else if (value == 2) {
               //   Navigator.push(
               //       context,
@@ -614,9 +696,9 @@ class _FleetState extends State<Fleet> {
                       height: 30,
                     ),
                     Container(
-                     width: MediaQuery.of(context).size.width*0.99,
+                      width: MediaQuery.of(context).size.width * 0.99,
                       child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           new Container(
                             padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),

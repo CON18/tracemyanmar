@@ -26,5 +26,6 @@ public final class GeneratedPluginRegistrant {
       com.shinow.qrscan.QrscanPlugin.registerWith(shimPluginRegistry.registrarFor("com.shinow.qrscan.QrscanPlugin"));
     flutterEngine.getPlugins().add(new io.flutter.plugins.sharedpreferences.SharedPreferencesPlugin());
     flutterEngine.getPlugins().add(new com.tekartik.sqflite.SqflitePlugin());
+    flutterEngine.getPlugins().add(new io.flutter.plugins.urllauncher.UrlLauncherPlugin());
   }
 }

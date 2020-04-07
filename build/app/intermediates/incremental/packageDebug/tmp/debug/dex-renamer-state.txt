@@ -1,4 +1,4 @@
-#Mon Apr 06 16:31:03 MMT 2020
+#Tue Apr 07 22:50:09 MMT 2020
 base.0=/home/chitoonaung/FP/tracemyanmar/build/app/intermediates/dex/debug/mergeDexDebug/out/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

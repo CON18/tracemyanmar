@@ -1,4 +1,5 @@
 import 'package:TraceMyanmar/LoginandRegister/login.dart';
+import 'package:TraceMyanmar/splash_screen.dart';
 import 'package:TraceMyanmar/sqlite.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';//ndh
@@ -53,7 +54,7 @@ class _MyAppState extends State<MyApp> {
     // TODO: implement build
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:Sqlite(),
+      home: SplashScreenPage(),
       // home: Scaffold(
       //   body: Center(
       //     child: Column(

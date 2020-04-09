@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Reposting extends StatefulWidget {
+class Reporting extends StatefulWidget {
 
   final int value;
-   Reposting(
+   Reporting(
       {Key key,
       this.value,})
       : super(key: key);
 
   @override
-  _RepostingState createState() => _RepostingState();
+  _ReportingState createState() => _ReportingState();
 }
 
-class _RepostingState extends State<Reposting> {
+class _ReportingState extends State<Reporting> {
 
     final TextEditingController _text1 = new TextEditingController();
     final TextEditingController _text2 = new TextEditingController();
@@ -25,8 +25,8 @@ class _RepostingState extends State<Reposting> {
     bool vv = false;
     String v4="null";
     String checklang = '';
-    List textMyan = ["စစ်​​ဆေးခြင်း (Reporting)","စုစုပေါင်းအမှတ်","တည်နေရာ","ဖုန်းနံပါတ်","Have you tested positive for COVID-19","ပယ်ဖျက်မည်","စစ်​​ဆေးမည်"];
-    List textEng = ["Reporting","Total Mark","Location","Phone Number","Have you tested positive for COVID-19","Cancel","Report"];
+    List textMyan = ["စစ်​​ဆေးခြင်း (Reporting)","စုစုပေါင်းအမှတ် (Total Mark)","တည်နေရာ (Location)","ဖုန်းနံပါတ် (Phone)", "","ပယ်ဖျက်မည်","အတည်ပြုပါ (Submit)"];
+    List textEng = ["Reporting","Total Mark","Location","Phone Number", "","Cancel","Report"];
     
     final _formKey = new GlobalKey<FormState>();
     final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
@@ -203,29 +203,29 @@ class _RepostingState extends State<Reposting> {
       )
     ]));
 
-  final cancelbutton = new RaisedButton(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(5.0),
-      ),
-      onPressed: () async {
-        this.alertmsg = '';
-        Navigator.pop(context);
-      },
-      color: Colors.grey[300],
-      textColor: Colors.white,
-      child: Container(
-        width: 100.0,
-        height: 38.0,
-        child: Center(
-            // child: Text(checklang == "Eng" ? textEng[7] : textMyan[7],
-            child: Text(checklang=="Eng" ? textEng[5] : textMyan[5],
-                style: TextStyle(
-                  fontSize: 17,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w300,
-                ))),
-      ),
-    );
+  // final cancelbutton = new RaisedButton(
+  //     shape: RoundedRectangleBorder(
+  //       borderRadius: BorderRadius.circular(5.0),
+  //     ),
+  //     onPressed: () async {
+  //       this.alertmsg = '';
+  //       Navigator.pop(context);
+  //     },
+  //     color: Colors.grey[300],
+  //     textColor: Colors.white,
+  //     child: Container(
+  //       width: 100.0,
+  //       height: 38.0,
+  //       child: Center(
+  //           // child: Text(checklang == "Eng" ? textEng[7] : textMyan[7],
+  //           child: Text(checklang=="Eng" ? textEng[5] : textMyan[5],
+  //               style: TextStyle(
+  //                 fontSize: 15,
+  //                 color: Colors.black,
+  //                 fontWeight: FontWeight.w300,
+  //               ))),
+  //     ),
+  //   );
     final reportbutton = new RaisedButton(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5.0),
@@ -251,13 +251,13 @@ class _RepostingState extends State<Reposting> {
       color: Colors.blue,
       textColor: Colors.white,
       child: Container(
-        width: 100.0,
+        // width: 150.0,
         height: 38.0,
         child: Center(
             // child: Text(checklang == "Eng" ? textEng[7] : textMyan[7],
             child: Text(checklang=="Eng" ? textEng[6] : textMyan[6],
                 style: TextStyle(
-                  fontSize: 17,
+                  fontSize: 15,
                   color: Colors.white,
                   fontWeight: FontWeight.w300,
                 ))),
@@ -331,8 +331,8 @@ class _RepostingState extends State<Reposting> {
           children: <Widget>[
             SizedBox(height: 5.0),
             Container(
-              padding: EdgeInsets.fromLTRB(10.0, 0.0, 5.0, 5.0),
-              height: 380,
+              padding: EdgeInsets.fromLTRB(10.0, 10.0, 5.0, 5.0),
+              height: 320,
               child: Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
@@ -341,42 +341,48 @@ class _RepostingState extends State<Reposting> {
                 child: ListView(
                   padding: EdgeInsets.all(2.0),
                   children: <Widget>[
+                    SizedBox(height: 10.0,),
                     Center(
                       child: new Container(
                         padding: EdgeInsets.only(left: 10.0, right: 10.0),
                         child: totalMark,
                       ),
                     ),
+                    SizedBox(height: 10.0,),
                     Center(
                       child: new Container(
                         padding: EdgeInsets.only(left: 10.0, right: 10.0),
                         child: location,
                       ),
                     ),
+                    SizedBox(height: 10.0,),
                     Center(
                       child: new Container(
                         padding: EdgeInsets.only(left: 10.0, right: 10.0),
                         child: phonenumber,
                       ),
                     ),
-                    Center(
-                      child: new Container(
-                        padding: EdgeInsets.only(left: 10.0, right: 10.0),
-                        child: question,
-                      ),
-                    ),
-                    Row(
-                      children: <Widget>[
+                    // Center(
+                    //   child: new Container(
+                    //     padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                    //     child: question,
+                    //   ),
+                    // ),
+                    SizedBox(height: 20.0,),
+                    // Row(
+                    //   children: <Widget>[
+                        // new Container(
+                        //   padding: EdgeInsets.only(left: 26.0),
+                        //   child: cancelbutton,
+                        // ),
                         new Container(
-                          padding: EdgeInsets.only(left: 26.0),
-                          child: cancelbutton,
-                        ),
-                        new Container(
-                          padding: EdgeInsets.only(left: 26.0),
+                          padding: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20),
                           child: reportbutton,
-                        )
-                      ],
-                    ),
+                        ),
+                        SizedBox(height: 15.0,),
+                    //   ],
+                    // ),
+                    
                   ],
                 ),
               ),

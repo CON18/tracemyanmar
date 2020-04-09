@@ -160,24 +160,27 @@ class _NewProfileState extends State<NewProfile> {
         ),
         centerTitle: true,
         backgroundColor: Colors.blue,
-        // leading: Builder(builder: (BuildContext context) {
-        //   return new GestureDetector(
-        //     onTap: () {
-        //       print("BACK");
-        //       // update();
-        //       // var tt = "Refresh";
-        //       // Navigator.pop(context, tt);
-        //     },
-        //     child: new Container(
-        //       child: IconButton(
-        //         icon: new Icon(
-        //           Icons.arrow_back,
-        //           color: Colors.white,
-        //         ),
-        //       ),
-        //     ),
-        //   );
-        // }),
+        leading: Builder(builder: (BuildContext context) {
+          return new GestureDetector(
+            onTap: () {
+              print("BACK");
+              setState(() {
+                update();
+              });
+
+              // var tt = "Refresh";
+              // Navigator.pop(context);
+            },
+            child: new Container(
+              child: IconButton(
+                icon: new Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          );
+        }),
         // leading: new Container(),
       ),
       body: SingleChildScrollView(
@@ -506,32 +509,32 @@ class _NewProfileState extends State<NewProfile> {
                 SizedBox(
                   height: 20.0,
                 ),
-                new RaisedButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                  onPressed: () async {
-                    update();
-                  },
-                  color: Colors.blue,
-                  textColor: Colors.white,
-                  child: Container(
-                    width: 120.0,
-                    height: 38.0,
-                    child: Center(
-                        // child: Text(checklang == "Eng" ? textEng[7] : textMyan[7],
-                        child:
-                            Text(checklang == "Eng" ? textEng[6] : textMyan[6],
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w300,
-                                ))),
-                  ),
-                ),
-                SizedBox(
-                  height: 15.0,
-                )
+                // new RaisedButton(
+                //   shape: RoundedRectangleBorder(
+                //     borderRadius: BorderRadius.circular(5.0),
+                //   ),
+                //   onPressed: () async {
+                //     update();
+                //   },
+                //   color: Colors.blue,
+                //   textColor: Colors.white,
+                //   child: Container(
+                //     width: 120.0,
+                //     height: 38.0,
+                //     child: Center(
+                //         // child: Text(checklang == "Eng" ? textEng[7] : textMyan[7],
+                //         child:
+                //             Text(checklang == "Eng" ? textEng[6] : textMyan[6],
+                //                 style: TextStyle(
+                //                   fontSize: 16,
+                //                   color: Colors.white,
+                //                   fontWeight: FontWeight.w300,
+                //                 ))),
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: 15.0,
+                // )
               ],
             ),
           ),

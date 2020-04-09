@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/res/merged/release/drawable-v21/abc_btn_colored_material.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/drawable-v21/abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/res/merged/release/drawable-v21/avd_hide_password.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2788a1d630ffd2b98c19975ba1e486c5/material-1.0.0/res/drawable-v21/avd_hide_password.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/res/merged/release/drawable-v21/design_bottom_navigation_item_background.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2788a1d630ffd2b98c19975ba1e486c5/material-1.0.0/res/drawable-v21/design_bottom_navigation_item_background.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/res/merged/release/drawable-v21/avd_show_password.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2788a1d630ffd2b98c19975ba1e486c5/material-1.0.0/res/drawable-v21/avd_show_password.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/res/merged/release/drawable-v21/notification_action_background.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/1ba350198ea174eeece4da9ff55b6f1b/core-1.1.0/res/drawable-v21/notification_action_background.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/res/merged/release/drawable-v21/abc_action_bar_item_background_material.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/drawable-v21/abc_action_bar_item_background_material.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/res/merged/release/drawable-v21/abc_edit_text_material.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/drawable-v21/abc_edit_text_material.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/res/merged/release/drawable-v21/abc_dialog_material_background.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/drawable-v21/abc_dialog_material_background.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/res/merged/release/drawable-v21/design_password_eye.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2788a1d630ffd2b98c19975ba1e486c5/material-1.0.0/res/drawable-v21/design_password_eye.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/res/merged/release/drawable-v21/abc_list_divider_material.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/drawable-v21/abc_list_divider_material.xml"
+    }
+]

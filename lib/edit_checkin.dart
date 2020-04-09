@@ -2,6 +2,7 @@ import 'package:TraceMyanmar/db_helper.dart';
 import 'package:TraceMyanmar/employee.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
 class EditCheckIn extends StatefulWidget {
@@ -26,9 +27,12 @@ class EditCheckIn extends StatefulWidget {
 
 class _EditCheckInState extends State<EditCheckIn> {
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
+  GoogleMapController myMapController;
+  // final Set<Marker> _markers = new Set();
+  LatLng _mainLocation;
   String checklang = '';
   List textMyan = [
-    "Check In ပြင်ဆင်ရန်",
+    "Check In အချက်အလက်",
     // နံပါတ်
   ];
   List textEng = [
@@ -44,13 +48,22 @@ class _EditCheckInState extends State<EditCheckIn> {
   void initState() {
     super.initState();
     checkLanguage();
-    print("Loc" + widget.location.toString());
+    // print("Loc" + widget.location.toString());
+    if (widget.location == "null" || widget.location == "") {
+    } else {
+      var index = widget.location.toString().indexOf(',');
+      var lat = widget.location.toString().substring(0, index);
+      var long = widget.location.toString().substring(index + 1);
+      _mainLocation = LatLng(double.parse(lat), double.parse(long));
+      print("ML >> " + lat + "|" + long);
+    }
+
     if (widget.ride == "null" || widget.ride == "Checked In") {
       locNameCtr.text = "";
     } else {
       locNameCtr.text = widget.ride;
     }
-    if (widget.location == "null") {
+    if (widget.location == "null" || widget.location == "") {
       locCtrl.text = "";
     } else {
       locCtrl.text = widget.location;
@@ -164,178 +177,220 @@ class _EditCheckInState extends State<EditCheckIn> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          // height: checklang == "Eng" ? 750 : 790,
+          // height: 290,
           padding: EdgeInsets.all(10.0),
-          child: Card(
-            elevation: 3,
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  left: 0.0, right: 0, top: 15.0, bottom: 15.0),
-              child: Column(
-                children: <Widget>[
-                  // (widget.location == "L, L")
-                  // ? Padding(
-                  //     padding:
-                  //         const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
-                  //     child: Column(
-                  //       children: <Widget>[
-                  //         Row(
-                  //           children: <Widget>[
-                  //             Container(
-                  //               width: MediaQuery.of(context).size.width *
-                  //                   0.60,
-                  //               child: TextFormField(
-                  //                 readOnly: true,
-                  //                 keyboardType: TextInputType.number,
-                  //                 controller: locCtrl,
-                  //                 style: TextStyle(
-                  //                     color: Colors.grey,
-                  //                     fontWeight: FontWeight.w300),
-                  //                 decoration: InputDecoration(
-                  //                   // labelText: checklang == "Eng" ? textEng[1] : textMyan[1],
-                  //                   labelText: "တည်နေရာ (Location)",
-                  //                   hasFloatingPlaceholder: true,
-                  //                   labelStyle: TextStyle(
-                  //                       fontSize: 16,
-                  //                       color: Colors.black,
-                  //                       height: 0),
-                  //                   fillColor: Colors.grey,
-                  //                 ),
-                  //               ),
-                  //             ),
-                  //             GestureDetector(
-                  //               onTap: () {
-                  //                 print("GCL");
-                  //                 _getCurrentLocation();
-                  //               },
-                  //               child: Container(
-                  //                 padding: EdgeInsets.only(
-                  //                     left: 15.0, top: 10.0),
-                  //                 child: Icon(
-                  //                   Icons.location_on,
-                  //                   color: Colors.green,
-                  //                   size: 30,
-                  //                 ),
-                  //               ),
-                  //             )
-                  //           ],
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   )
-                  // :
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
-                    child: Container(
-                        child: TextFormField(
-                      readOnly: true,
-                      keyboardType: TextInputType.text,
-                      controller: locCtrl,
-                      style: TextStyle(
-                          color: Colors.grey, fontWeight: FontWeight.w300),
-                      decoration: InputDecoration(
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide:
-                              new BorderSide(color: Colors.grey, width: 1.0),
-                        ),
-                        disabledBorder: UnderlineInputBorder(
-                          borderSide:
-                              new BorderSide(color: Colors.grey, width: 1.0),
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide:
-                              new BorderSide(color: Colors.grey, width: 1.0),
-                        ),
-                        // labelText: checklang == "Eng" ? textEng[1] : textMyan[1],
-                        labelText: "တည်နေရာ (Location)",
-                        hasFloatingPlaceholder: true,
-                        labelStyle: TextStyle(
-                            fontSize: 16, color: Colors.grey, height: 0),
-                        fillColor: Colors.grey,
+          child: Column(
+            children: <Widget>[
+              Card(
+                elevation: 3,
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      left: 0.0, right: 0, top: 15.0, bottom: 0.0),
+                  child: Column(
+                    children: <Widget>[
+                      // (widget.location == "L, L")
+                      // ? Padding(
+                      //     padding:
+                      //         const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
+                      //     child: Column(
+                      //       children: <Widget>[
+                      //         Row(
+                      //           children: <Widget>[
+                      //             Container(
+                      //               width: MediaQuery.of(context).size.width *
+                      //                   0.60,
+                      //               child: TextFormField(
+                      //                 readOnly: true,
+                      //                 keyboardType: TextInputType.number,
+                      //                 controller: locCtrl,
+                      //                 style: TextStyle(
+                      //                     color: Colors.grey,
+                      //                     fontWeight: FontWeight.w300),
+                      //                 decoration: InputDecoration(
+                      //                   // labelText: checklang == "Eng" ? textEng[1] : textMyan[1],
+                      //                   labelText: "တည်နေရာ (Location)",
+                      //                   hasFloatingPlaceholder: true,
+                      //                   labelStyle: TextStyle(
+                      //                       fontSize: 16,
+                      //                       color: Colors.black,
+                      //                       height: 0),
+                      //                   fillColor: Colors.grey,
+                      //                 ),
+                      //               ),
+                      //             ),
+                      //             GestureDetector(
+                      //               onTap: () {
+                      //                 print("GCL");
+                      //                 _getCurrentLocation();
+                      //               },
+                      //               child: Container(
+                      //                 padding: EdgeInsets.only(
+                      //                     left: 15.0, top: 10.0),
+                      //                 child: Icon(
+                      //                   Icons.location_on,
+                      //                   color: Colors.green,
+                      //                   size: 30,
+                      //                 ),
+                      //               ),
+                      //             )
+                      //           ],
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   )
+                      // :
+                      Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
+                        child: Container(
+                            child: TextFormField(
+                          readOnly: true,
+                          keyboardType: TextInputType.text,
+                          controller: locCtrl,
+                          style: TextStyle(
+                              color: Colors.grey, fontWeight: FontWeight.w300),
+                          decoration: InputDecoration(
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: new BorderSide(
+                                  color: Colors.grey, width: 1.0),
+                            ),
+                            disabledBorder: UnderlineInputBorder(
+                              borderSide: new BorderSide(
+                                  color: Colors.grey, width: 1.0),
+                            ),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: new BorderSide(
+                                  color: Colors.grey, width: 1.0),
+                            ),
+                            // labelText: checklang == "Eng" ? textEng[1] : textMyan[1],
+                            labelText: "တည်နေရာ (Location)",
+                            hasFloatingPlaceholder: true,
+                            labelStyle: TextStyle(
+                                fontSize: 14, color: Colors.grey, height: 0),
+                            fillColor: Colors.grey,
+                          ),
+                        )),
                       ),
-                    )),
-                  ),
-                  SizedBox(
-                    height: 8.0,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
-                    child: Container(
-                        child: TextFormField(
-                      readOnly: true,
-                      keyboardType: TextInputType.text,
-                      controller: timeCtrl,
-                      style: TextStyle(
-                          color: Colors.grey, fontWeight: FontWeight.w300),
-                      decoration: InputDecoration(
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide:
-                              new BorderSide(color: Colors.grey, width: 1.0),
-                        ),
-                        disabledBorder: UnderlineInputBorder(
-                          borderSide:
-                              new BorderSide(color: Colors.grey, width: 1.0),
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide:
-                              new BorderSide(color: Colors.grey, width: 1.0),
-                        ),
-                        // labelText: checklang == "Eng" ? textEng[1] : textMyan[1],
-                        labelText: "အချိန် (Time)",
-                        hasFloatingPlaceholder: true,
-                        labelStyle: TextStyle(
-                            fontSize: 16, color: Colors.grey, height: 0),
-                        fillColor: Colors.grey,
+                      SizedBox(
+                        height: 8.0,
                       ),
-                    )),
-                  ),
-                  SizedBox(
-                    height: 8.0,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
-                    child: Container(
-                        child: TextFormField(
-                      readOnly: false,
-                      keyboardType: TextInputType.text,
-                      controller: locNameCtr,
-                      style: TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.w300),
-                      decoration: InputDecoration(
-                        // labelText: checklang == "Eng" ? textEng[1] : textMyan[1],
-                        labelText: "တည်နေရာ အမည် (Location name)",
-                        hasFloatingPlaceholder: true,
-                        labelStyle: TextStyle(
-                            fontSize: 16, color: Colors.black, height: 0),
-                        fillColor: Colors.grey,
+                      Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
+                        child: Container(
+                            child: TextFormField(
+                          readOnly: true,
+                          keyboardType: TextInputType.text,
+                          controller: timeCtrl,
+                          style: TextStyle(
+                              color: Colors.grey, fontWeight: FontWeight.w300),
+                          decoration: InputDecoration(
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: new BorderSide(
+                                  color: Colors.grey, width: 1.0),
+                            ),
+                            disabledBorder: UnderlineInputBorder(
+                              borderSide: new BorderSide(
+                                  color: Colors.grey, width: 1.0),
+                            ),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: new BorderSide(
+                                  color: Colors.grey, width: 1.0),
+                            ),
+                            // labelText: checklang == "Eng" ? textEng[1] : textMyan[1],
+                            labelText: "အချိန် (Time)",
+                            hasFloatingPlaceholder: true,
+                            labelStyle: TextStyle(
+                                fontSize: 14, color: Colors.grey, height: 0),
+                            fillColor: Colors.grey,
+                          ),
+                        )),
                       ),
-                    )),
-                  ),
-                  SizedBox(
-                    height: 8.0,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
-                    child: Container(
-                        child: TextFormField(
-                      readOnly: false,
-                      keyboardType: TextInputType.text,
-                      controller: remarkCtrl,
-                      style: TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.w300),
-                      decoration: InputDecoration(
-                        // labelText: checklang == "Eng" ? textEng[1] : textMyan[1],
-                        labelText: "မှတ်ချက် (Remark)",
-                        hasFloatingPlaceholder: true,
-                        labelStyle: TextStyle(
-                            fontSize: 16, color: Colors.black, height: 0),
-                        fillColor: Colors.grey,
+                      SizedBox(
+                        height: 8.0,
                       ),
-                    )),
+                      Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
+                        child: Container(
+                            child: TextFormField(
+                          readOnly: false,
+                          keyboardType: TextInputType.text,
+                          controller: locNameCtr,
+                          style: TextStyle(
+                              color: Colors.black, fontWeight: FontWeight.w300),
+                          decoration: InputDecoration(
+                            // labelText: checklang == "Eng" ? textEng[1] : textMyan[1],
+                            labelText: "တည်နေရာ အမည် (Location name)",
+                            hasFloatingPlaceholder: true,
+                            labelStyle: TextStyle(
+                                fontSize: 14, color: Colors.black, height: 0),
+                            fillColor: Colors.grey,
+                          ),
+                        )),
+                      ),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
+                        child: Container(
+                            child: TextFormField(
+                          readOnly: false,
+                          keyboardType: TextInputType.multiline,
+                          minLines: 3,
+                          maxLines: 5,
+                          controller: remarkCtrl,
+                          style: TextStyle(
+                              color: Colors.black, fontWeight: FontWeight.w300),
+                          decoration: InputDecoration(
+                            // labelText: checklang == "Eng" ? textEng[1] : textMyan[1],
+                            labelText: "မှတ်ချက် (Remark)",
+                            hasFloatingPlaceholder: true,
+                            labelStyle: TextStyle(
+                                fontSize: 14, color: Colors.black, height: 0),
+                            fillColor: Colors.grey,
+                          ),
+                        )),
+                      ),
+                      // (widget.location == "null" || widget.location == "")
+                      //     ? Container():
+                      SizedBox(
+                        height: 25.0,
+                      ),
+                      (widget.location == "null" || widget.location == "")
+                          ? Container()
+                          : Container(
+                              height: 300,
+                              width: MediaQuery.of(context).size.width * 90,
+                              child: GoogleMap(
+                                initialCameraPosition: CameraPosition(
+                                  target: _mainLocation,
+                                  zoom: 18.0,
+                                ),
+                                // markers: this.myMarker(),
+                                markers: {
+                                  Marker(
+                                    markerId: MarkerId(widget.id.toString()),
+                                    position: _mainLocation,
+                                    infoWindow: InfoWindow(title: widget.time),
+                                    icon: BitmapDescriptor.defaultMarker,
+                                  )
+                                },
+                                mapType: MapType.normal,
+                                onMapCreated: (controller) {
+                                  setState(() {
+                                    myMapController = controller;
+                                  });
+                                },
+                              ),
+                            )
+                    ],
                   ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),

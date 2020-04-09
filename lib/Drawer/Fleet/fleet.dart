@@ -40,12 +40,12 @@ class _FleetState extends State<Fleet> {
     "သို့",
     "အ​ကြောင်းအရာ",
     "ပယ်ဖျက်မည်",
-    "သိမ်းဆည်းမည်​",
+    "သိမ်းဆည်း (Save)",
     "QR ထုတ်​မည်​"
   ];
   List textEng = [
     "လမ်း‌ကြောင်းမှတ်ပုံတင် (Register)",
-    "ID:",
+    "ID",
     "Type:",
     "Departure Date Time",
     "From:",
@@ -186,7 +186,7 @@ class _FleetState extends State<Fleet> {
       style: TextStyle(fontWeight: FontWeight.w300),
       controller: _text1,
       decoration: InputDecoration(
-          labelText: "ID:",
+          labelText: "ID",
           labelStyle:
               TextStyle(fontWeight: FontWeight.w700, color: Colors.black)),
       focusNode: _txt1Focus,
@@ -490,6 +490,9 @@ class _FleetState extends State<Fleet> {
     );
     final remark = new TextField(
       controller: _text5,
+      // minLines: 2,
+      // maxLength: 5,
+      keyboardType: TextInputType.multiline,
       style: TextStyle(fontWeight: FontWeight.w300),
       decoration: InputDecoration(
         labelText: checklang == "Eng" ? textEng[7] : textMyan[7],
@@ -500,7 +503,7 @@ class _FleetState extends State<Fleet> {
                 height: 0,
                 fontWeight: FontWeight.w700)
             : TextStyle(
-                fontSize: 16,
+                fontSize: 14,
                 color: Colors.black,
                 height: 0,
                 fontWeight: FontWeight.w700),
@@ -511,27 +514,27 @@ class _FleetState extends State<Fleet> {
       },
     );
 
-    final cancelbutton = new RaisedButton(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(5.0),
-      ),
-      onPressed: () async {
-        Navigator.pop(context);
-      },
-      color: Colors.grey[300],
-      textColor: Colors.white,
-      child: Container(
-        width: 120.0,
-        height: 38.0,
-        child: Center(
-            child: Text(checklang == "Eng" ? textEng[8] : textMyan[8],
-                style: TextStyle(
-                  fontSize: 17,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w300,
-                ))),
-      ),
-    );
+    // final cancelbutton = new RaisedButton(
+    //   shape: RoundedRectangleBorder(
+    //     borderRadius: BorderRadius.circular(5.0),
+    //   ),
+    //   onPressed: () async {
+    //     Navigator.pop(context);
+    //   },
+    //   color: Colors.grey[300],
+    //   textColor: Colors.white,
+    //   child: Container(
+    //     width: 120.0,
+    //     height: 38.0,
+    //     child: Center(
+    //         child: Text(checklang == "Eng" ? textEng[8] : textMyan[8],
+    //             style: TextStyle(
+    //               fontSize: 17,
+    //               color: Colors.black,
+    //               fontWeight: FontWeight.w300,
+    //             ))),
+    //   ),
+    // );
 
     final qrgenerate = IgnorePointer(
       ignoring: success ? false : true,
@@ -571,7 +574,7 @@ class _FleetState extends State<Fleet> {
       color: Colors.blue,
       textColor: Colors.white,
       child: Container(
-        width: 120.0,
+        // width: 120.0,
         height: 38.0,
         child: Center(
             child: Text(checklang == "Eng" ? textEng[9] : textMyan[9],
@@ -642,7 +645,7 @@ class _FleetState extends State<Fleet> {
             Container(
               padding: EdgeInsets.only(left: 10, top: 5, right: 10),
               // height: 380,
-              height: 800,
+              height: 750,
               child: Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
@@ -701,23 +704,26 @@ class _FleetState extends State<Fleet> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           new Container(
+                            width: MediaQuery.of(context).size.width * 0.40,
                             padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-                            child: cancelbutton,
+                            // child: cancelbutton,
+                            child: qrgenerate,
                           ),
                           new Container(
+                            width: MediaQuery.of(context).size.width * 0.40,
                             padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
                             child: fleepbutton,
                           )
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    new Container(
-                      padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
-                      child: qrgenerate,
-                    ),
+                    // SizedBox(
+                    //   height: 20,
+                    // ),
+                    // new Container(
+                    //   padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
+                    //   child: qrgenerate,
+                    // ),
                   ],
                 ),
               ),

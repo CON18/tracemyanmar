@@ -90,12 +90,16 @@ class _HomePageState extends State<HomePage> {
       // }).toList();
       // print(markers);
       for (var i = 0; i < setList.length; i++) {
-        var index = setList[i].location.toString().indexOf(',');
+        if (setList[i].location.toString() == "null" ||
+            setList[i].location == "") {
+        } else {
+          var index = setList[i].location.toString().indexOf(',');
 
-        data.add({
-          "latitude": setList[i].location.toString().substring(0, index),
-          "longitude": setList[i].location.toString().substring(index + 1),
-        });
+          data.add({
+            "latitude": setList[i].location.toString().substring(0, index),
+            "longitude": setList[i].location.toString().substring(index + 1),
+          });
+        }
         // double lat =
         //     double.parse(setList[i].location.toString().substring(0, index));
         // double long =
@@ -120,6 +124,7 @@ class _HomePageState extends State<HomePage> {
     final prefs = await SharedPreferences.getInstance();
     var lLat = prefs.getString("last-lat") ?? 0;
     var lLong = prefs.getString("last-long") ?? 0;
+    print("L/L >> " + lLat.toString() + lLong.toString());
     if (lLat == 0 || lLong == 0) {
       _targetLatLong = LatLng(22.9087267, 96.4237433);
     } else {
@@ -147,24 +152,29 @@ class _HomePageState extends State<HomePage> {
     // final List<MapMarker> markers = [];
 
     var dbHelper = DBHelper();
-    final setList = await dbHelper.getEmployees();
+    final sl = await dbHelper.getEmployees();
     setState(() {
       _new_markers.clear();
-      for (final list in setList) {
-        var index = list.location.toString().indexOf(',');
-        var lat = list.location.toString().substring(0, index);
-        var long = list.location.toString().substring(index + 1);
-        // print("Lth >> "+list.length.toString())
-        print("ML >> " + lat + "|" + long);
-        final marker = Marker(
-          markerId: MarkerId(list.id.toString()),
-          position: LatLng(double.parse(lat), double.parse(long)),
-          infoWindow: InfoWindow(
-            title: list.time,
-            // snippet: office.address,
-          ),
-        );
-        _new_markers[list.id.toString()] = marker;
+      for (final list in sl) {
+        if (list.location.toString() == "null" || list.location == "") {
+        } else {
+          var index = list.location.toString().indexOf(',');
+          var lat = list.location.toString().substring(0, index);
+          var long = list.location.toString().substring(index + 1);
+          // print("Lth >> "+list.length.toString())
+          print("ML >> " + lat + "|" + long);
+          final marker = Marker(
+            markerId: MarkerId(list.id.toString()),
+            position: LatLng(double.parse(lat), double.parse(long)),
+            infoWindow: InfoWindow(
+              title: list.time,
+              // snippet: office.address,
+            ),
+          );
+          setState(() {
+            _new_markers[list.id.toString()] = marker;
+          });
+        }
       }
     });
 

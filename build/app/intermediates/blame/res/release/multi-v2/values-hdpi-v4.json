@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/chitoonaung/FP/tracemyanmar/build/app/intermediates/incremental/mergeReleaseResources/merged.dir/values-hdpi-v4/values-hdpi-v4.xml",
+            "map": [
+                {
+                    "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/values-hdpi-v4/values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
+                    }
+                }
+            ]
+        }
+    ]
+}

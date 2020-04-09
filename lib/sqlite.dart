@@ -30,7 +30,10 @@ class _SqliteState extends State<Sqlite> {
 
   Future<List<Employee>> employees;
   TextEditingController controller = TextEditingController();
-  String name, id, location, righttime, rid;
+  final chklocNameCtr = TextEditingController();
+  final chkremarkCtrl = TextEditingController();
+  String name, id, righttime, rid;
+  String location = "";
   int curUserId;
   String deviceId = "";
   String alertmsg = "";
@@ -53,15 +56,17 @@ class _SqliteState extends State<Sqlite> {
   String checklang = '';
   String remark = "";
 
+  bool showArrow = false;
+
   // bool _isLoading = true;
 
   List textMyan = [
     "GPS Check In",
     "QR Check In",
-    "အချက်အလက်များ​ပေးပို့ခြင်း",
-    "ဗားရှင်း 1.0.13"
+    "တင်ပို့ပါ",
+    "ဗားရှင်း 1.0.0"
   ];
-  List textEng = ["GPS Check In", "QR Check In", "Submit", "Version 1.0.12"];
+  List textEng = ["GPS Check In", "QR Check In", "Submit", "Version 1.0.0"];
   final String url =
       "https://play.google.com/store/apps/details?id=com.mit.TraceMyanmar2020&hl=en";
 
@@ -162,6 +167,7 @@ class _SqliteState extends State<Sqlite> {
   @override
   void initState() {
     super.initState();
+    saveRef();
     checkLanguage();
     dbHelper = DBHelper();
     isUpdating = false;
@@ -171,7 +177,28 @@ class _SqliteState extends State<Sqlite> {
     _getLastLatLong();
     _getCurrentLocation();
     setState(() {});
+
+    // slidableController = SlidableController(
+    //   // onSlideAnimationChanged: handleSlideAnimationChanged,
+    //   onSlideIsOpenChanged: handleSlideIsOpenChanged,
+    // );
   }
+
+  saveRef() async {
+    final prefs = await SharedPreferences.getInstance();
+      prefs.setString("refferences", "not first time");
+  }
+
+// void handleSlideAnimationChanged(bool isOpen) {
+//   print("object")
+// }
+//   void handleSlideIsOpenChanged(bool isOpen) {
+//     setState(() {
+//       // _fabColor = isOpen ? Colors.green : Colors.blue;
+//       showArrow = isOpen;
+//       print("1234 >>>>>" + isOpen.toString());
+//     });
+//   }
 
   snackbarmethod() {
     _scaffoldkey.currentState.showSnackBar(new SnackBar(
@@ -199,9 +226,12 @@ class _SqliteState extends State<Sqlite> {
     // print("L-leng >> " + allLists.length.toString());
     if (allLists.length != 0) {
       for (final list in allLists) {
-        var index = list.location.toString().indexOf(',');
-        lLat = list.location.toString().substring(0, index);
-        lLong = list.location.toString().substring(index + 1);
+        if (list.location.toString() == "null" || list.location == "") {
+        } else {
+          var index = list.location.toString().indexOf(',');
+          lLat = list.location.toString().substring(0, index);
+          lLong = list.location.toString().substring(index + 1);
+        }
       }
       print("Last lat/long >> " + lLat.toString() + lLong.toString());
       final prefs = await SharedPreferences.getInstance();
@@ -215,61 +245,26 @@ class _SqliteState extends State<Sqlite> {
     //Get last check in location
 
     setState(() {});
-    final position = await Geolocator()
-        .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    // final Geolocator geolocator = Geolocator()
-    //   ..forceAndroidLocationManager = true;
-    // var position = await geolocator.getLastKnownPosition(
-    //     desiredAccuracy: LocationAccuracy.best);
-    print("location >>> $location");
-    location = "${position.latitude}, ${position.longitude}";
-    latt = "${position.latitude}";
-    longg = "${position.longitude}";
+    try {
+      final position = await Geolocator()
+          .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+      // final Geolocator geolocator = Geolocator()
+      //   ..forceAndroidLocationManager = true;
+      // var position = await geolocator.getLastKnownPosition(
+      //     desiredAccuracy: LocationAccuracy.best);
+      print("location >>> $location");
+      location = "${position.latitude}, ${position.longitude}";
+      latt = "${position.latitude}";
+      longg = "${position.longitude}";
 
-    setState(() {});
-    print(_locationMessage);
-    print(formattedDate);
-  }
-
-  getCardno() async {
-    var setList = [];
-    setList = await dbHelper.getEmployees();
-    setState(() {});
-    var data = [];
-    for (var i = 0; i < setList.length; i++) {
-      var index = setList[i].location.toString().indexOf(',');
-      data.add({
-        "phoneNo": "${widget.value}",
-        "deviceId": deviceId,
-        "latitude": setList[i].location.toString().substring(0, index),
-        "longitude": setList[i].location.toString().substring(index + 1),
-        "time": setList[i].time
-      });
-    } //http://192.168.205.137:8081/IonicDemoService/module001/service005/saveUser
-    //
-    final url =
-        'http://52.187.13.89:8080/tracemyanmar/module001/service005/saveUser';
-    var body = jsonEncode({"data": data});
-    print(body);
-    http.post(Uri.encodeFull(url), body: body, headers: {
-      "Accept": "application/json",
-      "content-type": "application/json"
-    }).then((dynamic res) {
-      var result = json.decode(res.body);
-      print(result);
-      if (result['msgCode'] == "0000") {
-        // color = "0";
-        _scaffoldkey.currentState.showSnackBar(new SnackBar(
-          content: new Text("Submitted Successfully!"),
-          backgroundColor: Colors.blue.shade400,
-          duration: Duration(seconds: 1),
-        ));
-      } else {
-        this.alertmsg = result['msgDesc'];
-        this.snackbarmethod();
-      }
-    });
-  }
+      setState(() {});
+      print(_locationMessage);
+      print(formattedDate);
+    } on Exception catch (_) {
+      print('never reached');
+      location = "";
+    }
+  }  
 
   gettime() async {
     var now = new DateTime.now();
@@ -303,57 +298,252 @@ class _SqliteState extends State<Sqlite> {
     setState(() {});
   }
 
-  validate() {
+  // // _alertCheckIn() async {
+  // //   return showDialog<void>(
+  // //     context: context,
+  // //     barrierDismissible: false, // user must tap button!
+  // //     builder: (BuildContext context) {
+  // //       return AlertDialog(
+  // //         title: Text('GPS Check In'),
+  // //         content: SingleChildScrollView(
+  // //           child: ListBody(
+  // //             children: <Widget>[
+  // //               Padding(
+  // //                 padding: const EdgeInsets.fromLTRB(00.0, 0.0, 00.0, 0.0),
+  // //                 child: Container(
+  // //                     child: TextFormField(
+  // //                   readOnly: false,
+  // //                   keyboardType: TextInputType.text,
+  // //                   controller: chklocNameCtr,
+  // //                   style: TextStyle(
+  // //                       color: Colors.black, fontWeight: FontWeight.w300),
+  // //                   decoration: InputDecoration(
+  // //                     // labelText: checklang == "Eng" ? textEng[1] : textMyan[1],
+  // //                     labelText: "*တည်နေရာ အမည် (Location name)",
+  // //                     hasFloatingPlaceholder: true,
+  // //                     labelStyle: TextStyle(
+  // //                         fontSize: 14, color: Colors.black, height: 0),
+  // //                     fillColor: Colors.grey,
+  // //                   ),
+  // //                 )),
+  // //               ),
+  // //               // SizedBox(
+  // //               //   height: 5,
+  // //               // ),
+  // //               // Text(
+  // //               //   "* Required",
+  // //               //   style: TextStyle(color: Colors.redAccent),
+  // //               // ),
+  // //               SizedBox(
+  // //                 height: 5,
+  // //               ),
+  // //               Padding(
+  // //                 padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+  // //                 child: Container(
+  // //                     child: TextFormField(
+  // //                   readOnly: false,
+  // //                   keyboardType: TextInputType.multiline,
+  // //                   minLines: 1,
+  // //                   maxLines: 5,
+  // //                   controller: chkremarkCtrl,
+  // //                   style: TextStyle(
+  // //                       color: Colors.black, fontWeight: FontWeight.w300),
+  // //                   decoration: InputDecoration(
+  // //                     // labelText: checklang == "Eng" ? textEng[1] : textMyan[1],
+  // //                     labelText: "မှတ်ချက် (Remark)",
+  // //                     hasFloatingPlaceholder: true,
+  // //                     labelStyle: TextStyle(
+  // //                         fontSize: 14, color: Colors.black, height: 0),
+  // //                     fillColor: Colors.grey,
+  // //                   ),
+  // //                 )),
+  // //               ),
+  // //             ],
+  // //           ),
+  // //         ),
+  // //         actions: <Widget>[
+  // //           FlatButton(
+  // //             child: Text(
+  // //               'Cancel',
+  // //               style: TextStyle(color: Colors.blueAccent),
+  // //             ),
+  // //             onPressed: () {
+  // //               chklocNameCtr.text = "";
+  // //               chkremarkCtrl.text = "";
+  // //               Navigator.of(context).pop();
+  // //             },
+  // //           ),
+  // //           FlatButton(
+  // //             child: Text(
+  // //               'Check In',
+  // //               style: TextStyle(color: Colors.blueAccent),
+  // //             ),
+  // //             onPressed: () {
+  // //               if (chklocNameCtr.text == null || chklocNameCtr.text == "") {
+  // //                 // snackbarmethod1("Fill တည်နေရာ အမည် (Location name)");
+  // //               } else {
+  // //                 setState(() {
+  // //                   DateTime now = DateTime.now();
+  // //                   formattedDate = new DateFormat.yMd().add_jm().format(now);
+  // //                   righttime = formattedDate;
+  // //                   //new DateFormat.yMd().add_jm()  DateFormat('hh:mm EEE d MMM') yMMMMd("en_US")
+  // //                 });
+  // //                 formKey.currentState.save();
+
+  // //                 // } else {
+  // //                 print("2222");
+
+  // //                 Employee e = Employee(curUserId, null, righttime,
+  // //                     chklocNameCtr.text, color, chkremarkCtrl.text);
+  // //                 dbHelper.save(e);
+
+  // //                 _getLastLatLong();
+  // //                 setState(() {});
+  // //                 // }
+  // //                 clearName();
+  // //                 refreshList();
+  // //                 setState(() {
+  // //                   rid = "Checked In";
+  // //                 });
+  // //                 chklocNameCtr.text = "";
+  // //                 chkremarkCtrl.text = "";
+  // //                 Navigator.of(context).pop();
+  // //               }
+  // //             },
+  // //           ),
+  // //         ],
+  // //       );
+  // //     },
+  // //   );
+  // // }
+
+  validate() async {
     print("CurUserId >>" + remark.toString());
-    setState(() {});
-    if (location == null) {
-      this.snackbarmethod1("Location not accessible.");
-    } else if (formKey.currentState.validate()) {
-      setState(() {
-        DateTime now = DateTime.now();
-        formattedDate = new DateFormat.yMd().add_jm().format(now);
-        righttime = formattedDate;
-        //new DateFormat.yMd().add_jm()  DateFormat('hh:mm EEE d MMM') yMMMMd("en_US")
-      });
-      formKey.currentState.save();
-      if (isUpdating) {
-        print("11111111");
-        // if (location == null) {
-        // Employee e =
-        //     Employee(curUserId, "L, L", righttime, rid, color, remark);
-        // dbHelper.update(e);
 
-        // } else {
-        Employee e =
-            Employee(curUserId, location, righttime, rid, color, remark);
-        dbHelper.update(e);
-        // }
+    // try {
+    // if (location == "") {
+    //   final position = await Geolocator()
+    //       .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    //   // final Geolocator geolocator = Geolocator()
+    //   //   ..forceAndroidLocationManager = true;
+    //   // var position = await geolocator.getLastKnownPosition(
+    //   //     desiredAccuracy: LocationAccuracy.best);
+    //   print("location >>> $location");
+    //   location = "${position.latitude}, ${position.longitude}";
+    //   latt = "${position.latitude}";
+    //   longg = "${position.longitude}";
+    // }
+    // final result1 = await Geolocator().checkGeolocationPermissionStatus();
 
-        setState(() {
-          isUpdating = false;
-        });
+    final result = await Geolocator().isLocationServiceEnabled();
+    if (result == false) {
+      snackbarmethod1("Please turn on GPS.");
+    } else {
+      GeolocationStatus result1 =
+          await Geolocator().checkGeolocationPermissionStatus();
+
+      print("RESULT >>> " + result1.toString());
+      if (result1.toString() == "GeolocationStatus.denied") {
+        //ask permission
+        final position = await Geolocator()
+            .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+        location = "${position.latitude}, ${position.longitude}";
+        latt = "${position.latitude}";
+        longg = "${position.longitude}";
       } else {
-        print("2222");
-        // if (location == null) {
-        //   Employee e = Employee(curUserId, "L, L", righttime, rid, color, "");
-        //   dbHelper.save(e);
-        // } else {
-        Employee e = Employee(curUserId, location, righttime, rid, color, "");
-        dbHelper.save(e);
-        // }
+        if (location == null) {
+          // this.snackbarmethod1("Location not accessible.");
+          // _alertCheckIn();
+          setState(() {
+            DateTime now = DateTime.now();
+            formattedDate = new DateFormat.yMd().add_jm().format(now);
+            righttime = formattedDate;
+            //new DateFormat.yMd().add_jm()  DateFormat('hh:mm EEE d MMM') yMMMMd("en_US")
+          });
+          formKey.currentState.save();
 
-        // color = "1";
-        // this.alertmsg = "Check In Successfully!";
-        // this.snackbarmethod();
-        _getLastLatLong();
-        setState(() {});
+          // } else {
+          print("2222");
+
+          Employee e = Employee(
+              curUserId, null, righttime, "", color, chkremarkCtrl.text);
+          dbHelper.save(e);
+
+          _getLastLatLong();
+          setState(() {});
+          // }
+          clearName();
+          refreshList();
+          setState(() {
+            rid = "Checked In";
+          });
+        } else if (formKey.currentState.validate()) {
+          // if (location == "") {
+          //   final position = await Geolocator()
+          //       .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+          //   // final Geolocator geolocator = Geolocator()
+          //   //   ..forceAndroidLocationManager = true;
+          //   // var position = await geolocator.getLastKnownPosition(
+          //   //     desiredAccuracy: LocationAccuracy.best);
+          //   print("location >>> $location");
+          //   location = "${position.latitude}, ${position.longitude}";
+          //   latt = "${position.latitude}";
+          //   longg = "${position.longitude}";
+          // }
+
+          setState(() {
+            DateTime now = DateTime.now();
+            formattedDate = new DateFormat.yMd().add_jm().format(now);
+            righttime = formattedDate;
+            //new DateFormat.yMd().add_jm()  DateFormat('hh:mm EEE d MMM') yMMMMd("en_US")
+          });
+          formKey.currentState.save();
+          if (isUpdating) {
+            print("11111111");
+            // if (location == null) {
+            // Employee e =
+            //     Employee(curUserId, "L, L", righttime, rid, color, remark);
+            // dbHelper.update(e);
+
+            // } else {
+            Employee e =
+                Employee(curUserId, location, righttime, rid, color, remark);
+            dbHelper.update(e);
+            // }
+
+            setState(() {
+              isUpdating = false;
+            });
+          } else {
+            print("2222");
+            // if (location == null) {
+            //   Employee e = Employee(curUserId, "L, L", righttime, rid, color, "");
+            //   dbHelper.save(e);
+            // } else {
+            Employee e =
+                Employee(curUserId, location, righttime, rid, color, "");
+            dbHelper.save(e);
+            // }
+
+            // color = "1";
+            // this.alertmsg = "Check In Successfully!";
+            // this.snackbarmethod();
+            _getLastLatLong();
+            setState(() {});
+          }
+          clearName();
+          refreshList();
+          setState(() {
+            rid = "Checked In";
+          });
+        }
       }
-      clearName();
-      refreshList();
-      setState(() {
-        rid = "Checked In";
-      });
     }
+
+    // // setState(() {});
+    // } on Exception catch (_) {
+    //   print('never reached');
+    // }
   }
 
   //-->> Old
@@ -453,7 +643,7 @@ class _SqliteState extends State<Sqlite> {
                           ),
                           color: Colors.blue,
                           onPressed: () async {
-                            _getCurrentLocation();
+                            // _getCurrentLocation();
                             validate();
                             setState(() {});
                           },
@@ -642,7 +832,7 @@ class _SqliteState extends State<Sqlite> {
               color: Colors.white,
               child: new ListTile(
                 onTap: () async {
-                  print("Edit >> " + employees[i].remark.toString());
+                  print("Edit >> " + employees[i].location.toString());
                   // curUserId, location, righttime, rid, color, remark
                   var res = await Navigator.push(
                       context,
@@ -659,14 +849,18 @@ class _SqliteState extends State<Sqlite> {
                     refreshList();
                   }
                 },
+                trailing: Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.black26,
+                ),
                 leading: GestureDetector(
                   onTap: () {
                     // print("AAA");
                     // print(
                     //     "LIST >> " + employees[i].location.toString());
-                    if (employees[i].location == "L, L") {
-                      snackbarmethod1(
-                          "Sorry, you're default location. Please, update you check in");
+                    if (employees[i].location == "" ||
+                        employees[i].location == null) {
+                      snackbarmethod1("You're in default location");
                     } else {
                       Navigator.push(
                           context,
@@ -686,7 +880,8 @@ class _SqliteState extends State<Sqlite> {
                   child: new Container(
                     child: Icon(Icons.location_on,
                         size: 30,
-                        color: employees[i].location == "L, L"
+                        color: (employees[i].location == "" ||
+                                employees[i].location == null)
                             ? Colors.grey
                             : Colors.green.shade400),
                     // Icon(Icons.location_on),
@@ -894,49 +1089,34 @@ class _SqliteState extends State<Sqlite> {
           appBar: AppBar(
             backgroundColor: Colors.blue,
             title: Text(
-              'TraceMyanmar',
+              'Saw Saw Shar',
               style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0),
             ),
             centerTitle: true,
             actions: <Widget>[
               PopupMenuButton<int>(
                 itemBuilder: (context) => [
-                  PopupMenuItem(
-                      value: 1,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            checklang == "Eng" ? textEng[2] : textMyan[2],
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black),
-                          ),
-                          Text(
-                            " (Submit)",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black),
-                          ),
-                        ],
-                      )),
+                  
                   PopupMenuItem(
                     value: 2,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(checklang == "Eng" ? textEng[3] : textMyan[3],
+                    child:
+                        // Column(
+                        //   mainAxisAlignment: MainAxisAlignment.start,
+                        //   crossAxisAlignment: CrossAxisAlignment.start,
+                        //   children: <Widget>[
+                        Text(
+                            checklang == "Eng"
+                                ? textEng[3] + " (Version)"
+                                : textMyan[3] + " (Version)",
                             style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black)),
-                        Text(" (Version)",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black)),
-                      ],
-                    ),
+                    //     Text(" (Version)",
+                    //         style: TextStyle(
+                    //             fontWeight: FontWeight.w400,
+                    //             color: Colors.black)),
+                    //   ],
+                    // ),
                   ),
                 ],
                 // initialValue: 2,
@@ -945,14 +1125,7 @@ class _SqliteState extends State<Sqlite> {
                 },
                 onSelected: (value) {
                   print("value:$value");
-                  if (value == 1) {
-                    setState(() {
-                      isUpdating = false;
-                      setState(() {
-                        getCardno();
-                      });
-                    });
-                  }
+                  
                   if (value == 2) {
                     setState(() {
                       _openURL();

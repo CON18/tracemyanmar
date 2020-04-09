@@ -13,6 +13,7 @@ import 'package:TraceMyanmar/sqlite.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:align_positioned/align_positioned.dart';
 
 class Drawerr extends StatefulWidget {
   @override
@@ -104,210 +105,272 @@ class _DrawerrState extends State<Drawerr> {
       child: ListView(padding: EdgeInsets.fromLTRB(0, 00, 0, 0), children: <
           Widget>[
         Container(
-          height: 200,
+          height: 220,
           width: 100,
           // color: Color.fromRGBO(40, 103, 178, 1),
           padding: EdgeInsets.all(0),
           child: new DrawerHeader(
             margin: EdgeInsets.only(bottom: 0),
             padding: EdgeInsets.only(left: 0, right: 0, bottom: 0, top: 0),
-            child: Column(
+            child: Stack(
               children: <Widget>[
-                Container(
-                  decoration: new BoxDecoration(
-                    image: new DecorationImage(
-                      image: new AssetImage('assets/three.png'),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Stack(
+                Column(
+                  children: <Widget>[
+                    Container(
+                      decoration: new BoxDecoration(
+                        image: new DecorationImage(
+                          image: new AssetImage('assets/three.png'),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Positioned(
-                                  // bottom: 12.0,
-                                  // left: 16.0,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      GestureDetector(
-                                          onTap: () {
-                                            uu == null
-                                                ? _showDialog()
-                                                :
-                                                // Navigator.push(
-                                                //     context,
-                                                //     MaterialPageRoute(
-                                                //         builder: (context) =>
-                                                //             Profile(userid:uu,username:ss)));
-                                                // Navigator.push(
-                                                //     context,
-                                                //     MaterialPageRoute(
-                                                //         builder: (context) =>
-                                                //             ViewProfile(
-                                                //                 userid: uu,
-                                                //                 username: ss)));
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    // Stack(
+                                    //   children: <Widget>[
+                                    // Positioned(
+                                    // bottom: 12.0,
+                                    // left: 16.0,
 
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            NewProfile(
-                                                                userid: uu,
-                                                                username: ss)));
-                                          },
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              border: Border.all(
-                                                color: Colors.lightBlueAccent,
-                                                width: 3,
-                                              ),
-                                              boxShadow: [
-                                                BoxShadow(
-                                                    color: Colors.black
-                                                        .withOpacity(0.5),
-                                                    offset: Offset(0, 5),
-                                                    blurRadius: 25)
-                                              ],
-                                              color: Colors.white,
-                                            ),
-                                            child: CircleAvatar(
-                                              radius: 37,
-                                              backgroundImage: AssetImage(
-                                                  'assets/user-icon.png'),
-                                            ),
-                                          )),
-                                      SizedBox(height: 20),
-                                      Padding(
-                                        padding: EdgeInsets.only(left: 10),
-                                        child: Text(
-                                          uu == null ? "" : '$uu',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 15.0),
+                                    GestureDetector(
+                                      onTap: () {
+                                        uu == null
+                                            ? _showDialog()
+                                            :
+                                            // Navigator.push(
+                                            //     context,
+                                            //     MaterialPageRoute(
+                                            //         builder: (context) =>
+                                            //             Profile(userid:uu,username:ss)));
+                                            // Navigator.push(
+                                            //     context,
+                                            //     MaterialPageRoute(
+                                            //         builder: (context) =>
+                                            //             ViewProfile(
+                                            //                 userid: uu,
+                                            //                 username: ss)));
+
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        NewProfile(
+                                                            userid: uu,
+                                                            username: ss)));
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          border: Border.all(
+                                            color: Colors.lightBlueAccent,
+                                            width: 3,
+                                          ),
+                                          boxShadow: [
+                                            BoxShadow(
+                                                color: Colors.black
+                                                    .withOpacity(0.5),
+                                                offset: Offset(0, 5),
+                                                blurRadius: 25)
+                                          ],
+                                          color: Colors.white,
+                                        ),
+                                        child: CircleAvatar(
+                                          radius: 37,
+                                          backgroundImage: AssetImage(
+                                              'assets/user-icon.png'),
                                         ),
                                       ),
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.only(left: 10, top: 0),
-                                        child: Text(
-                                          ss == null ? "" : '$ss',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 15.0),
+                                    ),
+
+                                    //   ],
+                                    // ),
+                                    SizedBox(height: 20),
+                                    Row(
+                                      children: <Widget>[
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 10),
+                                          child: Text(
+                                            uu == null ? "" : '$uu',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 15.0),
+                                          ),
+                                        ),
+                                        // uu == null
+                                        //     ? Container()
+                                        //     : Icon(
+                                        //         Icons.arrow_forward_ios,
+                                        //         color: Colors.white70,
+                                        //       ),
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.only(left: 10, top: 0),
+                                      child: Text(
+                                        ss == null ? "" : '$ss',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 15.0),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                // ),
+                                //   ],
+                                // ),
+                              ],
+                            ),
+                            // Column(
+                            //   children: <Widget>[
+                            // Stack(
+                            //   children: <Widget>[
+                            //     Positioned(
+                            //       top: 0.0,
+                            // child:
+
+                            (uu == "" || uu == null)
+                                ? Container()
+                                : Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: <Widget>[
+                                      GestureDetector(
+                                        onTap: () {
+                                          print("Go Profile View>>");
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ViewProfile(
+                                                          userid: uu,
+                                                          username: ss)));
+                                        },
+                                        child: Container(
+                                          padding: EdgeInsets.only(
+                                              left: 5.0, right: 0.0, top: 70),
+                                          child: QrImage(
+                                            data: qrText.toString(),
+                                            size: 70,
+                                            // gapless: true,
+                                            // foregroundColor: Colors.green,
+                                            foregroundColor: Colors.white60,
+                                            // backgroundColor: Colors.white38,
+                                            errorCorrectionLevel:
+                                                QrErrorCorrectLevel.H,
+                                          ),
                                         ),
                                       ),
                                     ],
+                                    //       ),
+                                    //     ),
+                                    //   ],
+                                    // ),
+                                    // ],
                                   ),
-                                ),
-                              ],
-                            ),
+
+                            // Column(
+                            //   crossAxisAlignment: CrossAxisAlignment.start,
+                            //   children: <Widget>[
+                            //     Stack(
+                            //       children: <Widget>[
+                            //         Positioned(
+                            //           // bottom: 12.0,
+                            //           // left: 16.0,
+                            //           child: Column(
+                            //             crossAxisAlignment: CrossAxisAlignment.end,
+                            //             children: <Widget>[
+                            //               // GestureDetector(
+                            //               //   onTap: () {},
+                            //               //   child: Container(
+                            //               //     child: Image.asset(
+                            //               //         'assets/images/contactqr.png',
+                            //               //         height: 75,
+                            //               //         width: 75),
+                            //               //   ),
+                            //               // ),
+                            //               // SizedBox(height: 20),
+                            //               // // Padding(
+                            //               //   padding:
+                            //               //       EdgeInsets.only(left: 10),
+                            //               //   child: Text(
+                            //               //     "Version 1.0.9",
+                            //               //     style: TextStyle(
+                            //               //         color: Colors.white,
+                            //               //         fontSize: 15.0),
+                            //               //   ),
+                            //               // ),
+                            //               Padding(
+                            //                 padding:
+                            //                     EdgeInsets.only(left: 10, top: 5),
+                            //                 child: Text(
+                            //                   "",
+                            //                   style: TextStyle(
+                            //                       color: Color(0xFF525252),
+                            //                       fontSize: 15.0),
+                            //                 ),
+                            //               ),
+                            //             ],
+                            //           ),
+                            //         ),
+                            //       ],
+                            //     ),
+                            //   ],
+                            // ),
                           ],
                         ),
-                        // Column(
-                        //   children: <Widget>[
-                        // Stack(
-                        //   children: <Widget>[
-                        //     Positioned(
-                        //       top: 0.0,
-                        // child:
-
-                        (uu == "" || uu == null)
-                            ? Container()
-                            : Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: <Widget>[
-                                  GestureDetector(
-                                    onTap: () {
-                                      print("Go Profile View>>");
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => ViewProfile(
-                                                  userid: uu, username: ss)));
-                                    },
-                                    child: Container(
-                                      padding: EdgeInsets.only(
-                                          left: 5.0, right: 0.0, top: 70),
-                                      child: QrImage(
-                                        data: qrText.toString(),
-                                        size: 70,
-                                        // gapless: true,
-                                        // foregroundColor: Colors.green,
-                                        foregroundColor: Colors.white60,
-                                        // backgroundColor: Colors.white38,
-                                        errorCorrectionLevel:
-                                            QrErrorCorrectLevel.H,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                                //       ),
-                                //     ),
-                                //   ],
-                                // ),
-                                // ],
-                              ),
-
-                        // Column(
-                        //   crossAxisAlignment: CrossAxisAlignment.start,
-                        //   children: <Widget>[
-                        //     Stack(
-                        //       children: <Widget>[
-                        //         Positioned(
-                        //           // bottom: 12.0,
-                        //           // left: 16.0,
-                        //           child: Column(
-                        //             crossAxisAlignment: CrossAxisAlignment.end,
-                        //             children: <Widget>[
-                        //               // GestureDetector(
-                        //               //   onTap: () {},
-                        //               //   child: Container(
-                        //               //     child: Image.asset(
-                        //               //         'assets/images/contactqr.png',
-                        //               //         height: 75,
-                        //               //         width: 75),
-                        //               //   ),
-                        //               // ),
-                        //               // SizedBox(height: 20),
-                        //               // // Padding(
-                        //               //   padding:
-                        //               //       EdgeInsets.only(left: 10),
-                        //               //   child: Text(
-                        //               //     "Version 1.0.9",
-                        //               //     style: TextStyle(
-                        //               //         color: Colors.white,
-                        //               //         fontSize: 15.0),
-                        //               //   ),
-                        //               // ),
-                        //               Padding(
-                        //                 padding:
-                        //                     EdgeInsets.only(left: 10, top: 5),
-                        //                 child: Text(
-                        //                   "",
-                        //                   style: TextStyle(
-                        //                       color: Color(0xFF525252),
-                        //                       fontSize: 15.0),
-                        //                 ),
-                        //               ),
-                        //             ],
-                        //           ),
-                        //         ),
-                        //       ],
-                        //     ),
-                        //   ],
-                        // ),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
+                ),
+                new Positioned(
+                  left: 75.0,
+                  top: 65.0,
+                  child: (uu == "" || uu == null)
+                      ? Container()
+                      : GestureDetector(
+                          onTap: () {
+                            uu == null
+                                ? _showDialog()
+                                : Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          NewProfile(userid: uu, username: ss),
+                                    ),
+                                  );
+                          },
+                          child: new Container(
+                              width: 30.0,
+                              height: 30.0,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: Colors.lightBlueAccent,
+                                  width: 2,
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      offset: Offset(0, 5),
+                                      blurRadius: 25)
+                                ],
+                                color: Colors.white,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(2.0),
+                                child: Icon(
+                                  Icons.edit,
+                                  size: 17,
+                                ),
+                              ))),
                 ),
               ],
             ),
@@ -366,10 +429,10 @@ class _DrawerrState extends State<Drawerr> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20.0),
                           ),
-                          title: new Text(
-                            "Warning !",
-                            style: TextStyle(color: Colors.amber),
-                          ),
+                          // title: new Text(
+                          //   "Warning !",
+                          //   style: TextStyle(color: Colors.amber),
+                          // ),
                           content:
                               new Text("Your phone number already\nverified"),
                           actions: <Widget>[

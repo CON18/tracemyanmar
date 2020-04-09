@@ -46,7 +46,7 @@
         android:configChanges="orientation|keyboardHidden"
         android:debuggable="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="TraceMyanmar"
+        android:label="Saw Saw Shar"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"

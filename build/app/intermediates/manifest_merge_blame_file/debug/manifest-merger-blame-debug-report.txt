@@ -82,7 +82,7 @@
 46        android:debuggable="true"
 47        android:icon="@mipmap/ic_launcher"
 47-->/home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:16:9-43
-48        android:label="TraceMyanmar"
+48        android:label="Saw Saw Shar"
 48-->/home/chitoonaung/FP/tracemyanmar/android/app/src/main/AndroidManifest.xml:15:9-37
 49        android:screenOrientation="portrait"
 49-->[:qrscan] /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/library_manifest/debug/AndroidManifest.xml:23:9-45

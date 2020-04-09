@@ -50,7 +50,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 flutter_icons:
-  image_path: 'assets/trace.png'
+  image_path: 'assets/sss.png'
   android: true
   ios: true
 

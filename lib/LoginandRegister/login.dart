@@ -1,6 +1,15 @@
+import 'dart:async';
 import 'dart:convert';
+
+import 'package:TraceMyanmar/db_helper.dart';
+import 'package:TraceMyanmar/employee.dart';
+import 'package:TraceMyanmar/startInterval.dart';
+import 'package:intl/intl.dart';
+import 'package:geolocator/geolocator.dart';
+
 import 'package:TraceMyanmar/LoginandRegister/register.dart';
 import 'package:TraceMyanmar/sqlite.dart';
+import 'package:TraceMyanmar/tabs.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -27,7 +36,9 @@ class _LoginState extends State<Login> {
   String checklang = '';
   List textMyan = ["စီစစ်ခြင်း (Verify)", "ကုဒ်ရယူပါ"];
   List textEng = ["Verify", "Next"];
-
+  var _start;
+  Timer timer;
+  var dbHelper;
   checkLanguage() async {
     // final prefs = await SharedPreferences.getInstance();
     // checklang = prefs.getString("Lang");
@@ -37,14 +48,113 @@ class _LoginState extends State<Login> {
     //   checklang = checklang;
     // }
     checklang = "Myanmar";
+    dbHelper = DBHelper();
+    _checkAndstartTrack();
     setState(() {});
   }
+
+  
 
   @override
   void initState() {
     super.initState();
     checkLanguage();
     getlocation();
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    // timer1.cancel();
+    super.dispose();
+  }
+
+  _checkAndstartTrack() async {
+    final prefs = await SharedPreferences.getInstance();
+    var chkT = prefs.getString("chk_tracking") ?? "0";
+    if (chkT == "0") {
+      //tracking off
+    } else {
+      //tracking on
+      final prefs = await SharedPreferences.getInstance();
+      int val = prefs.getInt("timer") ?? 0;
+
+      if (val == 0) {
+      } else {
+        _start = val.toString();
+        countDownSave();
+      }
+    }
+  }
+
+  countDownSave() {
+    print("START >> $_start");
+    const oneSec = const Duration(seconds: 1);
+    timer = Timer.periodic(
+      oneSec,
+      (Timer t) => setState(
+        () {
+          if (_start == 0) {
+            _getCurrentLocationForTrack();
+            timer.cancel();
+          } else {
+            _start = int.parse(_start.toString()) - 1;
+            saveTimer();
+            // print("Sec>>" + _start.toString());
+          }
+          print("CD >> " + _start.toString());
+        },
+      ),
+    );
+  }
+
+  saveTimer() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt("timer", _start);
+  }
+
+  _getCurrentLocationForTrack() async {
+    //auto check in location
+
+    // setState(() async {
+    //tracking on
+    try {
+      // UserId
+      final prefs = await SharedPreferences.getInstance();
+      var userId = prefs.getString("UserId") ?? null;
+
+      final position = await Geolocator()
+          .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+
+      var location = "${position.latitude}, ${position.longitude}";
+      print("location >>> $location");
+
+      DateTime now = DateTime.now();
+      var curDT = new DateFormat.yMd().add_jm().format(now);
+      if (userId == null) {
+        Employee e = Employee(null, location, curDT, "Checked In", "", "Auto");
+        dbHelper.save(e);
+      } else {
+        Employee e =
+            Employee(int.parse(userId), location, curDT, "Checked In", "", "Auto");
+        dbHelper.save(e);
+      }
+
+      // final prefs = await SharedPreferences.getInstance();
+      int c = prefs.getInt("saveCount") ?? 0;
+      final prefs1 = await SharedPreferences.getInstance();
+      int r = c + 1;
+      prefs1.setInt("saveCount", r);
+      // setState(() {
+      //   refreshList();
+      // });
+      print("Save --->>>>");
+      _start = startInterval;
+      countDownSave();
+    } on Exception catch (_) {
+      print('never reached');
+    }
+    // });
   }
 
   snackbarmethod() {
@@ -129,7 +239,7 @@ class _LoginState extends State<Login> {
                     // contentPadding: new EdgeInsets.symmetric(
                     //     vertical: 9.0, horizontal: 25.0),
                     contentPadding: EdgeInsets.only(left: 0, top: 2),
-                    hintText: "မိုဘိုင်းဖုန်းနံပါတ် ( Mobile Phone Number)",                    
+                    hintText: "မိုဘိုင်းဖုန်းနံပါတ် ( Mobile Phone Number)",
                     errorText: _validate ? "Please Fill Phone No" : null,
                     errorStyle: TextStyle(
                         fontSize: 14,
@@ -258,11 +368,18 @@ class _LoginState extends State<Login> {
                         this.alertmsg = data['desc'];
                         this.snackbarmethod();
                         Future.delayed(const Duration(milliseconds: 2000), () {
-                          Navigator.push(
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) =>
+                          //             Sqlite(value: myController.text)));
+                          Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      Sqlite(value: myController.text)));
+                                builder: (context) => TabsPage(
+                                  openTab: 0,
+                                ),
+                              ));
                         });
                       } else {
                         setState(() {

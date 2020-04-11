@@ -1,6 +1,12 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:TraceMyanmar/Drawer/Profile/profile_view.dart';
 import 'package:TraceMyanmar/country_township/townships.dart';
+import 'package:TraceMyanmar/db_helper.dart';
+import 'package:TraceMyanmar/employee.dart';
+import 'package:TraceMyanmar/startInterval.dart';
+import 'package:TraceMyanmar/tabs.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:TraceMyanmar/sqlite.dart';
 import 'package:flutter/material.dart';
@@ -70,6 +76,10 @@ class _NewProfileState extends State<NewProfile> {
   }
 
   String qrText;
+  var _start;
+  Timer timer;
+  var dbHelper;
+
   @override
   void initState() {
     super.initState();
@@ -90,6 +100,96 @@ class _NewProfileState extends State<NewProfile> {
     } else {
       mynameController.text = "${widget.username}";
     }
+
+    dbHelper = DBHelper();
+    _checkAndstartTrack();
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    // timer1.cancel();
+    super.dispose();
+  }
+
+  _checkAndstartTrack() async {
+    final prefs = await SharedPreferences.getInstance();
+    var chkT = prefs.getString("chk_tracking") ?? "0";
+    if (chkT == "0") {
+      //tracking off
+    } else {
+      //tracking on
+      final prefs = await SharedPreferences.getInstance();
+      int val = prefs.getInt("timer") ?? 0;
+
+      if (val == 0) {
+      } else {
+        _start = val.toString();
+        countDownSave();
+      }
+    }
+  }
+
+  countDownSave() {
+    print("START >> $_start");
+    const oneSec = const Duration(seconds: 1);
+    timer = Timer.periodic(
+      oneSec,
+      (Timer t) => setState(
+        () {
+          if (_start == 0) {
+            _getCurrentLocationForTrack();
+            timer.cancel();
+          } else {
+            _start = int.parse(_start.toString()) - 1;
+            saveTimer();
+            // print("Sec>>" + _start.toString());
+          }
+          print("CD >> " + _start.toString());
+        },
+      ),
+    );
+  }
+
+  saveTimer() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt("timer", _start);
+  }
+
+  _getCurrentLocationForTrack() async {
+    //auto check in location
+
+    // setState(() async {
+    //tracking on
+    try {
+      final position = await Geolocator()
+          .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+
+      var location = "${position.latitude}, ${position.longitude}";
+      print("location >>> $location");
+
+      DateTime now = DateTime.now();
+      var curDT = new DateFormat.yMd().add_jm().format(now);
+
+      Employee e =
+          Employee(int.parse(widget.userid), location, curDT, "", "", "Auto");
+      dbHelper.save(e);
+
+      final prefs = await SharedPreferences.getInstance();
+      int c = prefs.getInt("saveCount") ?? 0;
+      final prefs1 = await SharedPreferences.getInstance();
+      int r = c + 1;
+      prefs1.setInt("saveCount", r);
+      // setState(() {
+      //   refreshList();
+      // });
+      print("Save --->>>>");
+      _start = startInterval;
+      countDownSave();
+    } on Exception catch (_) {
+      print('never reached');
+    }
+    // });
   }
 
   snackbarmethod() {
@@ -133,9 +233,16 @@ class _NewProfileState extends State<NewProfile> {
           this.snackbarmethod();
           getstorage();
           Future.delayed(const Duration(milliseconds: 1000), () {
-            var route = new MaterialPageRoute(
-                builder: (BuildContext context) => new Sqlite());
-            Navigator.of(context).push(route);
+            // var route = new MaterialPageRoute(
+            //     builder: (BuildContext context) => new Sqlite());
+            // Navigator.of(context).push(route);
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => TabsPage(
+                    openTab: 0,
+                  ),
+                ));
           });
         } else {
           this.alertmsg = data['desc'];
@@ -160,24 +267,27 @@ class _NewProfileState extends State<NewProfile> {
         ),
         centerTitle: true,
         backgroundColor: Colors.blue,
-        // leading: Builder(builder: (BuildContext context) {
-        //   return new GestureDetector(
-        //     onTap: () {
-        //       print("BACK");
-        //       // update();
-        //       // var tt = "Refresh";
-        //       // Navigator.pop(context, tt);
-        //     },
-        //     child: new Container(
-        //       child: IconButton(
-        //         icon: new Icon(
-        //           Icons.arrow_back,
-        //           color: Colors.white,
-        //         ),
-        //       ),
-        //     ),
-        //   );
-        // }),
+        leading: Builder(builder: (BuildContext context) {
+          return new GestureDetector(
+            onTap: () {
+              print("BACK");
+              setState(() {
+                update();
+              });
+
+              // var tt = "Refresh";
+              // Navigator.pop(context);
+            },
+            child: new Container(
+              child: IconButton(
+                icon: new Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          );
+        }),
         // leading: new Container(),
       ),
       body: SingleChildScrollView(
@@ -506,32 +616,32 @@ class _NewProfileState extends State<NewProfile> {
                 SizedBox(
                   height: 20.0,
                 ),
-                new RaisedButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                  onPressed: () async {
-                    update();
-                  },
-                  color: Colors.blue,
-                  textColor: Colors.white,
-                  child: Container(
-                    width: 120.0,
-                    height: 38.0,
-                    child: Center(
-                        // child: Text(checklang == "Eng" ? textEng[7] : textMyan[7],
-                        child:
-                            Text(checklang == "Eng" ? textEng[6] : textMyan[6],
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w300,
-                                ))),
-                  ),
-                ),
-                SizedBox(
-                  height: 15.0,
-                )
+                // new RaisedButton(
+                //   shape: RoundedRectangleBorder(
+                //     borderRadius: BorderRadius.circular(5.0),
+                //   ),
+                //   onPressed: () async {
+                //     update();
+                //   },
+                //   color: Colors.blue,
+                //   textColor: Colors.white,
+                //   child: Container(
+                //     width: 120.0,
+                //     height: 38.0,
+                //     child: Center(
+                //         // child: Text(checklang == "Eng" ? textEng[7] : textMyan[7],
+                //         child:
+                //             Text(checklang == "Eng" ? textEng[6] : textMyan[6],
+                //                 style: TextStyle(
+                //                   fontSize: 16,
+                //                   color: Colors.white,
+                //                   fontWeight: FontWeight.w300,
+                //                 ))),
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: 15.0,
+                // )
               ],
             ),
           ),

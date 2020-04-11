@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/chitoonaung/FP/tracemyanmar/build/background_fetch/intermediates/res/merged/release/values-port/values-port.xml",
+            "map": [
+                {
+                    "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/values-port/values-port.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/home/chitoonaung/FP/tracemyanmar/build/background_fetch/intermediates/incremental/mergeReleaseResources/merged.dir/values-port/values-port.xml",
+            "map": [
+                {
+                    "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/values-port/values-port.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                }
+            ]
+        }
+    ]
+}

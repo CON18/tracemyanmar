@@ -1,0 +1,50 @@
+[
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/background_fetch/intermediates/res/merged/release/anim/abc_popup_exit.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/anim/abc_popup_exit.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/background_fetch/intermediates/res/merged/release/anim/abc_slide_in_bottom.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/anim/abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/background_fetch/intermediates/res/merged/release/anim/abc_fade_out.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/anim/abc_fade_out.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/background_fetch/intermediates/res/merged/release/anim/abc_slide_out_bottom.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/anim/abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/background_fetch/intermediates/res/merged/release/anim/abc_slide_out_top.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/anim/abc_slide_out_top.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/background_fetch/intermediates/res/merged/release/anim/abc_fade_in.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/anim/abc_fade_in.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/background_fetch/intermediates/res/merged/release/anim/abc_grow_fade_in_from_bottom.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/anim/abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/background_fetch/intermediates/res/merged/release/anim/abc_shrink_fade_out_from_bottom.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/anim/abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/background_fetch/intermediates/res/merged/release/anim/abc_tooltip_exit.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/anim/abc_tooltip_exit.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/background_fetch/intermediates/res/merged/release/anim/abc_slide_in_top.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/anim/abc_slide_in_top.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/background_fetch/intermediates/res/merged/release/anim/abc_tooltip_enter.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/anim/abc_tooltip_enter.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/background_fetch/intermediates/res/merged/release/anim/abc_popup_enter.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/anim/abc_popup_enter.xml"
+    }
+]

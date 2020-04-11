@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_plugin_android_lifecycle/intermediates/res/merged/release/layout/notification_template_part_time.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/56bd956c422b271047080580dafa6b10/core-1.0.0/res/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_plugin_android_lifecycle/intermediates/res/merged/release/layout/notification_action_tombstone.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/56bd956c422b271047080580dafa6b10/core-1.0.0/res/layout/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_plugin_android_lifecycle/intermediates/res/merged/release/layout/notification_template_icon_group.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/56bd956c422b271047080580dafa6b10/core-1.0.0/res/layout/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_plugin_android_lifecycle/intermediates/res/merged/release/layout/notification_action.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/56bd956c422b271047080580dafa6b10/core-1.0.0/res/layout/notification_action.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_plugin_android_lifecycle/intermediates/res/merged/release/layout/notification_template_part_chronometer.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/56bd956c422b271047080580dafa6b10/core-1.0.0/res/layout/notification_template_part_chronometer.xml"
+    }
+]

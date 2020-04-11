@@ -1,4 +1,10 @@
 import 'dart:async';
+
+import 'package:TraceMyanmar/employee.dart';
+import 'package:TraceMyanmar/startInterval.dart';
+import 'package:intl/intl.dart';
+import 'package:geolocator/geolocator.dart';
+
 import 'package:TraceMyanmar/location/helpers/map_helper.dart';
 import 'package:TraceMyanmar/location/helpers/map_marker.dart';
 import 'package:fluster/fluster.dart';
@@ -58,6 +64,9 @@ class _HomePageState extends State<HomePage> {
 
   LatLng _targetLatLong;
 
+  var _start;
+  Timer timer;
+
   checkLanguage() async {
     // final prefs = await SharedPreferences.getInstance();
     // checklang = prefs.getString("Lang");
@@ -90,12 +99,16 @@ class _HomePageState extends State<HomePage> {
       // }).toList();
       // print(markers);
       for (var i = 0; i < setList.length; i++) {
-        var index = setList[i].location.toString().indexOf(',');
+        if (setList[i].location.toString() == "null" ||
+            setList[i].location == "") {
+        } else {
+          var index = setList[i].location.toString().indexOf(',');
 
-        data.add({
-          "latitude": setList[i].location.toString().substring(0, index),
-          "longitude": setList[i].location.toString().substring(index + 1),
-        });
+          data.add({
+            "latitude": setList[i].location.toString().substring(0, index),
+            "longitude": setList[i].location.toString().substring(index + 1),
+          });
+        }
         // double lat =
         //     double.parse(setList[i].location.toString().substring(0, index));
         // double long =
@@ -114,12 +127,111 @@ class _HomePageState extends State<HomePage> {
     dbHelper = DBHelper();
     testing();
     _getTargetLatLong();
+
+    dbHelper = DBHelper();
+    _checkAndstartTrack();
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    // timer1.cancel();
+    super.dispose();
+  }
+
+  _checkAndstartTrack() async {
+    final prefs = await SharedPreferences.getInstance();
+    var chkT = prefs.getString("chk_tracking") ?? "0";
+    if (chkT == "0") {
+      //tracking off
+    } else {
+      //tracking on
+      final prefs = await SharedPreferences.getInstance();
+      int val = prefs.getInt("timer") ?? 0;
+
+      if (val == 0) {
+      } else {
+        _start = val.toString();
+        countDownSave();
+      }
+    }
+  }
+
+  countDownSave() {
+    print("START >> $_start");
+    const oneSec = const Duration(seconds: 1);
+    timer = Timer.periodic(
+      oneSec,
+      (Timer t) => setState(
+        () {
+          if (_start == 0) {
+            _getCurrentLocationForTrack();
+            timer.cancel();
+          } else {
+            _start = int.parse(_start.toString()) - 1;
+            saveTimer();
+            // print("Sec>>" + _start.toString());
+          }
+          print("CD >> " + _start.toString());
+        },
+      ),
+    );
+  }
+
+  saveTimer() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt("timer", _start);
+  }
+
+  _getCurrentLocationForTrack() async {
+    //auto check in location
+
+    // setState(() async {
+    //tracking on
+    try {
+      // UserId
+      final prefs = await SharedPreferences.getInstance();
+      var userId = prefs.getString("UserId") ?? null;
+
+      final position = await Geolocator()
+          .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+
+      var location = "${position.latitude}, ${position.longitude}";
+      print("location >>> $location");
+
+      DateTime now = DateTime.now();
+      var curDT = new DateFormat.yMd().add_jm().format(now);
+      if (userId == null) {
+        Employee e = Employee(null, location, curDT, "Checked In", "", "Auto");
+        dbHelper.save(e);
+      } else {
+        Employee e =
+            Employee(int.parse(userId), location, curDT, "Checked In", "", "Auto");
+        dbHelper.save(e);
+      }
+
+      // final prefs = await SharedPreferences.getInstance();
+      int c = prefs.getInt("saveCount") ?? 0;
+      final prefs1 = await SharedPreferences.getInstance();
+      int r = c + 1;
+      prefs1.setInt("saveCount", r);
+      // setState(() {
+      //   refreshList();
+      // });
+      print("Save --->>>>");
+      _start = startInterval;
+      countDownSave();
+    } on Exception catch (_) {
+      print('never reached');
+    }
+    // });
   }
 
   _getTargetLatLong() async {
     final prefs = await SharedPreferences.getInstance();
     var lLat = prefs.getString("last-lat") ?? 0;
     var lLong = prefs.getString("last-long") ?? 0;
+    print("L/L >> " + lLat.toString() + lLong.toString());
     if (lLat == 0 || lLong == 0) {
       _targetLatLong = LatLng(22.9087267, 96.4237433);
     } else {
@@ -147,24 +259,29 @@ class _HomePageState extends State<HomePage> {
     // final List<MapMarker> markers = [];
 
     var dbHelper = DBHelper();
-    final setList = await dbHelper.getEmployees();
+    final sl = await dbHelper.getEmployees();
     setState(() {
       _new_markers.clear();
-      for (final list in setList) {
-        var index = list.location.toString().indexOf(',');
-        var lat = list.location.toString().substring(0, index);
-        var long = list.location.toString().substring(index + 1);
-        // print("Lth >> "+list.length.toString())
-        print("ML >> " + lat + "|" + long);
-        final marker = Marker(
-          markerId: MarkerId(list.id.toString()),
-          position: LatLng(double.parse(lat), double.parse(long)),
-          infoWindow: InfoWindow(
-            title: list.time,
-            // snippet: office.address,
-          ),
-        );
-        _new_markers[list.id.toString()] = marker;
+      for (final list in sl) {
+        if (list.location.toString() == "null" || list.location == "") {
+        } else {
+          var index = list.location.toString().indexOf(',');
+          var lat = list.location.toString().substring(0, index);
+          var long = list.location.toString().substring(index + 1);
+          // print("Lth >> "+list.length.toString())
+          print("ML >> " + lat + "|" + long);
+          final marker = Marker(
+            markerId: MarkerId(list.id.toString()),
+            position: LatLng(double.parse(lat), double.parse(long)),
+            infoWindow: InfoWindow(
+              title: list.time,
+              // snippet: office.address,
+            ),
+          );
+          setState(() {
+            _new_markers[list.id.toString()] = marker;
+          });
+        }
       }
     });
 

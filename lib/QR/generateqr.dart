@@ -1,5 +1,14 @@
+import 'dart:async';
+
+import 'package:TraceMyanmar/db_helper.dart';
+import 'package:TraceMyanmar/employee.dart';
+import 'package:TraceMyanmar/startInterval.dart';
+import 'package:intl/intl.dart';
+import 'package:geolocator/geolocator.dart';
+
 import 'dart:ui';
 import 'package:TraceMyanmar/sqlite.dart';
+import 'package:TraceMyanmar/tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -27,9 +36,111 @@ class _CashInConfirmState extends State<Generateqr> {
   String _dataString = "Hello from this QR";
   String _inputErrorText;
   String res, id, user;
+
+  var _start;
+  Timer timer;
+  var dbHelper;
+
   void initState() {
     super.initState();
     getinfo();
+    dbHelper = DBHelper();
+    _checkAndstartTrack();
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    // timer1.cancel();
+    super.dispose();
+  }
+
+  _checkAndstartTrack() async {
+    final prefs = await SharedPreferences.getInstance();
+    var chkT = prefs.getString("chk_tracking") ?? "0";
+    if (chkT == "0") {
+      //tracking off
+    } else {
+      //tracking on
+      final prefs = await SharedPreferences.getInstance();
+      int val = prefs.getInt("timer") ?? 0;
+
+      if (val == 0) {
+      } else {
+        _start = val.toString();
+        countDownSave();
+      }
+    }
+  }
+
+  countDownSave() {
+    print("START >> $_start");
+    const oneSec = const Duration(seconds: 1);
+    timer = Timer.periodic(
+      oneSec,
+      (Timer t) => setState(
+        () {
+          if (_start == 0) {
+            _getCurrentLocationForTrack();
+            timer.cancel();
+          } else {
+            _start = int.parse(_start.toString()) - 1;
+            saveTimer();
+            // print("Sec>>" + _start.toString());
+          }
+          print("CD >> " + _start.toString());
+        },
+      ),
+    );
+  }
+
+  saveTimer() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt("timer", _start);
+  }
+
+  _getCurrentLocationForTrack() async {
+    //auto check in location
+
+    // setState(() async {
+    //tracking on
+    try {
+      // UserId
+      final prefs = await SharedPreferences.getInstance();
+      var userId = prefs.getString("UserId") ?? null;
+
+      final position = await Geolocator()
+          .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+
+      var location = "${position.latitude}, ${position.longitude}";
+      print("location >>> $location");
+
+      DateTime now = DateTime.now();
+      var curDT = new DateFormat.yMd().add_jm().format(now);
+      if (userId == null) {
+        Employee e = Employee(null, location, curDT, "Checked In", "", "Auto");
+        dbHelper.save(e);
+      } else {
+        Employee e =
+            Employee(int.parse(userId), location, curDT, "Checked In", "", "Auto");
+        dbHelper.save(e);
+      }
+
+      // final prefs = await SharedPreferences.getInstance();
+      int c = prefs.getInt("saveCount") ?? 0;
+      final prefs1 = await SharedPreferences.getInstance();
+      int r = c + 1;
+      prefs1.setInt("saveCount", r);
+      // setState(() {
+      //   refreshList();
+      // });
+      print("Save --->>>>");
+      _start = startInterval;
+      countDownSave();
+    } on Exception catch (_) {
+      print('never reached');
+    }
+    // });
   }
 
   getinfo() async {
@@ -39,8 +150,13 @@ class _CashInConfirmState extends State<Generateqr> {
     id = userID;
     user = name;
     setState(() {
-      _dataString =
-          '{"skey":"' + "${widget.skey}" + '","rid":"' + "${widget.rid}" + '","remark":"' + "${widget.remark}" + '"}';
+      _dataString = '{"skey":"' +
+          "${widget.skey}" +
+          '","rid":"' +
+          "${widget.rid}" +
+          '","remark":"' +
+          "${widget.remark}" +
+          '"}';
       _inputErrorText = null;
     });
   }
@@ -100,8 +216,15 @@ class _CashInConfirmState extends State<Generateqr> {
                   elevation: 5.0,
                   splashColor: Colors.red,
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Sqlite()));
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(builder: (context) => Sqlite()));
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => TabsPage(
+                            openTab: 0,
+                          ),
+                        ));
                   },
                   child: new Text(
                     "CLOSE",

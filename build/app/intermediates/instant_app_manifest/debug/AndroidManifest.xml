@@ -46,10 +46,11 @@
         android:configChanges="orientation|keyboardHidden"
         android:debuggable="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="TraceMyanmar"
+        android:label="Saw Saw Shar"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
+        android:value="c10047e800a8d08ee0e7236fc2b35d595bf89f020d99ea125eaf578c5a6180bd"
         android:windowSoftInputMode="stateAlwaysHidden" >
         <meta-data
             android:name="com.google.android.geo.API_KEY"

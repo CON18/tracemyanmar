@@ -1,7 +1,12 @@
+import 'dart:async';
 import 'dart:convert';
 
-import 'package:TraceMyanmar/Drawer/Profile/new_profile.dart';
+import 'package:TraceMyanmar/db_helper.dart';
+import 'package:TraceMyanmar/employee.dart';
+import 'package:TraceMyanmar/startInterval.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:intl/intl.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -24,14 +29,108 @@ class _ViewProfileState extends State<ViewProfile> {
     "Profile",
   ];
 
+  var _start;
+  Timer timer;
+  var dbHelper;
+
   @override
   void initState() {
     super.initState();
     checkLanguage();
     _genQR();
-  //    String text = 'ယေဓမ္မာ ဟေတုပ္ပဘဝါ တေသံ ဟေတုံ တထာဂတော အာဟ တေသဉ္စ ယောနိရောဓေါ ဧဝံ ဝါဒီ မဟာသမဏော။';
-  // String zawgyiText = Rabbit.uni2zg(text);
-  // String unicodeText = Rabbit.zg2uni(zawgyiText);
+
+    dbHelper = DBHelper();
+    _checkAndstartTrack();
+    //    String text = 'ယေဓမ္မာ ဟေတုပ္ပဘဝါ တေသံ ဟေတုံ တထာဂတော အာဟ တေသဉ္စ ယောနိရောဓေါ ဧဝံ ဝါဒီ မဟာသမဏော။';
+    // String zawgyiText = Rabbit.uni2zg(text);
+    // String unicodeText = Rabbit.zg2uni(zawgyiText);
+  }
+
+@override
+  void dispose() {
+    timer.cancel();
+    // timer1.cancel();
+    super.dispose();
+  }
+
+  _checkAndstartTrack() async {
+    final prefs = await SharedPreferences.getInstance();
+    var chkT = prefs.getString("chk_tracking") ?? "0";
+    if (chkT == "0") {
+      //tracking off
+    } else {
+      //tracking on
+      final prefs = await SharedPreferences.getInstance();
+      int val = prefs.getInt("timer") ?? 0;
+
+      if (val == 0) {
+      } else {
+        _start = val.toString();
+        countDownSave();
+      }
+    }
+  }
+
+  countDownSave() {
+    print("START >> $_start");
+    const oneSec = const Duration(seconds: 1);
+    timer = Timer.periodic(
+      oneSec,
+      (Timer t) => setState(
+        () {
+          if (_start == 0) {
+            _getCurrentLocationForTrack();
+            timer.cancel();
+          } else {
+            _start = int.parse(_start.toString()) - 1;
+            saveTimer();
+            // print("Sec>>" + _start.toString());
+          }
+          print("CD >> " + _start.toString());
+        },
+      ),
+    );
+  }
+
+  saveTimer() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt("timer", _start);
+  }
+
+  _getCurrentLocationForTrack() async {
+    //auto check in location
+
+    // setState(() async {
+    //tracking on
+    try {
+      final position = await Geolocator()
+          .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+
+      var location = "${position.latitude}, ${position.longitude}";
+      print("location >>> $location");
+
+      DateTime now = DateTime.now();
+      var curDT = new DateFormat.yMd().add_jm().format(now);
+
+      Employee e =
+          Employee(int.parse(widget.userid), location, curDT, "", "", "Auto");
+      dbHelper.save(e);
+
+      final prefs = await SharedPreferences.getInstance();
+      int c = prefs.getInt("saveCount") ?? 0;
+      final prefs1 = await SharedPreferences.getInstance();
+      int r = c + 1;
+      prefs1.setInt("saveCount", r);
+      // setState(() {
+      //   refreshList();
+      // });
+      print("Save --->>>>");
+      _start = startInterval;
+      countDownSave();
+    } on Exception catch (_) {
+      print('never reached');
+    }
+    // });
   }
 
   _genQR() {

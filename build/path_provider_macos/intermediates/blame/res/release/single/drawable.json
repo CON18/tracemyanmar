@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/path_provider_macos/intermediates/res/merged/release/drawable/notification_bg_low.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/56bd956c422b271047080580dafa6b10/core-1.0.0/res/drawable/notification_bg_low.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/path_provider_macos/intermediates/res/merged/release/drawable/notification_tile_bg.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/56bd956c422b271047080580dafa6b10/core-1.0.0/res/drawable/notification_tile_bg.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/path_provider_macos/intermediates/res/merged/release/drawable/notification_icon_background.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/56bd956c422b271047080580dafa6b10/core-1.0.0/res/drawable/notification_icon_background.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/path_provider_macos/intermediates/res/merged/release/drawable/notification_bg.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/56bd956c422b271047080580dafa6b10/core-1.0.0/res/drawable/notification_bg.xml"
+    }
+]

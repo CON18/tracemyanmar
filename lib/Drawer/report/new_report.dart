@@ -1,3 +1,11 @@
+import 'dart:async';
+
+import 'package:TraceMyanmar/db_helper.dart';
+import 'package:TraceMyanmar/employee.dart';
+import 'package:TraceMyanmar/startInterval.dart';
+import 'package:intl/intl.dart';
+import 'package:geolocator/geolocator.dart';
+
 import 'package:TraceMyanmar/Drawer/report/report.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -8,59 +16,81 @@ class NewReport extends StatefulWidget {
 }
 
 class _NewReportState extends State<NewReport> {
+  // List itemLists = [
+  //   {"id": "01", "no": "၁။ ", "title": "ချောင်းဆိုးလျှင်", "select": false},
+  //   {"id": "02", "no": "၂။ ", "title": "ချမ်း/တုန်", "select": false},
+  //   {"id": "03", "no": "၃။ ", "title": "၀မ်းပျက်/၀မ်းလျှော", "select": false},
+  //   {"id": "04", "no": "၄။ ", "title": "လည်ချောင်းနာလျှင်", "select": false},
+  //   {"id": "05", "no": "၅။ ", "title": "ကိုယ်လက်ကိုက်ခဲလျှင်", "select": false},
+  //   {"id": "06", "no": "၆။ ", "title": "ခေါင်းကိုက်လျှင်", "select": false},
+  //   {
+  //     "id": "07",
+  //     "no": "၇။ ",
+  //     "title": "အဖျား ၁၀၀ နှင့်အထက်ရှိလျှင်",
+  //     "select": false
+  //   },
+  //   {"id": "08", "no": "၈။ ", "title": "အသက်ရှူမ၀/မော လျှင်", "select": false},
+  //   {
+  //     "id": "09",
+  //     "no": "၉။ ",
+  //     "title": "နှုံးချိအားမရှိ ဖြစ်လျှင်",
+  //     "select": false
+  //   },
+  //   {
+  //     "id": "10",
+  //     "no": "၁၀။ ",
+  //     "title": "လွန်ခဲ့သော၁၄ရက်အတွင်းခရီးသွားခဲ့လျှင်",
+  //     "select": false
+  //   },
+  //   {
+  //     "id": "11",
+  //     "no": "၁၁။ ",
+  //     "title": "ရောဂါပိုး ကူးစက်သောနေရာများသို့\nခရီးသွားဖူးလျှင်",
+  //     "select": false
+  //   },
+  //   {
+  //     "id": "12",
+  //     "no": "၁၂။ ",
+  //     "title": "ရောဂါပိုး ကူးစက်လူနာနှင့် ထိတွေ့ဖူးလျှင် စောင့်ရှောက်ဖူးလျှင်",
+  //     "select": false
+  //   }
+  // ];
+
   List itemLists = [
-    {"id": "01", "no": "၁။ ", "title": "ချောင်းဆိုးလျှင်", "select": false},
-    {"id": "02", "no": "၂။ ", "title": "ချမ်း/တုန်", "select": false},
-    {"id": "03", "no": "၃။ ", "title": "၀မ်းပျက်/၀မ်းလျှော", "select": false},
-    {"id": "04", "no": "၄။ ", "title": "လည်ချောင်းနာလျှင်", "select": false},
-    {"id": "05", "no": "၅။ ", "title": "ကိုယ်လက်ကိုက်ခဲလျှင်", "select": false},
-    {"id": "06", "no": "၆။ ", "title": "ခေါင်းကိုက်လျှင်", "select": false},
-    {
-      "id": "07",
-      "no": "၇။ ",
-      "title": "အဖျား ၁၀၀ နှင့်အထက်ရှိလျှင်",
-      "select": false
-    },
-    {"id": "08", "no": "၈။ ", "title": "အသက်ရှူမ၀/မော လျှင်", "select": false},
-    {
-      "id": "09",
-      "no": "၉။ ",
-      "title": "နှုံးချိအားမရှိ ဖြစ်လျှင်",
-      "select": false
-    },
-    {
-      "id": "10",
-      "no": "၁၀။ ",
-      "title": "လွန်ခဲ့သော၁၄ရက်အတွင်းခရီးသွားခဲ့လျှင်",
-      "select": false
-    },
-    {
-      "id": "11",
-      "no": "၁၁။ ",
-      "title": "ရောဂါပိုး ကူးစက်သောနေရာများသို့\nခရီးသွားဖူးလျှင်",
-      "select": false
-    },
-    {
-      "id": "12",
-      "no": "၁၂။ ",
-      "title": "ရောဂါပိုး ကူးစက်လူနာနှင့် ထိတွေ့ဖူးလျှင် စောင့်ရှောက်ဖူးလျှင်",
-      "select": false
-    }
+    {"id": "01", "no": "၁။ ", "title": "ကောင်းမွန်", "select": false},
+    {"id": "02", "no": "၁။ ", "title": "ဖျားနာ", "select": false},
+    {"id": "03", "no": "၁။ ", "title": "ချောင်းဆိုး", "select": false},
+    {"id": "04", "no": "၁။ ", "title": "အားအင်ကုန်ခန်း", "select": false},
+    {"id": "05", "no": "၁။ ", "title": "အသက်ရှူကျပ်", "select": false},
   ];
 
   String checklang = '';
-  List textMyan = ["ရှေ့သို့", "စစ်ဆေးမှု"];
+  List textMyan = ["ရှေ့သို့ (Next)", "စစ်ဆေးမှု"];
   List textEng = ["Next", "Report"];
 
   int checkCount = 0;
+
+  var _start;
+  Timer timer;
+  var dbHelper;
 
   @override
   void initState() {
     super.initState();
     checkLanguage();
+
+    dbHelper = DBHelper();
+    _checkAndstartTrack();
     // for (var i = 0; i < l.length; i++) {
     //     isChecking.add(false);
     //   }
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    // timer1.cancel();
+    super.dispose();
   }
 
   checkLanguage() async {
@@ -73,6 +103,94 @@ class _NewReportState extends State<NewReport> {
     // }
     checklang = "Myanmar";
     setState(() {});
+  }
+
+  _checkAndstartTrack() async {
+    final prefs = await SharedPreferences.getInstance();
+    var chkT = prefs.getString("chk_tracking") ?? "0";
+    if (chkT == "0") {
+      //tracking off
+    } else {
+      //tracking on
+      final prefs = await SharedPreferences.getInstance();
+      int val = prefs.getInt("timer") ?? 0;
+
+      if (val == 0) {
+      } else {
+        _start = val.toString();
+        countDownSave();
+      }
+    }
+  }
+
+  countDownSave() {
+    print("START >> $_start");
+    const oneSec = const Duration(seconds: 1);
+    timer = Timer.periodic(
+      oneSec,
+      (Timer t) => setState(
+        () {
+          if (_start == 0) {
+            _getCurrentLocationForTrack();
+            timer.cancel();
+          } else {
+            _start = int.parse(_start.toString()) - 1;
+            saveTimer();
+            // print("Sec>>" + _start.toString());
+          }
+          print("CD >> " + _start.toString());
+        },
+      ),
+    );
+  }
+
+  saveTimer() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt("timer", _start);
+  }
+
+  _getCurrentLocationForTrack() async {
+    //auto check in location
+
+    // setState(() async {
+    //tracking on
+    try {
+      // UserId
+      final prefs = await SharedPreferences.getInstance();
+      var userId = prefs.getString("UserId") ?? null;
+
+      final position = await Geolocator()
+          .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+
+      var location = "${position.latitude}, ${position.longitude}";
+      print("location >>> $location");
+
+      DateTime now = DateTime.now();
+      var curDT = new DateFormat.yMd().add_jm().format(now);
+      if (userId == null) {
+        Employee e = Employee(null, location, curDT, "Checked In", "", "Auto");
+        dbHelper.save(e);
+      } else {
+        Employee e =
+            Employee(int.parse(userId), location, curDT, "Checked In", "", "Auto");
+        dbHelper.save(e);
+      }
+
+      // final prefs = await SharedPreferences.getInstance();
+      int c = prefs.getInt("saveCount") ?? 0;
+      final prefs1 = await SharedPreferences.getInstance();
+      int r = c + 1;
+      prefs1.setInt("saveCount", r);
+      // setState(() {
+      //   refreshList();
+      // });
+      print("Save --->>>>");
+      _start = startInterval;
+      countDownSave();
+    } on Exception catch (_) {
+      print('never reached');
+    }
+    // });
   }
 
   _selectChange(list) async {
@@ -114,7 +232,8 @@ class _NewReportState extends State<NewReport> {
                 child: Row(
               children: <Widget>[
                 Text(
-                  "ရောဂါလက္ခဏာနှင့်သွားလာမူများ",
+                  // "ရောဂါလက္ခဏာနှင့်သွားလာမူများ",
+                  "အခြေအနေ (Condition)",
                   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),
                 Spacer(),
@@ -122,18 +241,18 @@ class _NewReportState extends State<NewReport> {
                   "",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 25.0),
-                  child: checkCount == 0
-                      ? Container()
-                      : Text(
-                          "[ $checkCount ]",
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.blue),
-                        ),
-                ),
+                // // Padding(
+                // //   padding: const EdgeInsets.only(right: 25.0),
+                // //   child: checkCount == 0
+                // //       ? Container()
+                // //       : Text(
+                // //           "[ $checkCount ]",
+                // //           style: TextStyle(
+                // //               fontSize: 18,
+                // //               fontWeight: FontWeight.bold,
+                // //               color: Colors.blue),
+                // //         ),
+                // // ),
               ],
             )),
             SizedBox(
@@ -170,7 +289,9 @@ class _NewReportState extends State<NewReport> {
                                   activeColor: Colors.blue,
                                   hoverColor: Colors.pink,
                                   value: itemLists[i]["select"],
-                                  onChanged: (bool value) {},
+                                  onChanged: (bool value) {
+                                    _selectChange(itemLists[i]);
+                                  },
                                 ),
                               ),
                             ),
@@ -182,93 +303,110 @@ class _NewReportState extends State<NewReport> {
 
               // ),
             ),
-            SizedBox(
-              height: 60.0,
-            )
+            // SizedBox(
+            //   height: 60.0,
+            // ),
+            FloatingActionButton(
+              child: Icon(Icons.arrow_forward_ios),
+              backgroundColor: Colors.blue,
+              onPressed: () {
+                // print("CL >> " + srLst.toString());
+                var route = new MaterialPageRoute(
+                    builder: (BuildContextcontext) => new Reporting(
+                          value: checkCount,
+                        ));
+                Navigator.of(context).push(route);
+              },
+              // shape: RoundedRectangleBorder(
+              //     borderRadius: BorderRadius.all(Radius.circular(20.0))),
+              elevation: 10.0,
+            ),
           ],
         ),
       ),
-      // floatingActionButton: Align(
-      //   alignment: Alignment.bottomCenter,
-      //   child: FloatingActionButton(
-      //     backgroundColor: Colors.blue,
-      //     onPressed: () {
-      //       // print("CL >> " + srLst.toString());
-      //       var route = new MaterialPageRoute(
-      //           builder: (BuildContextcontext) => new Reposting());
-      //       Navigator.of(context).push(route);
-      //     },
-      //     tooltip: 'Increment',
-      //     // child: Text("Done", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
-      //     child: Icon(Icons.arrow_forward_ios),
-      //     // shape: RoundedRectangleBorder(
-      //     //     borderRadius: BorderRadius.all(Radius.circular(20.0))),
-      //     elevation: 10.0,
-      //   ),
+      // // // floatingActionButton: Align(
+      // // //   alignment: Alignment.bottomCenter,
+      // // //   child: FloatingActionButton(
+      // // //     backgroundColor: Colors.blue,
+      // // //     onPressed: () {
+      // // //       // print("CL >> " + srLst.toString());
+      // // //       var route = new MaterialPageRoute(
+      // // //           builder: (BuildContextcontext) => new Reporting(
+      // // //                 value: checkCount,
+      // // //               ));
+      // // //       Navigator.of(context).push(route);
+      // // //     },
+      // // //     tooltip: 'Increment',
+      // // //     // child: Text("Done", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+      // // //     child: Icon(Icons.arrow_forward_ios),
+      // // //     // shape: RoundedRectangleBorder(
+      // // //     //     borderRadius: BorderRadius.all(Radius.circular(20.0))),
+      // // //     elevation: 10.0,
+      // // //   ),
+      // // // ),
+      // // persistentFooterButtons: <Widget>[
+      // //   Form(
+      // //     // key: formKey,
+      // //     child: Padding(
+      // //       padding: EdgeInsets.all(0.0),
+      // //       child: Column(
+      // //         mainAxisAlignment: MainAxisAlignment.center,
+      // //         mainAxisSize: MainAxisSize.min,
+      // //         children: <Widget>[
+      // //           Row(
+      // //             // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      // //             children: <Widget>[
+      // //               Column(
+      // //                 children: <Widget>[
+      // //                   Container(
+      // //                     width: MediaQuery.of(context).size.width * 0.95,
+      // //                     child: Padding(
+      // //                       padding: EdgeInsets.only(left: 0.0, right: 0.0),
+      // //                       child: RaisedButton(
+      // //                         shape: RoundedRectangleBorder(
+      // //                           borderRadius: BorderRadius.circular(5.0),
+      // //                         ),
+      // //                         color: Colors.blue,
+      // //                         onPressed: () async {
+      // //                           var route = new MaterialPageRoute(
+      // //                               builder: (BuildContextcontext) =>
+      // //                                   new Reporting(value: checkCount,));
+      // //                           Navigator.of(context).push(route);
+      // //                         },
+      // //                         child: Text(
+      // //                           checklang == "Eng" ? textEng[0] : textMyan[0],
+      // //                           style: TextStyle(
+      // //                               color: Colors.white,
+      // //                               fontWeight: FontWeight.w300),
+      // //                         ),
+      // //                       ),
+      // //                     ),
+      // //                   ),
+      // //                 ],
+      // //               ),
+      // //             ],
+      // //           )
+      // //         ],
+      // //       ),
+      // //     ),
+      // child: FloatingActionButton(
+      //   backgroundColor: Colors.blue,
+      //   onPressed: () {
+      //     var route = new MaterialPageRoute(
+      //                           builder: (BuildContextcontext) =>
+      //                               new Reposting(value: 3,));
+      //                       Navigator.of(context).push(route);
+      //     // print("CL >> " + srLst.toString());
+      //   },
+      //   tooltip: 'Increment',
+      //   // child: Text("Done", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+      //   child: Icon(Icons.arrow_forward_ios),
+      //   // shape: RoundedRectangleBorder(
+      //   //     borderRadius: BorderRadius.all(Radius.circular(20.0))),
+      //   elevation: 10.0,
       // ),
-      persistentFooterButtons: <Widget>[
-        Form(
-          // key: formKey,
-          child: Padding(
-            padding: EdgeInsets.all(0.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Row(
-                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.95,
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 0.0, right: 0.0),
-                            child: RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.0),
-                              ),
-                              color: Colors.blue,
-                              onPressed: () async {
-                                var route = new MaterialPageRoute(
-                                    builder: (BuildContextcontext) =>
-                                        new Reposting());
-                                Navigator.of(context).push(route);
-                              },
-                              child: Text(
-                                checklang == "Eng" ? textEng[0] : textMyan[0],
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w300),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                )
-              ],
-            ),
-          ),
-          // child: FloatingActionButton(
-          //   backgroundColor: Colors.blue,
-          //   onPressed: () {
-          //     var route = new MaterialPageRoute(
-          //                           builder: (BuildContextcontext) =>
-          //                               new Reposting(value: 3,));
-          //                       Navigator.of(context).push(route);
-          //     // print("CL >> " + srLst.toString());
-          //   },
-          //   tooltip: 'Increment',
-          //   // child: Text("Done", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
-          //   child: Icon(Icons.arrow_forward_ios),
-          //   // shape: RoundedRectangleBorder(
-          //   //     borderRadius: BorderRadius.all(Radius.circular(20.0))),
-          //   elevation: 10.0,
-          // ),
-        )
-      ],
+      // )
+      // ],
     );
   }
 }

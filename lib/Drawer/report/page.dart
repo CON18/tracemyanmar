@@ -228,7 +228,7 @@ List<bool> isChecking = new List<bool>();
               ),
                 child: Text(checklang=="Eng" ? textEng[0]: textMyan[0],style: TextStyle(fontWeight: FontWeight.w300,fontSize: 15),),
                 onPressed: () {
-                  var route = new MaterialPageRoute(builder: (BuildContextcontext) =>new Reposting(value:total));
+                  var route = new MaterialPageRoute(builder: (BuildContextcontext) =>new Reporting(value:total));
                   Navigator.of(context).push(route);
                 },
                 color: Colors.blue,

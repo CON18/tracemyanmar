@@ -4,10 +4,13 @@ import 'dart:convert';
 import 'package:TraceMyanmar/db_helper.dart';
 import 'package:TraceMyanmar/employee.dart';
 import 'package:TraceMyanmar/startInterval.dart';
+import 'package:devicelocale/devicelocale.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:rabbit_converter/rabbit_converter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ViewProfile extends StatefulWidget {
@@ -20,6 +23,8 @@ class ViewProfile extends StatefulWidget {
 }
 
 class _ViewProfileState extends State<ViewProfile> {
+  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
+  FirebaseAnalytics analytics = FirebaseAnalytics();
   String qrText;
   String checklang = '';
   List textMyan = [
@@ -33,104 +38,63 @@ class _ViewProfileState extends State<ViewProfile> {
   Timer timer;
   var dbHelper;
 
+  var lan;
+
   @override
   void initState() {
     super.initState();
     checkLanguage();
     _genQR();
-
-    dbHelper = DBHelper();
-    _checkAndstartTrack();
+    someMethod();
+    // dbHelper = DBHelper();
+    // _checkAndstartTrack();
     //    String text = 'ယေဓမ္မာ ဟေတုပ္ပဘဝါ တေသံ ဟေတုံ တထာဂတော အာဟ တေသဉ္စ ယောနိရောဓေါ ဧဝံ ဝါဒီ မဟာသမဏော။';
     // String zawgyiText = Rabbit.uni2zg(text);
     // String unicodeText = Rabbit.zg2uni(zawgyiText);
+    analyst();
   }
 
-@override
+  analyst() async {
+    await analytics.logEvent(
+      name: 'ProfileView_Request',
+      parameters: <String, dynamic>{
+        // 'string': myController.text,
+      },
+    );
+  }
+
+  Future someMethod() async {
+    String deviceLanguage = await Devicelocale.currentLocale;
+    var checkfont = deviceLanguage.substring(3, 5);
+    setState(() {
+      if (checkfont == 'ZG') {
+        print(checkfont);
+        // print('lenght ---- ' + textMyan.length.toString());
+        lan = "Zg";
+        print(lan);
+      } else {
+        // print('lenght ---- ' + textMyan.length.toString());
+        lan = "Uni";
+        print(lan);
+      }
+      print('-->$deviceLanguage');
+    });
+  }
+
+  @override
   void dispose() {
-    timer.cancel();
+    // timer.cancel();
     // timer1.cancel();
     super.dispose();
   }
 
-  _checkAndstartTrack() async {
-    final prefs = await SharedPreferences.getInstance();
-    var chkT = prefs.getString("chk_tracking") ?? "0";
-    if (chkT == "0") {
-      //tracking off
-    } else {
-      //tracking on
-      final prefs = await SharedPreferences.getInstance();
-      int val = prefs.getInt("timer") ?? 0;
-
-      if (val == 0) {
-      } else {
-        _start = val.toString();
-        countDownSave();
-      }
-    }
-  }
-
-  countDownSave() {
-    print("START >> $_start");
-    const oneSec = const Duration(seconds: 1);
-    timer = Timer.periodic(
-      oneSec,
-      (Timer t) => setState(
-        () {
-          if (_start == 0) {
-            _getCurrentLocationForTrack();
-            timer.cancel();
-          } else {
-            _start = int.parse(_start.toString()) - 1;
-            saveTimer();
-            // print("Sec>>" + _start.toString());
-          }
-          print("CD >> " + _start.toString());
-        },
-      ),
-    );
-  }
-
-  saveTimer() async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setInt("timer", _start);
-  }
-
-  _getCurrentLocationForTrack() async {
-    //auto check in location
-
-    // setState(() async {
-    //tracking on
-    try {
-      final position = await Geolocator()
-          .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-
-      var location = "${position.latitude}, ${position.longitude}";
-      print("location >>> $location");
-
-      DateTime now = DateTime.now();
-      var curDT = new DateFormat.yMd().add_jm().format(now);
-
-      Employee e =
-          Employee(int.parse(widget.userid), location, curDT, "", "", "Auto");
-      dbHelper.save(e);
-
-      final prefs = await SharedPreferences.getInstance();
-      int c = prefs.getInt("saveCount") ?? 0;
-      final prefs1 = await SharedPreferences.getInstance();
-      int r = c + 1;
-      prefs1.setInt("saveCount", r);
-      // setState(() {
-      //   refreshList();
-      // });
-      print("Save --->>>>");
-      _start = startInterval;
-      countDownSave();
-    } on Exception catch (_) {
-      print('never reached');
-    }
-    // });
+  snackbarmethod1(name) {
+    _scaffoldkey.currentState.showSnackBar(new SnackBar(
+      // content: new Text("Please wait, searching your location"),
+      content: new Text(name),
+      backgroundColor: Colors.blue.shade400,
+      duration: Duration(seconds: 3),
+    ));
   }
 
   _genQR() {
@@ -165,6 +129,7 @@ class _ViewProfileState extends State<ViewProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldkey,
       appBar: AppBar(
         // key: _scaffoldKey,
         iconTheme: IconThemeData(
@@ -183,8 +148,12 @@ class _ViewProfileState extends State<ViewProfile> {
         //       fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.white),
         // ),
         title: Text(
-          checklang == "Eng" ? textEng[0] : textMyan[0],
-          style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0),
+          // checklang == "Eng" ? textEng[0] : textMyan[0],
+          lan == "Zg" ? Rabbit.uni2zg(textMyan[0]) : textMyan[0],
+          style: TextStyle(
+              fontFamily: lan == "Zg" ? "Zawgyi" : "Pyidaungsu",
+              fontWeight: FontWeight.w300,
+              fontSize: 18.0),
         ),
         centerTitle: true,
         // actions: <Widget>[
@@ -315,11 +284,15 @@ class _ViewProfileState extends State<ViewProfile> {
                             (widget.username == "" || widget.username == null)
                                 ? Container()
                                 : Text(
-                                    widget.username,
+                                    lan == "Zg"
+                                        ? Rabbit.uni2zg(widget.username)
+                                        : widget.username,
                                     // "Chit Oo Naung",
                                     // "ချစ်ဦးနောင်",
                                     style: TextStyle(
-                                        fontFamily: "Pyidaungsu",
+                                        fontFamily: lan == "Zg"
+                                            ? "Zawgyi"
+                                            : "Pyidaungsu",
                                         fontSize: 21.0,
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -329,11 +302,14 @@ class _ViewProfileState extends State<ViewProfile> {
                             (widget.userid == "" || widget.userid == null)
                                 ? Container()
                                 : Text(
-                                    widget.userid,
+                                    lan == "Zg"
+                                        ? Rabbit.uni2zg(widget.userid)
+                                        : widget.userid,
                                     // "+959966680686",
                                     // "chitoonaunganalyst661@gmail.com",
                                     style: TextStyle(
-                                      fontFamily: "Pyidaungsu",
+                                      fontFamily:
+                                          lan == "Zg" ? "Zawgyi" : "Pyidaungsu",
                                       fontSize: 16.0,
                                       color: Colors.black,
                                     ),

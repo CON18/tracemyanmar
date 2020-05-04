@@ -1,0 +1,4 @@
+#Sun May 03 17:25:13 MMT 2020
+base.0=/home/chitoonaung/FP/tracemyanmar/build/app/intermediates/dex/release/mergeDexRelease/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

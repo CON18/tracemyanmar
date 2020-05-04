@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:TraceMyanmar/conv_datetime.dart';
 import 'package:TraceMyanmar/db_helper.dart';
 import 'package:TraceMyanmar/employee.dart';
 import 'package:TraceMyanmar/startInterval.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:intl/intl.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -32,6 +34,8 @@ class Generateqr extends StatefulWidget {
 }
 
 class _CashInConfirmState extends State<Generateqr> {
+  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
+  FirebaseAnalytics analytics = FirebaseAnalytics();
   GlobalKey globalKey = new GlobalKey();
   String _dataString = "Hello from this QR";
   String _inputErrorText;
@@ -44,8 +48,16 @@ class _CashInConfirmState extends State<Generateqr> {
   void initState() {
     super.initState();
     getinfo();
-    dbHelper = DBHelper();
-    _checkAndstartTrack();
+    analyst();
+  }
+
+  analyst() async {
+    await analytics.logEvent(
+      name: 'GenerateQR_Request',
+      parameters: <String, dynamic>{
+        // 'string': myController.text,
+      },
+    );
   }
 
   @override
@@ -53,94 +65,6 @@ class _CashInConfirmState extends State<Generateqr> {
     timer.cancel();
     // timer1.cancel();
     super.dispose();
-  }
-
-  _checkAndstartTrack() async {
-    final prefs = await SharedPreferences.getInstance();
-    var chkT = prefs.getString("chk_tracking") ?? "0";
-    if (chkT == "0") {
-      //tracking off
-    } else {
-      //tracking on
-      final prefs = await SharedPreferences.getInstance();
-      int val = prefs.getInt("timer") ?? 0;
-
-      if (val == 0) {
-      } else {
-        _start = val.toString();
-        countDownSave();
-      }
-    }
-  }
-
-  countDownSave() {
-    print("START >> $_start");
-    const oneSec = const Duration(seconds: 1);
-    timer = Timer.periodic(
-      oneSec,
-      (Timer t) => setState(
-        () {
-          if (_start == 0) {
-            _getCurrentLocationForTrack();
-            timer.cancel();
-          } else {
-            _start = int.parse(_start.toString()) - 1;
-            saveTimer();
-            // print("Sec>>" + _start.toString());
-          }
-          print("CD >> " + _start.toString());
-        },
-      ),
-    );
-  }
-
-  saveTimer() async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setInt("timer", _start);
-  }
-
-  _getCurrentLocationForTrack() async {
-    //auto check in location
-
-    // setState(() async {
-    //tracking on
-    try {
-      // UserId
-      final prefs = await SharedPreferences.getInstance();
-      var userId = prefs.getString("UserId") ?? null;
-
-      final position = await Geolocator()
-          .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-
-      var location = "${position.latitude}, ${position.longitude}";
-      print("location >>> $location");
-
-      DateTime now = DateTime.now();
-      var curDT = new DateFormat.yMd().add_jm().format(now);
-      if (userId == null) {
-        Employee e = Employee(null, location, curDT, "Checked In", "", "Auto");
-        dbHelper.save(e);
-      } else {
-        Employee e =
-            Employee(int.parse(userId), location, curDT, "Checked In", "", "Auto");
-        dbHelper.save(e);
-      }
-
-      // final prefs = await SharedPreferences.getInstance();
-      int c = prefs.getInt("saveCount") ?? 0;
-      final prefs1 = await SharedPreferences.getInstance();
-      int r = c + 1;
-      prefs1.setInt("saveCount", r);
-      // setState(() {
-      //   refreshList();
-      // });
-      print("Save --->>>>");
-      _start = startInterval;
-      countDownSave();
-    } on Exception catch (_) {
-      print('never reached');
-    }
-    // });
   }
 
   getinfo() async {
@@ -164,6 +88,7 @@ class _CashInConfirmState extends State<Generateqr> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldkey,
       appBar: new AppBar(
         //Application Bar
         centerTitle: true,

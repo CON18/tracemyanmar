@@ -2,14 +2,20 @@ import 'dart:async';
 
 import 'package:TraceMyanmar/db_helper.dart';
 import 'package:TraceMyanmar/employee.dart';
+import 'package:TraceMyanmar/location/helpers/singleMkr_map.dart';
 import 'package:TraceMyanmar/startInterval.dart';
+import 'package:devicelocale/devicelocale.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:intl/intl.dart';
 import 'package:geolocator/geolocator.dart';
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:maps_launcher/maps_launcher.dart';
+import 'package:rabbit_converter/rabbit_converter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
 class EditCheckIn extends StatefulWidget {
@@ -17,6 +23,7 @@ class EditCheckIn extends StatefulWidget {
   final String location;
   final String time;
   final String ride;
+  final String color;
   final String remark;
 
   EditCheckIn(
@@ -25,6 +32,7 @@ class EditCheckIn extends StatefulWidget {
       @required this.location,
       @required this.time,
       @required this.ride,
+      @required this.color,
       @required this.remark})
       : super(key: key);
 
@@ -33,7 +41,9 @@ class EditCheckIn extends StatefulWidget {
 }
 
 class _EditCheckInState extends State<EditCheckIn> {
+  // final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
+  FirebaseAnalytics analytics = FirebaseAnalytics();
   GoogleMapController myMapController;
   // final Set<Marker> _markers = new Set();
   LatLng _mainLocation;
@@ -54,13 +64,15 @@ class _EditCheckInState extends State<EditCheckIn> {
   var _start;
   Timer timer;
   var dbHelper;
+  var lan;
+
+  bool checkRemark = false;
 
   @override
   void initState() {
     super.initState();
-    checkLanguage();
-    dbHelper = DBHelper();
-    _checkAndstartTrack();
+    someMethod();
+    // _checkAndstartTrack();
     // print("Loc" + widget.location.toString());
     if (widget.location == "null" || widget.location == "") {
     } else {
@@ -84,108 +96,76 @@ class _EditCheckInState extends State<EditCheckIn> {
     if (widget.remark == "null") {
       remarkCtrl.text = "";
     } else {
-      remarkCtrl.text = widget.remark;
+      if (widget.remark.startsWith("[") && widget.remark.endsWith("]")) {
+        remarkCtrl.text = "Report";
+      } else {
+        remarkCtrl.text = widget.remark;
+      }
     }
     if (widget.time == "null") {
       timeCtrl.text = "";
     } else {
       timeCtrl.text = widget.time;
     }
+    analyst();
+    chkRmk();
   }
 
-@override
+  chkRmk() async {
+    setState(() {
+      if (widget.remark == "" || widget.remark == null) {
+      } else {
+        if (widget.remark == "Auto" ||
+            (widget.remark.startsWith("[") && widget.remark.endsWith("]"))) {
+          checkRemark = true;
+        } else {
+          checkRemark = false;
+        }
+      }
+    });
+  }
+
+  @override
   void dispose() {
-    timer.cancel();
+    // timer.cancel();
     // timer1.cancel();
     super.dispose();
   }
 
-  _checkAndstartTrack() async {
-    final prefs = await SharedPreferences.getInstance();
-    var chkT = prefs.getString("chk_tracking") ?? "0";
-    if (chkT == "0") {
-      //tracking off
-    } else {
-      //tracking on
-      final prefs = await SharedPreferences.getInstance();
-      int val = prefs.getInt("timer") ?? 0;
-
-      if (val == 0) {
-      } else {
-        _start = val.toString();
-        countDownSave();
-      }
-    }
-  }
-
-  countDownSave() {
-    print("START >> $_start");
-    const oneSec = const Duration(seconds: 1);
-    timer = Timer.periodic(
-      oneSec,
-      (Timer t) => setState(
-        () {
-          if (_start == 0) {
-            _getCurrentLocationForTrack();
-            timer.cancel();
-          } else {
-            _start = int.parse(_start.toString()) - 1;
-            saveTimer();
-            // print("Sec>>" + _start.toString());
-          }
-          print("CD >> " + _start.toString());
-        },
-      ),
+  analyst() async {
+    await analytics.logEvent(
+      name: 'EditCheckIn_Request',
+      parameters: <String, dynamic>{
+        // 'string': myController.text,
+      },
     );
   }
 
-  saveTimer() async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setInt("timer", _start);
+  Future someMethod() async {
+    String deviceLanguage = await Devicelocale.currentLocale;
+    var checkfont = deviceLanguage.substring(3, 5);
+    setState(() {
+      if (checkfont == 'ZG') {
+        print(checkfont);
+        // print('lenght ---- ' + textMyan.length.toString());
+        lan = "Zg";
+        print(lan);
+      } else {
+        // print('lenght ---- ' + textMyan.length.toString());
+        lan = "Uni";
+        print(lan);
+      }
+      print('-->$deviceLanguage');
+    });
   }
 
-  _getCurrentLocationForTrack() async {
-    //auto check in location
-
-    // setState(() async {
-    //tracking on
-    try {
-      // UserId
-      final prefs = await SharedPreferences.getInstance();
-      var userId = prefs.getString("UserId") ?? null;
-
-      final position = await Geolocator()
-          .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-
-      var location = "${position.latitude}, ${position.longitude}";
-      print("location >>> $location");
-
-      DateTime now = DateTime.now();
-      var curDT = new DateFormat.yMd().add_jm().format(now);
-      if (userId == null) {
-        Employee e = Employee(null, location, curDT, "Checked In", "", "Auto");
-        dbHelper.save(e);
-      } else {
-        Employee e =
-            Employee(int.parse(userId), location, curDT, "Checked In", "", "Auto");
-        dbHelper.save(e);
-      }
-
-      // final prefs = await SharedPreferences.getInstance();
-      int c = prefs.getInt("saveCount") ?? 0;
-      final prefs1 = await SharedPreferences.getInstance();
-      int r = c + 1;
-      prefs1.setInt("saveCount", r);
-      // setState(() {
-      //   refreshList();
-      // });
-      print("Save --->>>>");
-      _start = startInterval;
-      countDownSave();
-    } on Exception catch (_) {
-      print('never reached');
-    }
-    // });
+  snackbarmethod1(name) {
+    _scaffoldkey.currentState.showSnackBar(new SnackBar(
+      // content: new Text("Please wait, searching your location"),
+      content: new Text(name),
+      backgroundColor: Colors.blue.shade400,
+      duration: Duration(seconds: 3),
+    ));
   }
 
   checkLanguage() async {
@@ -203,19 +183,19 @@ class _EditCheckInState extends State<EditCheckIn> {
   editCheckIn() async {
     if (locCtrl.text == "L, L") {
       var dbHelper = DBHelper();
-      Employee e = Employee(
-          int.parse(widget.id), "L, L", widget.time, null, "", remarkCtrl.text);
+      Employee e = Employee(int.parse(widget.id), "L, L", widget.time, null,
+          widget.color, remarkCtrl.text);
       dbHelper.update(e);
     } else {
       if (locNameCtr.text == "") {
         var dbHelper = DBHelper();
         Employee e = Employee(int.parse(widget.id), locCtrl.text, widget.time,
-            null, "", remarkCtrl.text);
+            null, widget.color, remarkCtrl.text);
         dbHelper.update(e);
       } else {
         var dbHelper = DBHelper();
         Employee e = Employee(int.parse(widget.id), locCtrl.text, widget.time,
-            locNameCtr.text, "", remarkCtrl.text);
+            locNameCtr.text, widget.color, remarkCtrl.text);
         dbHelper.update(e);
       }
     }
@@ -225,41 +205,46 @@ class _EditCheckInState extends State<EditCheckIn> {
     // });
   }
 
-  snackbarmethod1(name) {
-    _scaffoldkey.currentState.showSnackBar(new SnackBar(
-      // content: new Text("Please wait, searching your location"),
-      content: new Text(name),
-      backgroundColor: Colors.blue.shade400,
-      duration: Duration(seconds: 3),
-    ));
-  }
+  // snackbarmethod1(name) {
+  //   _scaffoldkey.currentState.showSnackBar(new SnackBar(
+  //     // content: new Text("Please wait, searching your location"),
+  //     content: new Text(name),
+  //     backgroundColor: Colors.blue.shade400,
+  //     duration: Duration(seconds: 3),
+  //   ));
+  // }
 
-  _getCurrentLocation() async {
-    final position = await Geolocator()
-        .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    // final Geolocator geolocator = Geolocator()
-    //   ..forceAndroidLocationManager = true;
-    // var position = await geolocator.getLastKnownPosition(
-    //     desiredAccuracy: LocationAccuracy.best);
-    setState(() {
-      // print("location >>> " + position.toString());
-      if (position == null) {
-        snackbarmethod1("Can't find your location.");
-      } else {
-        var location = "${position.latitude}, ${position.longitude}";
-        locCtrl.text = location;
-      }
-    });
-    // setState(() {});
-  }
+  // _getCurrentLocation() async {
+  //   final position = await Geolocator()
+  //       .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+  //   // final Geolocator geolocator = Geolocator()
+  //   //   ..forceAndroidLocationManager = true;
+  //   // var position = await geolocator.getLastKnownPosition(
+  //   //     desiredAccuracy: LocationAccuracy.best);
+  //   setState(() {
+  //     // print("location >>> " + position.toString());
+  //     if (position == null) {
+  //       snackbarmethod1("Can't find your location.");
+  //     } else {
+  //       var location = "${position.latitude}, ${position.longitude}";
+  //       locCtrl.text = location;
+  //     }
+  //   });
+  //   // setState(() {});
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          checklang == "Eng" ? textEng[0] : textMyan[0],
-          style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0),
+          // checklang == "Eng" ? textEng[0] : textMyan[0],
+          lan == "Zg" ? Rabbit.uni2zg(textMyan[0]) : textMyan[0],
+          style: TextStyle(
+            fontWeight: FontWeight.w300,
+            fontSize: 18.0,
+            fontFamily: lan == "Zg" ? "Zawgyi" : "Pyidaungsu",
+          ),
         ),
         centerTitle: true,
         backgroundColor: Colors.blue,
@@ -356,7 +341,10 @@ class _EditCheckInState extends State<EditCheckIn> {
                           keyboardType: TextInputType.text,
                           controller: locCtrl,
                           style: TextStyle(
-                              color: Colors.grey, fontWeight: FontWeight.w300),
+                            color: Colors.grey,
+                            fontWeight: FontWeight.w300,
+                            fontFamily: lan == "Zg" ? "Zawgyi" : "Pyidaungsu",
+                          ),
                           decoration: InputDecoration(
                             focusedBorder: UnderlineInputBorder(
                               borderSide: new BorderSide(
@@ -371,10 +359,17 @@ class _EditCheckInState extends State<EditCheckIn> {
                                   color: Colors.grey, width: 1.0),
                             ),
                             // labelText: checklang == "Eng" ? textEng[1] : textMyan[1],
-                            labelText: "တည်နေရာ (Location)",
+                            // labelText: "တည်နေရာ (Location)",
+                            labelText: lan == "Zg"
+                                ? Rabbit.uni2zg("တည်နေရာ (Location)")
+                                : "တည်နေရာ (Location)",
                             hasFloatingPlaceholder: true,
                             labelStyle: TextStyle(
-                                fontSize: 14, color: Colors.grey, height: 0),
+                              fontSize: 14,
+                              color: Colors.grey,
+                              height: 0,
+                              fontFamily: lan == "Zg" ? "Zawgyi" : "Pyidaungsu",
+                            ),
                             fillColor: Colors.grey,
                           ),
                         )),
@@ -391,7 +386,10 @@ class _EditCheckInState extends State<EditCheckIn> {
                           keyboardType: TextInputType.text,
                           controller: timeCtrl,
                           style: TextStyle(
-                              color: Colors.grey, fontWeight: FontWeight.w300),
+                            color: Colors.grey,
+                            fontWeight: FontWeight.w300,
+                            fontFamily: lan == "Zg" ? "Zawgyi" : "Pyidaungsu",
+                          ),
                           decoration: InputDecoration(
                             focusedBorder: UnderlineInputBorder(
                               borderSide: new BorderSide(
@@ -406,10 +404,17 @@ class _EditCheckInState extends State<EditCheckIn> {
                                   color: Colors.grey, width: 1.0),
                             ),
                             // labelText: checklang == "Eng" ? textEng[1] : textMyan[1],
-                            labelText: "အချိန် (Time)",
+                            // labelText: "အချိန် (Time)",
+                            labelText: lan == "Zg"
+                                ? Rabbit.uni2zg("အချိန် (Time)")
+                                : "အချိန် (Time)",
                             hasFloatingPlaceholder: true,
                             labelStyle: TextStyle(
-                                fontSize: 14, color: Colors.grey, height: 0),
+                              fontSize: 14,
+                              color: Colors.grey,
+                              height: 0,
+                              fontFamily: lan == "Zg" ? "Zawgyi" : "Pyidaungsu",
+                            ),
                             fillColor: Colors.grey,
                           ),
                         )),
@@ -426,13 +431,22 @@ class _EditCheckInState extends State<EditCheckIn> {
                           keyboardType: TextInputType.text,
                           controller: locNameCtr,
                           style: TextStyle(
-                              color: Colors.black, fontWeight: FontWeight.w300),
+                              fontFamily: lan == "Zg" ? "Zawgyi" : "Pyidaungsu",
+                              color: Colors.black,
+                              fontWeight: FontWeight.w300),
                           decoration: InputDecoration(
                             // labelText: checklang == "Eng" ? textEng[1] : textMyan[1],
-                            labelText: "တည်နေရာ အမည် (Location name)",
+                            // labelText: "တည်နေရာ အမည် (Location name)",
+                            labelText: lan == "Zg"
+                                ? Rabbit.uni2zg("တည်နေရာ အမည် (Location name)")
+                                : "တည်နေရာ အမည် (Location name)",
                             hasFloatingPlaceholder: true,
                             labelStyle: TextStyle(
-                                fontSize: 14, color: Colors.black, height: 0),
+                                fontFamily:
+                                    lan == "Zg" ? "Zawgyi" : "Pyidaungsu",
+                                fontSize: 14,
+                                color: Colors.black,
+                                height: 0),
                             fillColor: Colors.grey,
                           ),
                         )),
@@ -445,19 +459,47 @@ class _EditCheckInState extends State<EditCheckIn> {
                             const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
                         child: Container(
                             child: TextFormField(
-                          readOnly: false,
+                          readOnly: checkRemark,
                           keyboardType: TextInputType.multiline,
                           minLines: 3,
                           maxLines: 5,
                           controller: remarkCtrl,
                           style: TextStyle(
-                              color: Colors.black, fontWeight: FontWeight.w300),
+                              color: checkRemark ? Colors.grey : Colors.black,
+                              fontWeight: FontWeight.w300),
                           decoration: InputDecoration(
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: new BorderSide(
+                                  color: checkRemark
+                                      ? Colors.grey
+                                      : Colors.lightBlue,
+                                  width: 1.0),
+                            ),
+                            disabledBorder: UnderlineInputBorder(
+                              borderSide: new BorderSide(
+                                  color: checkRemark
+                                      ? Colors.grey
+                                      : Colors.lightBlue,
+                                  width: 1.0),
+                            ),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: new BorderSide(
+                                  color:
+                                      checkRemark ? Colors.grey : Colors.grey,
+                                  width: 1.0),
+                            ),
                             // labelText: checklang == "Eng" ? textEng[1] : textMyan[1],
-                            labelText: "မှတ်ချက် (Remark)",
+                            // labelText: "မှတ်ချက် (Remark)",
+                            labelText: lan == "Zg"
+                                ? Rabbit.uni2zg("မှတ်ချက် (Remark)")
+                                : "မှတ်ချက် (Remark)",
                             hasFloatingPlaceholder: true,
                             labelStyle: TextStyle(
-                                fontSize: 14, color: Colors.black, height: 0),
+                                fontFamily:
+                                    lan == "Zg" ? "Zawgyi" : "Pyidaungsu",
+                                fontSize: 14,
+                                color: checkRemark ? Colors.grey : Colors.black,
+                                height: 0),
                             fillColor: Colors.grey,
                           ),
                         )),
@@ -482,8 +524,14 @@ class _EditCheckInState extends State<EditCheckIn> {
                                   Marker(
                                     markerId: MarkerId(widget.id.toString()),
                                     position: _mainLocation,
-                                    infoWindow: InfoWindow(title: widget.time),
-                                    icon: BitmapDescriptor.defaultMarker,
+                                    infoWindow: InfoWindow(
+                                      title: widget.time
+                                          .toString()
+                                          .replaceAll("T", " "),
+                                    ),
+                                    // icon: BitmapDescriptor.defaultMarker,
+                                    icon: BitmapDescriptor.defaultMarkerWithHue(
+                                        BitmapDescriptor.hueBlue),
                                   )
                                 },
                                 mapType: MapType.normal,
@@ -494,6 +542,75 @@ class _EditCheckInState extends State<EditCheckIn> {
                                 },
                               ),
                             )
+//                           Row(
+//                               mainAxisAlignment: MainAxisAlignment.center,
+//                               crossAxisAlignment: CrossAxisAlignment.center,
+//                               children: <Widget>[
+//                                 new RaisedButton(
+//                                   shape: RoundedRectangleBorder(
+//                                     borderRadius: BorderRadius.circular(5.0),
+//                                   ),
+//                                   onPressed: () async {
+//                                     var index =
+//                                         widget.location.toString().indexOf(',');
+//                                     double lat = double.parse(widget.location
+//                                         .toString()
+//                                         .substring(0, index));
+//                                     double long = double.parse(widget.location
+//                                         .toString()
+//                                         .substring(index + 1));
+//                                     // MapsLauncher.launchCoordinates(
+//                                     //     lat, long, widget.time.toString());
+//                                     // void _launchMapsUrl(double lat, double lon) async {
+//                                     final url =
+//                                         'https://www.google.com/maps/search/?api=1&query=$lat,$long';
+//                                     if (await canLaunch(url)) {
+//                                       await launch(url);
+//                                     } else {
+//                                       throw 'Could not launch $url';
+//                                     }
+// // }
+//                                     // update("S");
+//                                     // Navigator.push(
+//                                     //     context,
+//                                     //     MaterialPageRoute(
+//                                     //         builder: (context) => SingleMarker(
+//                                     //               id: widget.id.toString(),
+//                                     //               location: widget.location
+//                                     //                   .toString(),
+//                                     //               time: widget.time.toString(),
+//                                     //               ride: widget.ride.toString(),
+//                                     //             )));
+//                                   },
+//                                   color: Colors.blue,
+//                                   textColor: Colors.white,
+//                                   child: Container(
+//                                     // width: 120.0,
+//                                     width: MediaQuery.of(context).size.width *
+//                                         0.75,
+//                                     height: 38.0,
+//                                     child: Center(
+//                                         // child: Text(checklang == "Eng" ? textEng[7] : textMyan[7],
+//                                         child: Text(
+//                                             // checklang == "Eng" ? textEng[6] : textMyan[6],
+//                                             lan == "Zg"
+//                                                 ? Rabbit.uni2zg('​မြေပုံ (Map)')
+//                                                 : '​မြေပုံ (Map)',
+//                                             style: TextStyle(
+//                                               fontFamily: lan == "Zg"
+//                                                   ? "Zawgyi"
+//                                                   : "Pyidaungsu",
+//                                               fontSize: 16,
+//                                               color: Colors.white,
+//                                               fontWeight: FontWeight.w300,
+//                                             ))),
+//                                   ),
+//                                 ),
+//                               ],
+//                             ),
+//                       SizedBox(
+//                         height: 20.0,
+//                       ),
                     ],
                   ),
                 ),

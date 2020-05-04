@@ -1,590 +1,593 @@
 List divisionList = [
   "-",
-  "Kachin",
-  "Kayar",
-  "Kayin",
-  "Chin",
-  "Sagaing",
-  "Tanintharyi",
-  "Bago",
-  "Magwe",
-  "Mandalay",
-  "Mon",
-  "Rakhine",
-  "Yangon",
-  "Shan(East)",
-  "Shan(North)",
-  "Shan(South)",
-  "Ayeyarwady",
-  // "Naypyidaw",
+  "ကချင်",
+  "ကယား",
+  "ကရင်",
+  "ချင်း",
+  "စစ်ကိုင်း",
+  "တနင်္သာရီ",
+  "ပဲခူး",
+  "မကွေး",
+  "မန္တလေး",
+  "မွန်",
+  "ရခိုင်",
+  "ရန်ကုန်",
+  "ရှမ်းအရှေ့ပိုင်း",
+  "ရှမ်းမြောက်ပိုင်း",
+  "ရှမ်းတောင်ပိုင်း",
+  "ဧရာဝတီ",
+  "နေပြည်တော်",
 ];
 
 List allDisList = [
   {
-    "Kachin": ["Bhamo", "Mohnyin", "Myitkyina", "Putao"]
+    "ကချင်": ["ဗန်းမော်", "မိုးညှင်း", "မြစ်ကြီးနား", "ပူတာအို"]
   },
   {
-    "Kayar": ["Bawlakhe", "Loikaw"]
+    "ကယား": ["ဘော်လခဲ", "လွိုင်ကော်"]
   },
   {
-    "Kayin": ["Hpa-an", "Hpapun", "Kawkareik", "Myawaddy"]
+    "ကရင်": ["ဘားအံ", "ဖာပွန်", "ကော့ကရိတ်", "မြဝတီ"]
   },
   {
-    "Chin": ["Falam", "Hakha", "Matupi", "Mindat"]
+    "ချင်း": ["ဖလမ်း", "ဟားခါး", "မတူပီ", "မင်းတပ်"]
   },
   {
-    "Sagaing": [
-      "Hkamti",
-      "Kanbalu",
-      "Kale",
-      "Katha",
-      "Mawlaik",
-      "Monywa",
-      "Sagaing",
-      "Shwebo",
-      "Tamu",
-      "Yinmabin",
-      "Naga Self-Administered Zone"
+    "စစ်ကိုင်း": [
+      "ခန္တီး",
+      "ကန့်ဘလူ",
+      "ကလေး",
+      "ကသာ",
+      "မော်လိုက်",
+      "မုံရွာ",
+      "စစ်ကိုင်း",
+      "ရွှေဘို",
+      "တမူး",
+      "ယင်းမာပင်",
+      "နာဂ ကိုယ်ပိုင်အုပ်ချုပ်ခွင့်ရဒေသ"
     ]
   },
   {
-    "Tanintharyi": ["Dawei", "Kawthaung", "Myeik"]
+    "တနင်္သာရီ": ["ထားဝယ်", " ကော့သောင်း", "မြိတ်"]
   },
   {
-    "Bago": ["Bago", "Taungoo", "Pyay", "Tharrawaddy"]
+    "ပဲခူး": ["ပဲခူး", "တောင်ငူ", "ပြည်", "သာယာဝတီ"]
   },
   {
-    "Magwe": ["Magway", "Gangaw", "Minbu", "Pakokku", "Thayet"]
+    "မကွေး": ["မကွေး", "ဂန့်ဂေါ", "မင်းဘူး", "ပခုက္ကူ", "သရက်"]
   },
   {
-    "Mandalay": [
-      "Mandalay",
-      "Kyaukse",
-      "Meiktila",
-      "Myingyan",
-      "Nyaung-U",
-      "Pyinoolwin",
-      "Yamethin",
-      "Naypyidaw"
+    "မန္တလေး": [
+      "မန္တလေး",
+      "ကျောက်ဆည်",
+      "မိတ္ထီလာ",
+      "မြင်းခြံ",
+      "ညောင်ဦး",
+      "ပြင်ဦးလွင်",
+      "ရမည်းသင်း",
+      // "Naypyidaw"
     ]
   },
   {
-    "Mon": ["Mawlamyine", "Thaton"]
+    "မွန်": ["မော်လမြိုင်", "သထုံ"]
   },
   {
-    "Rakhine": ["Kyaukpyu", "Maungdaw", "Sittwe", "Thandwe", "Mrauk-U"]
+    "ရခိုင်": ["ကျောက်ဖြူ", "မောင်တော", "စစ်တွေ", "သံတွဲ", "မြောက်ဦး"]
   },
   {
-    "Yangon": ["East Yangon", "North Yangon", "South Yangon", "West Yangon"]
+    "ရန်ကုန်": ["ရန်ကုန်အရှေ့ပိုင်း", "ရန်ကုန်မြောက်ပိုင်း", "ရန်ကုန်တောင်ပိုင်း", "ရန်ကုန်အနောက်ပိုင်း"]
   },
   {
-    "Shan(East)": ["Kengtung", "Mong Hpayak", "Mong Hsat", "Tachileik"]
+    "ရှမ်းအရှေ့ပိုင်း": ["ကျိုင်းတုံ", "မိုင်းဖြတ်", "မိုင်းဆတ်", "တာချီလိတ်"]
   },
   {
-    "Shan(North)": [
-      "Kunlong",
-      "Kyaukme",
-      "Lashio",
-      "Mu Se",
-      "Mongmit",
-      "Kokang Self-Administered Zone",
-      "Pa Laung Self-Administered Zone",
-      "Wa Self-Administered Division"
+    "ရှမ်းမြောက်ပိုင်း": [
+      "ကွမ်းလုံ",
+      "ကျောက်မဲ",
+      "လားရှိုး",
+      "မူဆယ်",
+      "မိုးမိတ်",
+      "ကိုးကန့်ကိုယ်ပိုင်အုပ်ချုပ်ခွင့်ရဒေသ",
+      "ပလောင်ကိုယ်ပိုင်အုပ်ချုပ်ခွင့်ရဒေသ",
+      "ဝ ကိုယ်ပိုင်အုပ်ချုပ်ခွင့်ရဒေသ"
     ]
   },
   {
-    "Shan(South)": ["Langkho", "Loilen", "Taunggyi"]
+    "ရှမ်းတောင်ပိုင်း": ["လင်းခေး", "လွိုင်လင်", "တောင်ကြီး"]
   },
   {
-    "Ayeyarwady": [
-      "Hinthada",
-      "Labutta",
-      "Ma-ubin",
-      "Myaungmya",
-      "Pathein",
-      "Pyapon",
-      "Kyonpyaw",
-      "Myanaung"
+    "ဧရာဝတီ": [
+      "ဟင်္သာတ",
+      "လပွတ္တ",
+      "မအူပင်",
+      "မြောင်းမြ",
+      "ပုသိမ်",
+      "ဖျာပုံ",
+      "ကျုံပျော်",
+      "မြန်အောင်"
     ]
   },
-  // {
-  //   "Naypyidaw": ["Naypyidaw"]
-  // },
+  {
+    "နေပြည်တော်": ["ဒက္ခိဏ", "ဥတ္တရ"]
+  },
 ];
 
 List allTowList = [
   // KACHIN
   {
-    "Bhamo": ["Bhamo", "Mansi", "Momauk", "Shwegu"]
+    "ဗန်းမော်": ["ဗန်းမော်", "မန်စီ", "မိုးမောက်", "ရွှေကူ"]
   },
   {
-    "Mohnyin": ["Mogaung", "Mohnyin", "Phakant"]
+    "မိုးညှင်း": ["မိုးကောင်း", "မိုးညှင်း", "ဖားကန့်"]
   },
   {
-    "Myitkyina": [
-      "Chipwi",
-      "Hsawlaw",
-      "Injangyang",
-      "Myitkyina",
-      "Tanai",
-      "Waingmaw"
+    "မြစ်ကြီးနား": [
+      "ချီဗွေ",
+      "ဆော့လော",
+      "အင်ဂျန်းယန်",
+      "မြစ်ကြီးနား",
+      "တနိုင်း",
+      "ဝိုင်းမော်"
     ]
   },
   {
-    "Putao": ["Kawnglanghpu", "Machanbaw", "Nogmung", "Putao", "Sumprabum"]
+    "ပူတာအို": ["ခေါင်လန်ဖူး", "မချမ်းဘော", "နောင်မွန်း", "ပူတာအို", "ဆွမ်ပရာဘွမ်"]
   },
   // KAYAR
   {
-    "Bawlakhe": ["Bawlakhe", "Hpasawng", "Mese", "Ywathit"]
+    "ဘော်လခဲ": ["ဘော်လခဲ", "ဖားဆောင်း", "မယ်စဲ့", "ရွာသစ်"]
   },
   {
-    "Loikaw": ["Demoso", "Hpruso", "Loikaw", "Shadaw"]
+    "လွိုင်ကော်": ["ဒီမောဆိုး", "ဖရူဆိုး", "လွိုင်ကော်", "ရှားတော"]
   },
   // KAYIN
   {
-    "Hpa-an": ["Hlaingbwe", "Hpa-an", "Thandaunggyi"]
+    "ဘားအံ": ["လှိုင်းဘွဲ့", "ဘားအံ", "သံတောင်ကြီး"]
   },
   {
-    "Hpapun": ["Hpapun"]
+    "ဖာပွန်": ["ဖာပွန်"]
   },
   {
-    "Kawkareik": ["Kawkareik", "Kyain Seikgyi"]
+    "ကော့ကရိတ်": ["ကော့ကရိတ်", "ကြာအင်းဆိတ်ကြီး"]
   },
   {
-    "Myawaddy": ["Myawaddy"]
+    "မြဝတီ": ["မြဝတီ"]
   },
   // CHIN
   {
-    "Falam": ["Falam", "Tiddim", "Ton Zang"]
+    "ဖလမ်း": ["ဖလမ်း", "တီးတိန်", "တွန်းဇံ"]
   },
   {
-    "Hakha": ["Hakha", "Htantlang"]
+    "ဟားခါး": ["ဟားခါး", "ထန်တလန်"]
   },
   {
-    "Matupi": ["Matupi", "Paletwa"]
+    "မတူပီ": ["မတူပီ", "ပလက်ဝ"]
   },
   {
-    "Mindat": ["Kanpetlet", "Mindat"]
+    "မင်းတပ်": ["ကန်ပက်လက်", "မင်းတပ်"]
   },
   // Sagaing
   {
-    "Hkamti": ["Hkamti", "Homalin"]
+    "ခန္တီး": ["ခန္တီး", "ဟုမ္မလင်း"]
   },
   {
-    "Kanbalu": ["Kanbalu", "Kyunhla", "Taze", "Ye-U)"]
+    "ကန့်ဘလူ": ["ကန့်ဘလူ", "ကျွန်းလှ", "တန့်ဆည်", "ရေဦး"]
   },
   {
-    "Kale": ["Kale", "Kalewa", "Mingin"]
+    "ကလေး": ["ကလေး", "ကလေးဝ", "မင်းကင်း"]
   },
   {
-    "Katha": [
-      "Katha",
-      "Banmauk",
-      "Indaw",
-      "Kawlin",
-      "Pinlebu",
-      "Htigyaing",
-      "Wuntho"
+    "ကသာ": [
+      "ကသာ",
+      "ဗန်းမောက်",
+      "အင်းတော်",
+      "ကောလင်း",
+      "ပင်လယ်ဘူး",
+      "ထီးချိုင့်",
+      "ဝန်းသို"
     ]
   },
   {
-    "Mawlaik": ["Mawlaik", "Paungbyin"]
+    "မော်လိုက်": ["မော်လိုက်", "ဖောင်းပြင်"]
   },
   {
-    "Monywa": ["Monywa", "Ayadaw", "Budalin", "Chaung-U"]
+    "မုံရွာ": ["မုံရွာ", "အရာတော်", "ဘုတလင်၊", "ချောင်းဦး"]
   },
   {
-    "Sagaing": ["Sagaing", "Myinmu", "Myaung"]
+    "စစ်ကိုင်း": ["စစ်ကိုင်း", "မြင်းမူ", "မြောင်"]
   },
   {
-    "Shwebo": ["Shwebo", "Khin-U", "Wetlet", "Tabayin"]
+    "ရွှေဘို": ["ရွှေဘို", "ခင်ဦး", "ဝက်လက်", "ဒီပဲယင်း"]
   },
   {
-    "Tamu": ["Tamu"]
+    "တမူး": ["တမူး"]
   },
   {
-    "Yinmabin": [
-      "Yinmabin",
-      "Kani",
-      "Pale",
+    "ယင်းမာပင်": [
+      "ယင်းမာပင်",
+      "ကနီ",
+      "ပုလဲ",
     ]
   },
   {
-    "Naga Self-Administered Zone": ["Lahe", "Leshi", "Nanyun"]
+    "နာဂကိုယ်ပိုင်အုပ်ချုပ်ခွင့်ရဒေသ": ["လဟယ်", "လေရှီး", "နန်းယွန်း"]
   },
   // TANINTHARYI
   {
-    "Dawei": [
-      "Dawei",
-      "Launglon",
-      "Thayetchaung",
-      "Yebyu",
-      "Kaleinaung",
-      "Myitta"
+    "ထားဝယ်": [
+      "ထားဝယ်",
+      "လောင်းလုံ",
+      "သရက်ချောင်း",
+      "ရေဖြူ",
+      "ကလိန်အောင်",
+      "မေတ္တာ"
     ]
   },
   {
-    "Kawthaung": [
-      "Bokpyin",
-      "Kawthaung",
-      "Karathuri",
-      "Khamaukgyi",
-      "Pyigyimandaing"
+    "ကော့သောင်း": [
+      "ဘုတ်ပြင်း",
+      "ကော့သောင်း",
+      "ကရသူရိ",
+      "ခမောက်ကြီး",
+      "ပြည်ကြီးမဏ္ဍိုင်"
     ]
   },
   {
-    "Myeik": ["Myeik", "Kyunsu", "Palaw", "Tanintharyi", "Palauk"]
+    "မြိတ်": ["မြိတ်", "ကျွန်းစု", "ပုလော", "တနင်္သာရီ", "ပလောက်"]
   },
   // BAGO
   {
-    "Bago": [
-      "Bago",
-      "Daik-U",
-      "Kawa",
-      "Nyaunglebin",
-      "Shwegyin",
-      "Thanatpin",
-      "Waw",
-      "Kyauktaga"
+    "ပဲခူး": [
+      "ပဲခူး",
+      "ဒိုက်ဦး",
+      "ကဝ",
+      "ညောင်လေးပင်",
+      "ရွှေကျင်",
+      "သနပ်ပင်",
+      "ဝေါ",
+      "ကျောက်တံခါး"
     ]
   },
   {
-    "Taungoo": ["Taungoo", "Kyaukkyi", "Oktwin", "Pyu", "Yedashe", "Htantabin"]
+    "တောင်ငူ": ["တောင်ငူ", "ကျောက်ကြီး", "အုတ်တွင်း", "ဖြူး", "ရေတာရှည်", "ထန်းတပင်"]
   },
   {
-    "Pyay": ["Pyay", "Pandaung", "Paukkaung", "Paungde", "Shwedaung", "Thegon"]
+    "ပြည်": ["ပြည်", "ပန်းတောင်း", "ပေါက်ခေါင်း", "ပေါင်းတည်", "ရွှေတောင်", "သဲကုန်း"]
   },
   {
-    "Tharrawaddy": [
-      "Tharrawaddy",
-      "Gyobingauk",
-      "Letpadan",
-      "Minhla",
-      "Monyo",
-      "Okpho",
-      "Nattalin",
-      "Zigon"
+    "သာယာဝတီ": [
+      "သာယာဝတီ",
+      "ကြို့ပင်ကောက်",
+      "လက်ပံတန်း",
+      "မင်းလှ",
+      "မိုးညို",
+      "အုတ်ဖို",
+      "နတ်တလင်း",
+      "ဇီးကုန်း"
     ]
   },
   // MAGWE
   {
-    "Gangaw": ["Gangaw", "Saw", "Tilin", "Kyaukhtu"]
+    "ဂန့်ဂေ": ["ဂန့်ဂေ", "ဆော", "ထီးလင်း", "ကျောက်ထု"]
   },
   {
-    "Magway": [
-      "Magway",
-      "Chauk",
-      "Myothit",
-      "Natmauk",
-      "Taungdwingyi",
-      "Yenangyaung"
+    "မကွေး": [
+      "မကွေး",
+      "ချောက်",
+      "မြို့သစ်",
+      "နတ်မောက်",
+      "တောင်တွင်းကြီး",
+      "ရေနံချောင်း"
     ]
   },
   {
-    "Minbu": ["Minbu", "Ngape", "Pwintbyu", "Salin", "Sidoktaya"]
+    "မင်းဘူး": ["မင်းဘူး", "ငဖဲ", "ပွင့်ဖြူ", "စလင်း", "စေတုတ္ထရာ"]
   },
   {
-    "Pakokku": ["Pakokku", "Myaing", "Pauk", "Seikphyu", "Yesagyo"]
+    "ပခုက္ကူ": ["ပခုက္ကူ", "မြိုင်", "ပေါက်", "ဆိတ်ဖြူ", "ရေစကြို"]
   },
   {
-    "Thayet": ["Thayet", "Aunglan", "Kamma", "Mindon", "Minhla", "Sinbaungwe"]
+    "သရက်": ["သရက်", "အောင်လံ", "ကမ္မ", "မင်းတုန်း", "မင်းလှ", "ဆင်ပေါင်ဝဲ"]
   },
   // MANDALAY
   {
-    "Kyaukse": ["Kyaukse", "Myittha", "Sintgaing", "Tada-U"]
+    "ကျောက်ဆည်": ["ကျောက်ဆည်", "မြစ်သား", "စဉ့်ကိုင်", "တံတားဦး"]
   },
   {
-    "Mandalay": [
-      "Amarapura",
-      "Aungmyethazan",
-      "Chanayethazan",
-      "Chanmyathazi",
-      "Maha Aungmye",
-      "Patheingyi",
-      "Pyigyidagun"
+    "မန္တလေး": [
+      "အမရပူရ",
+      "အောင်မြေသာစံ",
+      "ချမ်းအေးသာဇံ",
+      "ချမ်းမြသာစည်",
+      "မဟာအောင်မြေ",
+      "ပုသိမ်ကြီး",
+      "ပြည်ကြီးတံခွန်"
     ]
   },
   {
-    "Meiktila": ["Meiktila", "Mahlaing", "Thazi", "Wundwin"]
+    "မိတ္ထီလာ": ["မိတ္ထီလာ", "မလိုင်", "သာစည်", "ဝမ်းတွင်း"]
   },
   {
-    "Myingyan": ["Myingyan", "Natogyi", "Ngazun", "Taungtha"]
+    "မြင်းခြံ": ["မြင်းခြံ", "နွားထိုးကြီး", "ငါန်းဇွန်", "တောင်သာ"]
   },
   {
-    "Nyaung-U": ["Nyaung-U", "Kyaukpadaung", "Ngathayauk"]
+    "ညောင်ဦး": ["ညောင်ဦး", "ကျောက်ပန်းတောင်း", "ငါ့သရောက်"]
   },
   {
-    "Pyinoolwin": [
-      "Pyinoolwin",
-      "Madaya",
-      "Mogok",
-      "Singu",
-      "Thabeikkyin",
-      "Tagaung"
+    "ပြင်ဦးလွင်": [
+      "ပြင်ဦးလွင်",
+      "မတ္တရာ",
+      "မိုးကုတ်",
+      "စဉ့်ကူး",
+      "သပိတ်ကျင်း",
+      "တကောင်း"
     ]
   },
   {
-    "Yamethin": ["Yamethin", "Pyawbwe"]
+    "ရမည်းသင်း": ["ရမည်းသင်း", "ပျော်ဘွယ်"]
   },
-  {
-    "Naypyidaw": ["Naypyidaw-Tatkon", "Naypyidaw-Pyinmana", "Naypyidaw-Lewe"]
-  },
+  // {
+  //   "Naypyidaw": ["Naypyidaw-Tatkon", "Naypyidaw-Pyinmana", "Naypyidaw-Lewe"]
+  // },
   // MON
   {
-    "Mawlamyine": [
-      "Mawlamyine",
-      "Chaungzon",
-      "Kyaikmaraw",
-      "Mudon",
-      "Thanbyuzayat",
-      "Ye"
+    "မော်လမြိုင်": [
+      "မော်လမြိုင်",
+      "ချောင်းဆုံ",
+      "ကျိုက်မရော",
+      "မုဒုံ",
+      "သံဖြူဇရပ်",
+      "ရေး"
     ]
   },
   {
-    "Thaton": ["Thaton", "Bilin", "Kyaikto", "Paung"]
+    "သထုံ": ["သထုံ", "ဘီးလင်း", "ကျိုက်ထို", "ပေါင်"]
   },
   // RAKHINE
   {
-    "Kyaukpyu": ["Kyaukpyu", "Ann", "Manaung", "Ramree"]
+    "ကျောက်ဖြူ": ["ကျောက်ဖြူ", "အမ်း", "မာန်အောင်", "ရမ်းဗြဲ"]
   },
   {
-    "Maungdaw": ["Maungdaw", "Buthidaung"]
+    "မောင်တော": ["မောင်တော", "ဘူးသီးတောင်"]
   },
   {
-    "Sittwe": ["Sittwe", "Pauktaw", "Ponnagyun", "Rathedaung"]
+    "စစ်တွေ": ["စစ်တွေ", "ပေါက်တော", "ပုဏ္ဏားကျွန်း", "ရသေ့တောင်"]
   },
   {
-    "Thandwe": ["Thandwe", "Toungup", "Gwa", "Maei", "Kyeintali"]
+    "သံတွဲ": ["သံတွဲ", "တောင်ကုတ်", "ဂွ", "မအီ", "ကျိန္တလီ"]
   },
   {
-    "Mrauk-U": ["Mrauk-U", "Kyauktaw", "Minbya", "Myebon"]
+    "မြောက်ဦး": ["မြောက်ဦး", "ကျောက်တော်", "မင်းပြား", "မြေပုံ"]
   },
   // YANGON
   {
-    "East Yangon": [
-      "Botataung",
-      "Dagon Seikkan",
-      "East Dagon",
-      "North Dagon",
-      "North Okkalapa",
-      "Pazundaung",
-      "South Dagon",
-      "South Okkalapa",
-      "Thingangyun",
-      "Dawbon",
-      "Mingala Taungnyunt",
-      "Tamwe",
-      "Thaketa",
-      "Yankin"
+    "ရန်ကုန်အရှေ့ပိုင်း": [
+      "ဗိုလ်တစ်ထောင်",
+      "ဒဂုံဆိပ်ကမ်း",
+      "အရှေ့ဒဂုံ",
+      "မြောက်ဒဂုံ",
+      "မြောက်ဥက္ကလာပ",
+      "ပုဇွန်တောင်",
+      "တောင်ဒဂုံ",
+      "တောင်ဥက္ကလာပ",
+      "သင်္ကန်းကျွန်း",
+      "ဒေါပုံ",
+      "မင်္ဂလာတောင်ညွန့်",
+      "တာမွေ",
+      "သာကေတ",
+      "ရန်ကင်း"
     ]
   },
   {
-    "North Yangon": [
-      "Hlaingthaya",
-      "Insein",
-      "Mingaladon",
-      "Shwepyitha",
-      "Hlegu",
-      "Hmawbi",
-      "Htantabin",
-      "Taikkyi"
+    "ရန်ကုန်မြောက်ပိုင်း": [
+      "လှိုင်သာယာ",
+      "အင်းစိန်",
+      "မင်္ဂလာဒုံ",
+      "ရွှေပြည်သာ",
+      "လှည်းကူး",
+      "မှော်ဘီ",
+      "ထန်းတစ်ပင်",
+      "တိုက်ကြီး"
     ]
   },
   {
-    "South Yangon": [
-      "Dala",
-      "Seikkyi Kanaungto",
-      "Cocokyun",
-      "Kawhmu",
-      "Kayan",
-      "Kungyangon",
-      "Kyauktan",
-      "Thanlyin",
-      "Thongwa",
-      "Twante",
-      "Tada"
+    "ရန်ကုန်တောင်ပိုင်း": [
+      "ဒလ",
+      "ဆိတ်ကြီးခနောင်တို",
+      "ကုက္ကိုကျွန်း",
+      "ကော့မှူး",
+      "ခရမ်း",
+      "ကွမ်းခြံကုန်း",
+      "ကျောက်တန်း",
+      "သံလျင်",
+      "သုံးခွ",
+      "တွံ့တေး",
+      "တံတား"
     ]
   },
   {
-    "West Yangon": [
-      "Ahlon",
-      "Bahan",
-      "Dagon",
-      "Kyauktada",
-      "Kyimyindaing",
-      "Lanmadaw",
-      "Latha",
-      "Pabedan",
-      "Sanchaung",
-      "Seikkan",
-      "Hlaing",
-      "Kamayut",
-      "Mayangon"
+    "ရန်ကုန်အနောက်ပိုင်း": [
+      "အလုံ",
+      "ဗဟန်း",
+      "ဒဂုံ",
+      "ကျောက်တံတား",
+      "ကြည့်မြင်တိုင်",
+      "လမ်းမတော်",
+      "လသာ",
+      "ပန်းပဲတန်း",
+      "စမ်းချောင်း",
+      "ဆိပ်ကမ်း",
+      "လှိုင်",
+      "ကမာရွတ်",
+      "မရမ်းကုန်း"
     ]
   },
   // SHAN(EAST)
   {
-    "Kengtung": [
-      "Kengtung",
-      "Mong Khet",
-      "Mong La",
-      "Mong Yang",
-      "Mine Pauk",
-      "Minelar"
+    "ကျိုင်းတုံ": [
+      "ကျိုင်းတုံ",
+      "မိုင်းခတ်",
+      "မိုင်းလား",
+      "မိုင်းယန်း",
+      "မိုင်းပေါက်",
+      "မိုင်းလား"
     ]
   },
   {
-    "Mong Hpayak": ["Mong Hpayak", "Mong Yawng", "Mineyu"]
+    "မိုင်းဖြတ်": ["မိုင်းဖြတ်", "မိုင်းယောင်း", "မိုင်းယု"]
   },
   {
-    "Mong Hsat": [
-      "Mong Hsat",
-      "Mong Ping",
-      "Mong Tong",
-      "Minekoke",
-      "Monehta",
-      "Ponparkyin",
-      "Tontar"
+    "မိုင်းဆတ်": [
+      "မိုင်းဆတ်",
+      "မိုင်းပင်",
+      "မိုင်းတုံ",
+      "မိုင်းကုတ်",
+      "မုံးထ",
+      "ပုံပါကျင်",
+      "တုံတာ"
     ]
   },
   {
-    "Tachileik": ["Tachileik", "Kyaing Lap(Kenglap)", "Talay"]
+    "တာချီလိတ်": ["တာချီလိတ်", "ကျိုင်းလပ်", "တာလေ"]
   },
   // SHAN(NORTH)
   {
-    "Kunlong": ["Kunlong"]
+    "ကွမ်းလုံ": ["ကွမ်းလုံ"]
   },
   {
-    "Kyaukme": [
-      "Kyaukme",
-      "Hsipaw",
-      "Namtu",
-      "Nawnghkio",
-      "Minelon",
-      "Minengaw"
+    "ကျောက်မဲ": [
+      "ကျောက်မဲ",
+      "သီပေါ",
+      "နမ္မတူ",
+      "နောင်ချို",
+      "မိုင်းလုံ",
+      "မိုင်းငေါ့"
     ]
   },
   {
-    "Lashio": ["Lashio", "Hseni", "Mongyai", "Tangyan"]
+    "လားရှိုး": ["လားရှိုး", "သိန္နီ", "မိုင်းယိုင်", "တန့်ယန်း"]
   },
   {
-    "Mu Se": [
-      "Mu Se",
-      "Kutkai",
-      "Nanhkan",
-      "Manhero",
-      "Monekoe",
-      "Pansai(Kyu-kok)",
-      "Tamoenye"
+    "မူဆယ်": [
+      "မူဆယ်",
+      "ကွတ်ခိုင်",
+      "နမ့်ခမ်း",
+      "မန်ဟျှိုး",
+      "မုန်းကိုး",
+      "ပန်ဆိုင်း (ကျူကုတ်)",
+      "တာမိုးညဲ"
     ]
   },
   {
-    "Mongmit": ["Mongmit", "Mongmit"]
+    "မိုးမိတ်": ["မိုးမိတ်", "မိုးမိတ်"]
   },
   {
-    "Kokang Self-Administered Zone": [
-      "Laukkaing",
-      "Konkyan",
-      "Chinshwehaw",
-      "Mawhtike"
+    "ကိုးကန့်ကိုယ်ပိုင်အုပ်ချုပ်ခွင့်ရဒေသ": [
+      "လောက်ကိုင်",
+      "ကုန်းကြမ်း",
+      "ချင်းရွှေဟော်",
+      "မော်ထိုက်"
     ]
   },
   {
-    "Pa Laung Self-Administered Zone": ["Mantong", "Namhsan"]
+    "ပလောင်ကိုယ်ပိုင်အုပ်ချုပ်ခွင့်ရဒေသ": ["မန်တုံ", "နမ့်ဆန်"]
   },
   {
-    "Wa Self-Administered Division": [
-      "Hopang",
-      "Mongmaw(Minemaw)",
-      "Pangwaun(Panwine)",
-      "Namtit",
-      "Panlong",
-      "Matman(Metman)",
-      "Namphan(Naphang)",
-      "Pangsang(Pan San)",
-      "Man Kan"
+    "ဝကိုယ်ပိုင်အုပ်ချုပ်ခွင့်ရဒေသ": [
+      "ဟိုပန်",
+      "မိုင်းမော်",
+      "ပန်ဝိုင်",
+      "နမ့်တစ်",
+      "ပန်လောင်",
+      "မက်မန်း",
+      "နမ့်ဖန်",
+      "ပန်ဆန်း",
+      "မန်ခမ်း"
     ]
   },
   // SHAN(SOUTH)
   {
-    "Langkho": [
-      "Langkho",
-      "Mawkmai",
-      "Mong Nai",
-      "Mong Pan",
-      "Homane",
-      "Kengtaung"
+    "လင်းခေး": [
+      "လင်းခေး",
+      "မောက်မိုင်",
+      "မိုင်းနိုင်",
+      "မိုင်းပန်",
+      "ဟိုမိန်း",
+      "ကျိုင်းတောင်း"
     ]
   },
   {
-    "Loilen": [
-      "Loilen",
-      "Kunhing",
-      "Kyethi",
-      "Lai-Hka",
-      "Mong Hsu",
-      "Mong Kung",
-      "Nansang",
-      "Karli",
-      "Kholan",
-      "Minenaung",
-      "Panglong"
+    "လွိုင်လင်": [
+      "လွိုင်လင်",
+      "ကွန်ဟိန်း",
+      "ကျေးသီး",
+      "လိုင်ခါး",
+      "မိုင်းဆု",
+      "မိုင်းကောင်",
+      "နမ့်ဆန်",
+      "ကာလိ",
+      "ခိုလမ်",
+      "မိုင်းနောင်",
+      "ပန်လောင်း"
     ]
   },
   {
-    "Taunggyi": [
-      "Taunggyi",
-      "Kalaw",
-      "Lawksawk",
-      "Nyaungshwe",
-      "Pekon",
-      "Indaw",
-      "Kyauktalongyi",
-      "Naungtayar"
+    "တောင်ကြီး": [
+      "တောင်ကြီး",
+      "ကလော",
+      "ရပ်စောက်",
+      "ညောင်ရွှေ",
+      "ဖယ်ခုံ",
+      "အင်းတော်",
+      "ကျောက်တစ်လုံးကြီး",
+      "နောင်တစ်ရာ"
     ]
   },
   {
-    "Danu Self-Administered Zone": ["Pindaya", "Ywangan"]
+    "ဓနုကိုယ်ပိုင်အုပ်ချုပ်ခွင့်ရဒေသ": ["ပင်းတယ", "ရွာငံ"]
   },
   {
-    "Pa-O Self-Administered Zone": ["Hopong", "Hsi Hseng", "Pinlaung"]
+    "ပအို့ဝ်ကိုယ်ပိုင်အုပ်ချုပ်ခွင့်ရဒေသ": ["ဟိုပုံး", "ဆီဆိုင်", "ပင်လောင်း"]
   },
   // AYEYARWADY
   {
-    "Hinthada": ["Lemyethna", "Zalun", "Ithapyu"]
+    "ဟင်္သာတ": ["လေးမျက်နှာ", "ဇလွန်", "အိုင်သပြု"]
   },
   {
-    "Labutta": ["Labutta", "Mawlamyinegyun", "Kyonmanage", "Pyinsalu"]
+    "လပွတ္တာ": ["လပွတ္တာ", "မော်ကျွန်း", "ကျုံမငေး", "ပြင်စလူ"]
   },
   {
-    "Ma-ubin": ["Ma-ubin", "Danubyu", "Nyaungdon", "Pantanaw"]
+    "မအူပင်": ["မအူပင်", "ဓနုဖြူ", "ညောင်တုန်း", "ပန်းတနော်"]
   },
   {
-    "Myaungmya": ["Myaungmya", "Einme", "Wakema", "Shwelaung"]
+    "မြောင်းမြ": ["မြောင်းမြ", "အိမ်မဲ", "ဝါးခယ်မ", "ရွှေလောင်း"]
   },
   {
-    "Pathein": [
-      "Pathein",
-      "Kangyidaunk",
-      "Ngapudaw",
-      "Thabaung",
-      "Chaungtha",
-      "Hainggyi",
-      "Ngayokekaung",
-      "Ngwesaung"
+    "ပုသိမ်": [
+      "ပုသိမ်",
+      "ကန်ကြီးထောင့်",
+      "ငပုတေ",
+      "သာပေါင်း",
+      "ချောင်းသာ",
+      "ဟိုင်းကြီး",
+      "ငရုတ်ကောင်း",
+      "ငွေဆောင်"
     ]
   },
   {
-    "Pyapon": ["Pyapon", "Bogale", "Dedaye", "Kyaiklat", "Ahmar"]
+    "ဖျာပုံ": ["ဖျာပုံ", "ဘိုကလေး", "ဒေးဒရဲ", "ကျိုက်လတ်", "အမာ"]
   },
   {
-    "Kyonpyaw": ["Kyonpyaw", "Kyaunggon", "Yekyi", "Ahtaung", "Ngathinechaung"]
+    "ကျုံပျော်": ["ကျုံပျော်", "ကျောင်းကုန်း", "ရေကြည်", "သောင်ကြီး", "ငသိုင်းချောင်း"]
   },
   {
-    "Myanaung": ["Myanaung", "Ingapu", "Kyangin", "Kanaung"]
+    "မြန်အောင်": ["မြန်အောင်", "အင်္ဂပူ", "ကြံ့ခင်း", "ကနောင်"]
   },
   // NAYPYIDAW
-  // {
-  //   "Naypyidaw": ["Naypyidaw"]
-  // },
+  {
+    "ဒက္ခိဏ": ["ဒက္ခိဏသီရိ", "လယ်ဝေး", "ပျဉ်းမနား", "ဇမ္ဗူသီရိ"]
+  },
+  {
+    "ဥတ္တရ": ["ဥတ္တရသီရိ", "ပုဗ္ဗသီရိ", "တပ်ကုန်း", "ဇေယျာသီရိ"]
+  },
 ];

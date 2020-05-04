@@ -1,194 +1,154 @@
 [
     {
         "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_dialog_title_material.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_dialog_title_material.xml"
-    },
-    {
-        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/notification_template_media.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e7cb2629d94433e333828a8b40e77397/media-1.0.0/res/layout/notification_template_media.xml"
-    },
-    {
-        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/notification_template_part_chronometer.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/1ba350198ea174eeece4da9ff55b6f1b/core-1.1.0/res/layout/notification_template_part_chronometer.xml"
-    },
-    {
-        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_list_menu_item_layout.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_list_menu_item_layout.xml"
-    },
-    {
-        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/notification_template_media_custom.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e7cb2629d94433e333828a8b40e77397/media-1.0.0/res/layout/notification_template_media_custom.xml"
-    },
-    {
-        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_list_menu_item_icon.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_list_menu_item_icon.xml"
-    },
-    {
-        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_expanded_menu_layout.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_expanded_menu_layout.xml"
-    },
-    {
-        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_activity_chooser_view.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_activity_chooser_view.xml"
-    },
-    {
-        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_list_menu_item_radio.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_list_menu_item_radio.xml"
-    },
-    {
-        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_search_view.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_search_view.xml"
-    },
-    {
-        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_select_dialog_material.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_select_dialog_material.xml"
-    },
-    {
-        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_screen_content_include.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_screen_content_include.xml"
-    },
-    {
-        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_search_dropdown_item_icons_2line.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_search_dropdown_item_icons_2line.xml"
-    },
-    {
-        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/custom_dialog.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/1ba350198ea174eeece4da9ff55b6f1b/core-1.1.0/res/layout/custom_dialog.xml"
-    },
-    {
-        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_tooltip.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_tooltip.xml"
-    },
-    {
-        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/notification_template_big_media_narrow.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e7cb2629d94433e333828a8b40e77397/media-1.0.0/res/layout/notification_template_big_media_narrow.xml"
-    },
-    {
-        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/support_simple_spinner_dropdown_item.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/support_simple_spinner_dropdown_item.xml"
-    },
-    {
-        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/notification_template_lines_media.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e7cb2629d94433e333828a8b40e77397/media-1.0.0/res/layout/notification_template_lines_media.xml"
-    },
-    {
-        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_list_menu_item_checkbox.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_list_menu_item_checkbox.xml"
-    },
-    {
-        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/select_dialog_item_material.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/select_dialog_item_material.xml"
-    },
-    {
-        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/notification_media_action.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e7cb2629d94433e333828a8b40e77397/media-1.0.0/res/layout/notification_media_action.xml"
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_dialog_title_material.xml"
     },
     {
         "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_action_mode_bar.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_action_mode_bar.xml"
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_action_mode_bar.xml"
     },
     {
-        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/notification_template_big_media_custom.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e7cb2629d94433e333828a8b40e77397/media-1.0.0/res/layout/notification_template_big_media_custom.xml"
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/notification_template_part_chronometer.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/ea2bad28612523530bbbdc93a45dae20/core-1.0.1/res/layout/notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_list_menu_item_layout.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_list_menu_item_icon.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_list_menu_item_icon.xml"
     },
     {
         "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/select_dialog_singlechoice_material.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/select_dialog_singlechoice_material.xml"
-    },
-    {
-        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/notification_template_big_media_narrow_custom.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e7cb2629d94433e333828a8b40e77397/media-1.0.0/res/layout/notification_template_big_media_narrow_custom.xml"
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/select_dialog_singlechoice_material.xml"
     },
     {
         "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/notification_action_tombstone.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/1ba350198ea174eeece4da9ff55b6f1b/core-1.1.0/res/layout/notification_action_tombstone.xml"
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/ea2bad28612523530bbbdc93a45dae20/core-1.0.1/res/layout/notification_action_tombstone.xml"
     },
     {
         "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_action_bar_up_container.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_action_bar_up_container.xml"
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_action_bar_up_container.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_expanded_menu_layout.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_expanded_menu_layout.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_activity_chooser_view.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_activity_chooser_view.xml"
     },
     {
         "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_action_menu_layout.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_action_menu_layout.xml"
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_action_menu_layout.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_list_menu_item_radio.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_list_menu_item_radio.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_search_view.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_search_view.xml"
     },
     {
         "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/tslocationmanager_notification_layout.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/44d2672e8a506a85e91f4895a671c9be/jetified-tslocationmanager-3.0.54/res/layout/tslocationmanager_notification_layout.xml"
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/5488d1ce9a1f3dbceff06c5f0ad52f71/jetified-tslocationmanager-3.0.54/res/layout/tslocationmanager_notification_layout.xml"
     },
     {
         "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_activity_chooser_view_list_item.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_activity_chooser_view_list_item.xml"
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_activity_chooser_view_list_item.xml"
     },
     {
         "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/notification_template_icon_group.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/1ba350198ea174eeece4da9ff55b6f1b/core-1.1.0/res/layout/notification_template_icon_group.xml"
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/ea2bad28612523530bbbdc93a45dae20/core-1.0.1/res/layout/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_select_dialog_material.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_select_dialog_material.xml"
     },
     {
         "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_alert_dialog_button_bar_material.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_alert_dialog_button_bar_material.xml"
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_alert_dialog_button_bar_material.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_screen_content_include.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_screen_content_include.xml"
     },
     {
         "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_alert_dialog_title_material.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_alert_dialog_title_material.xml"
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_alert_dialog_title_material.xml"
     },
     {
         "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_action_bar_title_item.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_action_bar_title_item.xml"
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_action_bar_title_item.xml"
     },
     {
         "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/notification_action.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/1ba350198ea174eeece4da9ff55b6f1b/core-1.1.0/res/layout/notification_action.xml"
-    },
-    {
-        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/notification_template_big_media.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e7cb2629d94433e333828a8b40e77397/media-1.0.0/res/layout/notification_template_big_media.xml"
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/ea2bad28612523530bbbdc93a45dae20/core-1.0.1/res/layout/notification_action.xml"
     },
     {
         "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_screen_simple_overlay_action_mode.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_screen_simple_overlay_action_mode.xml"
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_screen_simple_overlay_action_mode.xml"
     },
     {
         "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_action_menu_item_layout.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_action_menu_item_layout.xml"
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_action_menu_item_layout.xml"
     },
     {
         "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_popup_menu_item_layout.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_popup_menu_item_layout.xml"
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_popup_menu_item_layout.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_search_dropdown_item_icons_2line.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_tooltip.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_tooltip.xml"
     },
     {
         "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_screen_simple.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_screen_simple.xml"
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_screen_simple.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/support_simple_spinner_dropdown_item.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/support_simple_spinner_dropdown_item.xml"
     },
     {
         "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_cascading_menu_item_layout.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_cascading_menu_item_layout.xml"
-    },
-    {
-        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/notification_media_cancel_action.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e7cb2629d94433e333828a8b40e77397/media-1.0.0/res/layout/notification_media_cancel_action.xml"
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_cascading_menu_item_layout.xml"
     },
     {
         "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/select_dialog_multichoice_material.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/select_dialog_multichoice_material.xml"
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_list_menu_item_checkbox.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_list_menu_item_checkbox.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/select_dialog_item_material.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/select_dialog_item_material.xml"
     },
     {
         "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_popup_menu_header_item_layout.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_popup_menu_header_item_layout.xml"
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_popup_menu_header_item_layout.xml"
     },
     {
         "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_screen_toolbar.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_screen_toolbar.xml"
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_screen_toolbar.xml"
     },
     {
         "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_action_mode_close_item_material.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_action_mode_close_item_material.xml"
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_action_mode_close_item_material.xml"
     },
     {
         "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/abc_alert_dialog_material.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_alert_dialog_material.xml"
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_alert_dialog_material.xml"
     },
     {
         "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_background_geolocation/intermediates/res/merged/release/layout/notification_template_part_time.xml",
-        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/1ba350198ea174eeece4da9ff55b6f1b/core-1.1.0/res/layout/notification_template_part_time.xml"
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/ea2bad28612523530bbbdc93a45dae20/core-1.0.1/res/layout/notification_template_part_time.xml"
     }
 ]

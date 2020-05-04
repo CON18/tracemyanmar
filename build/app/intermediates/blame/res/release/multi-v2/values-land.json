@@ -4,26 +4,7 @@
             "outputFile": "/home/chitoonaung/FP/tracemyanmar/build/app/intermediates/incremental/mergeReleaseResources/merged.dir/values-land/values-land.xml",
             "map": [
                 {
-                    "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2788a1d630ffd2b98c19975ba1e486c5/material-1.0.0/res/values-land/values-land.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endLines": "5",
-                        "endColumns": "10",
-                        "endOffsets": "222"
-                    },
-                    "to": {
-                        "startLines": "5",
-                        "startColumns": "4",
-                        "startOffsets": "264",
-                        "endLines": "8",
-                        "endColumns": "10",
-                        "endOffsets": "431"
-                    }
-                },
-                {
-                    "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/values-land/values-land.xml",
+                    "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/values-land/values-land.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",

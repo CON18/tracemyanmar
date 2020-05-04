@@ -1,7 +1,11 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 
+import 'package:TraceMyanmar/conv_datetime.dart';
 import 'package:TraceMyanmar/employee.dart';
 import 'package:TraceMyanmar/startInterval.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:intl/intl.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -11,7 +15,13 @@ import 'package:fluster/fluster.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:TraceMyanmar/db_helper.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:devicelocale/devicelocale.dart';
+import 'package:rabbit_converter/rabbit_converter.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter_background_geolocation/flutter_background_geolocation.dart'
+    as bg;
 
 class HomePage extends StatefulWidget {
   @override
@@ -19,6 +29,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   // //---->
   // GoogleMapController myMapController;
   // final Set<Marker> _markers1 = new Set();
@@ -28,6 +39,7 @@ class _HomePageState extends State<HomePage> {
   var dbHelper;
   var data = [];
   var test;
+  FirebaseAnalytics analytics = FirebaseAnalytics();
   final Completer<GoogleMapController> _mapController = Completer();
   final Map<String, Marker> _new_markers = {};
 
@@ -61,11 +73,16 @@ class _HomePageState extends State<HomePage> {
   String checklang = '';
   List textMyan = ["​မြေပုံ"];
   List textEng = ["Map"];
+  String checkfont = '';
+  String lan = '';
 
   LatLng _targetLatLong;
 
   var _start;
   Timer timer;
+
+  var setmrkList = [];
+  var setqcmrkList = [];
 
   checkLanguage() async {
     // final prefs = await SharedPreferences.getInstance();
@@ -92,139 +109,645 @@ class _HomePageState extends State<HomePage> {
   final Color _clusterTextColor = Colors.white;
   testing() async {
     var setList = [];
+    var sl = [];
     setList = await dbHelper.getEmployees();
+    // sl = await dbHelper.getEmployees();
     setState(() {
       // List<Marker> markers = data.map((n) {
       //   LatLng point = LatLng(n.latitude, n.longitude);
       // }).toList();
       // print(markers);
-      for (var i = 0; i < setList.length; i++) {
-        if (setList[i].location.toString() == "null" ||
-            setList[i].location == "") {
-        } else {
-          var index = setList[i].location.toString().indexOf(',');
 
-          data.add({
-            "latitude": setList[i].location.toString().substring(0, index),
-            "longitude": setList[i].location.toString().substring(index + 1),
-          });
+      //Get Today
+
+      for (var j = 0; j < setList.length; j++) {
+        // for (var i = 0; i < cl; i++) {
+        if (setList[j].location.toString() == "null" ||
+            setList[j].location == "") {
+        } else {
+          var time = setList[j].time.toString().substring(0, 10);
+          var nowTime = convertDateTime();
+
+          if (time == nowTime) {
+            // sl.add({
+            //   "id": setList[j].id.toString(),
+            //   "location": setList[j].location,
+            //   "time": setList[j].time
+            // });
+            sl.add(setList[j]);
+          }
         }
-        // double lat =
-        //     double.parse(setList[i].location.toString().substring(0, index));
-        // double long =
-        //     double.parse(setList[i].location.toString().substring(index + 1));
-        // LatLng loc = LatLng(lat, long);
-        // _markerLocations.add(loc);
       }
+
+      Future.delayed(const Duration(milliseconds: 1000), () {
+        print("NEW LENGTH >>>> " + sl.length.toString());
+        // var convGetToMin = 0;
+        for (var i = 0; i < sl.length; i++) {
+          print("NEW LOC >>> " + sl[i].time.toString());
+          if (sl[i].location.toString() == "null" || sl[i].location == "") {
+          } else {
+            // var index = setList[i].location.toString().indexOf(',');
+            // print("LOC >>>>> " + setList[i].location.toString());
+            // data.add({
+            //   "latitude": setList[i].location.toString().substring(0, index),
+            //   "longitude": setList[i].location.toString().substring(index + 1),
+            // });
+            // var getDate = sl[i].time.toString().substring(0, 10);
+            // var setDate = sl[i + 1].time.toString().substring(0, 10);
+            // time for first
+            var timestamp1 = sl[i].time.toString();
+            var index1 = timestamp1.toString().indexOf('T');
+            var hr1 = timestamp1.toString().substring(index1 + 1, index1 + 3);
+            var mi1 = timestamp1.toString().substring(index1 + 4, index1 + 6);
+            TimeOfDay testDate1 =
+                TimeOfDay(hour: int.parse(hr1), minute: int.parse(mi1));
+            int firstTime = testDate1.hour * 60 + testDate1.minute;
+            // snackbarmethod1("S $i");
+            int secondTime = 0;
+            if (sl.length >= 2) {
+              // time for second
+              var timestamp2 = sl[i + 1].time.toString();
+              var index2 = timestamp2.toString().indexOf('T');
+              var hr2 = timestamp2.toString().substring(index2 + 1, index2 + 3);
+              var mi2 = timestamp2.toString().substring(index2 + 4, index2 + 6);
+              TimeOfDay testDate2 =
+                  TimeOfDay(hour: int.parse(hr2), minute: int.parse(mi2));
+              secondTime = testDate2.hour * 60 + testDate2.minute;
+            }
+            // if (sl.length == 1) {
+            //   setmrkList.add({
+            //     "id": sl[i].id.toString(),
+            //     "location": sl[i].location,
+            //     "time": sl[i].time,
+            //     "color": "blue"
+            //   });
+            // }
+            if (i == 0) {
+              // convGetToMin = firstTime;
+              // setmrkList.add({
+              //   "id": sl[i].id.toString(),
+              //   "location": sl[i].location,
+              //   "time": sl[i].time,
+              //   "color": "blue"
+              // });
+            } else {
+              int res = (secondTime - firstTime);
+              print("TD >> " + res.toString() + "|" + sl[i].time.toString());
+              if (res > 5) {
+                setState(() {
+                  setmrkList.add({
+                    "id": sl[i].id.toString(),
+                    "location": sl[i].location,
+                    "time": sl[i].time,
+                    "color": "blue"
+                  });
+                });
+              } else {}
+            }
+
+            // else if (firstTime > (convGetToMin + 5)) {
+            //   convGetToMin = firstTime;
+            //   setmrkList.add({
+            //     "id": sl[i].id.toString(),
+            //     "location": sl[i].location,
+            //     "time": sl[i].time,
+            //     "color": "blue"
+            //   });
+            // }
+
+            // // time for second
+            // var timestamp2 = sl[i + 1].time.toString();
+            // var index2 = timestamp2.toString().indexOf('T');
+            // var hr2 = timestamp2.toString().substring(index2 + 1, index2 + 3);
+            // var mi2 = timestamp2.toString().substring(index2 + 4, index2 + 6);
+            // TimeOfDay testDate2 =
+            //     TimeOfDay(hour: int.parse(hr2), minute: int.parse(mi2));
+            // int secondTime = testDate2.hour * 60 + testDate2.minute;
+
+            // int tt = secondTime - firstTime;
+            // print("TIME DIS >>> " + tt.toString());
+            // if (i == 0) {
+            //   setmrkList.add({
+            //     "id": sl[i].id.toString(),
+            //     "location": sl[i].location,
+            //     "time": sl[i].time,
+            //     "color": "blue"
+            //   });
+            //   // addData(setList[i].id.toString(), setList[i].location,
+            //   //     setList[i].time, "blue");
+            // }
+            //  else if (i == (sl.length - 1)) {
+            //   // addData(setList[i].id.toString(), setList[i].location,
+            //   //     setList[i].time, "blue");
+            //   setmrkList.add({
+            //     "id": sl[i].id.toString(),
+            //     "location": sl[i].location,
+            //     "time": sl[i].time,
+            //     "color": "blue"
+            //   });
+            // }
+            // else if (getDate != setDate) {
+            //   // addData(setList[i + 1].id.toString(), setList[i + 1].location,
+            //   //     setList[i + 1].time, "green");
+            //   setmrkList.add({
+            //     "id": sl[i + 1].id.toString(),
+            //     "location": sl[i + 1].location,
+            //     "time": sl[i + 1].time,
+            //     // "color": "green"
+            //     "color": "blue"
+            //   });
+            // }
+            // else
+            //  else if (tt > 5) {
+            //   // addData(setList[i + 1].id.toString(), setList[i + 1].location,
+            //   //     setList[i + 1].time, "green");
+            //   setmrkList.add({
+            //     "id": sl[i + 1].id.toString(),
+            //     "location": sl[i + 1].location,
+            //     "time": sl[i + 1].time,
+            //     // "color": "green"
+            //     "color": "blue"
+            //   });
+            // }
+            // else {
+            //   // addData(setList[i].id.toString(), setList[i].location, setList[i].time,
+            //   //     "brown");
+            //   // setmrkList.add({
+            //   //   "id": setList[i].id.toString(),
+            //   //   "location": setList[i].location,
+            //   //   "time": setList[i].time,
+            //   //   "color": "brown"
+            //   // });
+            // }
+            // setmrkList.add({
+            //     "id": sl[i].id.toString(),
+            //     "location": sl[i].location,
+            //     "time": sl[i].time,
+            //     "color": "blue"
+            //   });
+          }
+        }
+      });
+
       // print("LAT/LONG >> $_markerLocations");
     });
   }
 
+// if (sl[i]["location"].toString() == "null" ||
+  //     sl[i]["location"] == "") {
+  // } else {
+  //   var index = setList[i].location.toString().indexOf(',');
+  //   print("LOC >>>>> " + setList[i].location.toString());
+  //   data.add({
+  //     "latitude": setList[i].location.toString().substring(0, index),
+  //     "longitude": setList[i].location.toString().substring(index + 1),
+  //   });
+  //   var getDate = sl[i]["time"].toString().substring(0, 10);
+  //   var setDate = sl[i + 1]["time"].toString().substring(0, 10);
+  //   // time for first
+  //   var timestamp1 = sl[i]["time"].toString();
+  //   var index1 = timestamp1.toString().indexOf('T');
+  //   var hr1 = timestamp1.toString().substring(index1 + 1, index1 + 3);
+  //   var mi1 = timestamp1.toString().substring(index1 + 4, index1 + 6);
+  //   TimeOfDay testDate1 =
+  //       TimeOfDay(hour: int.parse(hr1), minute: int.parse(mi1));
+  //   int firstTime = testDate1.hour * 60 + testDate1.minute;
+  //   // time for second
+  //   var timestamp2 = sl[i + 1]["time"].toString();
+  //   var index2 = timestamp2.toString().indexOf('T');
+  //   var hr2 = timestamp2.toString().substring(index2 + 1, index2 + 3);
+  //   var mi2 = timestamp2.toString().substring(index2 + 4, index2 + 6);
+  //   TimeOfDay testDate2 =
+  //       TimeOfDay(hour: int.parse(hr2), minute: int.parse(mi2));
+  //   int secondTime = testDate2.hour * 60 + testDate2.minute;
+
+  //   int tt = secondTime - firstTime;
+  //     // print("TIME DIS >>> " + tt.toString());
+  //     if (i == 0) {
+  //       setmrkList.add({
+  //         "id": sl[i]["id"].toString(),
+  //         "location": sl[i]["location"],
+  //         "time": sl[i]["time"],
+  //         "color": "blue"
+  //       });
+  //       // addData(setList[i].id.toString(), setList[i].location,
+  //       //     setList[i].time, "blue");
+  //     } else if (i == (sl.length - 2)) {
+  //       // addData(setList[i].id.toString(), setList[i].location,
+  //       //     setList[i].time, "blue");
+  //       setmrkList.add({
+  //         "id": sl[i]["id"].toString(),
+  //         "location": sl[i]["location"],
+  //         "time": sl[i]["time"],
+  //         "color": "blue"
+  //       });
+  //     } else if (getDate != setDate) {
+  //       // addData(setList[i + 1].id.toString(), setList[i + 1].location,
+  //       //     setList[i + 1].time, "green");
+  //       setmrkList.add({
+  //         "id": sl[i + 1]["id"].toString(),
+  //         "location": sl[i + 1]["location"],
+  //         "time": sl[i + 1]["time"],
+  //         // "color": "green"
+  //         "color": "blue"
+  //       });
+  //     } else if (tt > 10) {
+  //       // addData(setList[i + 1].id.toString(), setList[i + 1].location,
+  //       //     setList[i + 1].time, "green");
+  //       setmrkList.add({
+  //         "id": sl[i + 1]["id"].toString(),
+  //         "location": sl[i + 1]["location"],
+  //         "time": sl[i + 1]["time"],
+  //         // "color": "green"
+  //         "color": "blue"
+  //       });
+  //     } else {
+  //       // addData(setList[i].id.toString(), setList[i].location, setList[i].time,
+  //       //     "brown");
+  //       // setmrkList.add({
+  //       //   "id": setList[i].id.toString(),
+  //       //   "location": setList[i].location,
+  //       //   "time": setList[i].time,
+  //       //   "color": "brown"
+  //       // });
+  //     }
+  // }
+
+  //Backup
+  // for (var i = 0; i < sl.length; i++) {
+  //   if (setList[i].location.toString() == "null" ||
+  //       setList[i].location == "") {
+  //   } else {
+  //     // var index = setList[i].location.toString().indexOf(',');
+  //     // print("LOC >>>>> " + setList[i].location.toString());
+  //     // data.add({
+  //     //   "latitude": setList[i].location.toString().substring(0, index),
+  //     //   "longitude": setList[i].location.toString().substring(index + 1),
+  //     // });
+  //     var getDate = setList[i].time.toString().substring(0, 10);
+  //     var setDate = setList[i + 1].time.toString().substring(0, 10);
+  //     // time for first
+  //     var timestamp1 = setList[i].time.toString();
+  //     var index1 = timestamp1.toString().indexOf('T');
+  //     var hr1 = timestamp1.toString().substring(index1 + 1, index1 + 3);
+  //     var mi1 = timestamp1.toString().substring(index1 + 4, index1 + 6);
+  //     TimeOfDay testDate1 =
+  //         TimeOfDay(hour: int.parse(hr1), minute: int.parse(mi1));
+  //     int firstTime = testDate1.hour * 60 + testDate1.minute;
+  //     // time for second
+  //     var timestamp2 = setList[i + 1].time.toString();
+  //     var index2 = timestamp2.toString().indexOf('T');
+  //     var hr2 = timestamp2.toString().substring(index2 + 1, index2 + 3);
+  //     var mi2 = timestamp2.toString().substring(index2 + 4, index2 + 6);
+  //     TimeOfDay testDate2 =
+  //         TimeOfDay(hour: int.parse(hr2), minute: int.parse(mi2));
+  //     int secondTime = testDate2.hour * 60 + testDate2.minute;
+
+  //     int tt = secondTime - firstTime;
+  //     // print("TIME DIS >>> " + tt.toString());
+  //     if (i == 0) {
+  //       setmrkList.add({
+  //         "id": setList[i].id.toString(),
+  //         "location": setList[i].location,
+  //         "time": setList[i].time,
+  //         "color": "blue"
+  //       });
+  //       // addData(setList[i].id.toString(), setList[i].location,
+  //       //     setList[i].time, "blue");
+  //     } else if (i == (setList.length - 2)) {
+  //       // addData(setList[i].id.toString(), setList[i].location,
+  //       //     setList[i].time, "blue");
+  //       setmrkList.add({
+  //         "id": setList[i].id.toString(),
+  //         "location": setList[i].location,
+  //         "time": setList[i].time,
+  //         "color": "blue"
+  //       });
+  //     } else if (getDate != setDate) {
+  //       // addData(setList[i + 1].id.toString(), setList[i + 1].location,
+  //       //     setList[i + 1].time, "green");
+  //       setmrkList.add({
+  //         "id": setList[i + 1].id.toString(),
+  //         "location": setList[i + 1].location,
+  //         "time": setList[i + 1].time,
+  //         // "color": "green"
+  //         "color": "blue"
+  //       });
+  //     } else if (tt > 10) {
+  //       // addData(setList[i + 1].id.toString(), setList[i + 1].location,
+  //       //     setList[i + 1].time, "green");
+  //       setmrkList.add({
+  //         "id": setList[i + 1].id.toString(),
+  //         "location": setList[i + 1].location,
+  //         "time": setList[i + 1].time,
+  //         // "color": "green"
+  //         "color": "blue"
+  //       });
+  //     } else {
+  //       // addData(setList[i].id.toString(), setList[i].location, setList[i].time,
+  //       //     "brown");
+  //       // setmrkList.add({
+  //       //   "id": setList[i].id.toString(),
+  //       //   "location": setList[i].location,
+  //       //   "time": setList[i].time,
+  //       //   "color": "brown"
+  //       // });
+  //     }
+  //   }
+  // }
+
   @override
   void initState() {
     super.initState();
+    // mrkList();
     checkLanguage();
+    someMethod();
     dbHelper = DBHelper();
     testing();
     _getTargetLatLong();
 
-    dbHelper = DBHelper();
-    _checkAndstartTrack();
+    // _getLQ();
+
+    // dbHelper = DBHelper();
+    // _checkAndstartTrack();
+    analyst();
+  }
+
+  _getCurrentLocation() async {
+    bg.BackgroundGeolocation.getCurrentPosition().then((bg.Location locc) {
+      // print('[getCurrentPosition] - $location');
+      print("CUR LOC >> " + locc.coords.latitude.toString());
+
+      // curseclat = location.coords.latitude.toString();
+      // curseclong = location.coords.longitude.toString();
+      // location =
+      //     "${locc.coords.latitude.toString()}, ${locc.coords.longitude.toString()}";
+
+      // print("location >>> $location");
+      setState(() {
+        var lat = locc.coords.latitude;
+        var long = locc.coords.longitude;
+        var id = "curloc";
+        final marker = Marker(
+          markerId: MarkerId(id.toString()),
+          position: LatLng(
+              double.parse(lat.toString()), double.parse(long.toString())),
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+          infoWindow: InfoWindow(
+            title: "Now",
+            // title: time.toString(),
+            // snippet: office.address,
+          ),
+        );
+        _new_markers[id.toString()] = marker;
+      });
+    });
+  }
+
+  _getLQ() async {
+    setState(() {
+      final url = 'https://api.mcf.org.mm/api/qld_location/a';
+
+      http.get(Uri.encodeFull(url), headers: {
+        "Accept": "application/json",
+        "content-type": "application/json"
+      }).then((res) {
+        // var result = json.decode(res.body);
+        var result = json.decode(utf8.decode(res.bodyBytes));
+        print("LOC RES >>>  " + result.toString());
+
+        for (var c = 0; c < result.length; c++) {
+          // print("QC >> " + result[c]["name"]);
+          var location =
+              result[c]["lat"].toString() + ", " + result[c]["lng"].toString();
+          var color;
+          if (result[c]["type"] == 1) {
+            color = "yellow";
+          } else if (result[c]["type"] == 2) {
+            color = "brown";
+          }
+
+          // setqcmrkList.add({
+          //   "id": "qc" + result[c]["id"].toString(),
+          //   "location": location,
+          //   "name": result[c]["name"],
+          //   "color": color
+          // });
+          setState(() {
+            addQCData("qc" + result[c]["id"].toString(), location,
+                result[c]["name"], color);
+          });
+        }
+
+        // var resStatus = result['code'];
+      }).catchError((Object error) async {
+        print("ON ERROR >>");
+      });
+    });
+  }
+
+  // Future get _localPath async {
+  //   final directory = await getApplicationDocumentsDirectory();
+  //   return directory.path;
+  // }
+
+  // Future get _localFile async {
+  //   final path = await _localPath;
+  //   return File('$path/qcList.txt');
+  // }
+
+  // Future readL() async {
+  //   try {
+  //     final file = await _localFile;
+
+  //     // Read the file
+  //     String rl = await file.readAsString();
+
+  //     return rl;
+  //   } catch (e) {
+  //     // If we encounter an error, return 0
+  //     return 0;
+  //   }
+  // }
+
+  // getRead() async {
+  //   print("QQQ>>");
+  //   readL().then((res) {
+
+  //     print("QC RES 3 >> $res");
+  //     var ab = json.decode(res);
+  //     print("QC RES AB >> "  + ab[0].toString());
+  //   });
+  // }
+
+  // _getLQ() async {
+  //   setState(() {
+  //     final url = 'https://api.mcf.org.mm/api/qld_location/a';
+
+  //     http.get(Uri.encodeFull(url), headers: {
+  //       "Accept": "application/json",
+  //       "content-type": "application/json"
+  //     }).then((res) {
+  //       // var result = json.decode(res.body);
+  //       var result = json.decode(utf8.decode(res.bodyBytes));
+  //       print("LOC RES >>>  " + result.toString());
+  //       for (var c = 0; c < result.length; c++) {
+  //         print("QC >> " + result[c]["name"]);
+  //         var location =
+  //             result[c]["lat"].toString() + ", " + result[c]["lng"].toString();
+  //         var color;
+  //         if (result[c]["type"] == 1) {
+  //           color = "yellow";
+  //         } else if (result[c]["type"] == 2) {
+  //           color = "brown";
+  //         }
+
+  //         setmrkList.add({
+  //           "id": "qc" + result[c]["id"].toString(),
+  //           "location": location,
+  //           "time": result[c]["name"],
+  //           "color": color
+  //         });
+
+  //         // addQCData(
+  //         //     "qc" + result[c]["id"].toString(),
+  //         //     result[c]["lat"].toString(),
+  //         //     result[c]["lng"].toString(),
+  //         //     result[c]["name"],
+  //         //     color);
+  //         // addData("qc" + result[c]["id"].toString(), location,
+  //         //     result[c]["name"], color);
+  //         // print("CC1 >> " +
+  //         //     "qc" +
+  //         //     result[c]["id"].toString() +
+  //         //     result[c]["lat"].toString() +
+  //         //     result[c]["lng"].toString() +
+  //         //     result[c]["name"] +
+  //         //     color);
+  //       }
+  //       // var resStatus = result['code'];
+  //     }).catchError((Object error) async {
+  //       print("ON ERROR >>");
+  //     });
+  //   });
+  // }
+
+  // mrkList() async {
+  //   final setList = await dbHelper.getEmployees();
+  //   setState(() {
+  //     for (var i = 0; i < setList.length; i++) {
+  //       var getDate = setList[i].time.toString().substring(0, 10);
+  //       var setDate = setList[i + 1].time.toString().substring(0, 10);
+  //       // time for first
+  //       var timestamp1 = setList[i].time.toString();
+  //       var index1 = timestamp1.toString().indexOf('T');
+  //       var hr1 = timestamp1.toString().substring(index1 + 1, index1 + 3);
+  //       var mi1 = timestamp1.toString().substring(index1 + 4, index1 + 6);
+  //       TimeOfDay testDate1 =
+  //           TimeOfDay(hour: int.parse(hr1), minute: int.parse(mi1));
+  //       int firstTime = testDate1.hour * 60 + testDate1.minute;
+  //       // time for second
+  //       var timestamp2 = setList[i + 1].time.toString();
+  //       var index2 = timestamp2.toString().indexOf('T');
+  //       var hr2 = timestamp2.toString().substring(index2 + 1, index2 + 3);
+  //       var mi2 = timestamp2.toString().substring(index2 + 4, index2 + 6);
+  //       TimeOfDay testDate2 =
+  //           TimeOfDay(hour: int.parse(hr2), minute: int.parse(mi2));
+  //       int secondTime = testDate2.hour * 60 + testDate2.minute;
+
+  //       int tt = secondTime - firstTime;
+  //       // print("TIME DIS >>> " + tt.toString());
+  //       if (i == 0) {
+  //         setmrkList.add({
+  //           "id": setList[i].id.toString(),
+  //           "location": setList[i].location,
+  //           "time": setList[i].time,
+  //           "color": "blue"
+  //         });
+  //         // addData(setList[i].id.toString(), setList[i].location,
+  //         //     setList[i].time, "blue");
+  //       } else if (i == (setList.length - 1)) {
+  //         // addData(setList[i].id.toString(), setList[i].location,
+  //         //     setList[i].time, "blue");
+  //         setmrkList.add({
+  //           "id": setList[i].id.toString(),
+  //           "location": setList[i].location,
+  //           "time": setList[i].time,
+  //           "color": "blue"
+  //         });
+  //       } else if (getDate != setDate) {
+  //         // addData(setList[i + 1].id.toString(), setList[i + 1].location,
+  //         //     setList[i + 1].time, "green");
+  //         setmrkList.add({
+  //           "id": setList[i + 1].id.toString(),
+  //           "location": setList[i + 1].location,
+  //           "time": setList[i + 1].time,
+  //           "color": "green"
+  //         });
+  //       } else if (tt > 10) {
+  //         // addData(setList[i + 1].id.toString(), setList[i + 1].location,
+  //         //     setList[i + 1].time, "green");
+  //         setmrkList.add({
+  //           "id": setList[i + 1].id.toString(),
+  //           "location": setList[i + 1].location,
+  //           "time": setList[i + 1].time,
+  //           "color": "green"
+  //         });
+  //       } else {
+  //         // addData(setList[i].id.toString(), setList[i].location, setList[i].time,
+  //         //     "brown");
+  //         setmrkList.add({
+  //           "id": setList[i].id.toString(),
+  //           "location": setList[i].location,
+  //           "time": setList[i].time,
+  //           "color": "brown"
+  //         });
+  //       }
+  //     }
+  //   });
+  // }
+
+  analyst() async {
+    await analytics.logEvent(
+      name: 'Map_Request',
+      parameters: <String, dynamic>{
+        // 'string': myController.text,
+      },
+    );
+  }
+
+  Future someMethod() async {
+    String deviceLanguage = await Devicelocale.currentLocale;
+    checkfont = deviceLanguage.substring(3, 5);
+    setState(() {
+      if (checkfont == 'ZG') {
+        print(checkfont);
+        // print('lenght ---- ' + textMyan.length.toString());
+        lan = "Zg";
+        print(lan);
+      } else {
+        // print('lenght ---- ' + textMyan.length.toString());
+        lan = "Uni";
+        print(lan);
+      }
+      print('-->$deviceLanguage');
+    });
   }
 
   @override
   void dispose() {
-    timer.cancel();
+    // timer.cancel();
     // timer1.cancel();
     super.dispose();
   }
 
-  _checkAndstartTrack() async {
-    final prefs = await SharedPreferences.getInstance();
-    var chkT = prefs.getString("chk_tracking") ?? "0";
-    if (chkT == "0") {
-      //tracking off
-    } else {
-      //tracking on
-      final prefs = await SharedPreferences.getInstance();
-      int val = prefs.getInt("timer") ?? 0;
-
-      if (val == 0) {
-      } else {
-        _start = val.toString();
-        countDownSave();
-      }
-    }
-  }
-
-  countDownSave() {
-    print("START >> $_start");
-    const oneSec = const Duration(seconds: 1);
-    timer = Timer.periodic(
-      oneSec,
-      (Timer t) => setState(
-        () {
-          if (_start == 0) {
-            _getCurrentLocationForTrack();
-            timer.cancel();
-          } else {
-            _start = int.parse(_start.toString()) - 1;
-            saveTimer();
-            // print("Sec>>" + _start.toString());
-          }
-          print("CD >> " + _start.toString());
-        },
-      ),
-    );
-  }
-
-  saveTimer() async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setInt("timer", _start);
-  }
-
-  _getCurrentLocationForTrack() async {
-    //auto check in location
-
-    // setState(() async {
-    //tracking on
-    try {
-      // UserId
-      final prefs = await SharedPreferences.getInstance();
-      var userId = prefs.getString("UserId") ?? null;
-
-      final position = await Geolocator()
-          .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-
-      var location = "${position.latitude}, ${position.longitude}";
-      print("location >>> $location");
-
-      DateTime now = DateTime.now();
-      var curDT = new DateFormat.yMd().add_jm().format(now);
-      if (userId == null) {
-        Employee e = Employee(null, location, curDT, "Checked In", "", "Auto");
-        dbHelper.save(e);
-      } else {
-        Employee e =
-            Employee(int.parse(userId), location, curDT, "Checked In", "", "Auto");
-        dbHelper.save(e);
-      }
-
-      // final prefs = await SharedPreferences.getInstance();
-      int c = prefs.getInt("saveCount") ?? 0;
-      final prefs1 = await SharedPreferences.getInstance();
-      int r = c + 1;
-      prefs1.setInt("saveCount", r);
-      // setState(() {
-      //   refreshList();
-      // });
-      print("Save --->>>>");
-      _start = startInterval;
-      countDownSave();
-    } on Exception catch (_) {
-      print('never reached');
-    }
-    // });
+  snackbarmethod1(name) {
+    _scaffoldkey.currentState.showSnackBar(new SnackBar(
+      // content: new Text("Please wait, searching your location"),
+      content: new Text(name),
+      backgroundColor: Colors.blue.shade400,
+      duration: Duration(seconds: 3),
+    ));
   }
 
   _getTargetLatLong() async {
@@ -254,35 +777,484 @@ class _HomePageState extends State<HomePage> {
     _initMarkers();
   }
 
+  convertDateTime() {
+    DateTime now = DateTime.now();
+    var yr = DateFormat.y().format(now);
+    var mn = DateFormat.M().format(now);
+    if (mn.length == 1) {
+      mn = "0" + mn;
+    }
+    var dy = DateFormat.d().format(now);
+    if (dy.length == 1) {
+      dy = "0" + dy;
+    }
+    // var time = new DateFormat.jm().format(now);
+    var dt = yr + "-" + mn + "-" + dy;
+    return dt;
+  }
+
+  addData(id, location, time, color) async {
+    var index = location.toString().indexOf(',');
+    var lat = location.toString().substring(0, index);
+    var long = location.toString().substring(index + 1);
+    final marker = Marker(
+      markerId: MarkerId(id.toString()),
+      position: LatLng(double.parse(lat), double.parse(long)),
+      icon: color == "blue"
+          ? BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue)
+          : color == "green"
+              ? BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen)
+              : color == "brown"
+                  ? BitmapDescriptor.defaultMarkerWithHue(
+                      BitmapDescriptor.hueRose)
+                  : color == "yellow"
+                      ? BitmapDescriptor.defaultMarkerWithHue(
+                          BitmapDescriptor.hueYellow)
+                      : BitmapDescriptor.defaultMarkerWithHue(
+                          BitmapDescriptor.hueViolet),
+      infoWindow: InfoWindow(
+        title: time.toString().replaceAll("T", " "),
+        // title: time.toString(),
+        // snippet: office.address,
+      ),
+    );
+    _new_markers[id.toString()] = marker;
+  }
+
+  addQCData(id, location, time, color) async {
+    var index = location.toString().indexOf(',');
+    var lat = location.toString().substring(0, index);
+    var long = location.toString().substring(index + 1);
+    final marker = Marker(
+      markerId: MarkerId(id.toString()),
+      position: LatLng(double.parse(lat), double.parse(long)),
+      icon: color == "blue"
+          ? BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue)
+          : color == "green"
+              ? BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen)
+              : color == "brown"
+                  ? BitmapDescriptor.defaultMarkerWithHue(
+                      BitmapDescriptor.hueMagenta)
+                  : color == "yellow"
+                      ? BitmapDescriptor.defaultMarkerWithHue(
+                          BitmapDescriptor.hueYellow)
+                      : BitmapDescriptor.defaultMarkerWithHue(
+                          BitmapDescriptor.hueViolet),
+      infoWindow: InfoWindow(
+        // title: time.toString().replaceAll("T", " "),
+        title: time.toString(),
+        // snippet: office.address,
+      ),
+    );
+    _new_markers[id.toString()] = marker;
+  }
+
   /// Inits [Fluster] and all the markers with network images and updates the loading state.
   void _initMarkers() async {
     // final List<MapMarker> markers = [];
 
-    var dbHelper = DBHelper();
-    final sl = await dbHelper.getEmployees();
+    // var dbHelper = DBHelper();
+
+    // final sl = await dbHelper.getEmployees();
+    // final sl = sl1.reversed.toList();
     setState(() {
       _new_markers.clear();
-      for (final list in sl) {
-        if (list.location.toString() == "null" || list.location == "") {
-        } else {
-          var index = list.location.toString().indexOf(',');
-          var lat = list.location.toString().substring(0, index);
-          var long = list.location.toString().substring(index + 1);
-          // print("Lth >> "+list.length.toString())
-          print("ML >> " + lat + "|" + long);
-          final marker = Marker(
-            markerId: MarkerId(list.id.toString()),
-            position: LatLng(double.parse(lat), double.parse(long)),
-            infoWindow: InfoWindow(
-              title: list.time,
-              // snippet: office.address,
-            ),
-          );
+      _getCurrentLocation();
+      Future.delayed(const Duration(milliseconds: 2000), () {
+        for (var j = 0; j < setmrkList.length; j++) {
+          print("JJJccc >>> " + setmrkList[j]["time"].toString());
           setState(() {
-            _new_markers[list.id.toString()] = marker;
+            addData(
+                setmrkList[j]["id"].toString(),
+                setmrkList[j]["location"].toString(),
+                setmrkList[j]["time"].toString(),
+                setmrkList[j]["color"].toString());
           });
         }
-      }
+      });
+      _getLQ();
+
+      // Future.delayed(const Duration(milliseconds: 2000), () {
+      //   //   print("QCCC >> " + setqcmrkList.toString());
+
+      //   // addData("qc11", "16.835009, 96.1937", "fucktime", "yellow");
+      //   for (var c = 0; c < setqcmrkList.length; c++) {
+      //     // print("JJJ >>> " + setqcmrkList[c]["location"].toString());
+      //     setState(() {
+      //       addData(
+      //           setqcmrkList[c]["id"].toString(),
+      //           setqcmrkList[c]["location"].toString(),
+      //           setqcmrkList[c]["name"].toString(),
+      //           setqcmrkList[c]["color"].toString());
+      //     });
+      //   }
+      // });
+      // //------ Start first last marker ----------
+      // int startIdx = 0;
+      // int checkStr = 0;
+      // int endIdx = 0;
+
+      // for (var i = 0; i < sl.length; i++) {
+      //   // for (var i = 0; i < cl; i++) {
+      //   if (sl[i].location.toString() == "null" || sl[i].location == "") {
+      //   } else {
+      //     var time = sl[i].time.toString().substring(0, 10);
+      //     var nowTime = convertDateTime();
+
+      //     if (time == nowTime) {
+      //       if (checkStr == 0) {
+      //         startIdx = i;
+      //         checkStr = 1;
+      //       } else {
+      //         endIdx = i;
+      //       }
+      //     }
+      //   }
+      // }
+
+      // print("START >>> " + startIdx.toString());
+      // print("END >>> " + endIdx.toString());
+
+      // setState(() {
+      //   // if(startIdx)
+      //   // if (sl.length != 0) {
+      //   var index = sl[startIdx].location.toString().indexOf(',');
+      //   var lat = sl[startIdx].location.toString().substring(0, index);
+      //   var long = sl[startIdx].location.toString().substring(index + 1);
+
+      //   final marker = Marker(
+      //     markerId: MarkerId(sl[startIdx].id.toString()),
+      //     position: LatLng(double.parse(lat), double.parse(long)),
+      //     icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+      //     infoWindow: InfoWindow(
+      //       title: sl[startIdx].time.toString().replaceAll("T", " "),
+      //       // snippet: office.address,
+      //     ),
+      //   );
+      //   _new_markers[sl[startIdx].id.toString()] = marker;
+
+      //   if (endIdx != 0) {
+      //     var index = sl[endIdx].location.toString().indexOf(',');
+      //     var lat = sl[endIdx].location.toString().substring(0, index);
+      //     var long = sl[endIdx].location.toString().substring(index + 1);
+
+      //     final marker = Marker(
+      //       markerId: MarkerId(sl[endIdx].id.toString()),
+      //       position: LatLng(double.parse(lat), double.parse(long)),
+      //       icon:
+      //           BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+      //       infoWindow: InfoWindow(
+      //         title: sl[endIdx].time.toString().replaceAll("T", " "),
+      //         // snippet: office.address,
+      //       ),
+      //     );
+      //     _new_markers[sl[endIdx].id.toString()] = marker;
+      //   }
+      //   // }
+      // });
+
+      // //------ End first last marker ----------
+
+      // setState(() {
+      //   // if(startIdx)
+
+      // });
+
+      // // // int convGetToMin = 0;
+      // // // var ctime;
+      // // // int tc = 0;
+
+      // for (var i = 0; i < (sl.length - 1); i++) {
+      // // // for (var i = 0; i < sl.length; i++) {
+      // // //   // for (var i = 0; i < cl; i++) {
+      // // //   if (sl[i].location.toString() == "null" || sl[i].location == "") {
+      // // //   } else {
+      // // //     var index = sl[i].location.toString().indexOf(',');
+      // // //     var lat = sl[i].location.toString().substring(0, index);
+      // // //     var long = sl[i].location.toString().substring(index + 1);
+      // // //     var time = sl[i].time.toString().substring(0, 10);
+      // // //     var nowTime = convertDateTime();
+
+      // // //     //First Value
+      // // //     var idx = sl[i].time.toString().indexOf('T');
+      // // //     var hr = sl[i].time.toString().substring(idx + 1, idx + 3);
+      // // //     var mi = sl[i].time.toString().substring(idx + 4, idx + 6);
+
+      // // //     TimeOfDay testDate =
+      // // //         TimeOfDay(hour: int.parse(hr), minute: int.parse(mi));
+      // // //     int testDateInMinutes = testDate.hour * 60 + testDate.minute;
+
+      // // //     if (time == nowTime) {
+      // // //       tc = 1;
+      // // //       if (tc == 0) {
+      // // //         if (sl[i].remark == "Auto") {
+      // // //           setState(() {
+      // // //             final marker = Marker(
+      // // //               markerId: MarkerId(sl[i].id.toString()),
+      // // //               position: LatLng(double.parse(lat), double.parse(long)),
+      // // //               icon: BitmapDescriptor.defaultMarkerWithHue(
+      // // //                   BitmapDescriptor.hueGreen),
+      // // //               infoWindow: InfoWindow(
+      // // //                 title: sl[i].time,
+      // // //                 // snippet: office.address,
+      // // //               ),
+      // // //             );
+
+      // // //             _new_markers[sl[i].id.toString()] = marker;
+      // // //           });
+      // // //         } else {
+      // // //           setState(() {
+      // // //             final marker = Marker(
+      // // //               markerId: MarkerId(sl[i].id.toString()),
+      // // //               position: LatLng(double.parse(lat), double.parse(long)),
+      // // //               icon: BitmapDescriptor.defaultMarkerWithHue(
+      // // //                   BitmapDescriptor.hueBlue),
+      // // //               infoWindow: InfoWindow(
+      // // //                 title: sl[i].time,
+      // // //                 // snippet: office.address,
+      // // //               ),
+      // // //             );
+
+      // // //             _new_markers[sl[i].id.toString()] = marker;
+      // // //           });
+      // // //         }
+      // // //       }
+
+      // // //       int lr = sl.length;
+      // // //       print("LAST LIST >>> $lr -" + sl[lr - 1].time.toString());
+      // // //       // sl.length == 0 ||
+
+      // // //       if (sl[lr - 1].remark == "Auto") {
+      // // //         setState(() {
+      // // //           final marker = Marker(
+      // // //             markerId: MarkerId(sl[lr - 1].id.toString()),
+      // // //             position: LatLng(double.parse(lat), double.parse(long)),
+      // // //             icon: BitmapDescriptor.defaultMarkerWithHue(
+      // // //                 BitmapDescriptor.hueGreen),
+      // // //             infoWindow: InfoWindow(
+      // // //               title: sl[lr - 1].time,
+      // // //               // snippet: office.address,
+      // // //             ),
+      // // //           );
+
+      // // //           _new_markers[sl[lr - 1].id.toString()] = marker;
+      // // //         });
+      // // //       } else {
+      // // //         setState(() {
+      // // //           final marker = Marker(
+      // // //             markerId: MarkerId(sl[lr - 1].id.toString()),
+      // // //             position: LatLng(double.parse(lat), double.parse(long)),
+      // // //             icon: BitmapDescriptor.defaultMarkerWithHue(
+      // // //                 BitmapDescriptor.hueBlue),
+      // // //             infoWindow: InfoWindow(
+      // // //               title: sl[lr - 1].time,
+      // // //               // snippet: office.address,
+      // // //             ),
+      // // //           );
+
+      // // //           _new_markers[sl[lr - 1].id.toString()] = marker;
+      // // //         });
+      // // //       }
+
+      // // //       if (tc != 0) {
+      // // //         //Second Value
+      // // //         var hr1 = sl[(i + 1)].time.toString().substring(idx + 1, idx + 3);
+      // // //         var mi1 = sl[(i + 1)].time.toString().substring(idx + 4, idx + 6);
+
+      // // //         TimeOfDay testDate1 =
+      // // //             TimeOfDay(hour: int.parse(hr1), minute: int.parse(mi1));
+      // // //         int testDateInMinutes1 = testDate1.hour * 60 + testDate1.minute;
+
+      // // //         if ((testDateInMinutes + 5) > testDateInMinutes1) {
+      // // //           //Show
+      // // //           convGetToMin = testDateInMinutes;
+      // // //         } else {
+      // // //           //Not show
+      // // //           if (sl[i].remark == "Auto") {
+      // // //             final marker = Marker(
+      // // //               markerId: MarkerId(sl[i].id.toString()),
+      // // //               position: LatLng(double.parse(lat), double.parse(long)),
+      // // //               icon: BitmapDescriptor.defaultMarkerWithHue(
+      // // //                   BitmapDescriptor.hueGreen),
+      // // //               infoWindow: InfoWindow(
+      // // //                 title: sl[i].time,
+      // // //                 // snippet: office.address,
+      // // //               ),
+      // // //             );
+      // // //             setState(() {
+      // // //               _new_markers[sl[i].id.toString()] = marker;
+      // // //             });
+      // // //           } else {
+      // // //             final marker = Marker(
+      // // //               markerId: MarkerId(sl[i].id.toString()),
+      // // //               position: LatLng(double.parse(lat), double.parse(long)),
+      // // //               icon: BitmapDescriptor.defaultMarkerWithHue(
+      // // //                   BitmapDescriptor.hueBlue),
+      // // //               infoWindow: InfoWindow(
+      // // //                 title: sl[i].time,
+      // // //                 // snippet: office.address,
+      // // //               ),
+      // // //             );
+      // // //             setState(() {
+      // // //               _new_markers[sl[i].id.toString()] = marker;
+      // // //             });
+      // // //           }
+      // // //         }
+      // // //       }
+      // // //     } else {}
+      // // //   }
+
+      // // for (var i = 0; i < sl.length; i++) {
+      // //   // print("SL >>> " + sl[i].location.toString());
+      // //   // } else {)
+      // //   if (sl[i].location.toString() == "null" || sl[i].location == "") {
+      // //   } else {
+      // //     var index = sl[i].location.toString().indexOf(',');
+      // //     var lat = sl[i].location.toString().substring(0, index);
+      // //     var long = sl[i].location.toString().substring(index + 1);
+      // //     // print("Lth >> "+sl[i].length.toString())
+      // //     var time = sl[i].time.toString().substring(0, 10);
+      // //     var nowTime = convertDateTime();
+
+      // //     var idx = sl[i].time.toString().indexOf('T');
+      // //     // var yr = sl[i].location.toString().substring(0, 4);
+      // //     // var mn = sl[i].location.toString().substring(5, 7);
+      // //     // var dy = sl[i].location.toString().substring(8, 10);
+      // //     var hr = sl[i].time.toString().substring(idx + 1, idx + 3);
+      // //     var mi = sl[i].time.toString().substring(idx + 4, idx + 6);
+      // //     // print("AT >> " + yr.toString() + mn.toString() + dy.toString());
+      // //     TimeOfDay testDate =
+      // //         TimeOfDay(hour: int.parse(hr), minute: int.parse(mi));
+      // //     int testDateInMinutes = testDate.hour * 60 + testDate.minute;
+
+      // //     print("ML >> " + time + "Vs" + nowTime);
+      // //     if (time == nowTime) {
+      // //       if(i == sl.length){
+      // //         final marker = Marker(
+      // //           markerId: MarkerId(sl[i].id.toString()),
+      // //           position: LatLng(double.parse(lat), double.parse(long)),
+      // //           icon: BitmapDescriptor.defaultMarkerWithHue(
+      // //               BitmapDescriptor.hueBlue),
+      // //           infoWindow: InfoWindow(
+      // //             title: sl[i].time,
+      // //             // snippet: office.address,
+      // //           ),
+      // //         );
+      // //         setState(() {
+      // //           _new_markers[sl[i].id.toString()] = marker;
+      // //         });
+      // //       }
+      // //       ctime = convGetToMin + 5;
+      // //       print("CT123 >>  " +
+      // //           ctime.toString() +
+      // //           ":" +
+      // //           testDateInMinutes.toString());
+      // //       if (testDateInMinutes < ctime) {
+      // //         // if (ct == convGetToMin) {
+      // //         // snackbarmethod1("Close Interval!");
+      // //         if (ctime == 5) {
+      // //           convGetToMin = testDateInMinutes;
+      // //           // final marker = Marker(
+      // //           //   markerId: MarkerId(sl[i].id.toString()),
+      // //           //   position: LatLng(double.parse(lat), double.parse(long)),
+      // //           //   icon: BitmapDescriptor.defaultMarkerWithHue(
+      // //           //       BitmapDescriptor.hueBlue),
+      // //           //   infoWindow: InfoWindow(
+      // //           //     title: sl[i].time,
+      // //           //     // snippet: office.address,
+      // //           //   ),
+      // //           // );
+      // //           // setState(() {
+      // //           //   _new_markers[sl[i].id.toString()] = marker;
+      // //           // });
+      // //         }
+      // //       } else {
+      // //         print("ABCCCC>>");
+      // //         convGetToMin = testDateInMinutes;
+      // //         final marker = Marker(
+      // //           markerId: MarkerId(sl[i].id.toString()),
+      // //           position: LatLng(double.parse(lat), double.parse(long)),
+      // //           icon: BitmapDescriptor.defaultMarkerWithHue(
+      // //               BitmapDescriptor.hueBlue),
+      // //           infoWindow: InfoWindow(
+      // //             title: sl[i].time,
+      // //             // snippet: office.address,
+      // //           ),
+      // //         );
+      // //         setState(() {
+      // //           _new_markers[sl[i].id.toString()] = marker;
+      // //         });
+      // //       }
+
+      // //     }
+      // //   }
+
+      // if (list.location.toString() == "null" || list.location == "") {
+      // } else {
+      //   var index = list.location.toString().indexOf(',');
+      //   var lat = list.location.toString().substring(0, index);
+      //   var long = list.location.toString().substring(index + 1);
+      //   // print("Lth >> "+list.length.toString())
+      //   var time = list.time.toString().substring(0, 10);
+      //   var nowTime = convertDateTime();
+
+      //   var idx = list.location.toString().indexOf('T');
+      //   // var yr = list.location.toString().substring(0, 4);
+      //   // var mn = list.location.toString().substring(5, 7);
+      //   // var dy = list.location.toString().substring(8, 10);
+      //   var hr = list.location.toString().substring(idx + 1, idx + 3);
+      //   var mi = list.location.toString().substring(idx + 4, idx + 6);
+      //   // print("AT >> " + yr.toString() + mn.toString() + dy.toString());
+      //   TimeOfDay testDate =
+      //       TimeOfDay(hour: int.parse(hr), minute: int.parse(mi));
+      //   int testDateInMinutes = testDate.hour * 60 + testDate.minute;
+
+      //   print("ML >> " + time + "Vs" + nowTime);
+      //   if (time == nowTime) {
+      //      ctime = convGetToMin + 3;
+      //     print("CT123 >>  " +
+      //         ctime.toString() +
+      //         ":" +
+      //         testDateInMinutes.toString());
+      //     if (testDateInMinutes < ctime) {
+      //       // if (ct == convGetToMin) {
+      //       // snackbarmethod1("Close Interval!");
+      //       if (ctime == 3) {
+      //         convGetToMin = testDateInMinutes;
+      //         final marker = Marker(
+      //           markerId: MarkerId(list.id.toString()),
+      //           position: LatLng(double.parse(lat), double.parse(long)),
+      //           icon: BitmapDescriptor.defaultMarkerWithHue(
+      //               BitmapDescriptor.hueBlue),
+      //           infoWindow: InfoWindow(
+      //             title: list.time,
+      //             // snippet: office.address,
+      //           ),
+      //         );
+      //         setState(() {
+      //           _new_markers[list.id.toString()] = marker;
+      //         });
+      //       }
+      //     } else {
+      //       print("ABCCCC>>");
+      //       convGetToMin = testDateInMinutes;
+      //       final marker = Marker(
+      //         markerId: MarkerId(list.id.toString()),
+      //         position: LatLng(double.parse(lat), double.parse(long)),
+      //         icon: BitmapDescriptor.defaultMarkerWithHue(
+      //             BitmapDescriptor.hueBlue),
+      //         infoWindow: InfoWindow(
+      //           title: list.time,
+      //           // snippet: office.address,
+      //         ),
+      //       );
+      //       setState(() {
+      //         _new_markers[list.id.toString()] = marker;
+      //       });
+      //     }
+      //   }
+      // }
+      // // // }
     });
 
     // for (LatLng markerLocation in _markerLocations) {
@@ -342,9 +1314,17 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldkey,
       appBar: AppBar(
-        title: Text(checklang == "Eng" ? textEng[0] : textMyan[0] + " (Map)",
-            style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0)),
+        title: Text(
+            lan == "Zg"
+                ? Rabbit.uni2zg(textMyan[0]) + " (Map)"
+                : textMyan[0] + " (Map)",
+            // checklang == "Eng" ? textEng[0] : textMyan[0] + " (Map)",
+            style: TextStyle(
+                fontFamily: lan == "Zg" ? "Zawgyi" : "Pyidaungsu",
+                fontWeight: FontWeight.w300,
+                fontSize: 18.0)),
         centerTitle: true,
       ),
       body: Column(

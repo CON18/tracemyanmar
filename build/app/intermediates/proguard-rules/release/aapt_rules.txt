@@ -1,152 +1,127 @@
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:52
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:44
 -keep class androidx.core.app.CoreComponentFactory { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:204
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:190
 -keep class com.google.android.gms.common.api.GoogleApiActivity { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:137
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:206
+-keep class com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver { <init>(); }
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:220
+-keep class com.google.android.gms.measurement.AppMeasurementJobService { <init>(); }
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:201
+-keep class com.google.android.gms.measurement.AppMeasurementReceiver { <init>(); }
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:216
+-keep class com.google.android.gms.measurement.AppMeasurementService { <init>(); }
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:131
 -keep class com.google.firebase.components.ComponentDiscoveryService { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:180
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:181
 -keep class com.google.firebase.iid.FirebaseInstanceIdReceiver { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:172
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:170
 -keep class com.google.firebase.messaging.FirebaseMessagingService { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:209
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:195
 -keep class com.google.firebase.provider.FirebaseInitProvider { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:219
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:230
 -keep class com.intentfilter.androidpermissions.PermissionsActivity { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:68
--keep class com.mit.TraceMyanmar2020.MainActivity { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:167
--keep class com.shinow.qrscan.SecondActivity { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:196
--keep class com.squareup.picasso.PicassoProvider { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:115
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:109
 -keep class com.transistorsoft.locationmanager.BootReceiver { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:94
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:88
 -keep class com.transistorsoft.locationmanager.activity.TSLocationManagerActivity { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:107
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:101
 -keep class com.transistorsoft.locationmanager.scheduler.ScheduleAlarmReceiver { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:110
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:104
 -keep class com.transistorsoft.locationmanager.scheduler.ScheduleJobService { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:109
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:103
 -keep class com.transistorsoft.locationmanager.scheduler.ScheduleService { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:103
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:97
 -keep class com.transistorsoft.locationmanager.service.ActivityRecognitionService { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:105
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:99
 -keep class com.transistorsoft.locationmanager.service.BackgroundTaskService { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:104
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:98
 -keep class com.transistorsoft.locationmanager.service.GeofencingService { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:102
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:96
 -keep class com.transistorsoft.locationmanager.service.HeartbeatService { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:101
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:95
 -keep class com.transistorsoft.locationmanager.service.LocationRequestService { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:100
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:94
 -keep class com.transistorsoft.locationmanager.service.TrackingService { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:122
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:116
 -keep class com.transistorsoft.locationmanager.util.LogFileProvider { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:160
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:160
 -keep class com.transistorsoft.tsbackgroundfetch.BootReceiver { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:153
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:153
 -keep class com.transistorsoft.tsbackgroundfetch.FetchAlarmReceiver { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:155
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:155
 -keep class com.transistorsoft.tsbackgroundfetch.FetchJobService { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:189
--keep class com.uuzuche.lib_zxing.activity.CaptureActivity { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:52
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:44
 -keep class io.flutter.app.FlutterApplication { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:132
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:126
 -keep class io.flutter.plugins.firebasemessaging.FlutterFirebaseMessagingService { <init>(); }
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/AndroidManifest.xml:148
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:148
 -keep class io.flutter.plugins.urllauncher.WebViewActivity { <init>(); }
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_alert_dialog_title_material.xml:57
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_alert_dialog_material.xml:52
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_alert_dialog_button_bar_material.xml:43
+# Referenced at /home/chitoonaung/FP/tracemyanmar/build/app/intermediates/merged_manifests/release/arm64-v8a/AndroidManifest.xml:54
+-keep class mm.org.mcf.app001.MainActivity { <init>(); }
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_alert_dialog_title_material.xml:56
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_alert_dialog_material.xml:52
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_alert_dialog_button_bar_material.xml:43
 -keep class android.widget.Space { <init>(...); }
 
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_select_dialog_material.xml:23
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_select_dialog_material.xml:23
 -keep class androidx.appcompat.app.AlertController$RecycleListView { <init>(...); }
 
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_action_menu_item_layout.xml:17
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_action_menu_item_layout.xml:17
 -keep class androidx.appcompat.view.menu.ActionMenuItemView { <init>(...); }
 
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_expanded_menu_layout.xml:17
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_expanded_menu_layout.xml:17
 -keep class androidx.appcompat.view.menu.ExpandedMenuView { <init>(...); }
 
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_popup_menu_item_layout.xml:17
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_list_menu_item_layout.xml:17
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_cascading_menu_item_layout.xml:20
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_popup_menu_item_layout.xml:17
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_list_menu_item_layout.xml:17
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_cascading_menu_item_layout.xml:20
 -keep class androidx.appcompat.view.menu.ListMenuItemView { <init>(...); }
 
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_screen_toolbar.xml:27
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_screen_toolbar.xml:27
 -keep class androidx.appcompat.widget.ActionBarContainer { <init>(...); }
 
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_screen_toolbar.xml:43
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_action_mode_bar.xml:19
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_screen_toolbar.xml:43
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_action_mode_bar.xml:19
 -keep class androidx.appcompat.widget.ActionBarContextView { <init>(...); }
 
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_screen_toolbar.xml:17
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_screen_toolbar.xml:17
 -keep class androidx.appcompat.widget.ActionBarOverlayLayout { <init>(...); }
 
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_action_menu_layout.xml:17
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_action_menu_layout.xml:17
 -keep class androidx.appcompat.widget.ActionMenuView { <init>(...); }
 
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_activity_chooser_view.xml:19
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_activity_chooser_view.xml:19
 -keep class androidx.appcompat.widget.ActivityChooserView$InnerLayout { <init>(...); }
 
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_alert_dialog_material.xml:18
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_alert_dialog_material.xml:18
 -keep class androidx.appcompat.widget.AlertDialogLayout { <init>(...); }
 
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_alert_dialog_button_bar_material.xml:26
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_alert_dialog_button_bar_material.xml:26
 -keep class androidx.appcompat.widget.ButtonBarLayout { <init>(...); }
 
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_screen_content_include.xml:19
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_screen_content_include.xml:19
 -keep class androidx.appcompat.widget.ContentFrameLayout { <init>(...); }
 
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_alert_dialog_title_material.xml:45
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_alert_dialog_title_material.xml:45
 -keep class androidx.appcompat.widget.DialogTitle { <init>(...); }
 
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_screen_simple_overlay_action_mode.xml:23
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_screen_simple_overlay_action_mode.xml:23
 -keep class androidx.appcompat.widget.FitWindowsFrameLayout { <init>(...); }
 
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_screen_simple.xml:17
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_dialog_title_material.xml:22
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_screen_simple.xml:17
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_dialog_title_material.xml:22
 -keep class androidx.appcompat.widget.FitWindowsLinearLayout { <init>(...); }
 
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_search_view.xml:75
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_search_view.xml:75
 -keep class androidx.appcompat.widget.SearchView$SearchAutoComplete { <init>(...); }
 
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_screen_toolbar.xml:36
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_screen_toolbar.xml:36
 -keep class androidx.appcompat.widget.Toolbar { <init>(...); }
 
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_screen_simple_overlay_action_mode.xml:32
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_screen_simple.xml:25
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_screen_simple_overlay_action_mode.xml:32
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_screen_simple.xml:25
 -keep class androidx.appcompat.widget.ViewStubCompat { <init>(...); }
 
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2788a1d630ffd2b98c19975ba1e486c5/material-1.0.0/res/layout/design_bottom_sheet_dialog.xml:26
--keep class androidx.coordinatorlayout.widget.CoordinatorLayout { <init>(...); }
-
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e8331f8610d98fb778305f740f5088a4/appcompat-1.1.0/res/layout/abc_alert_dialog_material.xml:41
+# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/517074ce6a9f1e21ffa29220600ae2b6/appcompat-1.0.2/res/layout/abc_alert_dialog_material.xml:41
 -keep class androidx.core.widget.NestedScrollView { <init>(...); }
-
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2788a1d630ffd2b98c19975ba1e486c5/material-1.0.0/res/layout/design_bottom_navigation_item.xml:27
--keep class com.google.android.material.internal.BaselineLayout { <init>(...); }
-
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2788a1d630ffd2b98c19975ba1e486c5/material-1.0.0/res/layout/design_text_input_password_icon.xml:18
--keep class com.google.android.material.internal.CheckableImageButton { <init>(...); }
-
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2788a1d630ffd2b98c19975ba1e486c5/material-1.0.0/res/layout/design_navigation_item.xml:17
--keep class com.google.android.material.internal.NavigationMenuItemView { <init>(...); }
-
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2788a1d630ffd2b98c19975ba1e486c5/material-1.0.0/res/layout/design_navigation_menu.xml:17
--keep class com.google.android.material.internal.NavigationMenuView { <init>(...); }
-
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2788a1d630ffd2b98c19975ba1e486c5/material-1.0.0/res/layout/mtrl_layout_snackbar.xml:18
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2788a1d630ffd2b98c19975ba1e486c5/material-1.0.0/res/layout/design_layout_snackbar.xml:18
--keep class com.google.android.material.snackbar.Snackbar$SnackbarLayout { <init>(...); }
-
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2788a1d630ffd2b98c19975ba1e486c5/material-1.0.0/res/layout/mtrl_layout_snackbar_include.xml:18
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/2788a1d630ffd2b98c19975ba1e486c5/material-1.0.0/res/layout/design_layout_snackbar_include.xml:18
--keep class com.google.android.material.snackbar.SnackbarContentLayout { <init>(...); }
-
-# Referenced at /home/chitoonaung/FP/tracemyanmar/build/qrscan/intermediates/packaged_res/release/layout/my_camera.xml:13
-# Referenced at /home/chitoonaung/.gradle/caches/transforms-2/files-2.1/e2540612e5ec16f20ada32ea9c8f65e9/android-zxingLibrary-0.1.2-PRE/res/layout/fragment_capture.xml:12
--keep class com.uuzuche.lib_zxing.view.ViewfinderView { <init>(...); }
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="default_web_client_id" translatable="false">888660472534-ferppco7satakf17b4g4a17sl3nr5qhu.apps.googleusercontent.com</string>
-    <string name="firebase_database_url" translatable="false">https://trace-myanmar.firebaseio.com</string>
-    <string name="gcm_defaultSenderId" translatable="false">888660472534</string>
-    <string name="google_api_key" translatable="false">AIzaSyCQdG54aWdItRCHaBoOn1SCBAf1cKg7yrk</string>
-    <string name="google_app_id" translatable="false">1:888660472534:android:e0e3f7933e20f42015cf77</string>
-    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCQdG54aWdItRCHaBoOn1SCBAf1cKg7yrk</string>
-    <string name="google_storage_bucket" translatable="false">trace-myanmar.appspot.com</string>
-    <string name="project_id" translatable="false">trace-myanmar</string>
+    <string name="default_web_client_id" translatable="false">186947221706-6ibc3j9dt69our0nk9tn3hghsv92vtod.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://sawsawshar-1f7d1.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">186947221706</string>
+    <string name="google_api_key" translatable="false">AIzaSyDPOYd8tVjiQ1WsCcBZP3W1XFMo6_1gyP8</string>
+    <string name="google_app_id" translatable="false">1:186947221706:android:11b8825a6cfa1a01b11c33</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDPOYd8tVjiQ1WsCcBZP3W1XFMo6_1gyP8</string>
+    <string name="google_storage_bucket" translatable="false">sawsawshar-1f7d1.appspot.com</string>
+    <string name="project_id" translatable="false">sawsawshar-1f7d1</string>
 </resources>

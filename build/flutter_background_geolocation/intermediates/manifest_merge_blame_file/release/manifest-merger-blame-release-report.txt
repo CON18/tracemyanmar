@@ -3,6 +3,6 @@
 3    package="com.transistorsoft.flutter.backgroundgeolocation" >
 4
 5    <uses-sdk android:minSdkVersion="16" />
-5-->/home/chitoonaung/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_background_geolocation-1.7.2/android/src/main/AndroidManifest.xml
+5-->/home/chitoonaung/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_background_geolocation-1.7.3/android/src/main/AndroidManifest.xml
 6
 7</manifest>

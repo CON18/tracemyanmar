@@ -5,6 +5,7 @@ import 'package:TraceMyanmar/employee.dart';
 import 'package:TraceMyanmar/startInterval.dart';
 import 'package:intl/intl.dart';
 import 'package:geolocator/geolocator.dart';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -32,6 +33,7 @@ class FleetDetail extends StatefulWidget {
 }
 
 class _FleetDetailState extends State<FleetDetail> {
+  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   final _formKey = new GlobalKey<FormState>();
   final TextEditingController _text1 = new TextEditingController();
   final TextEditingController _text2 = new TextEditingController();
@@ -56,7 +58,6 @@ class _FleetDetailState extends State<FleetDetail> {
 var _start;
   Timer timer;
   var dbHelper;
-
   checkLanguage() async {
     // final prefs = await SharedPreferences.getInstance();
     // checklang = prefs.getString("Lang");
@@ -101,18 +102,36 @@ var _start;
     dbHelper = DBHelper();
     _checkAndstartTrack();
     
-
   }
 
 
-  @override
-  void dispose() {
-    timer.cancel();
-    // timer1.cancel();
-    super.dispose();
+  
+  snackbarmethod1(name) {
+    _scaffoldkey.currentState.showSnackBar(new SnackBar(
+      // content: new Text("Please wait, searching your location"),
+      content: new Text(name),
+      backgroundColor: Colors.blue.shade400,
+      duration: Duration(seconds: 3),
+    ));
   }
 
   _checkAndstartTrack() async {
+    final result = await Geolocator().isLocationServiceEnabled();
+    if (result == false) {
+      snackbarmethod1("Please turn on GPS.");
+    } else {
+      GeolocationStatus result1 =
+          await Geolocator().checkGeolocationPermissionStatus();
+
+      print("RESULT >>> " + result1.toString());
+      if (result1.toString() == "GeolocationStatus.denied") {
+        //ask permission
+        final position = await Geolocator()
+            .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+        // location = "${position.latitude}, ${position.longitude}";
+        // latt = "${position.latitude}";
+        // longg = "${position.longitude}";
+      } else {
     final prefs = await SharedPreferences.getInstance();
     var chkT = prefs.getString("chk_tracking") ?? "0";
     if (chkT == "0") {
@@ -128,6 +147,15 @@ var _start;
         countDownSave();
       }
     }
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    // timer1.cancel();
+    super.dispose();
   }
 
   countDownSave() {
@@ -192,7 +220,7 @@ var _start;
       //   refreshList();
       // });
       print("Save --->>>>");
-      _start = startInterval;
+      // _start = startInterval;
       countDownSave();
     } on Exception catch (_) {
       print('never reached');
@@ -459,6 +487,7 @@ var _start;
     );
 
     return Scaffold(
+      key: _scaffoldkey,
       appBar: AppBar(
         title: Text("ID : ${_text7.text}",style: TextStyle(fontWeight: FontWeight.w300),),
         centerTitle: true,

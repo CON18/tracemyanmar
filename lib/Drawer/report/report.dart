@@ -1,62 +1,38 @@
-import 'dart:async';
-
-import 'package:TraceMyanmar/db_helper.dart';
-import 'package:TraceMyanmar/employee.dart';
-import 'package:TraceMyanmar/startInterval.dart';
-import 'package:intl/intl.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Reporting extends StatefulWidget {
+
   final int value;
-  Reporting({
-    Key key,
-    this.value,
-  }) : super(key: key);
+   Reporting(
+      {Key key,
+      this.value,})
+      : super(key: key);
 
   @override
   _ReportingState createState() => _ReportingState();
 }
 
 class _ReportingState extends State<Reporting> {
-  final TextEditingController _text1 = new TextEditingController();
-  final TextEditingController _text2 = new TextEditingController();
-  final TextEditingController _text3 = new TextEditingController();
-  bool v1 = false;
-  bool v2 = false;
-  bool v3 = false;
-  bool vv = false;
-  String v4 = "null";
-  String checklang = '';
-  List textMyan = [
-    "စစ်​​ဆေးခြင်း (Reporting)",
-    "စုစုပေါင်းအမှတ် (Total Mark)",
-    "တည်နေရာ (Location)",
-    "ဖုန်းနံပါတ် (Phone)",
-    "",
-    "ပယ်ဖျက်မည်",
-    "အတည်ပြုပါ (Submit)"
-  ];
-  List textEng = [
-    "Reporting",
-    "Total Mark",
-    "Location",
-    "Phone Number",
-    "",
-    "Cancel",
-    "Report"
-  ];
 
-  final _formKey = new GlobalKey<FormState>();
-  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
-  String alertmsg = "";
-
-  var _start;
-  Timer timer;
-  var dbHelper;
-
+    final TextEditingController _text1 = new TextEditingController();
+    final TextEditingController _text2 = new TextEditingController();
+    final TextEditingController _text3 = new TextEditingController();
+    bool v1 = false;
+    bool v2 = false;
+    bool v3 = false;
+    bool vv = false;
+    String v4="null";
+    String checklang = '';
+    List textMyan = ["စစ်​​ဆေးခြင်း (Reporting)","စုစုပေါင်းအမှတ် (Total Mark)","တည်နေရာ (Location)","ဖုန်းနံပါတ် (Phone)", "","ပယ်ဖျက်မည်","အတည်ပြုပါ (Submit)"];
+    List textEng = ["Reporting","Total Mark","Location","Phone Number", "","Cancel","Report"];
+    
+    final _formKey = new GlobalKey<FormState>();
+    final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
+     String alertmsg = "";
+   
+   
   checkLanguage() async {
     // final prefs = await SharedPreferences.getInstance();
     // checklang = prefs.getString("Lang");
@@ -68,303 +44,188 @@ class _ReportingState extends State<Reporting> {
     checklang = "Myanmar";
     setState(() {});
   }
-
   @override
   void initState() {
     super.initState();
     checkLanguage();
     getdata();
-    dbHelper = DBHelper();
-    _checkAndstartTrack();
   }
-
-  _checkAndstartTrack() async {
-    final prefs = await SharedPreferences.getInstance();
-    var chkT = prefs.getString("chk_tracking") ?? "0";
-    if (chkT == "0") {
-      //tracking off
-    } else {
-      //tracking on
-      final prefs = await SharedPreferences.getInstance();
-      int val = prefs.getInt("timer") ?? 0;
-
-      if (val == 0) {
-      } else {
-        _start = val.toString();
-        countDownSave();
-      }
-    }
-  }
-
-  countDownSave() {
-    print("START >> $_start");
-    const oneSec = const Duration(seconds: 1);
-    timer = Timer.periodic(
-      oneSec,
-      (Timer t) => setState(
-        () {
-          if (_start == 0) {
-            _getCurrentLocationForTrack();
-            timer.cancel();
-          } else {
-            _start = int.parse(_start.toString()) - 1;
-            saveTimer();
-            // print("Sec>>" + _start.toString());
-          }
-          print("CD >> " + _start.toString());
-        },
-      ),
-    );
-  }
-
-  saveTimer() async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setInt("timer", _start);
-  }
-
-  _getCurrentLocationForTrack() async {
-    //auto check in location
-
-    // setState(() async {
-    //tracking on
-    try {
-      // UserId
-      final prefs = await SharedPreferences.getInstance();
-      var userId = prefs.getString("UserId") ?? null;
-
-      final position = await Geolocator()
-          .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-
-      var location = "${position.latitude}, ${position.longitude}";
-      print("location >>> $location");
-
-      DateTime now = DateTime.now();
-      var curDT = new DateFormat.yMd().add_jm().format(now);
-      if (userId == null) {
-        Employee e = Employee(null, location, curDT, "Checked In", "", "Auto");
-        dbHelper.save(e);
-      } else {
-        Employee e =
-            Employee(int.parse(userId), location, curDT, "Checked In", "", "Auto");
-        dbHelper.save(e);
-      }
-
-      // final prefs = await SharedPreferences.getInstance();
-      int c = prefs.getInt("saveCount") ?? 0;
-      final prefs1 = await SharedPreferences.getInstance();
-      int r = c + 1;
-      prefs1.setInt("saveCount", r);
-      // setState(() {
-      //   refreshList();
-      // });
-      print("Save --->>>>");
-      _start = startInterval;
-      countDownSave();
-    } on Exception catch (_) {
-      print('never reached');
-    }
-    // });
-  }
-
-  @override
-  void dispose() {
-    timer.cancel();
-    // timer1.cancel();
-    super.dispose();
-  }
-
-  getdata() async {
+  getdata() async{
     final position = await Geolocator()
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
     print(position);
     final prefs = await SharedPreferences.getInstance();
-    var phno = prefs.getString('UserId');
+    var phno=prefs.getString('UserId');
     print(phno);
-    _text2.text = '$position';
-    _text3.text = phno;
+    _text2.text='$position';
+    _text3.text=phno;
   }
-
-  void _method1() {
+   void _method1() {
     print("Snack Bar");
     print(this.alertmsg);
     _scaffoldkey.currentState.showSnackBar(new SnackBar(
-        content: new Text(this.alertmsg),
-        backgroundColor: Colors.blueAccent,
-        duration: Duration(seconds: 1)));
+        content: new Text(this.alertmsg),backgroundColor: Colors.blueAccent, duration: Duration(seconds: 1)));
   }
 
   @override
   Widget build(BuildContext context) {
-    _text1.text = "${widget.value}";
-
+     _text1.text = "${widget.value}";
+    
     // return Container(
     //   child: Text("${widget.value}"),
     // );
-    // final style = TextStyle(
-    //       fontFamily: 'Montserrat', fontSize: 19.0, color: Colors.black);
+  // final style = TextStyle(
+  //       fontFamily: 'Montserrat', fontSize: 19.0, color: Colors.black);
 
-    // final totalMark = new Container(
-    //       child: Column(children: <Widget>[
-    //     ListTile(
-    //       title: Padding(
-    //         padding: const EdgeInsets.fromLTRB(5, 2, 8, 5),
-    //         child: Text("Total Mark"),
-    //       ),
-    //       subtitle: Padding(
-    //         padding: const EdgeInsets.all(5.0),
-    //         child: Text(
-    //           "${widget.value}",
-    //           style: style,
-    //         ),
-    //       ),
-    //     ),
-    //     Divider(
-    //       color: Colors.black,
-    //     )
-    //   ]));
+  // final totalMark = new Container(
+  //       child: Column(children: <Widget>[
+  //     ListTile(
+  //       title: Padding(
+  //         padding: const EdgeInsets.fromLTRB(5, 2, 8, 5),
+  //         child: Text("Total Mark"),
+  //       ),
+  //       subtitle: Padding(
+  //         padding: const EdgeInsets.all(5.0),
+  //         child: Text(
+  //           "${widget.value}",
+  //           style: style,
+  //         ),
+  //       ),
+  //     ),
+  //     Divider(
+  //       color: Colors.black,
+  //     )
+  //   ]));
     final totalMark = new TextField(
-      controller: _text1,
-      decoration: InputDecoration(
-        labelText: checklang == "Eng" ? textEng[1] : textMyan[1],
-        hasFloatingPlaceholder: true,
-        labelStyle: (checklang == "Eng")
-            ? TextStyle(
-                fontSize: 17,
-                color: Colors.black,
-                height: 0,
-                fontWeight: FontWeight.w300)
+          controller: _text1,
+          decoration: InputDecoration(
+              labelText: checklang=="Eng" ? textEng[1] : textMyan[1],
+              hasFloatingPlaceholder: true,
+              labelStyle: (checklang == "Eng")
+            ? TextStyle(fontSize: 17, color: Colors.black,height: 0, fontWeight: FontWeight.w300)
             : TextStyle(fontSize: 16, color: Colors.black, height: 0),
-        enabled: false,
-      ),
-    );
-    final location = new TextField(
-      controller: _text2,
-      decoration: InputDecoration(
-        labelText: checklang == "Eng" ? textEng[2] : textMyan[2],
-        hasFloatingPlaceholder: true,
-        labelStyle: (checklang == "Eng")
-            ? TextStyle(
-                fontSize: 17,
-                color: Colors.black,
-                height: 0,
-                fontWeight: FontWeight.w300)
+              enabled: false,
+              ),
+        );
+  final location = new TextField(
+          controller: _text2,
+          decoration: InputDecoration(
+              labelText: checklang=="Eng" ? textEng[2] : textMyan[2],
+              hasFloatingPlaceholder: true,
+              labelStyle: (checklang == "Eng")
+            ? TextStyle(fontSize: 17, color: Colors.black,height: 0, fontWeight: FontWeight.w300)
             : TextStyle(fontSize: 16, color: Colors.black, height: 0),
-      ),
-    );
-    final phonenumber = new TextField(
-      controller: _text3,
-      decoration: InputDecoration(
-        labelText: checklang == "Eng" ? textEng[3] : textMyan[3],
-        hasFloatingPlaceholder: true,
-        labelStyle: (checklang == "Eng")
-            ? TextStyle(
-                fontSize: 17,
-                color: Colors.black,
-                height: 0,
-                fontWeight: FontWeight.w300)
+              ),
+        );
+        final phonenumber = new TextField(
+          controller: _text3,
+          decoration: InputDecoration(
+              labelText: checklang=="Eng" ? textEng[3] : textMyan[3],
+              hasFloatingPlaceholder: true,
+              labelStyle: (checklang == "Eng")
+            ? TextStyle(fontSize: 17, color: Colors.black,height: 0, fontWeight: FontWeight.w300)
             : TextStyle(fontSize: 16, color: Colors.black, height: 0),
-      ),
-    );
-    // final question = new TextField(
-    //   controller: _text4,
-    //   decoration: InputDecoration(
-    //       labelText: "Question",
-    //       ),
-    // );
-    // final phonenumber = new Container(
-    //       child: Column(children: <Widget>[
-    //     ListTile(
-    //       title: Padding(
-    //         padding: const EdgeInsets.fromLTRB(5, 2, 8, 5),
-    //         child: Text("Total Mark"),
-    //       ),
-    //       subtitle: Padding(
-    //         padding: const EdgeInsets.all(5.0),
-    //         child: Text(
-    //           "${widget.value}",
-    //           style: style,
-    //         ),
-    //       ),
-    //     ),
-    //     Divider(
-    //       color: Colors.black,
-    //     )
-    //   ]));
-    final question = new Container(
+              ),
+        );
+        // final question = new TextField(
+        //   controller: _text4,
+        //   decoration: InputDecoration(
+        //       labelText: "Question",
+        //       ),
+        // );
+  // final phonenumber = new Container(
+  //       child: Column(children: <Widget>[
+  //     ListTile(
+  //       title: Padding(
+  //         padding: const EdgeInsets.fromLTRB(5, 2, 8, 5),
+  //         child: Text("Total Mark"),
+  //       ),
+  //       subtitle: Padding(
+  //         padding: const EdgeInsets.all(5.0),
+  //         child: Text(
+  //           "${widget.value}",
+  //           style: style,
+  //         ),
+  //       ),
+  //     ),
+  //     Divider(
+  //       color: Colors.black,
+  //     )
+  //   ]));
+  final question = new Container(
         child: Column(children: <Widget>[
       ListTile(
         title: Padding(
-          padding: const EdgeInsets.only(top: 10.0),
-          child: Text(checklang == "Eng" ? textEng[4] : textMyan[4]),
+          padding: const EdgeInsets.only(top:10.0),
+          child: Text(checklang=="Eng" ? textEng[4] : textMyan[4]),
         ),
         subtitle: Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Row(
-              children: <Widget>[
-                Text("Yes"),
-                Checkbox(
-                  value: v1,
-                  onChanged: (bool value) {
+          padding: const EdgeInsets.all(5.0),
+          child: Row(children: <Widget>[
+            Text("Yes"),
+            Checkbox(
+                value: v1,
+                onChanged: (bool value) {
                     setState(() {
-                      v1 = value;
-                      v2 = vv;
-                      v3 = vv;
+                        v1 = value;
+                        v2 = vv;
+                        v3 = vv;
                     });
-                  },
-                ),
-                Text("No"),
-                Checkbox(
-                  value: v2,
-                  onChanged: (bool value) {
+                },
+            ),
+            Text("No"),
+            Checkbox(
+                value: v2,
+                onChanged: (bool value) {
                     setState(() {
-                      v2 = value;
-                      v1 = vv;
-                      v3 = vv;
+                        v2 = value;
+                        v1 = vv;
+                        v3 = vv;
                     });
-                  },
-                ),
-                Text("Pending"),
-                Checkbox(
-                  value: v3,
-                  onChanged: (bool value) {
+                },
+            ),
+            Text("Pending"),
+            Checkbox(
+                value: v3,
+                onChanged: (bool value) {
                     setState(() {
-                      v3 = value;
-                      v1 = vv;
-                      v2 = vv;
+                        v3 = value;
+                        v1 = vv;
+                        v2 = vv;
                     });
-                  },
-                ),
-              ],
-            )),
+                },
+            ),
+          ],)
+        ),
       ),
       Divider(
         color: Colors.black,
       )
     ]));
 
-    // final cancelbutton = new RaisedButton(
-    //     shape: RoundedRectangleBorder(
-    //       borderRadius: BorderRadius.circular(5.0),
-    //     ),
-    //     onPressed: () async {
-    //       this.alertmsg = '';
-    //       Navigator.pop(context);
-    //     },
-    //     color: Colors.grey[300],
-    //     textColor: Colors.white,
-    //     child: Container(
-    //       width: 100.0,
-    //       height: 38.0,
-    //       child: Center(
-    //           // child: Text(checklang == "Eng" ? textEng[7] : textMyan[7],
-    //           child: Text(checklang=="Eng" ? textEng[5] : textMyan[5],
-    //               style: TextStyle(
-    //                 fontSize: 15,
-    //                 color: Colors.black,
-    //                 fontWeight: FontWeight.w300,
-    //               ))),
-    //     ),
-    //   );
+  // final cancelbutton = new RaisedButton(
+  //     shape: RoundedRectangleBorder(
+  //       borderRadius: BorderRadius.circular(5.0),
+  //     ),
+  //     onPressed: () async {
+  //       this.alertmsg = '';
+  //       Navigator.pop(context);
+  //     },
+  //     color: Colors.grey[300],
+  //     textColor: Colors.white,
+  //     child: Container(
+  //       width: 100.0,
+  //       height: 38.0,
+  //       child: Center(
+  //           // child: Text(checklang == "Eng" ? textEng[7] : textMyan[7],
+  //           child: Text(checklang=="Eng" ? textEng[5] : textMyan[5],
+  //               style: TextStyle(
+  //                 fontSize: 15,
+  //                 color: Colors.black,
+  //                 fontWeight: FontWeight.w300,
+  //               ))),
+  //     ),
+  //   );
     final reportbutton = new RaisedButton(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5.0),
@@ -374,16 +235,16 @@ class _ReportingState extends State<Reporting> {
         print(_text1.text);
         print(_text2.text);
         print(_text3.text);
-        if (v1 == true) {
+        if(v1==true){
           setState(() {
-            v4 = "True";
+            v4="True";
           });
-        } else if (v2 == true) {
+        }else if(v2==true){
           setState(() {
-            v4 = "False";
+            v4="False";
           });
-        } else if (v3 == true) {
-          v4 = "Pending";
+        }else if(v3==true){
+          v4="Pending";
         }
         print(v4);
       },
@@ -394,7 +255,7 @@ class _ReportingState extends State<Reporting> {
         height: 38.0,
         child: Center(
             // child: Text(checklang == "Eng" ? textEng[7] : textMyan[7],
-            child: Text(checklang == "Eng" ? textEng[6] : textMyan[6],
+            child: Text(checklang=="Eng" ? textEng[6] : textMyan[6],
                 style: TextStyle(
                   fontSize: 15,
                   color: Colors.white,
@@ -405,33 +266,33 @@ class _ReportingState extends State<Reporting> {
 
     // final reportbutton = new RaisedButton(
     //   color: Colors.blue,
-    // onPressed: () async{
-    //   setState(() {
-    //     if(amount1==null){
-    //  _scaffoldkey.currentState.showSnackBar(new SnackBar(
-    //   content: new Text("Please Select month"),backgroundColor: Colors.red, duration: Duration(seconds: 1)));
-    //     }else{
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(
-    //       builder: (context) => skynetConfirmPage(
-    //           value: "${widget.value}",
-    //           value1: '$package',
-    //           value2: '$type1',
-    //           value3: '$amount1',
-    //           value4: '$charge',
-    //           value5: '$total',
-    //           value6: '$contactList1')),
-    // );
-    //   }
-    // });
+      // onPressed: () async{
+      //   setState(() {
+      //     if(amount1==null){
+      //  _scaffoldkey.currentState.showSnackBar(new SnackBar(
+      //   content: new Text("Please Select month"),backgroundColor: Colors.red, duration: Duration(seconds: 1)));
+      //     }else{
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //       builder: (context) => skynetConfirmPage(
+        //           value: "${widget.value}",
+        //           value1: '$package',
+        //           value2: '$type1',
+        //           value3: '$amount1',
+        //           value4: '$charge',
+        //           value5: '$total',
+        //           value6: '$contactList1')),
+        // );
+        //   }
+        // });
 
-    // },
-    // color: Color.fromRGBO(40, 103, 178, 1),
-    // shape: RoundedRectangleBorder(
-    //   borderRadius: BorderRadius.circular(5.0),
-    // ),
-    // textColor: Colors.white,
+      // },
+      // color: Color.fromRGBO(40, 103, 178, 1),
+      // shape: RoundedRectangleBorder(
+      //   borderRadius: BorderRadius.circular(5.0),
+      // ),
+      // textColor: Colors.white,
     //   child: Container(
     //     width: 120.0,
     //     height: 38.0,
@@ -450,10 +311,7 @@ class _ReportingState extends State<Reporting> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          checklang == "Eng" ? textEng[0] : textMyan[0],
-          style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0),
-        ),
+        title: Text(checklang=="Eng" ? textEng[0] : textMyan[0],style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0),),
       ),
       // body: Container(
       //   padding: EdgeInsets.all(15.0),
@@ -463,7 +321,7 @@ class _ReportingState extends State<Reporting> {
       //         Text("Total Mark:"),
       //         Text("${widget.value}"),
       //       ],),
-
+            
       //     ],
       //   ),
       // ),
@@ -483,27 +341,21 @@ class _ReportingState extends State<Reporting> {
                 child: ListView(
                   padding: EdgeInsets.all(2.0),
                   children: <Widget>[
-                    // SizedBox(
-                    //   height: 10.0,
-                    // ),
-                    // Center(
-                    //   child: new Container(
-                    //     padding: EdgeInsets.only(left: 10.0, right: 10.0),
-                    //     child: totalMark,
-                    //   ),
-                    // ),
-                    SizedBox(
-                      height: 10.0,
+                    SizedBox(height: 10.0,),
+                    Center(
+                      child: new Container(
+                        padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                        child: totalMark,
+                      ),
                     ),
+                    SizedBox(height: 10.0,),
                     Center(
                       child: new Container(
                         padding: EdgeInsets.only(left: 10.0, right: 10.0),
                         child: location,
                       ),
                     ),
-                    SizedBox(
-                      height: 10.0,
-                    ),
+                    SizedBox(height: 10.0,),
                     Center(
                       child: new Container(
                         padding: EdgeInsets.only(left: 10.0, right: 10.0),
@@ -516,25 +368,21 @@ class _ReportingState extends State<Reporting> {
                     //     child: question,
                     //   ),
                     // ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
+                    SizedBox(height: 20.0,),
                     // Row(
                     //   children: <Widget>[
-                    // new Container(
-                    //   padding: EdgeInsets.only(left: 26.0),
-                    //   child: cancelbutton,
-                    // ),
-                    new Container(
-                      padding:
-                          EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20),
-                      child: reportbutton,
-                    ),
-                    SizedBox(
-                      height: 15.0,
-                    ),
+                        // new Container(
+                        //   padding: EdgeInsets.only(left: 26.0),
+                        //   child: cancelbutton,
+                        // ),
+                        new Container(
+                          padding: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20),
+                          child: reportbutton,
+                        ),
+                        SizedBox(height: 15.0,),
                     //   ],
                     // ),
+                    
                   ],
                 ),
               ),

@@ -1,4 +1,4 @@
-package com.mit.TraceMyanmar2020
+package mm.org.mcf.app001
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

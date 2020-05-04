@@ -1,14 +1,18 @@
 import 'dart:async';
 
+import 'package:TraceMyanmar/conv_datetime.dart';
 import 'package:TraceMyanmar/db_helper.dart';
 import 'package:TraceMyanmar/employee.dart';
 import 'package:TraceMyanmar/startInterval.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:intl/intl.dart';
 import 'package:geolocator/geolocator.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:devicelocale/devicelocale.dart';
+import 'package:rabbit_converter/rabbit_converter.dart';
 
 class SingleMarker extends StatefulWidget {
   final String id;
@@ -29,6 +33,8 @@ class SingleMarker extends StatefulWidget {
 }
 
 class _SingleMarkerState extends State<SingleMarker> {
+  FirebaseAnalytics analytics = FirebaseAnalytics();
+  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   GoogleMapController myMapController;
   final Set<Marker> _markers = new Set();
   LatLng _mainLocation;
@@ -38,121 +44,89 @@ class _SingleMarkerState extends State<SingleMarker> {
   var _start;
   Timer timer;
   var dbHelper;
+  String checkfont = '';
+  String lan = '';
 
+  // final bitmapIcon = BitmapDescriptor.fromAssetImage(
+  //     ImageConfiguration(size: Size(48, 48)), 'assets/marker.png');
+  var bitmapImage;
   @override
   void initState() {
     super.initState();
+    someMethod();
     var index = widget.location.toString().indexOf(',');
     var lat = widget.location.toString().substring(0, index);
     var long = widget.location.toString().substring(index + 1);
     _mainLocation = LatLng(double.parse(lat), double.parse(long));
     print("ML >> " + lat + "|" + long);
-
-    dbHelper = DBHelper();
-    _checkAndstartTrack();
+    // _createMarkerImageFromAsset("assets/marker.png");
+    analyst();
   }
 
-  _checkAndstartTrack() async {
-    final prefs = await SharedPreferences.getInstance();
-    var chkT = prefs.getString("chk_tracking") ?? "0";
-    if (chkT == "0") {
-      //tracking off
-    } else {
-      //tracking on
-      final prefs = await SharedPreferences.getInstance();
-      int val = prefs.getInt("timer") ?? 0;
+  analyst() async {
+    await analytics.logEvent(
+      name: 'SingleMap_Request',
+      parameters: <String, dynamic>{
+        // 'string': myController.text,
+      },
+    );
+  }
 
-      if (val == 0) {
+  Future someMethod() async {
+    String deviceLanguage = await Devicelocale.currentLocale;
+    checkfont = deviceLanguage.substring(3, 5);
+    setState(() {
+      if (checkfont == 'ZG') {
+        print(checkfont);
+        // print('lenght ---- ' + textMyan.length.toString());
+        lan = "Zg";
+        print(lan);
       } else {
-        _start = val.toString();
-        countDownSave();
+        // print('lenght ---- ' + textMyan.length.toString());
+        lan = "Uni";
+        print(lan);
       }
-    }
+      print('-->$deviceLanguage');
+    });
+  }
+
+  snackbarmethod1(name) {
+    _scaffoldkey.currentState.showSnackBar(new SnackBar(
+      // content: new Text("Please wait, searching your location"),
+      content: new Text(name),
+      backgroundColor: Colors.blue.shade400,
+      duration: Duration(seconds: 3),
+    ));
   }
 
   @override
   void dispose() {
-    timer.cancel();
+    // timer.cancel();
     // timer1.cancel();
     super.dispose();
   }
 
-  countDownSave() {
-    print("START >> $_start");
-    const oneSec = const Duration(seconds: 1);
-    timer = Timer.periodic(
-      oneSec,
-      (Timer t) => setState(
-        () {
-          if (_start == 0) {
-            _getCurrentLocationForTrack();
-            timer.cancel();
-          } else {
-            _start = int.parse(_start.toString()) - 1;
-            saveTimer();
-            // print("Sec>>" + _start.toString());
-          }
-          print("CD >> " + _start.toString());
-        },
-      ),
-    );
-  }
+  // _createMarkerImageFromAsset("assets/locationMarker.png");
 
-  saveTimer() async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setInt("timer", _start);
-  }
-
-  _getCurrentLocationForTrack() async {
-    //auto check in location
-
-    // setState(() async {
-    //tracking on
-    try {
-      // UserId
-      final prefs = await SharedPreferences.getInstance();
-      var userId = prefs.getString("UserId") ?? null;
-
-      final position = await Geolocator()
-          .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-
-      var location = "${position.latitude}, ${position.longitude}";
-      print("location >>> $location");
-
-      DateTime now = DateTime.now();
-      var curDT = new DateFormat.yMd().add_jm().format(now);
-      if (userId == null) {
-        Employee e = Employee(null, location, curDT, "Checked In", "", "Auto");
-        dbHelper.save(e);
-      } else {
-        Employee e =
-            Employee(int.parse(userId), location, curDT, "Checked In", "", "Auto");
-        dbHelper.save(e);
-      }
-
-      // final prefs = await SharedPreferences.getInstance();
-      int c = prefs.getInt("saveCount") ?? 0;
-      final prefs1 = await SharedPreferences.getInstance();
-      int r = c + 1;
-      prefs1.setInt("saveCount", r);
-      // setState(() {
-      //   refreshList();
-      // });
-      print("Save --->>>>");
-      _start = startInterval;
-      countDownSave();
-    } on Exception catch (_) {
-      print('never reached');
-    }
-    // });
-  }
+  // Future<BitmapDescriptor> _createMarkerImageFromAsset(String iconPath) async {
+  //   ImageConfiguration configuration = ImageConfiguration(size: Size(48.0, 48.0));
+  //   bitmapImage =
+  //       await BitmapDescriptor.fromAssetImage(configuration, iconPath);
+  //   return bitmapImage;
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldkey,
       appBar: AppBar(
-        title: Text('​မြေပုံ (Map)',
-            style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0)),
+        title: Text(
+            lan == "Zg" ? Rabbit.uni2zg('​မြေပုံ (Map)') : '​မြေပုံ (Map)',
+            // '​မြေပုံ (Map)',
+            style: TextStyle(
+                fontFamily: lan == "Zg" ? "Zawgyi" : "Pyidaungsu",
+                fontWeight: FontWeight.w300,
+                fontSize: 18.0)),
         centerTitle: true,
       ),
       body: Column(
@@ -169,8 +143,15 @@ class _SingleMarkerState extends State<SingleMarker> {
                 Marker(
                   markerId: MarkerId(widget.id.toString()),
                   position: _mainLocation,
-                  infoWindow: InfoWindow(title: widget.time),
-                  icon: BitmapDescriptor.defaultMarker,
+                  infoWindow: InfoWindow(
+                    // title: widget.time
+                    title: widget.time.toString().replaceAll("T", " "),
+                  ),
+                  // icon: BitmapDescriptor.hueCyan,
+                  // icon: getMarkerIcon("path/to/your/image.png", Size(150.0, 150.0))
+                  // icon: bitmapImage,
+                  icon: BitmapDescriptor.defaultMarkerWithHue(
+                      BitmapDescriptor.hueBlue),
                 )
               },
               mapType: MapType.normal,

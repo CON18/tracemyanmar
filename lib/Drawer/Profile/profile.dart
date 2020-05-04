@@ -495,7 +495,7 @@ class _ProfileState extends State<Profile> {
   }
   update() async {
     String url =
-        "http://52.187.13.89:8080/tracemyanmar/module001/serviceRegisterTraceMyanmar/updateRegister";
+        "https://service.mcf.org.mm/tracemyanmar/module001/serviceRegisterTraceMyanmar/updateRegister";
     Map<String, String> headers = {"Content-type": "application/json"};
     String json = '{"phoneNo": "' +
         "+959951063763" +

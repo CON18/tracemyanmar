@@ -1,11 +1,11 @@
 import 'dart:async';
-
 import 'package:TraceMyanmar/db_helper.dart';
 import 'package:TraceMyanmar/employee.dart';
+import 'package:TraceMyanmar/sqlite.dart';
 import 'package:TraceMyanmar/startInterval.dart';
+import 'package:TraceMyanmar/tabs.dart';
 import 'package:intl/intl.dart';
 import 'package:geolocator/geolocator.dart';
-
 import 'package:TraceMyanmar/QR/generateqr.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'fleetdetail.dart';
@@ -39,20 +39,22 @@ class _FleetState extends State<Fleet> {
   String alertmsg = "";
   String checklang = '';
   List textMyan = [
-    "လမ်း‌ကြောင်းမှတ်ပုံတင် (Register)",
+    // လမ်း‌ကြောင်း
+    "မှတ်ပုံတင် (Register)",
     "ID",
     "အမျိုးအစား",
-    "ထွက်​ခွာသည့် ​နေ့ရက်​/အချိန်​",
+    "စတင်သည့် ​နေ့ရက်​/အချိန်​",
     "မှ",
-    "​ရောက်​ရှိသည့် ​နေ့ရက်​/အချိန်​",
+    "​​ပြီးဆုံးသည့် ​နေ့ရက်​/အချိန်​",
     "သို့",
     "အ​ကြောင်းအရာ",
     "ပယ်ဖျက်မည်",
-    "သိမ်းဆည်း (Save)",
+    "သိမ်းဆည်းမည်",
     "QR ထုတ်​မည်​"
   ];
   List textEng = [
-    "လမ်း‌ကြောင်းမှတ်ပုံတင် (Register)",
+    // လမ်း‌ကြောင်း
+    "မှတ်ပုံတင် (Register)",
     "ID",
     "Type:",
     "Departure Date Time",
@@ -74,99 +76,17 @@ class _FleetState extends State<Fleet> {
     super.initState();
     checkLanguage();
     getstorage();
-
-    dbHelper = DBHelper();
-    _checkAndstartTrack();
+    // dbHelper = DBHelper();
+    // _checkAndstartTrack();
   }
 
-  
-
-  _checkAndstartTrack() async {
-    final prefs = await SharedPreferences.getInstance();
-    var chkT = prefs.getString("chk_tracking") ?? "0";
-    if (chkT == "0") {
-      //tracking off
-    } else {
-      //tracking on
-      final prefs = await SharedPreferences.getInstance();
-      int val = prefs.getInt("timer") ?? 0;
-
-      if (val == 0) {
-      } else {
-        _start = val.toString();
-        countDownSave();
-      }
-    }
-  }
-
-  countDownSave() {
-    print("START >> $_start");
-    const oneSec = const Duration(seconds: 1);
-    timer = Timer.periodic(
-      oneSec,
-      (Timer t) => setState(
-        () {
-          if (_start == 0) {
-            _getCurrentLocationForTrack();
-            timer.cancel();
-          } else {
-            _start = int.parse(_start.toString()) - 1;
-            saveTimer();
-            // print("Sec>>" + _start.toString());
-          }
-          print("CD >> " + _start.toString());
-        },
-      ),
-    );
-  }
-
-  saveTimer() async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setInt("timer", _start);
-  }
-
-  _getCurrentLocationForTrack() async {
-    //auto check in location
-
-    // setState(() async {
-    //tracking on
-    try {
-      // UserId
-      final prefs = await SharedPreferences.getInstance();
-      var userId = prefs.getString("UserId") ?? null;
-
-      final position = await Geolocator()
-          .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-
-      var location = "${position.latitude}, ${position.longitude}";
-      print("location >>> $location");
-
-      DateTime now = DateTime.now();
-      var curDT = new DateFormat.yMd().add_jm().format(now);
-      if (userId == null) {
-        Employee e = Employee(null, location, curDT, "Checked In", "", "Auto");
-        dbHelper.save(e);
-      } else {
-        Employee e =
-            Employee(int.parse(userId), location, curDT, "Checked In", "", "Auto");
-        dbHelper.save(e);
-      }
-
-      // final prefs = await SharedPreferences.getInstance();
-      int c = prefs.getInt("saveCount") ?? 0;
-      final prefs1 = await SharedPreferences.getInstance();
-      int r = c + 1;
-      prefs1.setInt("saveCount", r);
-      // setState(() {
-      //   refreshList();
-      // });
-      print("Save --->>>>");
-      _start = startInterval;
-      countDownSave();
-    } on Exception catch (_) {
-      print('never reached');
-    }
-    // });
+  snackbarmethod1(name) {
+    _scaffoldkey.currentState.showSnackBar(new SnackBar(
+      // content: new Text("Please wait, searching your location"),
+      content: new Text(name),
+      backgroundColor: Colors.blue.shade400,
+      duration: Duration(seconds: 3),
+    ));
   }
 
   checkLanguage() async {
@@ -190,7 +110,7 @@ class _FleetState extends State<Fleet> {
   _savefleep() async {
     // String url = "http://103.101.18.229:8080/TraceService/module001/service004/saveFleep";
     String url =
-        "http://52.187.13.89:8080/tracemyanmar/module001/service004/saveFleep";
+        "https://service.mcf.org.mm/tracemyanmar/module001/service004/saveFleep";
     Map<String, String> headers = {"Content-type": "application/json"};
     String json = '{ "phoneNo": "' +
         '$uu' +
@@ -260,13 +180,12 @@ class _FleetState extends State<Fleet> {
   @override
   void dispose() {
     super.dispose();
+    timer.cancel();
     _txt1Focus.dispose();
     _txt2Focus.dispose();
     _txt3Focus.dispose();
     _txt4Focus.dispose();
-    timer.cancel();
   }
-
 
   final List<String> _dropdownType = [
     "",
@@ -701,48 +620,48 @@ class _FleetState extends State<Fleet> {
           style: TextStyle(fontWeight: FontWeight.w300, fontSize: 16.5),
         ),
         centerTitle: true,
-        actions: <Widget>[
-          PopupMenuButton<int>(
-            itemBuilder: (context) => [
-              PopupMenuItem(
-                value: 1,
-                child: Text("Fleet List"),
-              ),
-              // PopupMenuItem(
-              //   value: 2,
-              //   child: Text("Fleet Detail"),
-              // ),
-            ],
-            // initialValue: 2,
-            onCanceled: () {
-              print("You have canceled the menu.");
-            },
-            onSelected: (value) {
-              print("value:$value");
-              if (value == 1) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => FleetList()),
-                );
-              }
-              // else if (value == 2) {
-              //   Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //           builder: (context) => FleetDetail(
-              //                 phoneno: "",
-              //                 fleepno: _text1.text + "|" + typeValue,
-              //                 depaturedatetime: _date1 + "|" + _time1,
-              //                 fromLocation: _text3.text,
-              //                 arrivaldatetime: _date2 + "|" + _time2,
-              //                 tolocation: _text4.text,
-              //                 remark: _text5.text,
-              //               )));
-              // }
-            },
-            // icon: Icon(Icons.list),
-          ),
-        ],
+        // actions: <Widget>[
+        //   PopupMenuButton<int>(
+        //     itemBuilder: (context) => [
+        //       PopupMenuItem(
+        //         value: 1,
+        //         child: Text("Fleet List"),
+        //       ),
+        //       // PopupMenuItem(
+        //       //   value: 2,
+        //       //   child: Text("Fleet Detail"),
+        //       // ),
+        //     ],
+        //     // initialValue: 2,
+        //     onCanceled: () {
+        //       print("You have canceled the menu.");
+        //     },
+        //     onSelected: (value) {
+        //       print("value:$value");
+        //       if (value == 1) {
+        //         Navigator.push(
+        //           context,
+        //           MaterialPageRoute(builder: (context) => FleetList()),
+        //         );
+        //       }
+        //       // else if (value == 2) {
+        //       //   Navigator.push(
+        //       //       context,
+        //       //       MaterialPageRoute(
+        //       //           builder: (context) => FleetDetail(
+        //       //                 phoneno: "",
+        //       //                 fleepno: _text1.text + "|" + typeValue,
+        //       //                 depaturedatetime: _date1 + "|" + _time1,
+        //       //                 fromLocation: _text3.text,
+        //       //                 arrivaldatetime: _date2 + "|" + _time2,
+        //       //                 tolocation: _text4.text,
+        //       //                 remark: _text5.text,
+        //       //               )));
+        //       // }
+        //     },
+        //     // icon: Icon(Icons.list),
+        //   ),
+        // ],
       ),
       body: new Form(
         key: _formKey,

@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_local_notifications/intermediates/res/merged/release/layout-v21/notification_action.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/4f9d0df92582b8bee2bc9fe22046feed/core-1.2.0/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_local_notifications/intermediates/res/merged/release/layout-v21/notification_template_custom_big.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/4f9d0df92582b8bee2bc9fe22046feed/core-1.2.0/res/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_local_notifications/intermediates/res/merged/release/layout-v21/notification_action_tombstone.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/4f9d0df92582b8bee2bc9fe22046feed/core-1.2.0/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/home/chitoonaung/FP/tracemyanmar/build/flutter_local_notifications/intermediates/res/merged/release/layout-v21/notification_template_icon_group.xml",
+        "source": "/home/chitoonaung/.gradle/caches/transforms-2/files-2.1/4f9d0df92582b8bee2bc9fe22046feed/core-1.2.0/res/layout-v21/notification_template_icon_group.xml"
+    }
+]

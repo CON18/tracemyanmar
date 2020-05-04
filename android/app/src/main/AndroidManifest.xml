@@ -43,7 +43,7 @@
             </intent-filter>
         </activity>
         
-        <meta-data android:name="com.transistorsoft.locationmanager.license" android:value="0b19121daecbe41ac676f59e00d99c71ce189f3cc1b1002ae93615a8df6b56b7" />
+        
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
